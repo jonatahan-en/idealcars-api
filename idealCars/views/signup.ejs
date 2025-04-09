@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/signup.css">
+    <title>Sing Up </title>
+</head>
+<body>
+  <main class="main-bg-container">
+
+    <section class="Card">
+      <h1>Sign Up!</h1>
+      <form method="post" action="/signup">
+          <div class="form_input">
+              <label for="name">
+                <strong>Name</strong>
+              </label>
+              <input
+                class="input"
+                type="text"
+                id="name"
+                placeholder="Enter Name"
+                required
+                autocomplete="off"
+                name="name"
+                />
+            
+          </div>
+          <div class="form_input">
+
+            <label><strong>Enter your phone number</strong></label>
+            <input class="input" type="tel" id="tel" name="phone" autocomplete="off" 
+                placeholder="Opcional" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}"
+                title="Format (123-123-123)">
+        </div>
+          <div class="form_input">
+              <label for="email">
+                <strong>Email</strong>
+              </label>
+              <input
+                class="input"
+                type="email"
+                id="email"
+                placeholder="Enter Email"
+                autocomplete="off"
+                name="email"
+                required
+              />
+          </div>
+          <div class="form_input">
+              <label for="password">
+                <strong>Password</strong>
+              </label>
+              <input
+                class="input"
+                type="password"
+                id="password"
+                required
+                placeholder="Enter Password"
+                name="password"
+              />
+          </div>
+          <div class="form_action">
+            <button type="submit" class="btn">
+              Register
+            </button>
+          </div>
+          
+        </form>
+      </section>
+  </main>
+      
+</body>
+</html>
