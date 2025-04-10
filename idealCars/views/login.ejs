@@ -3,11 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/form.css">
+    <title>Login </title>
 </head>
 <body>
-    <p>Hola yo debería de ser la vista de login</p>
-    
-    <a link href="/signup">Register</a>
+  <main class="main-bg-container">
+
+    <section class="Card">
+      <h1>Login</h1>
+      <form method="post" action="/login">
+          <div class="form_input">
+              <label for="email">
+                <strong>Email</strong>
+              </label>
+              <input
+                class="input"
+                type="email"
+                id="email"
+                placeholder="Enter Email"
+                autocomplete="off"
+                name="email"
+                required
+              />
+          </div>
+          <div class="form_input">
+              <label for="password">
+                <strong>Password</strong>
+              </label>
+              <input
+                class="input"
+                type="password"
+                id="password"
+                required
+                placeholder="Enter Password"
+                name="password"
+              />
+          </div>
+          <div class="form_action">
+            <button type="submit" class="btn">
+              Login
+            </button>
+          </div>
+          
+        </form>
+      </section>
+  </main>
+      
 </body>
 </html>
