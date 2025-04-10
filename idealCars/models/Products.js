@@ -6,7 +6,7 @@ const productSchema = new Schema({
     color: { type: String },
     year: { type: Number, required: true },
     price: { type: Number, required: true },
-    transactionType: { type: String, required: true },
+    kilometer: { type: Number },
     image: { type: String },
 })
 
