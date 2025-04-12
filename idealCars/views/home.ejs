@@ -1,0 +1,25 @@
+<%-include("header.ejs") %>
+
+    <h2><%="User Products" %></h2>
+    <% products.forEach(product => { %>
+        <div class="container">
+            <% //contenido parar usuarios no logados añadir %>
+
+
+            <% //contenido parar usuarios logados añadir %>
+
+
+            <h2><%= product.name %></h2>
+            <p>Modelo:<%= product.model %></p>
+            <p>Color:<%= product.color %></p>
+            <p>Año: <%= product.year %></p>
+            <p>Precio: <%= product.price %></p>
+            <p>Kilometros<%= product.kilometer %></p>
+            <% if (product.image) { %>
+                <img src="<%= product.image %>" alt="<%= product.name %>" width="100">
+                <% } %>
+        </div> 
+    <% }) %>
+
+
+<%-include("footer.ejs") %> 
