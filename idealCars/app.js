@@ -15,10 +15,6 @@ const app = express();
 
 app.locals.appName = "Ideal Cars" // nombre de la aplicacion
 
-//catch 404 and forward to error handler
-app.use((req, res, next) => {
-    next(createError(404));
-});
 
 
 app.set('views', 'views') // views folder
@@ -32,7 +28,7 @@ app.use(express.static('public'))
 
 /**
  * Website routes
- */
+*/
 //
 app.use(sessionManager.middleware , sessionManager.useSessionInViews)
 
@@ -48,6 +44,10 @@ app.post('/login',loginController.PostLogIn)
 app.all('/logout', loginController.logout)// .all para peticiones get y post()
 
 
+//catch 404 and forward to error handler
+app.use((req, res, next) => {
+    next(createError(404));
+});
 //error handler
 app.use((err, req, res , next) => {
     res.status(err.status || 500);

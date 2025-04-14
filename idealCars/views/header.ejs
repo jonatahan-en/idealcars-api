@@ -24,7 +24,11 @@
                     </li>
                 </ul>
                 <form class="d-flex" role="search">
-                <a href="/login"  class="btn btn-outline-success" type="submit">Login</a>
+                    <% if(session.userId) {%>
+                        <a href="/logout" class="btn btn-outline-success" type="submit">Logout</a>
+                    <% }else{ %>
+                        <a href="/login" class="btn btn-outline-success" type="submit">Login</a>
+                    <% } %>
                 </form>
             </div>
             </div>
