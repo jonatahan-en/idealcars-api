@@ -2,7 +2,7 @@ import express from 'express';
 import connectMongoose from './lib/connectMongoose.js';
 import createError from 'http-errors';
 import logger from 'morgan';
-import *  as homeControllers from './controllers/homeControllers.js';
+import *  as homeController from './controllers/homeController.js'
 
 //conexion a la base de datos
 await connectMongoose()
@@ -25,7 +25,7 @@ app.use(express.static("public"));
 /**
  * Application Router
  */
-app.get("/",homeControllers.index); 
+app.get("/",homeController.index); 
 
 
 
