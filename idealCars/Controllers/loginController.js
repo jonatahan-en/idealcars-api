@@ -16,7 +16,7 @@ export async function PostLogIn(req,res,next){
         }
 
         
-        // si el usuario existe y la contraseña es correcta --> apuntar en su sesión que está loggado
+        // si el usuario existe y la contraseña es correcta --> apuntar en su sesión que está loggado.
 
         req.session.userId = user._id
         req.session.userName = user.email
@@ -36,4 +36,3 @@ export function logout(req,res,next){
         res.redirect('/')
     })
 }
-

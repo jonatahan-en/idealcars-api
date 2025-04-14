@@ -75,7 +75,7 @@ export async function ValidateRegister(req, res,next) {
     // Usamos validationResult para obtener los errores de validación
     const errors = validationResult(req)
   
-    // Si hay errores de validación, respondemos con el código 400 y los errores
+    // Si hay errores de validación, respondemos con el código 400 y los errores.
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() })
     }
