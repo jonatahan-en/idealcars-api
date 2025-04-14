@@ -11,7 +11,7 @@ export const middleware = session({
     cookie: {maxAge: INACTIVITY_EXPIRATION_2_DAYS },
     //las sesiones se guardan en MongoDB
     store: MongoStore.create({
-        mongoUrl: 'mongodb://127.0.0.1/idealCars'
+        mongoUrl: process.env.MONGODB_URI
     })
 })
 

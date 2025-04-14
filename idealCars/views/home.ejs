@@ -7,8 +7,10 @@
 </head>
 <body>
     <h1>VISTA DE HOME</h1>
-
-    <a href="/logout" type="submit">LogOut</a>
+    <% if(!session.userId) { %>
     <a href="/login" type="submit">Login</a>
+    <% }else { %>
+    <a href="/logout" type="submit">LogOut</a>
+    <% } %>
 </body>
 </html>
