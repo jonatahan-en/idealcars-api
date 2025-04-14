@@ -1,4 +1,8 @@
-export async function  index(req,res,next){
+import Product from "../models/Products.js" 
+
+export async function index (req, res, next){
     const userId = req.session.userId
-    res.render('home')
-}
+    res.locals.products = await Product.find() 
+    res.render("home")
+} 
+
