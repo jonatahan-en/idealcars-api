@@ -3,11 +3,10 @@ import bcrypt from 'bcrypt'
 
 
 const userSchema = new Schema({
-    name: {type: String, unique:true},
+    name: { type: String, required: true, unique: true},
     phone: {type: Number},
-    email: { type:String, unique:true},
-    password: {type: String}
-
+    email: { type: String, required:true,  unique: true },
+    password: { type: String, required:true },
 })
 
 // método estático que hace un hash de una contraseña

@@ -1,16 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>VISTA DE HOME</h1>
-    <% if(!session.userId) { %>
-    <a href="/login" type="submit">Login</a>
-    <% }else { %>
-    <a href="/logout" type="submit">LogOut</a>
-    <% } %>
-</body>
-</html>
+<%-include("header.ejs") %>
+
+    <h2><%="User Products" %></h2>
+    <% products.forEach(product => { %>
+        <div class="container">
+            <% //contenido parar usuarios no logados añadir %>
+
+
+            <% //contenido parar usuarios logados añadir %>
+
+
+            <h2><%= product.name %></h2>
+            <p>Modelo:<%= product.model %></p>
+            <p>Color:<%= product.color %></p>
+            <p>Año: <%= product.year %></p>
+            <p>Precio: <%= product.price %></p>
+            <p>Kilometros<%= product.kilometer %></p>
+            <% if (product.image) { %>
+                <img src="<%= product.image %>" alt="<%= product.name %>" width="100">
+                <% } %>
+        </div> 
+    <% }) %>
+
+
+<%-include("footer.ejs") %> 

@@ -4,11 +4,10 @@ dotenv.config();
 
 
 mongoose.connection.on("error", (err) => {
-    console.error("Error de conexión ", err);
+    console.log("Error de conexión ", err);
 })
 
 export default function connectMongoose() {
     return mongoose.connect(process.env.MONGODB_URI)
-    .then (mongoose => mongoose.connection)
-    
+     .then (mongoose => mongoose.connection)
 }
