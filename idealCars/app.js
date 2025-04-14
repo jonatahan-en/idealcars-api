@@ -1,10 +1,11 @@
 import express from 'express';
 import logger from 'morgan'
-import * as homeController from './Controllers/homeController.js'
+import * as homeController from './controllers/homeController.js'
 import connectMongoose from './lib/connectMongoose.js';
-import * as loginController from './Controllers/loginController.js'
+import * as loginController from './controllers/loginController.js'
 import * as sessionManager from './lib/sessionManager.js'
-import * as signupController from './Controllers/signupController.js'
+import * as signupController from './controllers/signupController.js'
+
 
 await connectMongoose()
 console.log("Conectado a MongoDB")
@@ -22,11 +23,13 @@ app.use(express.static('public'))
 //conexion a la base de datos
 
 /**
- * Application routes
+ * Website routes
  */
 //
 app.use(sessionManager.middleware , sessionManager.useSessionInViews)
+
 //public pages 
+
 app.get('/', homeController.index)
 //rutas signup
 app.get('/signup',signupController.register )
