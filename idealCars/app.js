@@ -12,7 +12,6 @@ import * as signupController from './controllers/signupController.js'
 await connectMongoose()
 console.log("Conectado a MongoDB")
 const app = express();
-
 app.locals.appName = "Ideal Cars" // nombre de la aplicacion
 
 

@@ -1,25 +1,34 @@
 <%-include("header.ejs") %>
 
-    <h2><%="User Products" %></h2>
-    <% products.forEach(product => { %>
-        <div class="container">
-            <% //contenido parar usuarios no logados añadir %>
+<p> Hola!! <%= session.userName %></p>
+
+<% //contenido parar usuarios no logados añadir %>
+<% if(!session.userId){ %>
+    <p> Para ver el contenido deve hacer <a href="/login">Login</a></p>
+<% } %>
 
 
-            <% //contenido parar usuarios logados añadir %>
 
-
-            <h2><%= product.name %></h2>
-            <p>Modelo:<%= product.model %></p>
-            <p>Color:<%= product.color %></p>
-            <p>Año: <%= product.year %></p>
-            <p>Precio: <%= product.price %></p>
-            <p>Kilometros<%= product.kilometer %></p>
-            <% if (product.image) { %>
-                <img src="<%= product.image %>" alt="<%= product.name %>" width="100">
-                <% } %>
-        </div> 
-    <% }) %>
+<% //contenido parar usuarios logados añadir %>
+<% if(session.userId){ %>
+        <h2><%="User Products" %></h2>
+        <% products.forEach(product => { %>
+            <div class="container">
+                <h2><%= product.name %></h2>
+                <p>Modelo:<%= product.model %></p>
+                <p>Color:<%= product.color %></p>
+                <p>Año: <%= product.year %></p>
+                <p>Precio: <%= product.price %></p>
+                <p>Kilometros<%= product.kilometer %></p>
+                <% if (product.image) { %>
+                    <img src="<%= product.image %>" alt="<%= product.name %>" width="100">
+                    <% } %>
+            </div> 
+        <% }) %>
+    
+    <% } %>
+    
+    
 
 
 <%-include("footer.ejs") %> 

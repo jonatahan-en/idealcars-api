@@ -13,8 +13,8 @@ if(questionResponse.toLowerCase() !== "yes"){
     process.exit()
 }
 
-await initproducts();
 await initUser()
+await initproducts();
 
 connection.close()
 

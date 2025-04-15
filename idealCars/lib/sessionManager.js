@@ -5,7 +5,7 @@ const INACTIVITY_EXPIRATION_2_DAYS = 1000 * 60 * 60 * 24 * 2
 //middleware para gestionar sesiones
 export const middleware = session({
     name:'idealCars-session',
-    secret: 'dsfhjsadfljsdflksdaj',
+    secret: process.env.SESSION_SECRET,
     saveUninitialized: true,
     resave: false,
     cookie: {maxAge: INACTIVITY_EXPIRATION_2_DAYS },
