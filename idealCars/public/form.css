@@ -34,10 +34,22 @@ body {
    padding: 1rem;
    
 }
+.headers{
+    display: flex;
+    flex-direction: column;
+}
+
 h1{
     color:var(--brand-color);
     display: flex;
     justify-content: center;
+}
+h2{
+    color:var(--brand-color);
+    display: flex;
+    justify-content: center;
+    margin-left: 25px;
+
 }
 .form_input{
     color:var(--brand-color);

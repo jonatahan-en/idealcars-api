@@ -6,6 +6,7 @@ import *  as homeController from './controllers/homeController.js'
 import * as loginController from './controllers/loginController.js'
 import * as sessionManager from './lib/sessionManager.js'
 import * as signupController from './controllers/signupController.js'
+import * as signoutController from './controllers/signoutController.js'
 
 
 //conexion a la base de datos
@@ -42,6 +43,9 @@ app.post('/signup',signupController.ValidateRegister, signupController.postSignu
 app.get('/login',loginController.getlogin)
 app.post('/login',loginController.PostLogIn)
 app.all('/logout', loginController.logout)// .all para peticiones get y post()
+// paths signout privates
+app.get('/signout' ,sessionManager.isLoggedIn , signoutController.unregister)
+app.post('/signout' ,sessionManager.isLoggedIn, signoutController.unsuscribe)
 
 
 //catch 404 and forward to error handler
