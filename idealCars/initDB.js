@@ -28,10 +28,10 @@ async function initproducts(){
     ])
 
     const insertResult = await Product.insertMany([
-        {name: "Toyota ", model: "Corolla",color: "rojo",year: 2022, price: 20000,  kilometer: 15000, image: "https://example.com/toyota-corolla.jpg",owner: juan._id},
-        {name: "Ford", model: "Focus", color: "verde", year: 2020, price: 18000, kilometer: 20000, image: "https://example.com/ford-focus.jpg", owner: juan._id},
-        {name: "Honda", model: "Civic", color: "amarillo", year: 2021, price: 22000, kilometer: 10000, image: "https://example.com/honda-civic.jpg", owner: juan._id},   
-        {name: "Chevrolet", model: "Cruze", color: "naranja", year: 2019, price: 16000, kilometer: 30000,  image: "https://example.com/chevrolet-cruze.jpg", owner: jose._id},
+        {name: "Toyota ", model: "Corolla",color: "gris",year: 2022, price: 20000,  kilometer: 15000, image: "toyota.jpg",owner: juan._id},
+        {name: "Ford", model: "Focus", color: "gris", year: 2020, price: 18000, kilometer: 20000, image: "ford.jpg", owner: juan._id},
+        {name: "Honda", model: "Civic", color: "blanco", year: 2021, price: 22000, kilometer: 10000, image: "honda.jpg", owner: juan._id},   
+        {name: "Chevrolet", model: "Cruze", color: "negro", year: 2019, price: 16000, kilometer: 30000,  image: "chevrolet.jpg", owner: jose._id},
     ])
     console.log(`Create ${insertResult.length} products`);
 }

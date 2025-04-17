@@ -2,6 +2,7 @@ import express from 'express';
 import connectMongoose from './lib/connectMongoose.js';
 import createError from 'http-errors';
 import logger from 'morgan';
+import upload from './lib/uploadConfigure.js';
 import * as sessionManager from './lib/sessionManager.js';
 import * as homeController from './controllers/homeController.js';
 import * as loginController from './controllers/loginController.js';
@@ -45,7 +46,7 @@ app.all('/logout', loginController.logout)// .all para peticiones get y post()
 
 // private pages
 app.get('/products/new',sessionManager.isLoggedIn, productsController.index)
-app.post('/products/new',sessionManager.isLoggedIn, productsController.validateProduct, productsController.postNew)
+app.post('/products/new',sessionManager.isLoggedIn, upload.single('image'), productsController.validateProduct, productsController.postNew)
 
 
 //catch 404 and forward to error handler

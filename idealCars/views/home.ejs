@@ -20,15 +20,8 @@
                 <p>Año: <%= product.year %></p>
                 <p>Precio: <%= product.price %></p>
                 <p>Kilometros<%= product.kilometer %></p>
-                <% if (product.image) { %>
-                    <img src="<%= product.image %>" alt="<%= product.name %>" width="100">
-                    <% } %>
+                <img src="<%= product.image ? `/imagenes/${product.image}` : 'https://placehold.co/100' %>" alt="image" width="100">
             </div> 
-        <% }) %>
-     
+        <% }) %>   
     <% } %>
-    
-    
-
-
 <%-include("footer.ejs") %> 

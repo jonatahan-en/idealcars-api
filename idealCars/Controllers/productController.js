@@ -65,10 +65,12 @@ export async function validateProduct(req, res, next) {
 
 export async function postNew(req, res, next) {
     try {
+
         const userId = req.session.userId
 
         const {name,model,color,year,price,kilometer,image} = req.body
         console.log(req.body)
+        console.log(req.file)
         //Validaciones
         const product = new Product({
             name,
@@ -77,8 +79,8 @@ export async function postNew(req, res, next) {
             year,   
             price,
             kilometer,
-            image,
-            owner: userId,
+            image: req.file ? req.file.filename : null,
+            owner: userId
         })
         await product.save()
         res.redirect('/')
