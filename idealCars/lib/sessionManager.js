@@ -20,7 +20,7 @@ export function useSessionInViews(req, res, next){
     next()
 }
 
-export function isLoggedIn(req,res,next){
+export function isLoggedIn(req, res, next){
     if(!req.session.userId){
         res.redirect('/login')
         return

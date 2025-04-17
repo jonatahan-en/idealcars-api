@@ -2,10 +2,11 @@ import express from 'express';
 import connectMongoose from './lib/connectMongoose.js';
 import createError from 'http-errors';
 import logger from 'morgan';
-import *  as homeController from './controllers/homeController.js'
-import * as loginController from './controllers/loginController.js'
-import * as sessionManager from './lib/sessionManager.js'
-import * as signupController from './controllers/signupController.js'
+import * as sessionManager from './lib/sessionManager.js';
+import * as homeController from './controllers/homeController.js';
+import * as loginController from './controllers/loginController.js';
+import * as signupController from './controllers/signupController.js';
+import * as productsController from './controllers/productController.js';
 
 
 //conexion a la base de datos
@@ -41,6 +42,10 @@ app.post('/signup',signupController.ValidateRegister, signupController.postSignu
 app.get('/login',loginController.getlogin)
 app.post('/login',loginController.PostLogIn)
 app.all('/logout', loginController.logout)// .all para peticiones get y post()
+
+// private pages
+app.get('/products/new',sessionManager.isLoggedIn, productsController.index)
+app.post('/products/new',sessionManager.isLoggedIn, productsController.validateProduct, productsController.postNew)
 
 
 //catch 404 and forward to error handler

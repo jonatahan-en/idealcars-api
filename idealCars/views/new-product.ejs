@@ -1,0 +1,47 @@
+<%-include("header.ejs") %>
+    <main class="main-bg-container">
+        <div class="container mt-5">
+            <h1>Nuevo Producto</h1>
+            <form action="/products/new" method="POST" enctype=" multipart/form-data"  >
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="model" class="form-label">model</label>
+                    <input type="text" class="form-control" id="model" name="model" required>
+                </div> 
+                <div class="mb-3">
+                    <label for="color" class="form-label">Color</label>
+                    <input type="text" class="form-control" id="color" name="color" required>
+                </div>
+                <div class="mb-3">
+                    <label for="year" class="form-label">year</label>
+                    <input type="number" class="form-control" id="year" name="year" min="1980" max="2024" required>
+                </div>
+                <div class="mb-3">
+                    <label for="price" class="form-label">price</label>
+                    <input type="number" class="form-control" id="price" name="price" min="0" max="100000" required>
+                </div>
+                <div class="mb-3">
+                    <label for="kilometer" class="form-label">Killometer</label>
+                    <input type="number" class="form-control" id="kilometer" name="kilometer" min="0" max="500000" required>
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image</label>
+                    <input type="file" class="form-control" id="image" name="image" accept="imagen/*">
+                </div>
+                <button type="submit" class="btn btn-primary">Crear Producto</button>
+            </form>
+            <% if (errors && errors.length > 0) { %>
+                <div class="alert alert-danger">
+                    <ul>
+                        <% errors.forEach(function(error) { %>
+                            <li><%= error.msg %></li>
+                        <% }); %>
+                    </ul>
+                </div>
+            <% } %>
+        </div>
+    </main>
+<%-include("footer.ejs") %>
