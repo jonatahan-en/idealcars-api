@@ -10,28 +10,30 @@
 <body>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-            <a class="navbar-brand" href="/"><%= appName %></a>
+            <a class="navbar-brand" href="/"><%= __('appName') %></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                        <a class="nav-link active" aria-current="page" href="/"> <%= __('navigation.home') %></a>
                     </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/products/new">Nuevo Anuncion</a>
+                            <a class="nav-link" href="/products/new"> <%= __('navigation.newAd') %></a>
                         </li>
                     </ul>
 
                     <form class="d-flex" role="search">
                         <% if(session.userId) {%>
-                            <a href="/logout" class="btn btn-outline-success" type="submit">Logout</a>
+                            <a href="/logout" class="btn btn-outline-success" type="submit"> <%= __('navigation.logout') %></a>
                         <% }else{ %>
-                            <a href="/login" class="btn btn-outline-success me-3" type="submit">Login</a>
-                            <a href="/signup" class="btn btn-outline-primary" type="submit">Registrarse</a>
+                            <a href="/login" class="btn btn-outline-success me-3" type="submit"> <%= __('navigation.login') %></a>
+                            <a href="/signup" class="btn btn-outline-primary" type="submit"> <%= __('navigation.signup') %></a>
                         <% } %>
                     </form>
                 </div>
             </div>
         </nav>
+</body>
+</html>

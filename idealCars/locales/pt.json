@@ -1,0 +1,86 @@
+{
+  "appName": "IdealCars",
+  "home": {
+    "welcome": "Bem-vindo ao IdealCars!",
+    "loginPrompt": "Para ver o conteúdo, faça login <a href='/login'>Login</a>",
+    "userProducts": "Meus Anúncios",
+    "product": {
+      "name": "Nome",
+      "model": "Modelo",
+      "color": "Cor",
+      "year": "Ano",
+      "price": "Preço",
+      "kilometer": "Quilômetros",
+      "image": "Imagem",
+      "owner": "Proprietário"
+    }
+  },
+  "signup": {
+    "title": "Cadastro",
+    "name": "Nome",
+    "phone_label": "Telefone",
+    "phone_optional": "(Opcional)",
+    "phone_format_example": "Exemplo: 123-456-789",
+    "phone_format_title": "Formato obrigatório: 123-456-789",
+    "email": "E-mail",
+    "password": "Senha",
+    "register": "Cadastrar"
+  },
+  "login": {
+    "title": "Login",
+    "email": "E-mail",
+    "password": "Senha",
+    "login": "Entrar",
+    "forgotPassword": "Esqueceu a senha?"
+  },
+  "newProduct": {
+    "title": "Novo Anúncio",
+    "name": "Nome",
+    "model": "Modelo",
+    "color": "Cor",
+    "year": "Ano",
+    "price": "Preço",
+    "kilometer": "Quilômetros",
+    "image": "Imagem",
+    "create": "Criar Anúncio"
+  },
+  "footer": {
+    "rights": "Todos os direitos reservados."
+  },
+  "navigation": {
+    "home": "Início",
+    "newAd": "Novo Anúncio",
+    "logout": "Sair",
+    "login": "Login",
+    "signup": "Cadastrar"
+  },
+  "notifications": {
+    "productSold": "Este produto foi marcado como vendido",
+    "productReserved": "Este produto foi marcado como reservado",
+    "priceChanged": "Preço alterado!",
+    "newMessage": "Nova mensagem no chat!"
+  },
+  "chat": {
+    "title": "Chat",
+    "sendMessage": "Enviar Mensagem"
+  },
+  "favorites": {
+    "title": "Favoritos",
+    "empty": "Você ainda não tem favoritos. Adicione alguns!"
+  },
+  "error": {
+    "404": "Página não encontrada",
+    "500": "Erro interno do servidor",
+    "genericMessage": "Algo deu errado. Por favor, tente novamente mais tarde."
+  },
+  "common": {
+    "search": "Pesquisar",
+    "sortBy": "Ordenar por",
+    "filter": "Filtrar",
+    "cancel": "Cancelar",
+    "save": "Salvar",
+    "confirm": "Confirmar",
+    "delete": "Excluir",
+    "home": "Início"
+  }
+}
