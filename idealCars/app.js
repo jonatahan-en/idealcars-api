@@ -2,11 +2,11 @@ import express from 'express';
 import connectMongoose from './lib/connectMongoose.js';
 import createError from 'http-errors';
 import logger from 'morgan';
-import *  as homeController from './controllers/homeController.js'
-import * as loginController from './controllers/loginController.js'
+import *  as homeController from './Controllers/homeController.js'
+import * as loginController from './Controllers/loginController.js'
 import * as sessionManager from './lib/sessionManager.js'
-import * as signupController from './controllers/signupController.js'
-import * as signoutController from './controllers/signoutController.js'
+import * as signupController from './Controllers/signupController.js'
+import * as signoutController from './Controllers/signoutController.js'
 
 
 //conexion a la base de datos
