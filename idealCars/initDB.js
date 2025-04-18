@@ -1,3 +1,4 @@
+import "dotenv/config"
 import readLine from 'node:readline'
 import connectMongoose from "./lib/connectMongoose.js";
 import Product from "./models/Products.js";

@@ -1,17 +1,19 @@
 import session from 'express-session'
 import MongoStore from'connect-mongo'
 
+
+const {MONGODB_URI, SESSION_SECRET} = process.env
 const INACTIVITY_EXPIRATION_2_DAYS = 1000 * 60 * 60 * 24 * 2 
 //middleware para gestionar sesiones
 export const middleware = session({
     name:'idealCars-session',
-    secret: process.env.SESSION_SECRET,
+    secret: SESSION_SECRET,
     saveUninitialized: true,
     resave: false,
     cookie: {maxAge: INACTIVITY_EXPIRATION_2_DAYS },
     //las sesiones se guardan en MongoDB
     store: MongoStore.create({
-        mongoUrl: process.env.MONGODB_URI
+        mongoUrl: MONGODB_URI
     })
 })
 

@@ -1,9 +1,10 @@
 import multer from 'multer';
 import path from 'path';
+import { __dirname } from './utils.js';
 
 const storage = multer.diskStorage({
     destination: function (req, file, callback) {
-        const ruta = path.join(import.meta.dirname, '..', 'public', 'imagenes')
+        const ruta = path.join( __dirname, '..', 'public', 'imagenes')
         callback(null, ruta)
     },
     filename: function (req, file, callback) {
