@@ -1,11 +1,10 @@
+import "dotenv/config";
 import http from 'http';
 import debugLib from 'debug';
 import app from './app.js';
 
-
 const debug = debugLib("idealcars:server");
-const port = process.env.PORT || 5000
-
+const port = process.env.PORT || 3000
 
 
 // create a server 
