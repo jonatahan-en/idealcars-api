@@ -23,7 +23,7 @@ async function initproducts(){
     const deleteResult = await Product.deleteMany();
     console.log(`Deleted ${deleteResult.deletedCount} products`);
 
-    const [jose, juan] = await Promise.all([
+    const [ juan, jose] = await Promise.all([
         User.findOne({name: "juan"}),
         User.findOne({name: "jose"}),
     ])

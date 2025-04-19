@@ -2,13 +2,35 @@
 
 <p> Hola!! <%= session.userName %></p>
 
+<button onclick="toggleFilters()">Filtros</button>
+        <div id="filter-form" style="display: none;">
+            <form action="/" method="GET">
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" name="name" placeholder="Nombre del producto">
+                
+                <label for="model">Modelo:</label>
+                <input type="text" id="model" name="model" placeholder="Modelo del producto">
+                
+                <label for="color">Color:</label>
+                <input type="text" id="color" name="color" placeholder="Color del producto">
+                
+                <label for="year">Año:</label>
+                <input type="number" id="year" name="year" placeholder="Año del producto">
+                
+                <label for="price">Precio:</label>
+                <input type="number" id="price" name="price" placeholder="Precio del producto">
+                
+                <label for="kilometer">Kilometraje:</label>
+                <input type="number" id="kilometer" name="kilometer" placeholder="Kilometraje del producto">
+                
+                <button type="submit">Aplicar Filtros</button>
+            </form>
+        </div>  
+
 <% //contenido parar usuarios no logados añadir %>
 <% if(!session.userId){ %>
     <p> Para ver el contenido deve hacer <a href="/login">Login</a></p>
 <% } %>
-
-
-
 <% //contenido parar usuarios logados añadir %>
 <% if(session.userId){ %>
         <h2><%="User Products" %></h2>
@@ -22,6 +44,14 @@
                 <p>Kilometros<%= product.kilometer %></p>
                 <img src="<%= product.image ? `/imagenes/${product.image}` : 'https://placehold.co/100' %>" alt="image" width="100">
             </div> 
-        <% }) %>   
+        <% }) %>
+        <div class="pagination mt-4">
+            <% if (skip > 0) { %>
+                <a href="?skip=<%= skip - limit %>&limit=<%= limit %>" class="btn btn-secondary">Anterior</a>
+            <% } %>
+            <a href="?skip=<%= skip + limit %>&limit=<%= limit %>" class="btn btn-secondary ms-2">Siguiente</a>
+            </div>
+        
     <% } %>
+    
 <%-include("footer.ejs") %> 
