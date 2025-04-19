@@ -36,6 +36,12 @@ app.use(express.urlencoded({ extended: true })); // Parseo de formularios
 app.use(express.static('public')); // Archivos estáticos
 app.use(i18n.init); // Configuración de internacionalización
 
+// Middleware para exponer el idioma actual en las vistas (para mostrar banderas y nombre del idioma)
+app.use((req, res, next) => {
+    res.locals.currentLocale = req.getLocale(); // Hace disponible el idioma actual en las vistas EJS
+    next();
+});
+
 // Middleware de sesión
 app.use(sessionManager.middleware, sessionManager.useSessionInViews);
 

@@ -2,7 +2,7 @@
   "appName": "IdealCars",
   "home": {
     "welcome": "Bem-vindo ao IdealCars!",
-    "loginPrompt": "Para ver o conteúdo, faça login <a href='/login'>Login</a>",
+    "loginPrompt": "Para ver o conteúdo, por favor, faça login na sua conta.",
     "userProducts": "Meus Anúncios",
     "product": {
       "name": "Nome",

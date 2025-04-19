@@ -2,7 +2,7 @@
   "appName": "IdealCars",
   "home": {
     "welcome": "Welcome to IdealCars!",
-    "loginPrompt": "To see the content, please <a href='/login'>Login</a>",
+    "loginPrompt": "To see the content, please, log in to your account.",
     "userProducts": "User Products",
     "product": {
       "name": "Name",
