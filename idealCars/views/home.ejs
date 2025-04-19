@@ -1,15 +1,17 @@
 <%-include("header.ejs") %>
 
-<p><%= __('home.welcome') %> <%= session.userName %></p>
+<main class="main-bg-container container py-5">
+<p>🚗 <%= __('home.welcome') %> 🫂 <%= session.userName %></p>
 
 <% //contenido parar usuarios no logados añadir %>
+
 <% if(!session.userId){ %>
     <p><%= __('home.loginPrompt') %></p>
 <% } %>
 
 
-
 <% //contenido parar usuarios logados añadir %>
+
 <% if(session.userId){ %>
         <h2><%= __('home.userProducts') %></h2>
         <% products.forEach(product => { %>
@@ -22,6 +24,9 @@
                 <p><%= __('home.product.kilometer') %>: <%= product.kilometer %></p>
                 <img src="<%= product.image ? `/imagenes/${product.image}` : 'https://placehold.co/100' %>" alt="<%= __('home.product.image') %>" width="100">
             </div> 
-        <% }) %>   
-    <% } %>
+        <% }) %>
+<% } else { %>
+    <div style="height:75vh"></div>
+<% } %>
+</main>
 <%-include("footer.ejs") %>

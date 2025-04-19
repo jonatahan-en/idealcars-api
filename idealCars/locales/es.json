@@ -1,86 +1,89 @@
 {
-  "appName": "IdealCars",
-  "home": {
-    "welcome": "Bienvenido a IdealCars!",
-    "loginPrompt": "Para ver el contenido, por favor, inicia sesión a tu cuenta.",
-    "userProducts": "Mis Anuncios",
-    "product": {
-      "name": "Nombre",
-      "model": "Modelo",
-      "color": "Color",
-      "year": "Año",
-      "price": "Precio",
-      "kilometer": "Kilómetros",
-      "image": "Imagen",
-      "owner": "Propietario"
-    }
+	"appName": "IdealCars",
+	"home": {
+		"welcome": "Bienvenido a IdealCars!",
+		"loginPrompt": "Para ver el contenido, por favor, inicia sesión a tu cuenta.",
+		"userProducts": "Mis Anuncios",
+		"product": {
+			"name": "Nombre",
+			"model": "Modelo",
+			"color": "Color",
+			"year": "Año",
+			"price": "Precio",
+			"kilometer": "Kilómetros",
+			"image": "Imagen",
+			"owner": "Propietario"
+		}
+	},
+	"signup": {
+		"title": "Registro",
+		"name": "Nombre",
+		"phone_label": "Teléfono",
+		"phone_optional": "(Opcional)",
+		"phone_format_example": "Ejemplo: 123-456-789",
+		"phone_format_title": "Formato requerido: 123-456-789",
+		"email": "Email",
+		"password": "Contraseña",
+		"register": "Registrarse",
+		"Enter_your_name": "Escribe tu nombre",
+		"optional": "Opcional"
+	},
+	"login": {
+		"title": "Iniciar Sesión",
+		"email": "Email",
+		"password": "Contraseña",
+		"login": "Ingresar",
+		"forgotPassword": "¿Olvidaste tu contraseña?",
+    "redirectNewAd": "Debes iniciar sesión para crear un nuevo anuncio."	
   },
-  "signup": {
-    "title": "Registro",
-    "name": "Nombre",
-    "phone_label": "Teléfono",
-    "phone_optional": "(Opcional)",
-    "phone_format_example": "Ejemplo: 123-456-789",
-    "phone_format_title": "Formato requerido: 123-456-789",
-    "email": "Email",
-    "password": "Contraseña",
-    "register": "Registrarse"
-  },
-  "login": {
-    "title": "Iniciar Sesión",
-    "email": "Email",
-    "password": "Contraseña",
-    "login": "Ingresar",
-    "forgotPassword": "¿Olvidaste tu contraseña?"
-  },
-  "newProduct": {
-    "title": "Nuevo Anuncio",
-    "name": "Nombre",
-    "model": "Modelo",
-    "color": "Color",
-    "year": "Año",
-    "price": "Precio",
-    "kilometer": "Kilómetros",
-    "image": "Imagen",
-    "create": "Crear Anuncio"
-  },
-  "footer": {
-    "rights": "Todos los derechos reservados."
-  },
-  "navigation": {
-    "home": "Inicio",
-    "newAd": "Nuevo Anuncio",
-    "logout": "Cerrar Sesión",
-    "login": "Iniciar Sesión",
-    "signup": "Registrarse"
-  },
-  "notifications": {
-    "productSold": "Este producto ha sido marcado como vendido",
-    "productReserved": "Este producto ha sido marcado como reservado",
-    "priceChanged": "¡El precio ha cambiado!",
-    "newMessage": "¡Nuevo mensaje en el chat!"
-  },
-  "chat": {
-    "title": "Chat",
-    "sendMessage": "Enviar Mensaje"
-  },
-  "favorites": {
-    "title": "Favoritos",
-    "empty": "No tienes favoritos aún. ¡Añade algunos!"
-  },
-  "error": {
-    "404": "Página no encontrada",
-    "500": "Error interno del servidor",
-    "genericMessage": "Algo salió mal. Por favor, inténtalo de nuevo más tarde."
-  },
-  "common": {
-    "search": "Buscar",
-    "sortBy": "Ordenar por",
-    "filter": "Filtrar",
-    "cancel": "Cancelar",
-    "save": "Guardar",
-    "confirm": "Confirmar",
-    "delete": "Eliminar",
-    "home": "Inicio"
-  }
+	"newProduct": {
+		"title": "Nuevo Anuncio",
+		"name": "Nombre",
+		"model": "Modelo",
+		"color": "Color",
+		"year": "Año",
+		"price": "Precio",
+		"kilometer": "Kilómetros",
+		"image": "Imagen",
+		"create": "Crear Anuncio"
+	},
+	"footer": {
+		"rights": "Todos los derechos reservados."
+	},
+	"navigation": {
+		"home": "Inicio",
+		"newAd": "Nuevo Anuncio",
+		"logout": "Cerrar Sesión",
+		"login": "Iniciar Sesión",
+		"signup": "Registrarse"
+	},
+	"notifications": {
+		"productSold": "Este producto ha sido marcado como vendido",
+		"productReserved": "Este producto ha sido marcado como reservado",
+		"priceChanged": "¡El precio ha cambiado!",
+		"newMessage": "¡Nuevo mensaje en el chat!"
+	},
+	"chat": {
+		"title": "Chat",
+		"sendMessage": "Enviar Mensaje"
+	},
+	"favorites": {
+		"title": "Favoritos",
+		"empty": "No tienes favoritos aún. ¡Añade algunos!"
+	},
+	"error": {
+		"404": "Página no encontrada",
+		"500": "Error interno del servidor",
+		"genericMessage": "Algo salió mal. Por favor, inténtalo de nuevo más tarde."
+	},
+	"common": {
+		"search": "Buscar",
+		"sortBy": "Ordenar por",
+		"filter": "Filtrar",
+		"cancel": "Cancelar",
+		"save": "Guardar",
+		"confirm": "Confirmar",
+		"delete": "Eliminar",
+		"home": "Inicio"
+	}
 }
