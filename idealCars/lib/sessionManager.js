@@ -24,8 +24,14 @@ export function useSessionInViews(req, res, next){
 
 export function isLoggedIn(req, res, next){
     if(!req.session.userId){
-        res.redirect('/login')
-        return
+         // Si la ruta es /products/new, muestra mensaje especial
+        if (req.path === '/products/new' || req.originalUrl === '/products/new') {
+            return res.render('login', {
+                redirectMessage: res.__('login.redirectNewAd')
+            });
+        }
+        // Para otras rutas privadas, redirige normalmente
+        return res.redirect('/login');
     }
-    next()
+    next();
 }

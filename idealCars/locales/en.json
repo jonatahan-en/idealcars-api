@@ -1,0 +1,91 @@
+{
+	"appName": "IdealCars",
+	"home": {
+		"welcome": "Welcome to IdealCars!",
+		"loginPrompt": "To see the content, please, log in to your account.",
+		"userProducts": "User Products",
+		"product": {
+			"name": "Name",
+			"model": "Model",
+			"color": "Color",
+			"year": "Year",
+			"price": "Price",
+			"kilometer": "Kilometers",
+			"image": "Image",
+			"owner": "Owner"
+		}
+	},
+	"signup": {
+		"title": "Sign Up",
+		"name": "Name",
+		"phone_label": "Phone",
+		"phone_optional": "(Optional)",
+		"phone_format_example": "Example: 123-456-789",
+		"phone_format_title": "Required format: 123-456-789",
+		"email": "Email",
+		"password": "Password",
+		"register": "Register",
+		"Enter_your_name": "Enter your name",
+		"optional": "Optional"
+	},
+  
+	"login": {
+		"title": "Login",
+		"email": "Email",
+		"password": "Password",
+		"login": "Login",
+		"forgotPassword": "Forgot password?",
+		"redirectNewAd": "You must log in to create a new listing."
+	},
+
+	"newProduct": {
+		"title": "New Product",
+		"name": "Name",
+		"model": "Model",
+		"color": "Color",
+		"year": "Year",
+		"price": "Price",
+		"kilometer": "Kilometers",
+		"image": "Image",
+		"create": "Create Product"
+	},
+	"footer": {
+		"rights": "All rights reserved."
+	},
+	"navigation": {
+		"home": "Home",
+		"newAd": "New Ad",
+		"logout": "Logout",
+		"login": "Login",
+		"signup": "Sign Up"
+	},
+	"notifications": {
+		"productSold": "This product has been marked as sold",
+		"productReserved": "This product has been marked as reserved",
+		"priceChanged": "Price changed!",
+		"newMessage": "New message in chat!"
+	},
+	"chat": {
+		"title": "Chat",
+		"sendMessage": "Send Message"
+	},
+	"favorites": {
+		"title": "Favorites",
+		"empty": "No favorites yet. Add some!"
+	},
+	"error": {
+		"404": "Page not found",
+		"500": "Internal server error",
+		"genericMessage": "Something went wrong. Please try again later."
+	},
+	"common": {
+		"search": "Search",
+		"sortBy": "Sort by",
+		"filter": "Filter",
+		"cancel": "Cancel",
+		"save": "Save",
+		"confirm": "Confirm",
+		"delete": "Delete",
+		"home": "Home"
+	}
+}

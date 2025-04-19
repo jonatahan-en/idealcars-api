@@ -1,6 +1,7 @@
 <%-include("header.ejs") %>
 
-<p> Hola!! <%= session.userName %></p>
+<main class="main-bg-container container py-5">
+<p>🚗 <%= __('home.welcome') %> 🫂 <%= session.userName %></p>
 
 <button onclick="toggleFilters()">Filtros</button>
         <div id="filter-form" style="display: none;">
@@ -28,21 +29,24 @@
         </div>  
 
 <% //contenido parar usuarios no logados añadir %>
+
 <% if(!session.userId){ %>
-    <p> Para ver el contenido deve hacer <a href="/login">Login</a></p>
+    <p><%= __('home.loginPrompt') %></p>
 <% } %>
+
 <% //contenido parar usuarios logados añadir %>
+
 <% if(session.userId){ %>
-        <h2><%="User Products" %></h2>
+        <h2><%= __('home.userProducts') %></h2>
         <% products.forEach(product => { %>
             <div class="container">
                 <h2><%= product.name %></h2>
-                <p>Modelo:<%= product.model %></p>
-                <p>Color:<%= product.color %></p>
-                <p>Año: <%= product.year %></p>
-                <p>Precio: <%= product.price %></p>
-                <p>Kilometros<%= product.kilometer %></p>
-                <img src="<%= product.image ? `/imagenes/${product.image}` : 'https://placehold.co/100' %>" alt="image" width="100">
+                <p><%= __('home.product.model') %>: <%= product.model %></p>
+                <p><%= __('home.product.color') %>: <%= product.color %></p>
+                <p><%= __('home.product.year') %>: <%= product.year %></p>
+                <p><%= __('home.product.price') %>: <%= product.price %></p>
+                <p><%= __('home.product.kilometer') %>: <%= product.kilometer %></p>
+                <img src="<%= product.image ? `/imagenes/${product.image}` : 'https://placehold.co/100' %>" alt="<%= __('home.product.image') %>" width="100">
             </div> 
         <% }) %>
         <div class="pagination mt-4">
@@ -50,8 +54,11 @@
                 <a href="?skip=<%= skip - limit %>&limit=<%= limit %>" class="btn btn-secondary">Anterior</a>
             <% } %>
             <a href="?skip=<%= skip + limit %>&limit=<%= limit %>" class="btn btn-secondary ms-2">Siguiente</a>
-            </div>
-        
-    <% } %>
+        </div>
+
     
-<%-include("footer.ejs") %> 
+        <% } else { %>
+            <div style="height:75vh"></div>
+        <% } %>
+</main>
+<%-include("footer.ejs") %>
