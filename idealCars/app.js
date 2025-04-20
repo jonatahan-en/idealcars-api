@@ -9,6 +9,8 @@ import * as loginController from './controllers/loginController.js';
 import * as signupController from './controllers/signupController.js';
 import * as signoutController from './Controllers/signoutController.js'
 import * as productsController from './controllers/productController.js';
+import * as loginApiController from './Controllers/api/user/loginApiController.js'
+import * as jwtAuth from './lib/jwtAuthMiddleware.js'
 import i18n from './lib/i18nConfigure.js';
 
 // ================================
@@ -37,6 +39,8 @@ app.use(express.urlencoded({ extended: true })); // Parseo de formularios
 app.use(express.static('public')); // Archivos estáticos
 app.use(i18n.init); // Configuración de internacionalización
 
+
+
 // Middleware para exponer el idioma actual en las vistas (para mostrar banderas y nombre del idioma)
 app.use((req, res, next) => {
     res.locals.currentLocale = req.getLocale(); // Hace disponible el idioma actual en las vistas EJS
@@ -45,6 +49,10 @@ app.use((req, res, next) => {
 
 // Middleware de sesión
 app.use(sessionManager.middleware, sessionManager.useSessionInViews);
+// ================================
+// API ROUTES
+// ================================
+app.post('/api/user/login', loginApiController.loginJWT)
 
 // ================================
 // Rutas públicas
