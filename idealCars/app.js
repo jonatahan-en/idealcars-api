@@ -11,6 +11,7 @@ import * as signoutController from './Controllers/signoutController.js'
 import * as productsController from './controllers/productController.js';
 import * as loginApiController from './Controllers/api/user/loginApiController.js'
 import * as signupApiController from './Controllers/api/user/signupApiController.js'
+import * as ProfileApiController from './Controllers/api/user/ProfileApiController.js'
 import * as jwtAuth from './lib/jwtAuthMiddleware.js'
 import i18n from './lib/i18nConfigure.js';
 
@@ -53,6 +54,9 @@ app.use(sessionManager.middleware, sessionManager.useSessionInViews);
 // ================================
 // API ROUTES
 // ================================
+app.get('/api/user/profile', jwtAuth.guard, ProfileApiController.getProfileData);
+app.put('/api/user/profile', jwtAuth.guard, ProfileApiController.editProfileData);
+app.delete('/api/user/profile', jwtAuth.guard, ProfileApiController.DeleteProfile);
 app.post('/api/user/signup', signupApiController.ApipostSignup)
 app.post('/api/user/login', loginApiController.loginJWT)
 
