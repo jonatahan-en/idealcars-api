@@ -10,6 +10,7 @@ import * as signupController from './controllers/signupController.js';
 import * as signoutController from './Controllers/signoutController.js'
 import * as productsController from './controllers/productController.js';
 import * as loginApiController from './Controllers/api/user/loginApiController.js'
+import * as signupApiController from './Controllers/api/user/signupApiController.js'
 import * as jwtAuth from './lib/jwtAuthMiddleware.js'
 import i18n from './lib/i18nConfigure.js';
 
@@ -52,6 +53,7 @@ app.use(sessionManager.middleware, sessionManager.useSessionInViews);
 // ================================
 // API ROUTES
 // ================================
+app.post('/api/user/signup', signupApiController.ApipostSignup)
 app.post('/api/user/login', loginApiController.loginJWT)
 
 // ================================
