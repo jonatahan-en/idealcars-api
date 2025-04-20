@@ -16,6 +16,8 @@ export async function unsuscribe(req,res,next){
             return
         }
         else{
+            await Product.deleteMany({ owner: user._id });    
+
             await User.deleteOne({email: email.toLowerCase()})    
                 res.redirect('/')
 
