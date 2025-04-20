@@ -1,4 +1,5 @@
 import express from 'express';
+import i18n from './lib/i18nConfigure.js';
 import connectMongoose from './lib/connectMongoose.js';
 import createError from 'http-errors';
 import logger from 'morgan';
@@ -9,7 +10,8 @@ import * as loginController from './controllers/loginController.js';
 import * as signupController from './controllers/signupController.js';
 import * as signoutController from './Controllers/signoutController.js'
 import * as productsController from './controllers/productController.js';
-import i18n from './lib/i18nConfigure.js';
+import * as apiProductsController from './controllers/api/apiProductsController.js';
+import * as jwtAuth from './lib/jwtAuthMiddlewere.js';
 
 // ================================
 // Conexión a la base de datos
@@ -24,7 +26,6 @@ const app = express();
 
 // Configuración global de la aplicación
 app.locals.appName = "IdealCars"; // Nombre de la aplicación
-app.set('port', process.env.PORT || 3000); // Puerto
 app.set('lang', 'es'); // Idioma por defecto
 app.set('locale', 'es'); // Idioma por defecto
 app.set('views', 'views'); // Carpeta de vistas
@@ -45,6 +46,16 @@ app.use((req, res, next) => {
 
 // Middleware de sesión
 app.use(sessionManager.middleware, sessionManager.useSessionInViews);
+
+//================================
+// Rutas de la API Productos
+//================================
+
+app.get('/api/products',jwtAuth.guard,apiProductsController.apiProductsList);
+app.get('/api/products/:id',jwtAuth.guard,apiProductsController.apiProductGetOne); 
+app.post('/api/products',jwtAuth.guard,upload.single('image'), apiProductsController.apiProductNew)
+app.put('/api/products/:id',jwtAuth.guard,upload.single('image'), apiProductsController.apiProductUpdate)
+app.delete('/api/products/:id',jwtAuth.guard,apiProductsController.apiProductDelete)
 
 // ================================
 // Rutas públicas
@@ -84,6 +95,13 @@ app.use((req, res, next) => {
 // Error general
 app.use((err, req, res, next) => {
     res.status(err.status || 500);
+
+//API Error
+if(req.url.startsWith("/api/")){
+    res.json({ error:err.message })
+    return
+}
+
     res.locals.message = err.message;
     res.locals.error = process.env.NODECARS_ENV === "development" ? err : {};
     res.render("error");
