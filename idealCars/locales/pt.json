@@ -34,7 +34,7 @@
 		"password": "Senha",
 		"login": "Entrar",
 		"forgotPassword": "Esqueceu a senha?",
-    "redirectNewAd": "Você deve efetuar login para criar um novo anúncio."
+		"redirectNewAd": "Você deve efetuar login para criar um novo anúncio."
 	},
 	"newProduct": {
 		"title": "Novo Anúncio",
@@ -55,7 +55,8 @@
 		"newAd": "Novo Anúncio",
 		"logout": "Sair",
 		"login": "Login",
-		"signup": "Cadastrar"
+		"signup": "Cadastrar",
+		"signout": "navigation.signout"
 	},
 	"notifications": {
 		"productSold": "Este produto foi marcado como vendido",
@@ -85,5 +86,13 @@
 		"confirm": "Confirmar",
 		"delete": "Excluir",
 		"home": "Início"
-	}
+	},
+	"signout": {
+		"title": "signout.title",
+		"email": "signout.email",
+		"password": "signout.password",
+		"signout": "signout.signout",
+		"unregister": "signout.unregister"
+	},
+	"UnRegister": "UnRegister"
 }

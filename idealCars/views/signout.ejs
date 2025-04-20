@@ -4,56 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/form.css">
-    <title>Sing Up </title>
+    <title><%= __('signout.title') %></title>
 </head>
 <body>
-  <main class="main-bg-container">
-
-    <section class="Card">
-        <div class="headers">
-
-            <h1>Sign Out</h1>
-            <h2>Are you sure you wanna cancel your account?</h2>
+<%-include("header.ejs") %>
+<main class="main-bg-container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+  <section class="Card">
+    <h1><%= __('signout.title') %></h1>
+    <% if (typeof redirectMessage !== 'undefined' && redirectMessage) { %>
+      <div class="alert alert-warning text-center" role="alert">
+        <%= redirectMessage %>
+      </div>
+    <% } %>
+    <form method="post" action="/signout">
+        <div class="form_input">
+            <label for="email">
+              <strong><%= __('signout.email') %></strong>
+            </label>
+            <input
+              class="input"
+              type="email"
+              id="email"
+              placeholder="<%= __('signout.email') %>"
+              autocomplete="off"
+              name="email"
+              required
+            />
         </div>
-      <form method="post" action="/signout">
-    
-        
-          <div class="form_input">
-              <label for="email">
-                <strong>Email</strong>
-              </label>
-              <input
-                class="input"
-                type="email"
-                id="email"
-                placeholder="Enter Email"
-                autocomplete="off"
-                name="email"
-                required
-              />
-          </div>
-          <div class="form_input">
-              <label for="password">
-                <strong>Password</strong>
-              </label>
-              <input
-                class="input"
-                type="password"
-                id="password"
-                required
-                placeholder="Enter Password"
-                name="password"
-              />
-          </div>
-          <div class="form_action">
-            <button type="submit" class="btn">
-              Unsuscribe
-            </button>
-          </div>
-          
-        </form>
-      </section>
-  </main>
-      
+        <div class="form_input">
+            <label for="password">
+              <strong><%= __('signout.password') %></strong>
+            </label>
+            <input
+              class="input"
+              type="password"
+              id="password"
+              required
+              placeholder="<%= __('signout.password') %>"
+              name="password"
+            />
+        </div>
+        <div class="form_action">
+          <button type="submit" class="btn">
+            <%= __('signout.unregister') %>
+          </button>
+        </div>
+      </form>
+    </section>
+</main>
+<%-include("footer.ejs") %>
 </body>
 </html>
