@@ -1,3 +1,4 @@
+import "dotenv/config"
 import readLine from 'node:readline'
 import connectMongoose from "./lib/connectMongoose.js";
 import Product from "./models/Products.js";
@@ -13,19 +14,25 @@ if(questionResponse.toLowerCase() !== "yes"){
     process.exit()
 }
 
-await initproducts();
 await initUser()
+await initproducts();
 
 connection.close()
 
 async function initproducts(){
     const deleteResult = await Product.deleteMany();
     console.log(`Deleted ${deleteResult.deletedCount} products`);
+
+    const [ juan, jose] = await Promise.all([
+        User.findOne({name: "juan"}),
+        User.findOne({name: "jose"}),
+    ])
+
     const insertResult = await Product.insertMany([
-        { name: "Toyota ", model: "Corolla",color: "rojo",year: 2022, price: 20000,  kilometre: 15000, color: "Blue", imageUrl: "https://example.com/toyota-corolla.jpg" },
-        {name: "Ford", model: "Focus", color: "verde", year: 2020, price: 18000, kilometre: 20000, color: "Green", imageUrl: "https://example.com/ford-focus.jpg"},
-        {name: "Honda", model: "Civic", color: "amarillo", year: 2021, price: 22000, kilometre: 10000, color: "Yellow", imageUrl: "https://example.com/honda-civic.jpg"},   
-        {name: "Chevrolet", model: "Cruze", color: "naranja", year: 2019, price: 16000, kilometre: 30000, color: "Orange", imageUrl: "https://example.com/chevrolet-cruze.jpg"},
+        {name: "Toyota ", model: "Corolla",color: "gris",year: 2022, price: 20000,  kilometer: 15000, image: "toyota.jpg",owner: juan._id},
+        {name: "Ford", model: "Focus", color: "gris", year: 2020, price: 18000, kilometer: 20000, image: "ford.jpg", owner: juan._id},
+        {name: "Honda", model: "Civic", color: "blanco", year: 2021, price: 22000, kilometer: 10000, image: "honda.jpg", owner: juan._id},   
+        {name: "Chevrolet", model: "Cruze", color: "negro", year: 2019, price: 16000, kilometer: 30000,  image: "chevrolet.jpg", owner: jose._id},
     ])
     console.log(`Create ${insertResult.length} products`);
 }
@@ -34,9 +41,9 @@ async function initUser(){
     const deleteResult = await User.deleteMany();
     console.log(`Deleted ${deleteResult.deletedCount} users`)
     const insertResult = await User.insertMany([
-        {name:"juan", email:"juan@exemplo.com", password: await User.hashPassword("1234")},
-        {name:"jose", email:"jose@exemplo.com", password: await User.hashPassword("1234")},
-        {name:"jorge", email:"jorge@exemplo.com", password: await User.hashPassword("1234")}
+        {name:"juan", email:"juan@example.com", password: await User.hashPassword("1234")},
+        {name:"jose", email:"jose@example.com", password: await User.hashPassword("1234")},
+        {name:"jorge", email:"jorge@example.com", password: await User.hashPassword("1234")}
     ])
     console.log(`Create ${insertResult.length} users`)
 }

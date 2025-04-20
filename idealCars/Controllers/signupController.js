@@ -69,7 +69,7 @@ export async function ValidateRegister(req, res,next) {
 
     await body('password')
     .notEmpty().withMessage('Must put a password')
-    .isLength({min: 6}).withMessage('Password must contains atleast 6 characteres')
+    .isLength({min: 4}).withMessage('Password must contains atleast 4 characteres')
     .run(req);
   
     // Usamos validationResult para obtener los errores de validación

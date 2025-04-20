@@ -2,7 +2,17 @@
 <div class="d-flex justify-content-center align-items-center">
     <p class="mb-0">&copy; <%= new Date().getFullYear() %></p>
     <h4 class="ms-2 mb-0"><%= appName %></h4>
-    <p class="mb-0 ms-2">. Todos los derechos reservados.</p>
+    <p class="mb-0 ms-2"> <%= __('footer.rights') %></p>
   </div>
+  <script>
+    function toggleFilters() {
+        const filterForm = document.getElementById('filter-form');
+        if (filterForm.style.display === 'none') {
+            filterForm.style.display = 'block';
+        } else {
+            filterForm.style.display = 'none';
+        }
+    }
+</script>
 </body>
 </html>

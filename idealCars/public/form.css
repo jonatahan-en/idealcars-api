@@ -6,37 +6,52 @@
     --bg-color: #000;
 
 }
-body {
-    margin: 0;           /* Eliminar márgenes por defecto */
-    padding: 0;          /* Eliminar padding por defecto */
-    overflow-x: hidden;  /* Evitar scroll horizontal */
-    overflow-y: hidden;  /* Evitar scroll vertical */
+html, body {
+    height: 100%;
 }
 
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;  /* Evitar scroll horizontal */
+    
+}
+main.main-bg-container {
+    flex: 1 0 auto;
+}
+footer, .footer {
+    flex-shrink: 0;
+    margin-top: auto; /* Asegura que el footer se quede abajo */
+    width: 100%;
+    background: transparent;
+    text-align: center;
+    padding-bottom: 1rem;
+}
 .main-bg-container{
 
     min-height: 100vh;
     width: 100%;
     background-color: rgb(8, 14, 8);
-    display: flex;
+    /* Elimina flex para home, solo usar en formularios */
+    /* display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
 }
 
 .Card{
-   
-   background-color: black;
-   opacity: 0.8;
-   border-radius: 4%;
-   overflow: hidden;
-   width: 70%;
-   max-width: 340px;
-   padding: 1rem;
-   
-}
-.headers{
-    display: flex;
-    flex-direction: column;
+
+    background-color: #222; /* Más claro que black */
+    opacity: 1; /* Elimina la opacidad */
+    border-radius: 12px;
+    overflow: hidden;
+    width: 70%;
+    max-width: 340px;
+    padding: 1rem;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
 h1{
@@ -87,9 +102,22 @@ label{
 
 
 @media (min-width: 768px) {
+    .main-bg-container {
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
     .Card {
         width: 50%;    /* El formulario ocupa el 50% del ancho de la pantalla */
         max-width: 500px; /* Máximo 500px en pantallas grandes */
         padding: 1.5rem; /* Más padding en pantallas grandes */
     }
+}
+
+.card {
+    background-color: #181818;
+    border-radius: 12px;
+    color: #fff;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }

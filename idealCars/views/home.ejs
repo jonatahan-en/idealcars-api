@@ -1,25 +1,64 @@
 <%-include("header.ejs") %>
 
-    <h2><%="User Products" %></h2>
-    <% products.forEach(product => { %>
-        <div class="container">
-            <% //contenido parar usuarios no logados añadir %>
+<main class="main-bg-container container py-5">
+<p>🚗 <%= __('home.welcome') %> 🫂 <%= session.userName %></p>
 
+<button onclick="toggleFilters()">Filtros</button>
+        <div id="filter-form" style="display: none;">
+            <form action="/" method="GET">
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" name="name" placeholder="Nombre del producto">
+                
+                <label for="model">Modelo:</label>
+                <input type="text" id="model" name="model" placeholder="Modelo del producto">
+                
+                <label for="color">Color:</label>
+                <input type="text" id="color" name="color" placeholder="Color del producto">
+                
+                <label for="year">Año:</label>
+                <input type="number" id="year" name="year" placeholder="Año del producto">
+                
+                <label for="price">Precio:</label>
+                <input type="number" id="price" name="price" placeholder="Precio del producto">
+                
+                <label for="kilometer">Kilometraje:</label>
+                <input type="number" id="kilometer" name="kilometer" placeholder="Kilometraje del producto">
+                
+                <button type="submit">Aplicar Filtros</button>
+            </form>
+        </div>  
 
-            <% //contenido parar usuarios logados añadir %>
+<% //contenido parar usuarios no logados añadir %>
 
+<% if(!session.userId){ %>
+    <p><%= __('home.loginPrompt') %></p>
+<% } %>
 
-            <h2><%= product.name %></h2>
-            <p>Modelo:<%= product.model %></p>
-            <p>Color:<%= product.color %></p>
-            <p>Año: <%= product.year %></p>
-            <p>Precio: <%= product.price %></p>
-            <p>Kilometros<%= product.kilometer %></p>
-            <% if (product.image) { %>
-                <img src="<%= product.image %>" alt="<%= product.name %>" width="100">
-                <% } %>
-        </div> 
-    <% }) %>
+<% //contenido parar usuarios logados añadir %>
 
+<% if(session.userId){ %>
+        <h2><%= __('home.userProducts') %></h2>
+        <% products.forEach(product => { %>
+            <div class="container">
+                <h2><%= product.name %></h2>
+                <p><%= __('home.product.model') %>: <%= product.model %></p>
+                <p><%= __('home.product.color') %>: <%= product.color %></p>
+                <p><%= __('home.product.year') %>: <%= product.year %></p>
+                <p><%= __('home.product.price') %>: <%= product.price %></p>
+                <p><%= __('home.product.kilometer') %>: <%= product.kilometer %></p>
+                <img src="<%= product.image ? `/imagenes/${product.image}` : 'https://placehold.co/100' %>" alt="<%= __('home.product.image') %>" width="100">
+            </div> 
+        <% }) %>
+        <div class="pagination mt-4">
+            <% if (skip > 0) { %>
+                <a href="?skip=<%= skip - limit %>&limit=<%= limit %>" class="btn btn-secondary">Anterior</a>
+            <% } %>
+            <a href="?skip=<%= skip + limit %>&limit=<%= limit %>" class="btn btn-secondary ms-2">Siguiente</a>
+        </div>
 
-<%-include("footer.ejs") %> 
+    
+        <% } else { %>
+            <div style="height:75vh"></div>
+        <% } %>
+</main>
+<%-include("footer.ejs") %>
