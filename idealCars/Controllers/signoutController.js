@@ -1,4 +1,5 @@
 import User from '../models/User.js'
+import Product from '../models/Products.js'
 
 export function unregister (req,res,next){
     res.render('signout')
