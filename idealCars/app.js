@@ -7,6 +7,7 @@ import * as sessionManager from './lib/sessionManager.js';
 import * as homeController from './controllers/homeController.js';
 import * as loginController from './controllers/loginController.js';
 import * as signupController from './controllers/signupController.js';
+import * as signoutController from './Controllers/signoutController.js'
 import * as productsController from './controllers/productController.js';
 import i18n from './lib/i18nConfigure.js';
 
@@ -66,6 +67,9 @@ app.post(
     productsController.validateProduct,
     productsController.postNew
 ); // Creación de nuevo producto
+// paths signout privates
+app.get('/signout' ,sessionManager.isLoggedIn , signoutController.unregister)
+app.post('/signout' ,sessionManager.isLoggedIn, signoutController.unsuscribe)
 
 // ================================
 // Manejo de errores

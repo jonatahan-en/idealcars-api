@@ -28,7 +28,13 @@
 		"Enter_your_name": "Enter your name",
 		"optional": "Optional"
 	},
-  
+	"signout": {
+		"title": "Sign Out",
+		"email": "Email",
+		"password": "Password",
+		"unregister": "UnRegister"
+		
+	},
 	"login": {
 		"title": "Login",
 		"email": "Email",
@@ -37,7 +43,6 @@
 		"forgotPassword": "Forgot password?",
 		"redirectNewAd": "You must log in to create a new listing."
 	},
-
 	"newProduct": {
 		"title": "New Product",
 		"name": "Name",
@@ -57,7 +62,8 @@
 		"newAd": "New Ad",
 		"logout": "Logout",
 		"login": "Login",
-		"signup": "Sign Up"
+		"signup": "Sign Up",
+		"signout": "Sign Out"
 	},
 	"notifications": {
 		"productSold": "This product has been marked as sold",
@@ -87,5 +93,6 @@
 		"confirm": "Confirm",
 		"delete": "Delete",
 		"home": "Home"
-	}
+	},
+	"UnRegister": "UnRegister"
 }
