@@ -73,6 +73,7 @@
 		"empty": "Você ainda não tem favoritos. Adicione alguns!"
 	},
 	"error": {
+		"401": "error.401",
 		"404": "Página não encontrada",
 		"500": "Erro interno do servidor",
 		"genericMessage": "Algo deu errado. Por favor, tente novamente mais tarde."

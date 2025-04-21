@@ -33,7 +33,6 @@
 		"email": "Email",
 		"password": "Password",
 		"unregister": "UnRegister"
-		
 	},
 	"login": {
 		"title": "Login",
@@ -80,6 +79,7 @@
 		"empty": "No favorites yet. Add some!"
 	},
 	"error": {
+		"401": "error.401",
 		"404": "Page not found",
 		"500": "Internal server error",
 		"genericMessage": "Something went wrong. Please try again later."

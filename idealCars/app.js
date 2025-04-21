@@ -8,7 +8,7 @@ import * as homeController from './controllers/homeController.js';
 import * as loginController from './controllers/loginController.js';
 import * as signupController from './controllers/signupController.js';
 import * as signoutController from './Controllers/signoutController.js'
-import * as productsController from './controllers/productController.js';
+import * as productsController from './Controllers/productController.js';
 import * as loginApiController from './Controllers/api/user/loginApiController.js'
 import * as signupApiController from './Controllers/api/user/signupApiController.js'
 import * as ProfileApiController from './Controllers/api/user/ProfileApiController.js'
@@ -54,8 +54,8 @@ app.use(sessionManager.middleware, sessionManager.useSessionInViews);
 // ================================
 // API ROUTES
 // ================================
-app.get('/api/user/profile', jwtAuth.guard, ProfileApiController.getProfileData);
-app.put('/api/user/profile', jwtAuth.guard, ProfileApiController.editProfileData);
+app.get('/api/user/profile', jwtAuth.guard, ProfileApiController.getProfile);
+app.put('/api/user/profile', jwtAuth.guard, ProfileApiController.UpdateProfile);
 app.delete('/api/user/profile', jwtAuth.guard, ProfileApiController.DeleteProfile);
 app.post('/api/user/signup', signupApiController.ApipostSignup)
 app.post('/api/user/login', loginApiController.loginJWT)
