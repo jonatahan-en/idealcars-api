@@ -7,20 +7,6 @@ const userSchema = new Schema({
     phone: {type: Number},
     email: { type: String, required:true,  unique: true },
     password: { type: String, required:true },
-    resetPasswordToken: {
-        type: String
-    },
-    resetPasswordExpire: {
-        type: Date
-    },
-    createdAt: { 
-        type: Date, 
-        default: Date.now 
-    },
-    updatedAt: {
-        type: Date,
-        default: Date.now
-    }
 })
 
 // método estático que hace un hash de una contraseña
