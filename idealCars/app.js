@@ -5,16 +5,16 @@ import logger from 'morgan';
 import upload from './lib/uploadConfigure.js';
 import * as sessionManager from './lib/sessionManager.js';
 import * as homeController from './Controllers/homeController.js';
-import * as loginController from './controllers/loginController.js';
-import * as signupController from './controllers/signupController.js';
+import * as loginController from './Controllers/loginController.js';
+import * as signupController from './Controllers/signupController.js';
 import * as signoutController from './Controllers/signoutController.js'
 import * as productsController from './Controllers/productController.js';
 import * as loginApiController from './Controllers/api/user/loginApiController.js'
 import * as signupApiController from './Controllers/api/user/signupApiController.js'
 import * as ProfileApiController from './Controllers/api/user/ProfileApiController.js'
-import * as jwtAuth from './lib/jwtAuthMiddleware.js'
+import * as jwtAuth from './lib/jwtAuthMiddlewere.js'
 import i18n from './lib/i18nConfigure.js';
-import { profile } from 'node:console';
+import * as ProfileController from './Controllers/profileController.js'
 
 // ================================
 // Conexión a la base de datos
@@ -85,9 +85,9 @@ app.post(
 // paths signout privates
 app.get('/signout' ,sessionManager.isLoggedIn , signoutController.unregister)
 app.post('/signout' ,sessionManager.isLoggedIn, signoutController.unsuscribe)
-app.get('/profile',sessionManager.isLoggedIn, ProfileApiController.getProfile)
-app.put('/profile',sessionManager.isLoggedIn, ProfileApiController.UpdateProfile)
-app.delete('/profile',sessionManager.isLoggedIn, ProfileApiController.DeleteProfile)
+app.get('/profile',sessionManager.isLoggedIn, ProfileController.getProfile)
+app.put('/profile',sessionManager.isLoggedIn, ProfileController.UpdateProfile)
+app.delete('/profile',sessionManager.isLoggedIn, ProfileController.DeleteProfile)
 
 // ================================
 // Manejo de errores
