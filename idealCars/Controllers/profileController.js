@@ -1,5 +1,5 @@
-import User from "../../models/User.js"
-import Product from "../../models/Products.js";
+import User from "../models/User.js"
+import Product from "../models/Products.js";
 
 export async function getProfile(req,res,next){
     
