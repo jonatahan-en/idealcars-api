@@ -5,18 +5,17 @@ import createError from 'http-errors';
 import logger from 'morgan';
 import upload from './lib/uploadConfigure.js';
 import * as sessionManager from './lib/sessionManager.js';
+import * as jwtAuth from './lib/jwtAuthMiddlewere.js'
 import * as homeController from './Controllers/homeController.js';
 import * as loginController from './Controllers/loginController.js';
 import * as signupController from './Controllers/signupController.js';
 import * as signoutController from './Controllers/signoutController.js'
+import * as ProfileController from './Controllers/profileController.js'
 import * as productsController from './Controllers/productController.js';
 import * as loginApiController from './Controllers/api/user/loginApiController.js'
 import * as signupApiController from './Controllers/api/user/signupApiController.js'
 import * as ProfileApiController from './Controllers/api/user/ProfileApiController.js'
-import * as jwtAuth from './lib/jwtAuthMiddlewere.js'
 import * as apiProductsController from './controllers/api/apiProductsController.js';
-import * as jwtAuth from './lib/jwtAuthMiddlewere.js';
-import * as ProfileController from './Controllers/profileController.js'
 
 // ================================
 // Conexión a la base de datos
