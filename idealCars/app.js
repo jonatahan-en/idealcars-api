@@ -1,4 +1,5 @@
 import express from 'express';
+import i18n from './lib/i18nConfigure.js';
 import connectMongoose from './lib/connectMongoose.js';
 import createError from 'http-errors';
 import logger from 'morgan';
@@ -13,7 +14,8 @@ import * as loginApiController from './Controllers/api/user/loginApiController.j
 import * as signupApiController from './Controllers/api/user/signupApiController.js'
 import * as ProfileApiController from './Controllers/api/user/ProfileApiController.js'
 import * as jwtAuth from './lib/jwtAuthMiddlewere.js'
-import i18n from './lib/i18nConfigure.js';
+import * as apiProductsController from './controllers/api/apiProductsController.js';
+import * as jwtAuth from './lib/jwtAuthMiddlewere.js';
 import * as ProfileController from './Controllers/profileController.js'
 
 // ================================
@@ -29,7 +31,6 @@ const app = express();
 
 // Configuración global de la aplicación
 app.locals.appName = "IdealCars"; // Nombre de la aplicación
-app.set('port', process.env.PORT || 3000); // Puerto
 app.set('lang', 'es'); // Idioma por defecto
 app.set('locale', 'es'); // Idioma por defecto
 app.set('views', 'views'); // Carpeta de vistas
@@ -52,9 +53,16 @@ app.use((req, res, next) => {
 
 // Middleware de sesión
 app.use(sessionManager.middleware, sessionManager.useSessionInViews);
-// ================================
-// API ROUTES
-// ================================
+
+//================================
+// Rutas de la API Productos
+//================================
+
+app.get('/api/products',jwtAuth.guard,apiProductsController.apiProductsList);
+app.get('/api/products/:id',jwtAuth.guard,apiProductsController.apiProductGetOne); 
+app.post('/api/products',jwtAuth.guard,upload.single('image'), apiProductsController.apiProductNew)
+app.put('/api/products/:id',jwtAuth.guard,upload.single('image'), apiProductsController.apiProductUpdate)
+app.delete('/api/products/:id',jwtAuth.guard,apiProductsController.apiProductDelete)
 app.get('/api/user/profile', jwtAuth.guard, ProfileApiController.getProfile);
 app.put('/api/user/profile', jwtAuth.guard, ProfileApiController.UpdateProfile);
 app.delete('/api/user/profile', jwtAuth.guard, ProfileApiController.DeleteProfile);
@@ -74,15 +82,16 @@ app.all('/logout', loginController.logout); // Cierre de sesión
 // ================================
 // Rutas privadas (requieren autenticación)
 // ================================
+// Creación de nuevo producto
 app.get('/products/new', sessionManager.isLoggedIn, productsController.index); // Formulario de nuevo producto
 app.post(
     '/products/new',
     sessionManager.isLoggedIn,
-        upload.single('image'), // Middleware para subir imágenes
+    upload.single('image'), // Middleware para subir imágenes
     productsController.validateProduct,
+); 
     productsController.postNew
-); // Creación de nuevo producto
-// paths signout privates
+// Paths user privates
 app.get('/signout' ,sessionManager.isLoggedIn , signoutController.unregister)
 app.post('/signout' ,sessionManager.isLoggedIn, signoutController.unsuscribe)
 app.get('/profile',sessionManager.isLoggedIn, ProfileController.getProfile)
@@ -102,6 +111,13 @@ app.use((req, res, next) => {
 // Error general
 app.use((err, req, res, next) => {
     res.status(err.status || 500);
+
+//API Error
+if(req.url.startsWith("/api/")){
+    res.json({ error:err.message })
+    return
+}
+
     res.locals.message = err.message;
     res.locals.error = process.env.NODECARS_ENV === "development" ? err : {};
     res.render("error");
