@@ -92,7 +92,7 @@ export async function postNew(req, res, next) {
 
 // Mostrar detalle de producto
 
-export async function showDetail(req, res, next) {
+export async function detail(req, res, next) {
     try {
         const productId = req.params.id;
         const product = await Product.findById(productId);
