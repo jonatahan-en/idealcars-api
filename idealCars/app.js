@@ -1,4 +1,5 @@
 import express from 'express';
+import { EventEmitter } from 'events';
 import i18n from './lib/i18nConfigure.js';
 import connectMongoose from './lib/connectMongoose.js';
 import createError from 'http-errors';
@@ -12,7 +13,11 @@ import * as productsController from './controllers/productController.js';
 import * as apiProductsController from './controllers/api/apiProductsController.js';
 import * as jwtAuth from './lib/jwtAuthMiddlewere.js';
 import * as myProductsController from './controllers/myProductsController.js';
-
+import * as ProfileApiController from './controllers/api/user/ProfileApiController.js';
+import * as signupApiController from './controllers/api/user/signupApiController.js';
+import * as loginApiController from './controllers/api/user/loginApiController.js';
+import * as signoutController from './controllers/signoutController.js';
+import * as ProfileController from './controllers/profileController.js';
 // ================================
 // Conexión a la base de datos
 // ================================
@@ -24,6 +29,8 @@ console.log("Conectado a MongoDB");
 // ================================
 const app = express();
 
+
+EventEmitter.defaultMaxListeners = 20
 // Configuración global de la aplicación
 app.locals.appName = "IdealCars"; // Nombre de la aplicación
 app.set('lang', 'es'); // Idioma por defecto
