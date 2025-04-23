@@ -1,5 +1,6 @@
 import mongoose,{Schema} from 'mongoose';
 import bcrypt from 'bcrypt'
+import * as emailManager from '../lib/emailManager.js'
 
 
 const userSchema = new Schema({
@@ -16,6 +17,20 @@ userSchema.statics.hashPassword = function(clearPassword){
 // método de instancia, comprueba que la password coincide
 userSchema.methods.comparePassword = function(clearPassword){
     return bcrypt.compare(clearPassword, this.password)
+}
+
+userSchema.methods.sendEmail = async function(subject, body){
+    const transport = await emailManager.createTransport()
+    console.log(`Sending email to ${this.email}...`)
+    const result = await transport.sendMail({
+        from: process.env.EMAIL_SERVICE_FROM,
+        to: this.email,
+        subject,
+        html: body
+    })
+    if( process.env.NODECARS_ENV ==='development'){
+        console.log(`Email simulated. Preview: ${emailManager.generatePreviewURL(result)}`)
+    }
 }
 
 

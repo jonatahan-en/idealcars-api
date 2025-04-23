@@ -16,21 +16,20 @@ export async function postSignup(req,res,next){
             email: email.toLowerCase()
             })
             if(ExistingUser){
-                return res.
-                //status(400).
-                redirect('/login')
-               // send('El usuario ya existe. Por favor ,inicia sesión').
+                return res.redirect('/login')
+                 //enviar un email al usuario
+                 
+                }    
                 
-            }    
-
-        //añadir este usuario a la base de datos
-        const hashedPassword = await User.hashPassword(password);
-        const NewUser = await User.create({
-            name: name.toLowerCase(), 
-            email: email.toLowerCase(),
-            password: hashedPassword,
-        })
-            
+                //añadir este usuario a la base de datos
+                const hashedPassword = await User.hashPassword(password);
+                const NewUser = await User.create({
+                    name: name.toLowerCase(), 
+                    email: email.toLowerCase(),
+                    password: hashedPassword,
+                })
+                
+            await NewUser.sendEmail('Bienvenido','Bienvenido a IdealCars')
             res.redirect('/login')
     } catch (error) {
         console.error(error);

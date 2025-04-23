@@ -10,6 +10,10 @@
     <% if (product.image) { %>
         <img src="/imagenes/<%= product.image %> " alt="<%= product.name %>" width="300"/>
     <% } %>
+
+    <% if(session.userId) { %>
+    <a href="/email">Contacto</a>
+    <% } %>
 </main>
 <a href="/" class="btn btn-primary mt-4">
     Volver al inicio

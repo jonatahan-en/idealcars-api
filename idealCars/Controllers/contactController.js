@@ -1,4 +1,4 @@
-//import nodemailer from 'nodemailer'
+import nodemailer from 'nodemailer'
 //import User from './../models/User.js'
 //import connectMongoose from '../lib/connectMongoose'
 
