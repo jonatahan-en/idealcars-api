@@ -79,7 +79,6 @@ app.post('/signup', signupController.ValidateRegister, signupController.postSign
 app.get('/login', loginController.getlogin); // Página de login
 app.post('/login', loginController.PostLogIn); // Inicio de sesión
 app.all('/logout', loginController.logout); // Cierre de sesión
-app.get('/detail-product', detailProductController.Detail);
 
 // ================================
 // Rutas privadas (requieren autenticación)
