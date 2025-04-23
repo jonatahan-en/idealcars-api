@@ -16,7 +16,6 @@ import * as myProductsController from './controllers/myProductsController.js';
 import * as ProfileApiController from './controllers/api/user/ProfileApiController.js';
 import * as signupApiController from './controllers/api/user/signupApiController.js';
 import * as loginApiController from './controllers/api/user/loginApiController.js';
-import * as signoutController from './controllers/signoutController.js';
 import * as ProfileController from './controllers/profileController.js';
 // ================================
 // Conexión a la base de datos
