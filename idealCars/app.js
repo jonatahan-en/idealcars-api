@@ -17,7 +17,6 @@ import * as myProductsController from './controllers/myProductsController.js';
 import * as ProfileApiController from './controllers/api/user/ProfileApiController.js';
 import * as signupApiController from './controllers/api/user/signupApiController.js';
 import * as loginApiController from './controllers/api/user/loginApiController.js';
-import * as signoutController from './controllers/api/user/signoutController.js'
 import * as ProfileController from './controllers/profileController.js';
 
 // ================================
@@ -70,6 +69,7 @@ app.delete('/api/products/:id',jwtAuth.guard,apiProductsController.apiProductDel
 // Rutas públicas
 // ================================
 app.get('/', homeController.index); // Página de inicio
+app.get('/myproducts', sessionManager.isLoggedIn, myProductsController.userProducts); // Página de productos del usuario
 app.get('/signup', signupController.register); // Página de registro
 app.post('/signup', signupController.ValidateRegister, signupController.postSignup); // Registro de usuario
 app.get('/login', loginController.getlogin); // Página de login
