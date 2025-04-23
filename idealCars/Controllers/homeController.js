@@ -1,60 +1,55 @@
-import Product from "../models/Products.js" 
+import Product from "../models/Products.js";
 
-export async function index (req, res, next){
+export async function index(req, res, next) {
+    try {
+        const filterName = req.query.name;
+        const filterModel = req.query.model;
+        const filterColor = req.query.color;
+        const filterYear = req.query.year;
+        const filterPrice = req.query.price;
+        const filterKilometer = req.query.kilometer;
+        const limit = parseInt(req.query.limit, 10) || 3;
+        const skip = parseInt(req.query.skip, 10) || 0;
+        const sort = req.query.sort || "name";
 
-    const userId = req.session.userId
-    const filterName = req.query.name
-    const filterModel = req.query.model
-    const filterColor = req.query.color
-    const filterYear = req.query.year
-    const filterPrice = req.query.price
-    const filterKilometer = req.query.kilometer
-    const limit = parseInt(req.query.limit, 10) || 2
-    const skip = parseInt(req.query.skip, 10) || 0
-    const sort = req.query.sort || "name"
-
-
-
-
-    if(userId){
-        const filter = { owner: userId }
+        const filter = {}; // Sin filtro de usuario, muestra todos los productos
 
         if (filterName) {
-            filter.name = { $regex: filterName, $options: "i" } 
+            filter.name = { $regex: filterName, $options: "i" };
         }
         if (filterModel) {
-            filter.model = { $regex: filterModel, $options: "i" } 
+            filter.model = { $regex: filterModel, $options: "i" };
         }
         if (filterColor) {
-            filter.color = { $regex: filterColor, $options: "i" }
+            filter.color = { $regex: filterColor, $options: "i" };
         }
         if (filterYear) {
-            const year = parseInt(filterYear, 10)
+            const year = parseInt(filterYear, 10);
             if (!isNaN(year)) {
-            filter.year =  filterYear;
+                filter.year = year;
             }
         }
         if (filterPrice) {
-            const price = parseInt(filterPrice, 10)
+            const price = parseInt(filterPrice, 10);
             if (!isNaN(price)) {
-            filter.price =  filterPrice;
+                filter.price = price;
             }
         }
         if (filterKilometer) {
-            const kilometer = parseInt(filterKilometer, 10)
+            const kilometer = parseInt(filterKilometer, 10);
             if (!isNaN(kilometer)) {
-            filter.kilometer =  filterKilometer;
+                filter.kilometer = kilometer;
             }
         }
 
+    
+        const products = await Product.list(filter, limit, skip, sort);
+        const count = await Product.countDocuments(filter);
 
-    res.locals.products = await Product.list(filter,limit,skip,sort) 
 
-    const count = await Product.countDocuments(filter)
-    res.locals.count = count
-    res.locals.limit = limit
-    res.locals.skip = skip
-
+        res.render("home", { products, count, limit, skip });
+    } catch (error) {
+        console.error(error);
+        next(error);
     }
-    res.render("home")
-} 
+}

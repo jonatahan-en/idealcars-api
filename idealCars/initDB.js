@@ -29,7 +29,7 @@ async function initproducts(){
     ])
 
     const insertResult = await Product.insertMany([
-        {name: "Toyota ", model: "Corolla",color: "gris",year: 2022, price: 20000,  kilometer: 15000, image: "toyota.jpg",owner: juan._id},
+        {name: "Toyota ", model: "Corolla",color: "gris",year: 2022, price: 20000,  kilometer: 15000, image: "toyota.jpg", owner: juan._id},
         {name: "Ford", model: "Focus", color: "gris", year: 2020, price: 18000, kilometer: 20000, image: "ford.jpg", owner: juan._id},
         {name: "Honda", model: "Civic", color: "blanco", year: 2021, price: 22000, kilometer: 10000, image: "honda.jpg", owner: juan._id},   
         {name: "Chevrolet", model: "Cruze", color: "negro", year: 2019, price: 16000, kilometer: 30000,  image: "chevrolet.jpg", owner: jose._id},

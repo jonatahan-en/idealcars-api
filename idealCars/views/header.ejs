@@ -25,6 +25,7 @@
                 </ul>
                 <form class="d-flex" role="search">
                     <% if(session.userId) {%>
+                        <a href="/myproducts" class="btn btn-outline-info me-3" type="button"> <%= __('navigation.myProducts') %></a>
                         <a href="/logout" class="btn btn-outline-success" type="submit"> <%= __('navigation.logout') %></a>
                     <% }else{ %>
                         <a href="/login" class="btn btn-outline-success me-3" type="submit"> <%= __('navigation.login') %></a>

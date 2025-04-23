@@ -11,6 +11,7 @@ import * as signupController from './controllers/signupController.js';
 import * as productsController from './controllers/productController.js';
 import * as apiProductsController from './controllers/api/apiProductsController.js';
 import * as jwtAuth from './lib/jwtAuthMiddlewere.js';
+import * as myProductsController from './controllers/myProductsController.js';
 
 // ================================
 // Conexión a la base de datos
@@ -60,6 +61,7 @@ app.delete('/api/products/:id',jwtAuth.guard,apiProductsController.apiProductDel
 // Rutas públicas
 // ================================
 app.get('/', homeController.index); // Página de inicio
+app.get('/myproducts',sessionManager.isLoggedIn, myProductsController.userProducts); // Página de productos del usuario
 app.get('/signup', signupController.register); // Página de registro
 app.post('/signup', signupController.ValidateRegister, signupController.postSignup); // Registro de usuario
 app.get('/login', loginController.getlogin); // Página de login

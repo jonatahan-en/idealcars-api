@@ -51,13 +51,13 @@ export async function validateProduct(req, res, next) {
     if(!errors.isEmpty()){
         return res.render('new-product', {
             errors: errors.array(),
-            name: req.body.name,
-            model: req.body.model,
-            color: req.body.color,
-            year: req.body.year,
-            price: req.body.price,
-            kilometer: req.body.kilometer,
-            image: req.body.image
+                name: req.body.name,
+                model: req.body.model,
+                color: req.body.color,
+                year: req.body.year,
+                price: req.body.price,
+                kilometer: req.body.kilometer,
+                image: req.body.image
         })
     }
     next()
@@ -69,8 +69,6 @@ export async function postNew(req, res, next) {
         const userId = req.session.userId
 
         const {name,model,color,year,price,kilometer,image} = req.body
-        console.log(req.body)
-        console.log(req.file)
         //Validaciones
         const product = new Product({
             name,

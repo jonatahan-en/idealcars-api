@@ -51,6 +51,7 @@
 		"rights": "Todos os direitos reservados."
 	},
 	"navigation": {
+		"myProducts": "Meus Anúncios",
 		"home": "Início",
 		"newAd": "Novo Anúncio",
 		"logout": "Sair",
