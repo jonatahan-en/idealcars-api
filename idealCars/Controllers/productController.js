@@ -90,3 +90,18 @@ export async function postNew(req, res, next) {
     }
 }
 
+// Mostrar detalle de producto
+
+export async function showDetail(req, res, next) {
+    try {
+        const productId = req.params.id;
+        const product = await Product.findById(productId);
+        if (!product) {
+            return res.status(404).send('Producto no encontrado');
+        }
+        res.render('product-detail', {product});
+    } catch (error) {
+        next(error);
+    }
+}
+

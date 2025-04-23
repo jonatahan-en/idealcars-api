@@ -15,7 +15,7 @@ import * as productsController from './Controllers/productController.js';
 import * as loginApiController from './Controllers/api/user/loginApiController.js'
 import * as signupApiController from './Controllers/api/user/signupApiController.js'
 import * as ProfileApiController from './Controllers/api/user/ProfileApiController.js'
-import * as apiProductsController from './controllers/api/apiProductsController.js';
+import * as apiProductsController from './Controllers/api/apiProductsController.js';
 
 // ================================
 // Conexión a la base de datos
@@ -88,8 +88,10 @@ app.post(
     sessionManager.isLoggedIn,
     upload.single('image'), // Middleware para subir imágenes
     productsController.validateProduct,
-); 
     productsController.postNew
+);
+app.get('/products/:id', productsController.detail);// para ver detalle del producto.
+    
 // Paths user privates
 app.get('/signout' ,sessionManager.isLoggedIn , signoutController.unregister)
 app.post('/signout' ,sessionManager.isLoggedIn, signoutController.unsuscribe)
