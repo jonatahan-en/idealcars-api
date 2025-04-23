@@ -12,6 +12,8 @@ import * as signupController from './Controllers/signupController.js';
 import * as signoutController from './Controllers/signoutController.js'
 import * as ProfileController from './Controllers/profileController.js'
 import * as productsController from './Controllers/productController.js';
+import * as contactController from './Controllers/contactController.js'
+//Apis Controller 
 import * as loginApiController from './Controllers/api/user/loginApiController.js'
 import * as signupApiController from './Controllers/api/user/signupApiController.js'
 import * as ProfileApiController from './Controllers/api/user/ProfileApiController.js'
@@ -77,6 +79,7 @@ app.post('/signup', signupController.ValidateRegister, signupController.postSign
 app.get('/login', loginController.getlogin); // Página de login
 app.post('/login', loginController.PostLogIn); // Inicio de sesión
 app.all('/logout', loginController.logout); // Cierre de sesión
+app.get('/detail-product', detailProductController.Detail);
 
 // ================================
 // Rutas privadas (requieren autenticación)
@@ -88,14 +91,16 @@ app.post(
     sessionManager.isLoggedIn,
     upload.single('image'), // Middleware para subir imágenes
     productsController.validateProduct,
-); 
     productsController.postNew
+);
+
 // Paths user privates
 app.get('/signout' ,sessionManager.isLoggedIn , signoutController.unregister)
 app.post('/signout' ,sessionManager.isLoggedIn, signoutController.unsuscribe)
 app.get('/profile',sessionManager.isLoggedIn, ProfileController.getProfile)
 app.put('/profile',sessionManager.isLoggedIn, ProfileController.UpdateProfile)
 app.delete('/profile',sessionManager.isLoggedIn, ProfileController.DeleteProfile)
+app.get('/email', sessionManager.isLoggedIn, contactController.Contact)
 
 // ================================
 // Manejo de errores

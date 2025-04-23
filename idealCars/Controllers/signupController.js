@@ -77,8 +77,18 @@ export async function ValidateRegister(req, res,next) {
   
     // Si hay errores de validación, respondemos con el código 400 y los errores.
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() })
+      return res.render('signup',{
+            errors: errors.array(),
+            name:req.body.name,
+            phone:req.body.phone,
+            email:req.body.email,
+            password:req.body.password
+         })
+
+
     }
+
+
     next();
   }
   
