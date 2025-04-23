@@ -38,6 +38,8 @@ app.use(express.urlencoded({ extended: true })); // Parseo de formularios
 app.use(express.static('public')); // Archivos estáticos
 app.use(i18n.init); // Configuración de internacionalización
 
+
+
 // Middleware para exponer el idioma actual en las vistas (para mostrar banderas y nombre del idioma)
 app.use((req, res, next) => {
     res.locals.currentLocale = req.getLocale(); // Hace disponible el idioma actual en las vistas EJS
@@ -56,6 +58,11 @@ app.get('/api/products/:id',jwtAuth.guard,apiProductsController.apiProductGetOne
 app.post('/api/products',jwtAuth.guard,upload.single('image'), apiProductsController.apiProductNew)
 app.put('/api/products/:id',jwtAuth.guard,upload.single('image'), apiProductsController.apiProductUpdate)
 app.delete('/api/products/:id',jwtAuth.guard,apiProductsController.apiProductDelete)
+app.get('/api/user/profile', jwtAuth.guard, ProfileApiController.getProfile);
+app.put('/api/user/profile', jwtAuth.guard, ProfileApiController.UpdateProfile);
+app.delete('/api/user/profile', jwtAuth.guard, ProfileApiController.DeleteProfile);
+app.post('/api/user/signup', signupApiController.ApipostSignup)
+app.post('/api/user/login', loginApiController.loginJWT)
 
 // ================================
 // Rutas públicas
@@ -71,14 +78,23 @@ app.all('/logout', loginController.logout); // Cierre de sesión
 // ================================
 // Rutas privadas (requieren autenticación)
 // ================================
+// Creación de nuevo producto
 app.get('/products/new', sessionManager.isLoggedIn, productsController.index); // Formulario de nuevo producto
 app.post(
     '/products/new',
     sessionManager.isLoggedIn,
-        upload.single('image'), // Middleware para subir imágenes
+    upload.single('image'), // Middleware para subir imágenes
     productsController.validateProduct,
     productsController.postNew
-); // Creación de nuevo producto
+);
+app.get('/products/:id', productsController.detail);// para ver detalle del producto.
+    
+// Paths user privates
+app.get('/signout' ,sessionManager.isLoggedIn , signoutController.unregister)
+app.post('/signout' ,sessionManager.isLoggedIn, signoutController.unsuscribe)
+app.get('/profile',sessionManager.isLoggedIn, ProfileController.getProfile)
+app.put('/profile',sessionManager.isLoggedIn, ProfileController.UpdateProfile)
+app.delete('/profile',sessionManager.isLoggedIn, ProfileController.DeleteProfile)
 
 // ================================
 // Manejo de errores

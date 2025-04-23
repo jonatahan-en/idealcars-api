@@ -38,6 +38,7 @@
                 <p><%= __('home.product.price') %>: <%= product.price %></p>
                 <p><%= __('home.product.kilometer') %>: <%= product.kilometer %></p>
                 <img src="<%= product.image ? `/imagenes/${product.image}` : 'https://placehold.co/100' %>" alt="<%= __('home.product.image') %>" width="100">
+                <a href="/products/<%= product.id%>" class="btn btn-primary mt-2">Detalles</a>
             </div> 
         <% }) %>
         
