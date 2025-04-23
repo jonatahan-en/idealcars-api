@@ -4,14 +4,21 @@ import connectMongoose from './lib/connectMongoose.js';
 import createError from 'http-errors';
 import logger from 'morgan';
 import upload from './lib/uploadConfigure.js';
+//Imports auth
 import * as sessionManager from './lib/sessionManager.js';
+import * as jwtAuth from './lib/jwtAuthMiddlewere.js';
 import * as homeController from './controllers/homeController.js';
 import * as loginController from './controllers/loginController.js';
-import * as signupController from './controllers/signupController.js';
+import * as signupController from './Controllers/signupController.js';
+import * as signoutController from './Controllers/signoutController.js'
 import * as productsController from './controllers/productController.js';
-import * as apiProductsController from './controllers/api/apiProductsController.js';
-import * as jwtAuth from './lib/jwtAuthMiddlewere.js';
 import * as myProductsController from './controllers/myProductsController.js';
+import * as ProfileController from './Controllers/profileController.js'
+//Imports de API 
+import * as ProfileApiController from './Controllers/api/user/ProfileApiController.js'
+import * as apiProductsController from './Controllers/api/apiProductsController.js';
+import * as signupApiController from './Controllers/api/user/signupApiController.js'
+import * as loginApiController from './Controllers/api/user/loginApiController.js'
 
 // ================================
 // Conexión a la base de datos
