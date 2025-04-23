@@ -26,18 +26,9 @@
                 
                 <button type="submit">Aplicar Filtros</button>
             </form>
-        </div>  
+        </div>
 
-<% //contenido parar usuarios no logados añadir %>
-
-<% if(!session.userId){ %>
-    <p><%= __('home.loginPrompt') %></p>
-<% } %>
-
-<% //contenido parar usuarios logados añadir %>
-
-<% if(session.userId){ %>
-        <h2><%= __('home.userProducts') %></h2>
+        <h1>Todos los asuncios </h1>
         <% products.forEach(product => { %>
             <div class="container">
                 <h2><%= product.name %></h2>
@@ -47,16 +38,20 @@
                 <p><%= __('home.product.price') %>: <%= product.price %></p>
                 <p><%= __('home.product.kilometer') %>: <%= product.kilometer %></p>
                 <img src="<%= product.image ? `/imagenes/${product.image}` : 'https://placehold.co/100' %>" alt="<%= __('home.product.image') %>" width="100">
+                <a href="/products/<%= product.id%>" class="btn btn-primary mt-2">Detalles</a>
             </div> 
         <% }) %>
+        
         <div class="pagination mt-4">
             <% if (skip > 0) { %>
                 <a href="?skip=<%= skip - limit %>&limit=<%= limit %>" class="btn btn-secondary">Anterior</a>
             <% } %>
+            <% if (skip + limit < count) { %>
             <a href="?skip=<%= skip + limit %>&limit=<%= limit %>" class="btn btn-secondary ms-2">Siguiente</a>
+            <% } %>
         </div>
-        <% } else { %>
-            <div style="height:75vh"></div>
-        <% } %>
+
+    
+
 </main>
 <%-include("footer.ejs") %>

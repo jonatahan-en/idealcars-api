@@ -1,0 +1,18 @@
+<%- include("header.ejs") %>
+
+<main class="main-bg-container container py-5">
+    <h2><%- product.name %> - <% product.model %></h2>
+    <p>Color: <%=product.color %></p>
+    <p>Año: <%=product.year %></p>
+    <p>Precio: <%=product.price %> €</p>
+    <p>Kilometro: <%=product.kilometer %> km</p>
+
+    <% if (product.image) { %>
+        <img src="/imagenes/<%= product.image %> " alt="<%= product.name %>" width="300"/>
+    <% } %>
+</main>
+<a href="/" class="btn btn-primary mt-4">
+    Volver al inicio
+</a>
+
+<%- include("footer.ejs") %>

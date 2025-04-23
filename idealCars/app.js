@@ -13,11 +13,13 @@ import * as signoutController from './Controllers/signoutController.js'
 import * as ProfileController from './Controllers/profileController.js'
 import * as productsController from './Controllers/productController.js';
 import * as contactController from './Controllers/contactController.js'
+import * as myProductsController from './controllers/myProductsController.js';
 //Apis Controller 
 import * as loginApiController from './Controllers/api/user/loginApiController.js'
 import * as signupApiController from './Controllers/api/user/signupApiController.js'
 import * as ProfileApiController from './Controllers/api/user/ProfileApiController.js'
 import * as apiProductsController from './controllers/api/apiProductsController.js';
+
 
 // ================================
 // Conexión a la base de datos
@@ -74,6 +76,7 @@ app.post('/api/user/login', loginApiController.loginJWT)
 // Rutas públicas
 // ================================
 app.get('/', homeController.index); // Página de inicio
+app.get('/myproducts',sessionManager.isLoggedIn, myProductsController.userProducts); // Página de productos del usuario
 app.get('/signup', signupController.register); // Página de registro
 app.post('/signup', signupController.ValidateRegister, signupController.postSignup); // Registro de usuario
 app.get('/login', loginController.getlogin); // Página de login
@@ -92,7 +95,8 @@ app.post(
     productsController.validateProduct,
     productsController.postNew
 );
-
+app.get('/products/:id', productsController.detail);// para ver detalle del producto.
+    
 // Paths user privates
 app.get('/signout' ,sessionManager.isLoggedIn , signoutController.unregister)
 app.post('/signout' ,sessionManager.isLoggedIn, signoutController.unsuscribe)

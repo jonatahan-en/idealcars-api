@@ -57,6 +57,7 @@
 		"rights": "All rights reserved."
 	},
 	"navigation": {
+		"myProducts": "My Products",
 		"home": "Home",
 		"newAd": "New Ad",
 		"logout": "Logout",
