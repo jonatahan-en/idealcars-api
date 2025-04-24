@@ -67,6 +67,11 @@ app.get('/api/products/:id',jwtAuth.guard,apiProductsController.apiProductGetOne
 app.post('/api/products',jwtAuth.guard,upload.single('image'), apiProductsController.apiProductNew)
 app.put('/api/products/:id',jwtAuth.guard,upload.single('image'), apiProductsController.apiProductUpdate)
 app.delete('/api/products/:id',jwtAuth.guard,apiProductsController.apiProductDelete)
+app.get('/api/user/profile', jwtAuth.guard, ProfileApiController.getProfile);
+app.put('/api/user/profile', jwtAuth.guard, ProfileApiController.UpdateProfile);
+app.delete('/api/user/profile', jwtAuth.guard, ProfileApiController.DeleteProfile);
+app.post('/api/user/signup', signupApiController.ApipostSignup)
+app.post('/api/user/login', loginApiController.loginJWT)
 
 // ================================
 // Rutas públicas
@@ -90,9 +95,13 @@ app.post(
     productsController.validateProduct,
     productsController.postNew
 ); // Creación de nuevo producto
-// paths signout privates
+// Paths user privates
 app.get('/signout' ,sessionManager.isLoggedIn , signoutController.unregister)
 app.post('/signout' ,sessionManager.isLoggedIn, signoutController.unsuscribe)
+app.get('/profile',sessionManager.isLoggedIn, ProfileController.getProfile)
+app.put('/profile',sessionManager.isLoggedIn, ProfileController.UpdateProfile)
+app.delete('/profile',sessionManager.isLoggedIn, ProfileController.DeleteProfile)
+app.get('/email', sessionManager.isLoggedIn, contactController.Contact)
 
 // ================================
 // Manejo de errores
