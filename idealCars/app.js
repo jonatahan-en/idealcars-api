@@ -99,16 +99,16 @@ app.get('/myproducts',sessionManager.isLoggedIn, myProductsController.userProduc
 app.delete('/myproducts/delete/:id',sessionManager.isLoggedIn,myProductsController.deleteProduct) 
 app.get('/myproducts/edit/:id', sessionManager.isLoggedIn, myProductsController.editProductForm);
 app.put('/myproducts/:id', sessionManager.isLoggedIn, myProductsController.updateProduct);
-app.get('/products/:id', sessionManager.isLoggedIn, productsController.detail); 
 
 app.get('/products/new', sessionManager.isLoggedIn, productsController.index); 
 app.post(
     '/products/new',
     sessionManager.isLoggedIn,
-        upload.single('image'), // Middleware para subir imágenes
+    upload.single('image'),
     productsController.validateProduct,
-    productsController.postNew
-); // Creación de nuevo producto
+    productsController.postNew,
+); 
+app.get('/products/:id', sessionManager.isLoggedIn, productsController.detail);//conflicto:no puede estar por encima de new
 // Paths user privates
 app.get('/signout' ,sessionManager.isLoggedIn , signoutController.unregister)
 app.post('/signout' ,sessionManager.isLoggedIn, signoutController.unsuscribe)
