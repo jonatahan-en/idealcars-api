@@ -1,25 +1,28 @@
 import express from 'express';
+import { EventEmitter } from 'events';
 import i18n from './lib/i18nConfigure.js';
 import connectMongoose from './lib/connectMongoose.js';
 import createError from 'http-errors';
 import logger from 'morgan';
+//Auth Imports
 import upload from './lib/uploadConfigure.js';
 import methodOverride from 'method-override';
 //Imports auth
 import * as sessionManager from './lib/sessionManager.js';
 import * as jwtAuth from './lib/jwtAuthMiddlewere.js';
+//Web Imports Controllers
 import * as homeController from './controllers/homeController.js';
 import * as loginController from './controllers/loginController.js';
-import * as signupController from './Controllers/signupController.js';
+import * as signupController from './controllers/signupController.js';
 import * as signoutController from './Controllers/signoutController.js'
 import * as productsController from './controllers/productController.js';
 import * as myProductsController from './controllers/myProductsController.js';
-import * as ProfileController from './Controllers/profileController.js'
-//Imports de API 
-import * as ProfileApiController from './Controllers/api/user/ProfileApiController.js'
-import * as apiProductsController from './Controllers/api/apiProductsController.js';
-import * as signupApiController from './Controllers/api/user/signupApiController.js'
-import * as loginApiController from './Controllers/api/user/loginApiController.js'
+import * as ProfileController from './controllers/profileController.js';
+//Api Imports Controllers
+import * as apiProductsController from './controllers/api/apiProductsController.js';
+import * as ProfileApiController from './controllers/api/user/ProfileApiController.js';
+import * as signupApiController from './controllers/api/user/signupApiController.js';
+import * as loginApiController from './controllers/api/user/loginApiController.js';
 
 // ================================
 // Conexión a la base de datos
@@ -32,6 +35,8 @@ console.log("Conectado a MongoDB");
 // ================================
 const app = express();
 
+
+EventEmitter.defaultMaxListeners = 20
 // Configuración global de la aplicación
 app.locals.appName = "IdealCars"; // Nombre de la aplicación
 app.set('lang', 'es'); // Idioma por defecto
@@ -92,23 +97,21 @@ app.all('/logout', loginController.logout); // Cierre de sesión
 // ================================
 // Rutas privadas (requieren autenticación)
 // ================================
-// Creación de nuevo producto
 app.get('/products/new', sessionManager.isLoggedIn, productsController.index); // Formulario de nuevo producto
 app.post(
     '/products/new',
     sessionManager.isLoggedIn,
-    upload.single('image'), // Middleware para subir imágenes
+        upload.single('image'), // Middleware para subir imágenes
     productsController.validateProduct,
     productsController.postNew
-);
-app.get('/products/:id', productsController.detail);// para ver detalle del producto.
-    
+); // Creación de nuevo producto
 // Paths user privates
 app.get('/signout' ,sessionManager.isLoggedIn , signoutController.unregister)
 app.post('/signout' ,sessionManager.isLoggedIn, signoutController.unsuscribe)
 app.get('/profile',sessionManager.isLoggedIn, ProfileController.getProfile)
 app.put('/profile',sessionManager.isLoggedIn, ProfileController.UpdateProfile)
 app.delete('/profile',sessionManager.isLoggedIn, ProfileController.DeleteProfile)
+
 
 // ================================
 // Manejo de errores
