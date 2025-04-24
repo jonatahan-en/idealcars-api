@@ -57,7 +57,7 @@
 		"logout": "Cerrar Sesión",
 		"login": "Iniciar Sesión",
 		"signup": "Registrarse",
-		"signout": "navigation.signout"
+		"signout": "cancelar inscripción"
 	},
 	"notifications": {
 		"productSold": "Este producto ha sido marcado como vendido",

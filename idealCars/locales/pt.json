@@ -57,7 +57,7 @@
 		"logout": "Sair",
 		"login": "Login",
 		"signup": "Cadastrar",
-		"signout": "navigation.signout"
+		"signout": "Cancelar inscrição"
 	},
 	"notifications": {
 		"productSold": "Este produto foi marcado como vendido",
