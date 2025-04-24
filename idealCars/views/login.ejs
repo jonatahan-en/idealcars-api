@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/form.css">
+    <link rel="stylesheet" href="/styles.css">
     <title><%= __('login.title') %></title>
 </head>
 <body>
 <%-include("header.ejs") %>
-<main class="main-bg-container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
-  <section class="Card">
+<main class="main-bg-container">
+  <section class="FormCard">
     <h1><%= __('login.title') %></h1>
     <% if (typeof redirectMessage !== 'undefined' && redirectMessage) { %>
       <div class="alert alert-warning text-center" role="alert">
@@ -17,40 +17,25 @@
       </div>
     <% } %>
     <form method="post" action="/login">
-        <div class="form_input">
-            <label for="email">
-              <strong><%= __('login.email') %></strong>
-            </label>
-            <input
-              class="input"
-              type="email"
-              id="email"
-              placeholder="<%= __('login.email') %>"
-              autocomplete="off"
-              name="email"
-              required
-            />
-        </div>
-        <div class="form_input">
-            <label for="password">
-              <strong><%= __('login.password') %></strong>
-            </label>
-            <input
-              class="input"
-              type="password"
-              id="password"
-              required
-              placeholder="<%= __('login.password') %>"
-              name="password"
-            />
-        </div>
-        <div class="form_action">
-          <button type="submit" class="btn">
-            <%= __('login.login') %>
-          </button>
-        </div>
-      </form>
-    </section>
+      <div class="form_input">
+        <label for="email">
+          <strong><%= __('login.email') %></strong>
+        </label>
+        <input class="input" type="email" id="email" placeholder="<%= __('login.email') %>" autocomplete="off" name="email" required />
+      </div>
+      <div class="form_input">
+        <label for="password">
+          <strong><%= __('login.password') %></strong>
+        </label>
+        <input class="input" type="password" id="password" required placeholder="<%= __('login.password') %>" name="password" />
+      </div>
+      <div class="form_action">
+        <button type="submit" class="btn">
+          <%= __('login.login') %>
+        </button>
+      </div>
+    </form>
+  </section>
 </main>
 <%-include("footer.ejs") %>
 </body>

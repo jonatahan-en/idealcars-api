@@ -13,7 +13,9 @@
 			"kilometer": "Kilómetros",
 			"image": "Imagen",
 			"owner": "Propietario"
-		}
+		},
+		"guest": "Invitado",
+		"noProducts": "No tienes productos aún. ¡Añade algunos!"
 	},
 	"signup": {
 		"title": "Registro",
@@ -57,7 +59,8 @@
 		"logout": "Cerrar Sesión",
 		"login": "Iniciar Sesión",
 		"signup": "Registrarse",
-		"signout": "navigation.signout"
+		"signout": "Darse de baja",
+		"newProduct": "Nuevo Anuncio"
 	},
 	"notifications": {
 		"productSold": "Este producto ha sido marcado como vendido",
@@ -74,7 +77,7 @@
 		"empty": "No tienes favoritos aún. ¡Añade algunos!"
 	},
 	"error": {
-		"401": "error.401",
+		"401": "No autorizado",
 		"404": "Página no encontrada",
 		"500": "Error interno del servidor",
 		"genericMessage": "Algo salió mal. Por favor, inténtalo de nuevo más tarde."
@@ -90,11 +93,11 @@
 		"home": "Inicio"
 	},
 	"signout": {
-		"title": "signout.title",
-		"email": "signout.email",
-		"password": "signout.password",
-		"signout": "signout.signout",
-		"unregister": "signout.unregister"
+		"title": "Darse de baja",
+		"email": "Correo electrónico",
+		"password": "Contraseña",
+		"signout": "Cerrar sesión",
+		"unregister": "Darse de baja"
 	},
-	"UnRegister": "UnRegister"
+	"UnRegister": "Eliminar cuenta"
 }
