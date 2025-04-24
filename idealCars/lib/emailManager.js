@@ -2,12 +2,12 @@ import nodemailer from "nodemailer";
 
 export async function createTransport() {
   const options = {
-    host: "smtp.ethereal.email",
-    port: 587,
-    secure: false,
+    host: process.env.EMAIL_SERVICE_HOST,
+    port: process.env.EMAIL_SERVEICE_PORT,
+    secure: Boolean(process.env.EMAIL_SERVICE_SECURE),
     auth: {
-      user: "vickie.kirlin49@ethereal.email",
-      pass: "6KbQ3KbdKSb9J9yJsh",
+      user: process.env.EMAIL_SERVICE_USER,
+      pass: process.env.EMAIL_SERVICE_PASSWORD,
     },
   };
   return nodemailer.createTransport(options);
