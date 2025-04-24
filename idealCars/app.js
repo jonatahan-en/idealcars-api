@@ -4,20 +4,23 @@ import i18n from './lib/i18nConfigure.js';
 import connectMongoose from './lib/connectMongoose.js';
 import createError from 'http-errors';
 import logger from 'morgan';
+//Auth Imports
 import upload from './lib/uploadConfigure.js';
 import * as sessionManager from './lib/sessionManager.js';
+import * as jwtAuth from './lib/jwtAuthMiddlewere.js';
+//Web Imports Controllers
 import * as homeController from './controllers/homeController.js';
 import * as loginController from './controllers/loginController.js';
 import * as signupController from './controllers/signupController.js';
 import * as signoutController from './Controllers/signoutController.js'
 import * as productsController from './controllers/productController.js';
-import * as apiProductsController from './controllers/api/apiProductsController.js';
-import * as jwtAuth from './lib/jwtAuthMiddlewere.js';
 import * as myProductsController from './controllers/myProductsController.js';
+import * as ProfileController from './controllers/profileController.js';
+//Api Imports Controllers
+import * as apiProductsController from './controllers/api/apiProductsController.js';
 import * as ProfileApiController from './controllers/api/user/ProfileApiController.js';
 import * as signupApiController from './controllers/api/user/signupApiController.js';
 import * as loginApiController from './controllers/api/user/loginApiController.js';
-import * as ProfileController from './controllers/profileController.js';
 
 // ================================
 // Conexión a la base de datos
