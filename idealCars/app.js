@@ -4,6 +4,7 @@ import connectMongoose from './lib/connectMongoose.js';
 import createError from 'http-errors';
 import logger from 'morgan';
 import upload from './lib/uploadConfigure.js';
+import methodOverride from 'method-override';
 //Imports auth
 import * as sessionManager from './lib/sessionManager.js';
 import * as jwtAuth from './lib/jwtAuthMiddlewere.js';
@@ -38,12 +39,14 @@ app.set('locale', 'es'); // Idioma por defecto
 app.set('views', 'views'); // Carpeta de vistas
 app.set('view engine', 'ejs'); // Motor de plantillas
 
+
 // Middlewares globales
 app.use(logger('dev')); // Logs de peticiones
 app.use(express.json()); // Parseo de JSON
 app.use(express.urlencoded({ extended: true })); // Parseo de formularios
 app.use(express.static('public')); // Archivos estáticos
 app.use(i18n.init); // Configuración de internacionalización
+app.use(methodOverride('_method')); // Middleware para métodos HTTP (PUT, DELETE) en formularios
 
 
 
@@ -75,7 +78,11 @@ app.post('/api/user/login', loginApiController.loginJWT)
 // Rutas públicas
 // ================================
 app.get('/', homeController.index); // Página de inicio
-app.get('/myproducts',sessionManager.isLoggedIn, myProductsController.userProducts); // Página de productos del usuario
+app.get('/myproducts',sessionManager.isLoggedIn, myProductsController.userProducts);
+app.delete('/myproducts/delete/:id',sessionManager.isLoggedIn,myProductsController.deleteProduct) // Página de productos del usuario
+app.get('/myproducts/edit/:id', sessionManager.isLoggedIn, myProductsController.editProductForm);
+app.put('/myproducts/:id', sessionManager.isLoggedIn, myProductsController.updateProduct);
+
 app.get('/signup', signupController.register); // Página de registro
 app.post('/signup', signupController.ValidateRegister, signupController.postSignup); // Registro de usuario
 app.get('/login', loginController.getlogin); // Página de login
