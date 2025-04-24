@@ -13,7 +13,9 @@
 			"kilometer": "Kilometers",
 			"image": "Image",
 			"owner": "Owner"
-		}
+		},
+		"guest": "home.guest",
+		"noProducts": "home.noProducts"
 	},
 	"signup": {
 		"title": "Sign Up",
@@ -28,7 +30,6 @@
 		"Enter_your_name": "Enter your name",
 		"optional": "Optional"
 	},
-  
 	"login": {
 		"title": "Login",
 		"email": "Email",
@@ -37,7 +38,6 @@
 		"forgotPassword": "Forgot password?",
 		"redirectNewAd": "You must log in to create a new listing."
 	},
-
 	"newProduct": {
 		"title": "New Product",
 		"name": "Name",

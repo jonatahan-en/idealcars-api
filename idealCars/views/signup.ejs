@@ -8,65 +8,59 @@
 </head>
 <body>
   <%-include("header.ejs") %>
-  <main class="main-bg-container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
-    <section class="Card">
-      <h1><%= __('signup.title') %></h1>
-      <form method="post" action="/signup">
+  <main class="main-bg-container">
+      <section class="Card">
+        <h1><%= __('signup.title') %></h1>
+        <form method="post" 
+          action="/signup">
           <div class="form_input">
-              <label for="name">
-                <strong><%= __('signup.name') %></strong>
-              </label>
-              <input
-                class="input"
-                type="text"
-                id="name"
-                placeholder="<%= __('signup.Enter_your_name') %>"
-                required
-                autocomplete="given-name"
-                name="name"
-              />
+            <label for="name">
+              <strong><%= __('signup.name') %></strong>
+            </label>
+            <input class="input" 
+            type="text" 
+            id="name" 
+            placeholder="<%= __('signup.Enter_your_name') %>" 
+            required 
+            autocomplete="given-name" 
+            name="name" />
           </div>
           <div class="form_input">
             <label for="phone">
-              <strong><%= __('signup.phone_label') %></strong></label>
-              <span class="optional-text"><%= __('signup.optional') %></span>
+              <strong><%= __('signup.phone_label') %></strong>
             </label>
-            <input 
-              class="input" 
-              type="text" 
-              id="phone" 
-              name="phone" 
-              autocomplete="tel" 
-              placeholder="<%= __('signup.phone_format_example') %>" 
-              pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}"
-              title="Format (123-123-123)">
+            <input class="input" 
+            type="text" 
+            id="phone" 
+            name="phone" 
+            autocomplete="tel" 
+            placeholder="<%= __('signup.phone_format_example') %>" 
+            pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" 
+            title="Format (123-123-123)" />
+            <span class="optional-text"><%= __('signup.optional') %></span>
           </div>
           <div class="form_input">
-              <label for="email">
-                <strong><%= __('signup.email') %></strong>
-              </label>
-              <input
-                class="input"
-                type="email"
-                id="email"
-                placeholder="<%= __('signup.email') %>"
-                autocomplete="email"
-                name="email"
-                required
-              />
+            <label for="email">
+              <strong><%= __('signup.email') %></strong>
+            </label>
+            <input class="input" 
+            type="email" id="email" 
+            placeholder="<%= __('signup.email') %>" 
+            autocomplete="email" 
+            name="email" 
+            required />
           </div>
           <div class="form_input">
-              <label for="password">
-                <strong><%= __('signup.password') %></strong>
-              </label>
-              <input
-                class="input"
-                type="password"
-                id="password"
-                required
-                placeholder="<%= __('signup.password') %>"
-                name="password"
-              />
+            <label for="password">
+              <strong><%= __('signup.password') %></strong>
+            </label>
+            <input class="input" 
+            type="password" 
+            id="password" 
+            placeholder="<%= __('signup.password') %>" 
+            name="password" 
+            required 
+            />
           </div>
           <div class="form_action">
             <button type="submit" class="btn">

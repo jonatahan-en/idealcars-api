@@ -13,7 +13,9 @@
 			"kilometer": "Kilómetros",
 			"image": "Imagen",
 			"owner": "Propietario"
-		}
+		},
+		"guest": "home.guest",
+		"noProducts": "home.noProducts"
 	},
 	"signup": {
 		"title": "Registro",
@@ -34,8 +36,8 @@
 		"password": "Contraseña",
 		"login": "Ingresar",
 		"forgotPassword": "¿Olvidaste tu contraseña?",
-    "redirectNewAd": "Debes iniciar sesión para crear un nuevo anuncio."	
-  },
+		"redirectNewAd": "Debes iniciar sesión para crear un nuevo anuncio."
+	},
 	"newProduct": {
 		"title": "Nuevo Anuncio",
 		"name": "Nombre",

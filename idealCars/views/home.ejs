@@ -1,32 +1,66 @@
+<%# Incluir el encabezado común %>
 <%-include("header.ejs") %>
 
-<main class="main-bg-container container py-5">
-<p>🚗 <%= __('home.welcome') %> 🫂 <%= session.userName %></p>
+<%# Contenedor principal que ocupa el espacio restante y tiene fondo oscuro %>
+<main class="main-bg-container">
+  <%# Contenedor de Bootstrap para centrar y añadir padding vertical %>
+  <div class="container py-5">
+    <%# Fila de Bootstrap %>
+    <div class="row">
+      <%# Columna central (8 de 12 columnas en pantallas medianas y mayores), centrada con offset %>
+      <div class="col-md-8 offset-md-2">
 
-<% //contenido parar usuarios no logados añadir %>
+        <%# Contenido para usuarios NO logueados %>
+        <% if(!session.userId){ %>
+          <div class="alert alert-info" role="alert">
+             <%= __('home.loginPrompt') %>
+          </div>
+        <% } %>
 
-<% if(!session.userId){ %>
-    <p><%= __('home.loginPrompt') %></p>
-<% } %>
+        <%# Contenido para usuarios logueados %>
+        <% if(session.userId){ %>
+          <%# Mensaje de bienvenida, SOLO para usuarios logueados %>
+          <p class="lead mb-4">🚗 <%= __('home.welcome') %> 🫂 <%= session.userName %></p>
 
+          <h2 class="mb-3"><%= __('home.userProducts') %></h2>
 
-<% //contenido parar usuarios logados añadir %>
+          <%# Verificar si hay productos para mostrar %>
+          <% if (typeof products !== 'undefined' && products.length > 0) { %>
+            <%# Iterar sobre cada producto del usuario %>
+            <% products.forEach(product => { %>
+              <%# Usar componente Card de Bootstrap para cada producto %>
+              <div class="card mb-4 shadow-sm"> <%# Añadir sombra y margen inferior %>
+                <%# ... (resto del código de la card del producto sin cambios) ... %>
+                 <div class="row g-0"> <%# Fila sin gutters para imagen y texto %>
+                  <div class="col-md-4"> <%# Columna para la imagen %>
+                    <img src="<%= product.image ? `/imagenes/${product.image}` : 'https://placehold.co/200x150/080e08/ffffff?text=No+Image' %>" class="img-fluid rounded-start" alt="<%= product.name %>" style="object-fit: cover; height: 100%;">
+                  </div>
+                  <div class="col-md-8"> <%# Columna para los detalles del producto %>
+                    <div class="card-body">
+                      <h5 class="card-title"><%= product.name %></h5>
+                      <p class="card-text mb-1"><%= __('home.product.model') %>: <%= product.model %></p>
+                      <p class="card-text mb-1"><%= __('home.product.color') %>: <%= product.color %></p>
+                      <p class="card-text mb-1"><%= __('home.product.year') %>: <%= product.year %></p>
+                      <p class="card-text mb-1"><strong><%= __('home.product.price') %>: <%= product.price.toLocaleString(currentLocale, { style: 'currency', currency: 'EUR' }) %></strong></p> <%# Formatear precio como moneda %>
+                      <p class="card-text"><%= __('home.product.kilometer') %>: <%= product.kilometer.toLocaleString(currentLocale) %> km</p> <%# Formatear kilómetros %>
+                      <%# Aquí podrías añadir botones de editar/eliminar si es necesario %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% }) %>
+          <% } else { %>
+            <%# Mensaje si el usuario logueado no tiene productos %>
+            <div class="alert alert-secondary" role="alert">
+              <%= __('home.noProducts') || 'Aún no tienes anuncios publicados. ¡Crea uno!' %>
+            </div>
+          <% } %>
+        <% } %>
 
-<% if(session.userId){ %>
-        <h2><%= __('home.userProducts') %></h2>
-        <% products.forEach(product => { %>
-            <div class="container">
-                <h2><%= product.name %></h2>
-                <p><%= __('home.product.model') %>: <%= product.model %></p>
-                <p><%= __('home.product.color') %>: <%= product.color %></p>
-                <p><%= __('home.product.year') %>: <%= product.year %></p>
-                <p><%= __('home.product.price') %>: <%= product.price %></p>
-                <p><%= __('home.product.kilometer') %>: <%= product.kilometer %></p>
-                <img src="<%= product.image ? `/imagenes/${product.image}` : 'https://placehold.co/100' %>" alt="<%= __('home.product.image') %>" width="100">
-            </div> 
-        <% }) %>
-<% } else { %>
-    <div style="height:75vh"></div>
-<% } %>
-</main>
+      </div> <%# Fin de la columna central %>
+    </div> <%# Fin de la fila %>
+  </div> <%# Fin del contenedor Bootstrap %>
+</main> <%# Fin del contenedor principal %>
+
+<%# Incluir el pie de página común %>
 <%-include("footer.ejs") %>

@@ -1,13 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<%= currentLocale %>"> <%# Usar idioma actual %>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= appName %></title>
+    <title><%= __('appName') %></title> <%# Título traducido %>
+    <%# Bootstrap CSS %>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <%# Bootstrap Icons %>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <%# Tu CSS personalizado %>
+    <link rel="stylesheet" href="/styles.css">
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100"> <%# Clases para sticky footer %>
+    <%# Barra de navegación %>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand" href="/"> <%= __('appName') %> </a>
@@ -17,10 +22,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/"> <%= __('navigation.home') %></a>
+                        <a class="btn btn-primary me-2" href="/"> <%= __('navigation.home') %></a> <!-- Botón para Inicio -->
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/products/new"> <%= __('navigation.newAd') %></a>
+                        <a class="btn btn-primary me-2" href="/products/new"> <%= __('navigation.newAd') %></a> <!-- Botón para Nuevo Anuncio -->
                     </li>
                 </ul>
                 <form class="d-flex" role="search">

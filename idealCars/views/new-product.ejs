@@ -1,47 +1,79 @@
 <%-include("header.ejs") %>
-    <main class="main-bg-container">
-        <div class="container mt-5">
-            <h1><%= __('newProduct.title') %></h1>
-            <form action="/products/new" method="POST" enctype="multipart/form-data"  >
-                <div class="mb-3">
-                    <label for="name" class="form-label"><%= __('newProduct.name') %></label>
-                    <input type="text" class="form-control" id="name" name="name" required>
-                </div>
-                <div class="mb-3">
-                    <label for="model" class="form-label"><%= __('newProduct.model') %></label>
-                    <input type="text" class="form-control" id="model" name="model" required>
-                </div> 
-                <div class="mb-3">
-                    <label for="color" class="form-label"><%= __('newProduct.color') %></label>
-                    <input type="text" class="form-control" id="color" name="color" required>
-                </div>
-                <div class="mb-3">
-                    <label for="year" class="form-label"><%= __('newProduct.year') %></label>
-                    <input type="number" class="form-control" id="year" name="year" min="1980" max="2024" required>
-                </div>
-                <div class="mb-3">
-                    <label for="price" class="form-label"><%= __('newProduct.price') %></label>
-                    <input type="number" class="form-control" id="price" name="price" min="0" max="100000" required>
-                </div>
-                <div class="mb-3">
-                    <label for="kilometer" class="form-label"><%= __('newProduct.kilometer') %></label>
-                    <input type="number" class="form-control" id="kilometer" name="kilometer" min="0" max="500000" required>
-                </div>
-                <div class="mb-3">
-                    <label for="imageCuston" class="form-label"><%= __('newProduct.image') %></label>
-                    <input type="file" class="form-control" id="imageCuston" name="image">
-                </div>
-                <button type="submit" class="btn btn-primary"><%= __('newProduct.create') %></button>
-            </form>
-            <% if (errors && errors.length > 0) { %>
-                <div class="alert alert-danger">
-                    <ul>
-                        <% errors.forEach(function(error) { %>
-                            <li><%= error.msg %></li>
-                        <% }); %>
-                    </ul>
-                </div>
-            <% } %>
-        </div>
-    </main>
+<main class="main-bg-container d-flex align-items-center py-5"> <%/* Centrar verticalmente y añadir padding */%>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-6"> <%/* Columna para centrar el formulario */%>
+        <section class="Card p-4"> <%/* Estilo oscuro y padding */%>
+          <h1 class="text-center mb-4"><%= __('newProduct.title') %></h1> <%/* Título centrado */%>
+
+          <%# Mostrar errores de validación si existen %>
+          <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
+            <div class="alert alert-danger">
+              <ul>
+                <% errors.forEach(function(error) { %>
+                  <li><%= error.msg %></li>
+                <% }); %>
+              </ul>
+            </div>
+          <% } %>
+
+          <%# Formulario con estilos de Bootstrap y enctype para archivos %>
+          <form action="/products/new" method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+              <label for="name" class="form-label"><strong><%= __('newProduct.name') %></strong></label>
+              <input type="text" 
+              class="input" 
+              id="name" 
+              name="name" 
+              placeholder="<%= __('newProduct.name') %>" 
+              value="<%= typeof name !== 'undefined' ? name : '' %>" 
+              required>
+            </div>
+            <div class="mb-3">
+              <label for="model" 
+              class="form-label"><strong><%= __('newProduct.model') %></strong></label>
+              <input type="text" 
+              class="input" 
+              id="model" 
+              name="model" 
+              placeholder="<%= __('newProduct.model') %>" 
+              value="<%= typeof model !== 'undefined' ? model : '' %>" 
+              required>
+            </div>
+            <div class="mb-3">
+              <label for="color" 
+              class="form-label"><strong><%= __('newProduct.color') %></strong></label>
+              <input type="text" 
+              class="input" 
+              id="color" 
+              name="color" 
+              placeholder="<%= __('newProduct.color') %>" 
+              value="<%= typeof color !== 'undefined' ? color : '' %>" 
+              required>
+            </div>
+            <div class="mb-3">
+              <label for="year" class="form-label"><strong><%= __('newProduct.year') %></strong></label>
+              <input type="number" class="input" id="year" name="year" placeholder="<%= __('newProduct.year') %>" value="<%= typeof year !== 'undefined' ? year : '' %>" min="1980" max="<%= new Date().getFullYear() %>" required> <%/* Año máximo dinámico */%>
+            </div>
+            <div class="mb-3">
+              <label for="price" class="form-label"><strong><%= __('newProduct.price') %></strong></label>
+              <input type="number" class="input" id="price" name="price" placeholder="<%= __('newProduct.price') %>" value="<%= typeof price !== 'undefined' ? price : '' %>" min="0" step="0.01" required> <%/* Permitir decimales */%>
+            </div>
+            <div class="mb-3">
+              <label for="kilometer" class="form-label"><strong><%= __('newProduct.kilometer') %></strong></label>
+              <input type="number" class="input" id="kilometer" name="kilometer" placeholder="<%= __('newProduct.kilometer') %>" value="<%= typeof kilometer !== 'undefined' ? kilometer : '' %>" min="0" required>
+            </div>
+            <div class="mb-3">
+              <label for="image" class="form-label"><strong><%= __('newProduct.image') %></strong></label>
+              <input type="file" class="input" id="image" name="image" accept="image/*">
+            </div>
+            <div class="d-grid"> <%/* Botón ocupa todo el ancho */%>
+              <button type="submit" class="btn btn-primary btn-lg"><%= __('newProduct.create') %></button> <%/* Botón azul primario y grande */%>
+            </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>
+</main>
 <%-include("footer.ejs") %>

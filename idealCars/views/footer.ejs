@@ -1,8 +1,16 @@
+<%# Scripts de Bootstrap (deben ir antes de cerrar </body>) %>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
-<div class="d-flex justify-content-center align-items-center">
-    <p class="mb-0">&copy; <%= new Date().getFullYear() %></p>
-    <h4 class="ms-2 mb-0"><%= appName %></h4>
-    <p class="mb-0 ms-2"> <%= __('footer.rights') %></p>
+
+<%# Pie de página con fondo y padding %>
+<footer class="footer mt-auto py-3 bg-body-tertiary"> <%# Clase footer, margen superior auto, padding vertical y fondo %>
+  <div class="container"> <%# Contenedor para centrar el texto %>
+    <div class="d-flex justify-content-center align-items-center">
+      <p class="mb-0" style="color:#fff;">&copy; <%= new Date().getFullYear() %></p>
+      <h4 class="ms-2 mb-0" style="color:#fff;"><%= appName %></h4>
+      <p class="mb-0 ms-2" style="color:#fff;"> <%= __('footer.rights') %></p>
+    </div>
   </div>
-</body>
-</html>
+</footer>
+
+</body> <%# Cierre del body que estaba en el header %>
+</html> <%# Cierre del html que estaba en el header %>
