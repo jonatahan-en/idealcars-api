@@ -14,6 +14,7 @@
     <h1>Contacto</h1>
     
     <form method="post" action="/email">
+       <input type="hidden" name="productId" value="<%= product._id %>">
         <div class="form_input">
             <label for="from">
               <strong>From:</strong>
@@ -53,13 +54,14 @@
               required
               placeholder="Subject"
               name="subject"
+              value="<%= product.name  %>"
             />
         </div>
         <div class="form_input">
            <label for="content">Mensaje</label>
            <textarea
-           
-           name=" content"
+           type="textarea"
+           name="content"
            id="content"
            required
            rows="5"
