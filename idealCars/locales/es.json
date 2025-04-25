@@ -99,5 +99,6 @@
 		"signout": "Cerrar sesión",
 		"unregister": "Darse de baja"
 	},
-	"UnRegister": "Eliminar cuenta"
+	"UnRegister": "Eliminar cuenta",
+	"appDescription": "appDescription"
 }

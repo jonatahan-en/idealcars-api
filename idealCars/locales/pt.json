@@ -99,5 +99,6 @@
 		"signout": "Sair da conta",
 		"unregister": "Cancelar cadastro"
 	},
-	"UnRegister": "Excluir Conta"
+	"UnRegister": "Excluir Conta",
+	"appDescription": "appDescription"
 }
