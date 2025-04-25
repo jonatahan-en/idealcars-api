@@ -47,7 +47,7 @@ export async function index(req, res, next) {
         const count = await Product.countDocuments(filter);
 
 
-        res.render("home", { products, count, limit, skip });
+        res.render("home", { products, count, limit, skip, sort });
     } catch (error) {
         console.error(error);
         next(error);

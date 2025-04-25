@@ -83,10 +83,6 @@ app.post('/api/user/login', loginApiController.loginJWT)
 // Rutas públicas
 // ================================
 app.get('/', homeController.index); // Página de inicio
-app.get('/myproducts',sessionManager.isLoggedIn, myProductsController.userProducts);
-app.delete('/myproducts/delete/:id',sessionManager.isLoggedIn,myProductsController.deleteProduct) // Página de productos del usuario
-app.get('/myproducts/edit/:id', sessionManager.isLoggedIn, myProductsController.editProductForm);
-app.put('/myproducts/:id', sessionManager.isLoggedIn, myProductsController.updateProduct);
 
 app.get('/signup', signupController.register); // Página de registro
 app.post('/signup', signupController.ValidateRegister, signupController.postSignup); // Registro de usuario
@@ -97,14 +93,22 @@ app.all('/logout', loginController.logout); // Cierre de sesión
 // ================================
 // Rutas privadas (requieren autenticación)
 // ================================
-app.get('/products/new', sessionManager.isLoggedIn, productsController.index); // Formulario de nuevo producto
+
+// rutas de productos
+app.get('/myproducts',sessionManager.isLoggedIn, myProductsController.userProducts);
+app.delete('/myproducts/delete/:id',sessionManager.isLoggedIn,myProductsController.deleteProduct) 
+app.get('/myproducts/edit/:id', sessionManager.isLoggedIn, myProductsController.editProductForm);
+app.put('/myproducts/:id', sessionManager.isLoggedIn, myProductsController.updateProduct);
+
+app.get('/products/new', sessionManager.isLoggedIn, productsController.index); 
 app.post(
     '/products/new',
     sessionManager.isLoggedIn,
-        upload.single('image'), // Middleware para subir imágenes
+    upload.single('image'),
     productsController.validateProduct,
-    productsController.postNew
-); // Creación de nuevo producto
+    productsController.postNew,
+); 
+app.get('/products/:id', sessionManager.isLoggedIn, productsController.detail);//conflicto:no puede estar por encima de new
 // Paths user privates
 app.get('/signout' ,sessionManager.isLoggedIn , signoutController.unregister)
 app.post('/signout' ,sessionManager.isLoggedIn, signoutController.unsuscribe)

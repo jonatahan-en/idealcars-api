@@ -1,15 +1,14 @@
 <%- include("header.ejs") %>
-
-<main class="container py-5">
-    <h1>Mis Anuncios</h1>
+<main class="container py-5 main-bg-container">
+    <h2 class="mb-3" style="font-size:1.5rem; font-weight:600;">🚗 <%= __('navigation.myProducts') %></h2>
     <% products.forEach(product => { %>
-        <div class="container">
+        <div class="container mb-4 Card">
             <h2><%= product.name %></h2>
-            <p>Modelo: <%= product.model %></p>
-            <p>Color: <%= product.color %></p>
-            <p>Año: <%= product.year %></p>
-            <p>Precio: $<%= product.price %></p>
-            <p>Kilometraje: <%= product.kilometer %> km</p>
+            <p><%= __('home.product.model') %>: <%= product.model %></p>
+            <p><%= __('home.product.color') %>: <%= product.color %></p>
+            <p><%= __('home.product.year') %>: <%= product.year %></p>
+            <p><%= __('home.product.price') %>: <%= typeof product.price !== 'undefined' ? product.price.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' }) : '' %></p>
+            <p><%= __('home.product.kilometer') %>: <%= typeof product.kilometer !== 'undefined' ? product.kilometer.toLocaleString('es-ES') : '' %> km</p>
             <img src="<%= product.image ? `/imagenes/${product.image}` : 'https://placehold.co/100' %>" alt="<%= product.name %>" width="100">
 
         </div>
@@ -26,14 +25,13 @@
             </form>
         </div>
     <% }) %>
-        <div class="pagination mt-4">
-            <% if (skip > 0) { %>
-                <a href="?skip=<%= skip - limit %>&limit=<%= limit %>" class="btn btn-secondary">Anterior</a>
-            <% } %>
-            <% if (skip + limit < count) { %>
-            <a href="?skip=<%= skip + limit %>&limit=<%= limit %>" class="btn btn-secondary ms-2">Siguiente</a>
-            <% } %>
-        </div>
+    <div class="pagination mt-4">
+        <% if (skip > 0) { %>
+            <a href="?skip=<%= skip - limit %>&limit=<%= limit %>" class="btn btn-secondary">Anterior</a>
+        <% } %>
+        <% if (skip + limit < count) { %>
+        <a href="?skip=<%= skip + limit %>&limit=<%= limit %>" class="btn btn-secondary ms-2">Siguiente</a>
+        <% } %>
+    </div>
 </main>
-
 <%- include("footer.ejs") %>

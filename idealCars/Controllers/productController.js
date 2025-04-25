@@ -1,6 +1,5 @@
-import e from "express"
 import  Product  from "../models/Products.js"
-import {body, validationResult} from "express-validator"
+import { body, validationResult } from "express-validator"
 
 
 export function index(req, res, next) {
