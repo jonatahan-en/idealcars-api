@@ -13,7 +13,9 @@
 			"kilometer": "Quilômetros",
 			"image": "Imagem",
 			"owner": "Proprietário"
-		}
+		},
+		"guest": "Convidado",
+		"noProducts": "Você ainda não tem produtos. Adicione alguns!"
 	},
 	"signup": {
 		"title": "Cadastro",
@@ -26,7 +28,7 @@
 		"password": "Senha",
 		"register": "Cadastrar",
 		"Enter_your_name": "Digite seu nome",
-		"optional": "optional"
+		"optional": "Opcional"
 	},
 	"login": {
 		"title": "Login",
@@ -57,7 +59,8 @@
 		"logout": "Sair",
 		"login": "Login",
 		"signup": "Cadastrar",
-		"signout": "Cancelar inscrição"
+		"signout": "Cancelar cadastro",
+		"newProduct": "Novo Anúncio"
 	},
 	"notifications": {
 		"productSold": "Este produto foi marcado como vendido",
@@ -74,7 +77,7 @@
 		"empty": "Você ainda não tem favoritos. Adicione alguns!"
 	},
 	"error": {
-		"401": "error.401",
+		"401": "Não autorizado",
 		"404": "Página não encontrada",
 		"500": "Erro interno do servidor",
 		"genericMessage": "Algo deu errado. Por favor, tente novamente mais tarde."
@@ -90,11 +93,11 @@
 		"home": "Início"
 	},
 	"signout": {
-		"title": "signout.title",
-		"email": "signout.email",
-		"password": "signout.password",
-		"signout": "signout.signout",
-		"unregister": "signout.unregister"
+		"title": "Sair da conta",
+		"email": "E-mail",
+		"password": "Senha",
+		"signout": "Sair da conta",
+		"unregister": "Cancelar cadastro"
 	},
-	"UnRegister": "UnRegister"
+	"UnRegister": "Excluir Conta"
 }

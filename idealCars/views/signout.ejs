@@ -1,57 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/form.css">
-    <title><%= __('signout.title') %></title>
-</head>
-<body>
-<%-include("header.ejs") %>
-<main class="main-bg-container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
-  <section class="Card">
-    <h1><%= __('signout.title') %></h1>
-    <% if (typeof redirectMessage !== 'undefined' && redirectMessage) { %>
-      <div class="alert alert-warning text-center" role="alert">
-        <%= redirectMessage %>
-      </div>
-    <% } %>
-    <form method="post" action="/signout">
-        <div class="form_input">
-            <label for="email">
-              <strong><%= __('signout.email') %></strong>
-            </label>
-            <input
-              class="input"
-              type="email"
-              id="email"
-              placeholder="<%= __('signout.email') %>"
-              autocomplete="off"
-              name="email"
-              required
-            />
-        </div>
-        <div class="form_input">
-            <label for="password">
-              <strong><%= __('signout.password') %></strong>
-            </label>
-            <input
-              class="input"
-              type="password"
-              id="password"
-              required
-              placeholder="<%= __('signout.password') %>"
-              name="password"
-            />
-        </div>
-        <div class="form_action">
-          <button type="submit" class="btn">
-            <%= __('signout.unregister') %>
-          </button>
-        </div>
-      </form>
+<%- include("header.ejs") %>
+<main class="main-bg-container container py-5 d-flex flex-column align-items-center justify-content-center" style="min-height: 0;">
+    <section class="FormCard w-100" style="max-width: 500px;">
+        <h1 class="text-center mb-4"><%= __('signout.title') %></h1>
+        <form action="/signout" method="post">
+            <div class="mb-3">
+                <label for="email" class="form-label"><%= __('signout.email') %></label>
+                <input type="email" class="form-control input" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label"><%= __('signout.password') %></label>
+                <input type="password" class="form-control input" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 mt-3"><%= __('signout.unregister') %></button>
+        </form>
     </section>
 </main>
-<%-include("footer.ejs") %>
-</body>
-</html>
+<%- include("footer.ejs") %>

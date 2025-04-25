@@ -1,18 +1,28 @@
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
-<div class="d-flex justify-content-center align-items-center">
-    <p class="mb-0">&copy; <%= new Date().getFullYear() %></p>
-    <h4 class="ms-2 mb-0"><%= appName %></h4>
-    <p class="mb-0 ms-2"> <%= __('footer.rights') %></p>
+<!-- Scripts de Bootstrap (deben ir antes de cerrar </body>) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+// <footer class="footer mt-auto py-3 bg-body-tertiary" style="position: fixed; bottom: 0; width: 100%; z-index: 1000;"> //
+  <div class="container">
+    <div class="d-flex justify-content-center align-items-center">
+      <p class="mb-0" style="color:#fff;">&copy; <%= new Date().getFullYear() %></p>
+      <h4 class="ms-2 mb-0" style="color:#fff;"><%= appName %></h4>
+      <p class="mb-0 ms-2" style="color:#fff;"> <%= __('footer.rights') %></p>
+    </div>
   </div>
   <script>
     function toggleFilters() {
         const filterForm = document.getElementById('filter-form');
-        if (filterForm.style.display === 'none') {
+        if (filterForm && filterForm.style.display === 'none') {
             filterForm.style.display = 'block';
-        } else {
+        } else if (filterForm) {
             filterForm.style.display = 'none';
         }
     }
-</script>
+  </script>
+</footer>
+// <style>
+  body {
+    padding-bottom: 60px; /* Ajusta este valor según la altura de tu footer */
+  }
+</style> //
 </body>
 </html>
