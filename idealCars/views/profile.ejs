@@ -3,9 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/form.css">
+    <title>Perfil</title>
 </head>
 <body>
-    <p>PROFILE</p>
+<%-include("header.ejs") %>
+<main class="main-bg-container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+  <section class="Card">
+    <h1>Perfil</h1>
+    
+    <form method="post" action="/profile">
+        <div class="form_input">
+            <label for="name">
+              <strong>Nombre</strong>
+            </label>
+            <input
+              class="name"
+              type="text"
+              id="name"
+              autocomplete="of"
+              name="name"
+              required
+            />
+        </div>
+        <div class="form_input">
+            <label for="email">
+              <strong>Correo</strong>
+            </label>
+            <input
+              class="input"
+              type="email"
+              id="email"
+              required
+             
+              name="email"
+            />
+        </div>
+       
+        <div class="form_action">
+          <button type="submit" class="btn btn mt-4">
+            Editar
+          </button>
+          <a href="/signout" class="btn btn mt-4">
+            Borrar
+          </a>
+        </div>
+      </form>
+    </section>
+</main>
+<%-include("footer.ejs") %>
 </body>
 </html>

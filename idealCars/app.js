@@ -104,6 +104,7 @@ app.get('/profile',sessionManager.isLoggedIn, ProfileController.getProfile)
 app.put('/profile',sessionManager.isLoggedIn, ProfileController.UpdateProfile)
 app.delete('/profile',sessionManager.isLoggedIn, ProfileController.DeleteProfile)
 app.get('/email', sessionManager.isLoggedIn, contactController.Contact)
+app.post('/email', sessionManager.isLoggedIn , contactController.PostMail )
 
 // ================================
 // Manejo de errores

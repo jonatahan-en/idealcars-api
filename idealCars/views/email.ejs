@@ -3,9 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/form.css">
+    <title>Contacto</title>
 </head>
 <body>
-    <h1>ESTAMOS EN LA VISTA DE CONTACTO</h1>
+
+<%-include("header.ejs") %>
+<main class="main-bg-container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+  <section class="Card">
+    <h1>Contacto</h1>
+    
+    <form method="post" action="/email">
+        <div class="form_input">
+            <label for="from">
+              <strong>From:</strong>
+            </label>
+            <input
+              class="input"
+              type="email"
+              id="from"
+              name="from"
+              required
+              value="<%= session.userEmail %>"
+            />
+        </div>
+
+
+        <div class="form_input">
+            <label for="to">
+              <strong>To</strong>
+            </label>
+            <input
+              class="input"
+              type="email"
+              id="to"
+              name="to"
+              value="<%= product.owner.email %>"
+              required
+            />
+        </div>
+        <div class="form_input">
+            <label for="subject">
+              <strong>Subject</strong>
+            </label>
+            <input
+              class="input"
+              type="text"
+              id="subject"
+              required
+              placeholder="Subject"
+              name="subject"
+            />
+        </div>
+        <div class="form_input">
+           <label for="content">Mensaje</label>
+           <textarea
+           
+           name=" content"
+           id="content"
+           required
+           rows="5"
+           
+           ></textarea>
+        </div>
+        <div class="form_action">
+          <button type="submit" class="btn btn mt-4">
+            Send
+          </button>
+        </div>
+      </form>
+    </section>
+</main>
+<%-include("footer.ejs") %>
 </body>
 </html>

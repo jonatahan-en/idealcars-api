@@ -29,7 +29,7 @@ export async function postSignup(req,res,next){
                     password: hashedPassword,
                 })
                 
-            await NewUser.sendEmail('Bienvenido','Bienvenido a IdealCars')
+            await NewUser.sendEmail('Bienvenido','Bienvenido a IdealCars')//Si quito el await se elimina la espera,pero es una practica rudimentaria
             res.redirect('/login')
     } catch (error) {
         console.error(error);
@@ -45,7 +45,7 @@ export async function postSignup(req,res,next){
 //testeo una validacion con express validator
 
 export async function ValidateRegister(req, res,next) {
-    console.log(req.body);
+    
     // Validamos el campo 'name' asegurándonos de que no esté vacío
     await body('name')
     .notEmpty()

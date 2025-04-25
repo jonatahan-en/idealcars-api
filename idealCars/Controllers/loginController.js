@@ -22,6 +22,7 @@ export async function PostLogIn(req,res,next){
         
         // Capitaliza el nombre antes de guardarlo en sesión
         req.session.userName = user.name.replace(/\b\w/g, l => l.toUpperCase())
+        req.session.userEmail = user.email
 
         res.redirect('/')
 

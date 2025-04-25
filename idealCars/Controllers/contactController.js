@@ -1,20 +1,23 @@
-import nodemailer from 'nodemailer'
-//import User from './../models/User.js'
-//import connectMongoose from '../lib/connectMongoose'
+import Product from "../models/Products.js";
 
-export function Contact (req, res , next){
-   /* const userId = req.session.userId
-    nodemailer.createTransport({
-        host: userId,
-        port: 587,
-        secure:false,
-        auth:{
-            user:"username",
-            pass: "password"
+export async function Contact(req, res , next){
+
+    try {
+        
+        const productId = req.query.productId;
+        const product = await Product.findById(productId).populate('owner');
+       
+        if (!product) {
+            return res.status(404).send('Producto no encontrado');
         }
-    })
+        
+        res.render('email',{product});
+    } catch (error) {
+        next(error);
+    }
+}
 
-
-*/
-    res.render('email')
+export async function PostMail(req,res ,next) {
+   
+ await newUser.sendEmailBetweenUsers()
 }

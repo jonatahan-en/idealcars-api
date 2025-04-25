@@ -32,6 +32,17 @@ userSchema.methods.sendEmail = async function(subject, body){
         console.log(`Email simulated. Preview: ${emailManager.generatePreviewURL(result)}`)
     }
 }
+userSchema.methods.sendEmailBetweenUsers = async function (subject,body) {
+    const transport = await emailManager.createTransport()
+    console.log(`Contacting  to ${this.email}...`)
+    const result = await transport.sendEmailBetweenUsers({
+        from: this.email,
+        to: this.owner.email,
+        subject,
+        html:body
+
+    })
+}
 
 
 const User = mongoose.model('User', userSchema);    
