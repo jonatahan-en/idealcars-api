@@ -19,7 +19,7 @@ export async function Contact(req, res , next){
 }
 
 export async function PostMail(req,res ,next) {
- 
+ console.log("Formulario recibido:", req.body);
  const from = req.session.userEmail
  const content =req.body
  const productId = req.body.productId;
@@ -29,12 +29,7 @@ export async function PostMail(req,res ,next) {
     return res.status(404).send('Producto no encontrado');
 }
 
- await product.owner.sendEmailBetweenUsers({
-    from: from,
-    to: product.owner.email,
-    subject: subject,
-    content: content
- })
+ await product.owner.sendEmailBetweenUsers(from,product.owner.email,subject,content)
  
 
  res.render('email', {product})

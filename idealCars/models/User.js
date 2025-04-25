@@ -32,20 +32,14 @@ userSchema.methods.sendEmail = async function(subject, body){
         console.log(`Email simulated. Preview: ${emailManager.generatePreviewURL(result)}`)
     }
 }
-userSchema.methods.sendEmailBetweenUsers = async function (subject,content) {
+userSchema.methods.sendEmailBetweenUsers = async function (from,to,subject,content) {
     const transport = await emailManager.createTransport()
     
-    const subjectString = String(subject);  // Esto convertirá cualquier tipo a string
-    const contentString = String(content);  // Lo mismo con content
-
-    console.log(`Contacting  to ${this.email}...`)
-    console.log("Subject dentro de sendEmailBetweenUsers:", subjectString);
-    console.log("Body dentro de sendEmailBetweenUsers:", contentString);
     const result = await transport.sendMail({
-        from: this.email,
-        to: this.email,
-        subject:`Me interesa tu ${subjectString}`,
-        html: ` ${contentString}`
+        from,
+        to,
+        subject:`Me interesa tu ${subject}`,
+        html: content
 
     })
     
