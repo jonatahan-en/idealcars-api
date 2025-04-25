@@ -99,5 +99,6 @@
 		"delete": "Delete",
 		"home": "Home"
 	},
-	"UnRegister": "Delete account"
+	"UnRegister": "Delete account",
+	"appDescription": "appDescription"
 }
