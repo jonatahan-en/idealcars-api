@@ -8,7 +8,6 @@
     "start": "cross-env NODECARS_ENV=production node server.js",
     "dev": "cross-env DEBUG=idealcars:* NODECARS_ENV=development nodemon server.js",
     "initDB": "node initDB.js"
-
   },
   "keywords": [],
   "author": "",
@@ -29,6 +28,7 @@
     "http-errors": "^2.0.0",
     "i18n": "^0.15.1",
     "jsonwebtoken": "^9.0.2",
+    "method-override": "^3.0.0",
     "mongoose": "^8.9.5",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",

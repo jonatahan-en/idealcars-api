@@ -6,6 +6,8 @@ import createError from 'http-errors';
 import logger from 'morgan';
 //Auth Imports
 import upload from './lib/uploadConfigure.js';
+import methodOverride from 'method-override';
+//Imports auth
 import * as sessionManager from './lib/sessionManager.js';
 import * as jwtAuth from './lib/jwtAuthMiddlewere.js';
 //Web Imports Controllers
@@ -42,12 +44,16 @@ app.set('locale', 'es'); // Idioma por defecto
 app.set('views', 'views'); // Carpeta de vistas
 app.set('view engine', 'ejs'); // Motor de plantillas
 
+
 // Middlewares globales
 app.use(logger('dev')); // Logs de peticiones
 app.use(express.json()); // Parseo de JSON
 app.use(express.urlencoded({ extended: true })); // Parseo de formularios
 app.use(express.static('public')); // Archivos estáticos
 app.use(i18n.init); // Configuración de internacionalización
+app.use(methodOverride('_method')); // Middleware para métodos HTTP (PUT, DELETE) en formularios
+
+
 
 // Middleware para exponer el idioma actual en las vistas (para mostrar banderas y nombre del idioma)
 app.use((req, res, next) => {
@@ -77,7 +83,7 @@ app.post('/api/user/login', loginApiController.loginJWT)
 // Rutas públicas
 // ================================
 app.get('/', homeController.index); // Página de inicio
-app.get('/myproducts', sessionManager.isLoggedIn, myProductsController.userProducts); // Página de productos del usuario
+
 app.get('/signup', signupController.register); // Página de registro
 app.post('/signup', signupController.ValidateRegister, signupController.postSignup); // Registro de usuario
 app.get('/login', loginController.getlogin); // Página de login
@@ -87,14 +93,22 @@ app.all('/logout', loginController.logout); // Cierre de sesión
 // ================================
 // Rutas privadas (requieren autenticación)
 // ================================
-app.get('/products/new', sessionManager.isLoggedIn, productsController.index); // Formulario de nuevo producto
+
+// rutas de productos
+app.get('/myproducts',sessionManager.isLoggedIn, myProductsController.userProducts);
+app.delete('/myproducts/delete/:id',sessionManager.isLoggedIn,myProductsController.deleteProduct) 
+app.get('/myproducts/edit/:id', sessionManager.isLoggedIn, myProductsController.editProductForm);
+app.put('/myproducts/:id', sessionManager.isLoggedIn, myProductsController.updateProduct);
+
+app.get('/products/new', sessionManager.isLoggedIn, productsController.index); 
 app.post(
     '/products/new',
     sessionManager.isLoggedIn,
-        upload.single('image'), // Middleware para subir imágenes
+    upload.single('image'),
     productsController.validateProduct,
-    productsController.postNew
-); // Creación de nuevo producto
+    productsController.postNew,
+); 
+app.get('/products/:id', sessionManager.isLoggedIn, productsController.detail);//conflicto:no puede estar por encima de new
 // Paths user privates
 app.get('/signout' ,sessionManager.isLoggedIn , signoutController.unregister)
 app.post('/signout' ,sessionManager.isLoggedIn, signoutController.unsuscribe)

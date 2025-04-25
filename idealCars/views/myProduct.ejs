@@ -10,6 +10,19 @@
             <p><%= __('home.product.price') %>: <%= typeof product.price !== 'undefined' ? product.price.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' }) : '' %></p>
             <p><%= __('home.product.kilometer') %>: <%= typeof product.kilometer !== 'undefined' ? product.kilometer.toLocaleString('es-ES') : '' %> km</p>
             <img src="<%= product.image ? `/imagenes/${product.image}` : 'https://placehold.co/100' %>" alt="<%= product.name %>" width="100">
+
+        </div>
+        <div>
+            <!-- Botón para editar el producto -->
+            <a href="/myproducts/edit/<%= product._id %>" class="btn btn-warning">
+                <i class="bi bi-pencil"></i> Editar
+            </a>
+            <!-- Botón para borrar el producto -->
+            <form action="/myproducts/delete/<%= product._id %>?_method=DELETE" method="POST" style="display: inline;" onsubmit="return confirm('¿Estás seguro de que deseas borrar este producto?');">
+                <button type="submit" class="btn btn-danger">
+                    <i class="bi bi-trash3"></i> Borrar
+                </button>
+            </form>
         </div>
     <% }) %>
     <div class="pagination mt-4">
