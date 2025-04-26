@@ -108,7 +108,7 @@ app.post(
     productsController.validateProduct,
     productsController.postNew,
 ); 
-app.get('/products/:id', sessionManager.isLoggedIn, productsController.detail);//conflicto:no puede estar por encima de new
+app.get('/products/detail/:id', sessionManager.isLoggedIn,productsController.detail);//conflicto:no puede estar por encima de new
 // Paths user privates
 app.get('/signout' ,sessionManager.isLoggedIn , signoutController.unregister)
 app.post('/signout' ,sessionManager.isLoggedIn, signoutController.unsuscribe)
