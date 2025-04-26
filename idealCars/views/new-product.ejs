@@ -1,34 +1,213 @@
 <%- include('header.ejs') %>
+<style>
+  .main-bg-container {
+    padding: 2rem;
+    min-height: 100vh;
+    background-color: #f5f5f8;
+  }
+  
+  .FormCard {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+    border-top: 4px solid #00bfff;
+  }
+  
+  .FormCard h1 {
+    color: #00bfff;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+  
+  .FormCard h1:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: #00bfff;
+    border-radius: 3px;
+  }
+  
+  .form_input {
+    position: relative;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .form_input label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #000000;
+    transition: all 0.3s ease;
+  }
+  
+  .input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .input:focus {
+    border-color: #00bfff; 
+    box-shadow: 0 0 0 3px rgba(0, 191, 255, 0.15);
+    outline: none;
+  }
+  
+  .input:focus + label {
+    color: #00bfff;
+  }
+  
+  .form_action button {
+    background-color: #00bfff;
+    color: white;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .form_action button:hover {
+    background-color: #00a6dd;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 191, 255, 0.2);
+  }
+  
+  /* Efecto de animación para los campos */
+  .form_input .input {
+    transform: translateY(0);
+    opacity: 1;
+    animation: fadeInUp 0.5s ease-out;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Aplicar la animación con retraso para cada campo */
+  .form_input:nth-child(1) .input { animation-delay: 0.1s; }
+  .form_input:nth-child(2) .input { animation-delay: 0.2s; }
+  .form_input:nth-child(3) .input { animation-delay: 0.3s; }
+  .form_input:nth-child(4) .input { animation-delay: 0.4s; }
+  .form_input:nth-child(5) .input { animation-delay: 0.5s; }
+  .form_input:nth-child(6) .input { animation-delay: 0.6s; }
+  .form_input:nth-child(7) .input { animation-delay: 0.7s; }
+
+  /* Efecto para el botón */
+  .form_action button {
+    animation: fadeInUp 0.8s ease-out;
+    animation-delay: 0.8s;
+    opacity: 1;
+  }
+  /* Elemento decorativo */
+  .FormCard::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 100px;
+    height: 100px;
+    background: #00bfff;
+    opacity: 0.1;
+    border-radius: 50%;
+    animation: pulse 4s infinite;
+  }
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 0.1; }
+    50% { transform: scale(1.5); opacity: 0.15; }
+    100% { transform: scale(1); opacity: 0.1; }
+  }
+  /* Mejora para inputs tipo archivo */
+  input[type="file"] {
+    padding: 0.5rem;
+    background-color: #f8f9fa;
+    border: 1px dashed #ccc;
+  }
+  
+  input[type="file"]:hover {
+    background-color: #f0f0f0;
+    border-color: #00bfff;
+  }
+  
+  /* Mejora para mensajes de validación */
+  .input:invalid:focus {
+    border-color: #ff6b6b;
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.15);
+  }
+  
+  /* Animación adicional para el formulario */
+  .FormCard {
+    animation: slideIn 0.7s ease-out forwards;
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .form_action button {
+    letter-spacing: 0.5px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  }
+</style>
 <main class="main-bg-container">
   <section class="FormCard">
-    <h1 class="mb-4 text-center"><%= __('newProduct.title') %></h1>
+    <div class="header-banner">
+      <h1 class="mb-4 text-center"><%= __('newProduct.title') %></h1>
+    </div>
     <form action="/new-product" method="POST" enctype="multipart/form-data">
       <div class="form_input mb-3">
-        <label for="name"><%= __('newProduct.name') %></label>
+        <label for="name" style="color: black;"><%= __('newProduct.name') %></label>
         <input class="input" type="text" id="name" name="name" required>
       </div>
       <div class="form_input mb-3">
-        <label for="model"><%= __('newProduct.model') %></label>
+        <label for="model" style="color: black;"><%= __('newProduct.model') %></label>
         <input class="input" type="text" id="model" name="model" required>
       </div>
       <div class="form_input mb-3">
-        <label for="color"><%= __('newProduct.color') %></label>
+        <label for="color" style="color: black;"><%= __('newProduct.color') %></label>
         <input class="input" type="text" id="color" name="color" required>
       </div>
       <div class="form_input mb-3">
-        <label for="year"><%= __('newProduct.year') %></label>
+        <label for="year" style="color: black;"><%= __('newProduct.year') %></label>
         <input class="input" type="number" id="year" name="year" required>
       </div>
       <div class="form_input mb-3">
-        <label for="price"><%= __('newProduct.price') %></label>
+        <label for="price" style="color: black;"><%= __('newProduct.price') %></label>
         <input class="input" type="number" id="price" name="price" required>
       </div>
       <div class="form_input mb-3">
-        <label for="kilometer"><%= __('newProduct.kilometer') %></label>
+        <label for="kilometer" style="color: black;"><%= __('newProduct.kilometer') %></label>
         <input class="input" type="number" id="kilometer" name="kilometer" required>
       </div>
       <div class="form_input mb-3">
-        <label for="image"><%= __('newProduct.image') %></label>
+        <label for="image" style="color: black;"><%= __('newProduct.image') %></label>
         <input class="input" type="file" id="image" name="image" accept="image/*">
       </div>
       <div class="form_action">
@@ -37,4 +216,80 @@
     </form>
   </section>
 </main>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Efecto de focus para los inputs
+    const inputs = document.querySelectorAll('.input');
+    
+    inputs.forEach(input => {
+      input.addEventListener('focus', function() {
+        this.parentElement.classList.add('active');
+      });
+      
+      input.addEventListener('blur', function() {
+        if (this.value === '') {
+          this.parentElement.classList.remove('active');
+        }
+      });
+      
+      // Check if input has value on page load
+      if (input.value !== '') {
+        input.parentElement.classList.add('active');
+      }
+    });
+    
+    // Animación para el botón submit
+    const submitButton = document.querySelector('.form_action button');
+    submitButton.addEventListener('mouseenter', function() {
+      this.style.transform = 'translateY(-2px)';
+    });
+    
+    submitButton.addEventListener('mouseleave', function() {
+      this.style.transform = 'translateY(0)';
+    });
+    
+    // Mejora para la interacción con el campo de carga de archivos
+    const fileInput = document.querySelector('input[type="file"]');
+    if (fileInput) {
+      fileInput.addEventListener('change', function() {
+        if (this.files.length > 0) {
+          // Mostrar el nombre del archivo seleccionado
+          const fileName = this.files[0].name;
+          // Podría añadir un elemento para mostrar el nombre, pero mantengo mínimos los cambios
+          this.style.borderColor = '#00bfff';
+          this.style.borderStyle = 'solid';
+        } else {
+          this.style.borderColor = '#ccc';
+          this.style.borderStyle = 'dashed';
+        }
+      });
+    }
+    
+    // Validación básica de formulario con feedback visual
+    const form = document.querySelector('form');
+    form.addEventListener('submit', function(event) {
+      const allInputs = this.querySelectorAll('input[required]');
+      let isValid = true;
+      
+      allInputs.forEach(input => {
+        if (!input.value.trim()) {
+          isValid = false;
+          input.style.borderColor = '#ff6b6b';
+          setTimeout(() => {
+            input.style.borderColor = '#ddd';
+          }, 2000);
+        }
+      });
+      
+      if (!isValid) {
+        event.preventDefault();
+      } else {
+        // Efecto de feedback al enviar
+        const submitBtn = this.querySelector('button[type="submit"]');
+        submitBtn.textContent = 'Enviando...';
+        submitBtn.style.opacity = '0.8';
+      }
+    });
+  });
+</script>
 <%- include('footer.ejs') %>
