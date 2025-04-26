@@ -1,26 +1,19 @@
 <%- include("header.ejs") %>
-
 <main class="main-bg-container container py-5">
-    <h2><%- product.name %> - <% product.model %></h2>
-    <p>Color: <%=product.color %></p>
-    <p>Año: <%=product.year %></p>
-    <p>Precio: <%=product.price %> €</p>
-    <p>Kilometro: <%=product.kilometer %> km</p>
-
+    <h2><%= product.name %> - <%= product.model %></h2>
+    <p><%= __('home.product.color') %>: <%= product.color %></p>
+    <p><%= __('home.product.year') %>: <%= product.year %></p>
+    <p><%= __('home.product.price') %>: <%= typeof product.price !== 'undefined' ? product.price.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' }) : '' %></p>
+    <p><%= __('home.product.kilometer') %>: <%= typeof product.kilometer !== 'undefined' ? product.kilometer.toLocaleString('es-ES') : '' %> km</p>
     <% if (product.image) { %>
-        <img src="/imagenes/<%= product.image %> " alt="<%= product.name %>" width="300"/>
+        <img src="/imagenes/<%= product.image %>" alt="<%= product.name %>" width="300"/>
     <% } %>
-
- 
     <form action="/email" method="get">
         <input type="hidden" name="productId" value="<%= product._id %>">
         <button type="submit">Contactar</button>
       </form>
-  
-</form>
+    <a href="/" class="btn btn-primary mt-4">
+        <%= __('common.home') %>
+    </a>
 </main>
-<a href="/" class="btn btn-primary mt-4">
-    Volver al inicio
-</a>
-
 <%- include("footer.ejs") %>

@@ -1,25 +1,30 @@
 import express from 'express';
+import { EventEmitter } from 'events';
 import i18n from './lib/i18nConfigure.js';
 import connectMongoose from './lib/connectMongoose.js';
 import createError from 'http-errors';
 import logger from 'morgan';
+//Auth Imports
 import upload from './lib/uploadConfigure.js';
+import methodOverride from 'method-override';
+//Imports auth
 import * as sessionManager from './lib/sessionManager.js';
-import * as jwtAuth from './lib/jwtAuthMiddlewere.js'
-import * as homeController from './Controllers/homeController.js';
-import * as loginController from './Controllers/loginController.js';
-import * as signupController from './Controllers/signupController.js';
+import * as jwtAuth from './lib/jwtAuthMiddlewere.js';
+//Web Imports Controllers
+import * as homeController from './controllers/homeController.js';
+import * as loginController from './controllers/loginController.js';
+import * as signupController from './controllers/signupController.js';
 import * as signoutController from './Controllers/signoutController.js'
-import * as ProfileController from './Controllers/profileController.js'
-import * as productsController from './Controllers/productController.js';
-import * as contactController from './Controllers/contactController.js'
+import * as productsController from './controllers/productController.js';
 import * as myProductsController from './controllers/myProductsController.js';
-//Apis Controller 
-import * as loginApiController from './Controllers/api/user/loginApiController.js'
-import * as signupApiController from './Controllers/api/user/signupApiController.js'
-import * as ProfileApiController from './Controllers/api/user/ProfileApiController.js'
-import * as apiProductsController from './controllers/api/apiProductsController.js';
+import * as contactController from './Controllers/contactController.js'
 
+import * as ProfileController from './controllers/profileController.js';
+//Api Imports Controllers
+import * as apiProductsController from './controllers/api/apiProductsController.js';
+import * as ProfileApiController from './controllers/api/user/ProfileApiController.js';
+import * as signupApiController from './controllers/api/user/signupApiController.js';
+import * as loginApiController from './controllers/api/user/loginApiController.js';
 
 // ================================
 // Conexión a la base de datos
@@ -32,6 +37,8 @@ console.log("Conectado a MongoDB");
 // ================================
 const app = express();
 
+
+EventEmitter.defaultMaxListeners = 20
 // Configuración global de la aplicación
 app.locals.appName = "IdealCars"; // Nombre de la aplicación
 app.set('lang', 'es'); // Idioma por defecto
@@ -39,12 +46,14 @@ app.set('locale', 'es'); // Idioma por defecto
 app.set('views', 'views'); // Carpeta de vistas
 app.set('view engine', 'ejs'); // Motor de plantillas
 
+
 // Middlewares globales
 app.use(logger('dev')); // Logs de peticiones
 app.use(express.json()); // Parseo de JSON
 app.use(express.urlencoded({ extended: true })); // Parseo de formularios
 app.use(express.static('public')); // Archivos estáticos
 app.use(i18n.init); // Configuración de internacionalización
+app.use(methodOverride('_method')); // Middleware para métodos HTTP (PUT, DELETE) en formularios
 
 
 
@@ -76,7 +85,7 @@ app.post('/api/user/login', loginApiController.loginJWT)
 // Rutas públicas
 // ================================
 app.get('/', homeController.index); // Página de inicio
-app.get('/myproducts',sessionManager.isLoggedIn, myProductsController.userProducts); // Página de productos del usuario
+
 app.get('/signup', signupController.register); // Página de registro
 app.post('/signup', signupController.ValidateRegister, signupController.postSignup); // Registro de usuario
 app.get('/login', loginController.getlogin); // Página de login
@@ -86,17 +95,22 @@ app.all('/logout', loginController.logout); // Cierre de sesión
 // ================================
 // Rutas privadas (requieren autenticación)
 // ================================
-// Creación de nuevo producto
-app.get('/products/new', sessionManager.isLoggedIn, productsController.index); // Formulario de nuevo producto
+
+// rutas de productos
+app.get('/myproducts',sessionManager.isLoggedIn, myProductsController.userProducts);
+app.delete('/myproducts/delete/:id',sessionManager.isLoggedIn,myProductsController.deleteProduct) 
+app.get('/myproducts/edit/:id', sessionManager.isLoggedIn, myProductsController.editProductForm);
+app.put('/myproducts/:id', sessionManager.isLoggedIn, myProductsController.updateProduct);
+
+app.get('/products/new', sessionManager.isLoggedIn, productsController.index); 
 app.post(
     '/products/new',
     sessionManager.isLoggedIn,
-    upload.single('image'), // Middleware para subir imágenes
+    upload.single('image'),
     productsController.validateProduct,
-    productsController.postNew
-);
-app.get('/products/:id', productsController.detail);// para ver detalle del producto.
-    
+    productsController.postNew,
+); 
+app.get('/products/detail/:id', sessionManager.isLoggedIn,productsController.detail);//conflicto:no puede estar por encima de new
 // Paths user privates
 app.get('/signout' ,sessionManager.isLoggedIn , signoutController.unregister)
 app.post('/signout' ,sessionManager.isLoggedIn, signoutController.unsuscribe)
@@ -105,6 +119,7 @@ app.put('/profile',sessionManager.isLoggedIn, ProfileController.UpdateProfile)
 app.delete('/profile',sessionManager.isLoggedIn, ProfileController.DeleteProfile)
 app.get('/email', sessionManager.isLoggedIn, contactController.Contact)
 app.post('/email', sessionManager.isLoggedIn , contactController.PostMail)
+
 
 // ================================
 // Manejo de errores

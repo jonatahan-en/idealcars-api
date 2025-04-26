@@ -1,18 +1,40 @@
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
-<div class="d-flex justify-content-center align-items-center">
-    <p class="mb-0">&copy; <%= new Date().getFullYear() %></p>
-    <h4 class="ms-2 mb-0"><%= appName %></h4>
-    <p class="mb-0 ms-2"> <%= __('footer.rights') %></p>
+<!-- Scripts de Bootstrap (deben ir antes de cerrar </body>) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<style>
+  html {
+    position: relative;
+    min-height: 100%;
+  }
+  body {
+    margin-bottom: 60px; /* Altura aproximada del footer */
+  }
+  .footer {
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    background-color: #f5f5f5;
+    z-index: 100;
+  }
+</style>
+
+<footer class="footer py-3 bg-body-tertiary">
+  <div class="container">
+    <div class="d-flex justify-content-center align-items-center">
+      <p class="mb-0" style="color:#fff;">&copy; <%= new Date().getFullYear() %></p>
+      <h4 class="ms-2 mb-0" style="color:#fff;"><%= appName %></h4>
+      <p class="mb-0 ms-2" style="color:#fff;"><%= __('footer.rights') %></p>
+    </div>
   </div>
   <script>
     function toggleFilters() {
-        const filterForm = document.getElementById('filter-form');
-        if (filterForm.style.display === 'none') {
-            filterForm.style.display = 'block';
-        } else {
-            filterForm.style.display = 'none';
-        }
+      const filterForm = document.getElementById('filter-form');
+      if (filterForm && filterForm.style.display === 'none') {
+        filterForm.style.display = 'block';
+      } else if (filterForm) {
+        filterForm.style.display = 'none';
+      }
     }
-</script>
+  </script>
+</footer>
 </body>
 </html>
