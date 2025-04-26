@@ -1,5 +1,93 @@
 <%-include("header.ejs") %>
+<div class="splash-container">
+    <div class="logo-container">
+        <div class="logo-text">idealCars</div>
+        <div class="logo-tagline">Tu coche ideal te espera</div>
+    </div>
+</div>
 
+<style>
+    .splash-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        transition: opacity 0.5s ease-out;
+    }
+    
+    .logo-container {
+        text-align: center;
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    
+    .logo-text {
+        font-size: 4rem;
+        font-weight: bold;
+        color: #0066cc;
+        margin-bottom: 0.5rem;
+        font-family: Arial, sans-serif;
+    }
+    
+    .logo-tagline {
+        font-size: 1.5rem;
+        color: #555;
+        font-family: Arial, sans-serif;
+    }
+    
+    /* Animaciones */
+    .fade-in {
+        animation: fadeIn 1s ease-in forwards;
+    }
+    
+    .zoom-in {
+        animation: zoomIn 1.2s ease-out forwards;
+    }
+    
+    .pulse {
+        animation: pulse 0.8s ease-in-out forwards;
+    }
+    
+    .fade-out {
+        animation: fadeOut 0.8s ease-out forwards;
+    }
+    
+    @keyframes fadeIn {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+    
+    @keyframes zoomIn {
+        0% { 
+            opacity: 0;
+            transform: scale(0.5);
+        }
+        100% { 
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+    
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+    
+    @keyframes fadeOut {
+        0% { opacity: 1; }
+        100% { 
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
+</style>
 <main class="main-bg-container container py-5" style="min-height: 70vh;">
     <h3 class="mb-3" style="font-size:1.5rem; font-weight:600;">🚗 <%= __('home.welcome') %> <% if(session.userName) { %>🫂 <%= session.userName %><% } %></h3>
 
@@ -88,5 +176,36 @@
         <div style="height:50vh"></div>
     <% } %>
 </main>
-
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const splashContainer = document.querySelector('.splash-container');
+        const logoContainer = document.querySelector('.logo-container');
+        
+        // Secuencia de animación
+        setTimeout(function() {
+            logoContainer.classList.add('zoom-in');
+        }, 500);
+        
+        setTimeout(function() {
+            logoContainer.classList.add('pulse');
+        }, 2000);
+        
+        setTimeout(function() {
+            splashContainer.classList.add('fade-out');
+        }, 3000);
+        
+        setTimeout(function() {
+            splashContainer.style.display = 'none';
+        }, 3800);
+    });
+    
+    function toggleFilters() {
+        const filterForm = document.getElementById('filter-form');
+        if (filterForm.style.display === 'none') {
+            filterForm.style.display = 'block';
+        } else {
+            filterForm.style.display = 'none';
+        }
+    }
+</script>
 <%-include("footer.ejs") %>
