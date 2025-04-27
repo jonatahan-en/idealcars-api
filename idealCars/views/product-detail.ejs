@@ -8,6 +8,10 @@
     <% if (product.image) { %>
         <img src="/imagenes/<%= product.image %>" alt="<%= product.name %>" width="300"/>
     <% } %>
+    <form action="/email" method="get">
+        <input type="hidden" name="productId" value="<%= product._id %>">
+        <button type="submit">Contactar</button>
+      </form>
     <a href="/" class="btn btn-primary mt-4">
         <%= __('common.home') %>
     </a>

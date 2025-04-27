@@ -20,8 +20,10 @@ export async function unsuscribe(req,res,next){
             await Product.deleteMany({ owner: user._id });    
 
             await User.deleteOne({email: email.toLowerCase()})    
+            req.session.regenerate(err=>{
+                if(err) return next(err)
                 res.redirect('/')
-
+            })
         }
 
   

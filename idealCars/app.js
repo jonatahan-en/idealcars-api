@@ -17,6 +17,8 @@ import * as signupController from './controllers/signupController.js';
 import * as signoutController from './Controllers/signoutController.js'
 import * as productsController from './controllers/productController.js';
 import * as myProductsController from './controllers/myProductsController.js';
+import * as contactController from './Controllers/contactController.js'
+
 import * as ProfileController from './controllers/profileController.js';
 //Api Imports Controllers
 import * as apiProductsController from './controllers/api/apiProductsController.js';
@@ -108,13 +110,15 @@ app.post(
     productsController.validateProduct,
     productsController.postNew,
 ); 
-app.get('/products/:id', sessionManager.isLoggedIn, productsController.detail);//conflicto:no puede estar por encima de new
+app.get('/products/detail/:id', sessionManager.isLoggedIn,productsController.detail);//conflicto:no puede estar por encima de new
 // Paths user privates
 app.get('/signout' ,sessionManager.isLoggedIn , signoutController.unregister)
 app.post('/signout' ,sessionManager.isLoggedIn, signoutController.unsuscribe)
 app.get('/profile',sessionManager.isLoggedIn, ProfileController.getProfile)
 app.put('/profile',sessionManager.isLoggedIn, ProfileController.UpdateProfile)
 app.delete('/profile',sessionManager.isLoggedIn, ProfileController.DeleteProfile)
+app.get('/email', sessionManager.isLoggedIn, contactController.Contact)
+app.post('/email', sessionManager.isLoggedIn , contactController.PostMail)
 
 
 // ================================

@@ -16,21 +16,20 @@ export async function postSignup(req,res,next){
             email: email.toLowerCase()
             })
             if(ExistingUser){
-                return res.
-                //status(400).
-                redirect('/login')
-               // send('El usuario ya existe. Por favor ,inicia sesión').
+                return res.redirect('/login')
+                 //enviar un email al usuario
+                 
+                }    
                 
-            }    
-
-        //añadir este usuario a la base de datos
-        const hashedPassword = await User.hashPassword(password);
-        const NewUser = await User.create({
-            name: name.toLowerCase(), 
-            email: email.toLowerCase(),
-            password: hashedPassword,
-        })
-            
+                //añadir este usuario a la base de datos
+                const hashedPassword = await User.hashPassword(password);
+                const NewUser = await User.create({
+                    name: name.toLowerCase(), 
+                    email: email.toLowerCase(),
+                    password: hashedPassword,
+                })
+                
+            await NewUser.sendEmail('Bienvenido','Bienvenido a IdealCars')//Si quito el await se elimina la espera,pero es una practica rudimentaria
             res.redirect('/login')
     } catch (error) {
         console.error(error);
@@ -46,7 +45,7 @@ export async function postSignup(req,res,next){
 //testeo una validacion con express validator
 
 export async function ValidateRegister(req, res,next) {
-    console.log(req.body);
+    
     // Validamos el campo 'name' asegurándonos de que no esté vacío
     await body('name')
     .notEmpty()
@@ -77,8 +76,18 @@ export async function ValidateRegister(req, res,next) {
   
     // Si hay errores de validación, respondemos con el código 400 y los errores.
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() })
+      return res.render('signup',{
+            errors: errors.array(),
+            name:req.body.name,
+            phone:req.body.phone,
+            email:req.body.email,
+            password:req.body.password
+         })
+
+
     }
+
+
     next();
   }
   
