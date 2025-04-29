@@ -24,9 +24,9 @@
 
         <form action="/email" method="get">
             <input type="hidden" name="productId" value="<%= product._id %>">
-            <button type="submit">Contactar</button>
+            <button type="submit" class="contact-btn">Contactar</button>
         </form>
-        <a href="/" class="btn btn-primary mt-4">
+        <a href="/" class="home-btn">
             <%= __('common.home') %>
         </a>
     </section>
@@ -62,6 +62,23 @@
         min-height: 100vh;
     }
 
+    .detail-card {
+        background-color: #2a2a2a;
+        border-radius: 12px;
+        padding: 26px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0);
+        max-width: 100%;
+            h2 {
+                font-size: 26px;
+                margin-bottom: 16px;
+                color: #00bfff;
+                text-align: center;
+            } p {
+                font-size: 16px;
+                margin: 10px 0;
+                color: #e0e0e0;
+            }
+    }
     .carousel-container {
         position: relative;
         width: 100%;
@@ -87,14 +104,31 @@
         font-size: 20px;
         cursor: pointer;
         z-index: 2;
+        border-radius: 4px;
     }
 
     .carousel-btn.prev {
-        left: 10px;
+        left: 5px;
     }
 
     .carousel-btn.next {
-        right: 10px;
+        right: 5px;
+    }
+
+    .contact-btn, .home-btn {
+        display: block;
+        width: 100%;
+        margin-top: 16px;
+        background-color: #00bfff;
+        color: white;
+        padding: 10px;
+        border-radius: 10px;
+        border: none;
+        text-decoration: none;
+        text-align: center;
+        font-weight: bold;
+        cursor: pointer;
+
     }
 </style>
 
