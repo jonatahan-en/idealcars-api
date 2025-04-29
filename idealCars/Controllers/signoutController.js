@@ -21,7 +21,6 @@ export async function unsuscribe(req,res,next){
 
             await User.deleteOne({email: email.toLowerCase()})    
                 res.redirect('/')
-
         }
 
   

@@ -60,7 +60,8 @@
 		"login": "Iniciar Sesión",
 		"signup": "Registrarse",
 		"signout": "Darse de baja",
-		"newProduct": "Nuevo Anuncio"
+		"newProduct": "Nuevo Anuncio",
+		"chat": "navigation.chat"
 	},
 	"notifications": {
 		"productSold": "Este producto ha sido marcado como vendido",
