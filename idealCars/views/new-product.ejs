@@ -178,18 +178,8 @@
 </style>
 <main class="main-bg-container">
   <section class="FormCard">
-<<<<<<< HEAD
-    <h1 class="mb-4 text-center"><%= __('newProduct.title') %></h1>
-    <form action="/products/new" method="POST" enctype="multipart/form-data">
-    <div class="header-banner">
-=======
->>>>>>> 0bec7ba74297d8b842430f8450b4b39e26bd6960
       <h1 class="mb-4 text-center"><%= __('newProduct.title') %></h1>
     <form action="/new-product" method="POST" enctype="multipart/form-data">
-<<<<<<< HEAD
-
-=======
->>>>>>> 0bec7ba74297d8b842430f8450b4b39e26bd6960
       <div class="form_input mb-3">
         <label for="name" style="color: black;"><%= __('newProduct.name') %></label>
         <input class="input" type="text" id="name" name="name" required>
@@ -215,7 +205,7 @@
         <input class="input" type="number" id="kilometer" name="kilometer" required>
       </div>
       <div class="form_input mb-3">
-        <label for="image" style="color: black;"><%= __('newProduct.image') %></label>
+        <label for="image" style="color: black;">Selecciona las imágenes:</label>
         <input class="input" type="file" id="images" name="images" multiple>
         <div id="preview-container" style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;"></div>
       </div>
@@ -299,6 +289,50 @@
         submitBtn.style.opacity = '0.8';
       }
     });
+  });
+
+  document.querySelector('input[type="file"]').addEventListener('change', function (e) {
+    const previewContainer = document.getElementById('preview-container');
+    previewContainer.innerHTML = '';  
+
+    for (let i = 0; i < e.target.files.length; i++) {
+      const file = e.target.files[i];
+      const reader = new FileReader();
+
+      reader.onload = function (event) {
+        const imageContainer = document.createElement('div');
+        imageContainer.style.display = 'flex';
+        imageContainer.style.alignItems = 'center';
+        imageContainer.style.marginBottom = '10px'
+
+        const img = document.createElement('img');
+        img.src = event.target.result;
+        img.alt = file.name;
+        img.style.maxWidth = '100px';
+        img.style.marginRight = '10px';
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = 'Eliminar';
+        deleteBtn.style.backgroundColor = '#ff6b6b';
+        deleteBtn.style.color = 'white';
+        deleteBtn.style.border = 'none';
+        deleteBtn.style.padding = '5px 10px';
+        deleteBtn.style.cursor = 'pointer';
+        deleteBtn.style.borderRadius = '4px';
+        deleteBtn.style.marginLeft = '10px';
+
+        deleteBtn.addEventListener('click', function () {
+          previewContainer.removeChild(imageContainer);
+        });
+
+        
+        imageContainer.appendChild(img);
+        imageContainer.appendChild(deleteBtn);
+        previewContainer.appendChild(imageContainer);
+      };
+
+      reader.readAsDataURL(file);  
+    }
   });
 </script>
 <%- include('footer.ejs') %>
