@@ -2,7 +2,7 @@
 	"appName": "IdealCars",
 	"home": {
 		"welcome": "Welcome to IdealCars!",
-		"loginPrompt": "To see the content, please, log in to your account.",
+		"loginPrompt": "To add or edit, please log in to your account.",
 		"userProducts": "My Ads",
 		"product": {
 			"name": "Name",
@@ -54,8 +54,7 @@
 		"price": "Price",
 		"kilometer": "Kilometers",
 		"image": "Image",
-		"create": "Create Ad",
-		"images": "newProduct.images"
+		"create": "Create Ad"
 	},
 	"footer": {
 		"rights": "All rights reserved."
@@ -68,8 +67,7 @@
 		"login": "Login",
 		"signup": "Sign Up",
 		"signout": "Unregister",
-		"newProduct": "New Ad",
-		"chat": "navigation.chat"
+		"newProduct": "New Ad"
 	},
 	"notifications": {
 		"productSold": "This product has been marked as sold",

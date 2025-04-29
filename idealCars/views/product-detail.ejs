@@ -1,11 +1,12 @@
 <%- include("header.ejs") %>
+<link rel="stylesheet" href="/style/product-detail.css">
 <main class="card-container">
     <section class="detail-card">
         <h2><%= product.name %> - <%= product.model %></h2>
-        <p><%= __('home.product.color') %>: <%= product.color %></p>
-        <p><%= __('home.product.year') %>: <%= product.year %></p>
-        <p><%= __('home.product.price') %>: <%= typeof product.price !== 'undefined' ? product.price.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' }) : '' %></p>
-        <p><%= __('home.product.kilometer') %>: <%= typeof product.kilometer !== 'undefined' ? product.kilometer.toLocaleString('es-ES') : '' %> km</p>
+        <p>🎨 <%= __('home.product.color') %>: <%= product.color %></p>
+        <p>📅 <%= __('home.product.year') %>: <%= product.year %></p>
+        <p>💶 <%= __('home.product.price') %>: <%= typeof product.price !== 'undefined' ? product.price.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' }) : '' %></p>
+        <p>🏁 <%= __('home.product.kilometer') %>: <%= typeof product.kilometer !== 'undefined' ? product.kilometer.toLocaleString('es-ES') : '' %> km</p>
 
         <% if (product.images && product.images.length > 0) { %>
         <div class="carousel-container" id="carousel">
@@ -48,111 +49,4 @@
         }
     });
 </script>
-
-<style>
-        .card-container {
-            background-color: #1c1c1c;
-            color: #ffffff;
-            padding: 1rem;
-            min-height: 100vh;
-            
-        }
-
-        .detail-card {
-            background-color: #2a2a2a;
-            border-radius: 12px;
-            padding: 26px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            max-width: 100%;
-            margin: auto;
-        }
-
-        .detail-card h2 {
-            font-size: 26px;
-            margin-bottom: 16px;
-            color: #00bfff;
-            text-align: center;
-        }
-
-        .detail-card p {
-            font-size: 16px;
-            margin: 10px 0;
-            color: #e0e0e0;
-        }
-
-        .carousel-container {
-            position: relative;
-            width: 100%;
-            max-width: 500px;
-            margin: 2rem auto;
-            overflow: hidden;
-        }
-
-        .carousel-container img {
-            width: 100%;
-            height: auto;
-            max-height: 300px;
-            object-fit: cover;
-            border-radius: 10px;
-            display: none;
-        }
-
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0,0,0,0.5);
-            color: white;
-            border: none;
-            padding: 10px;
-            font-size: 20px;
-            cursor: pointer;
-            z-index: 2;
-            border-radius: 4px;
-        }
-
-    .carousel-btn.prev {
-        left: 5px;
-    }
-
-    .carousel-btn.next {
-        right: 5px;
-    }
-
-    .contact-btn, .home-btn {
-        display: block;
-        width: 100%;
-        margin-top: 16px;
-        background-color: #00bfff;
-        color: white;
-        padding: 10px;
-        border-radius: 10px;
-        border: none;
-        text-decoration: none;
-        text-align: center;
-        font-weight: bold;
-        cursor: pointer;
-    }
-
-    .home-btn {
-        margin-bottom: 40px;
-    }
-
-    .contact-btn:hover, .home-btn:hover {
-        background-color: #009ac7;
-    }
-
-    @media (min-width: 768px) {
-        .detail-card {
-        max-width: 600px;
-        padding: 36px;
-            p{
-                font-size: 18px;
-            }h2 {
-                font-size: 36px;
-            }
-        } 
-    }
-</style>
-
 <%- include("footer.ejs") %>
