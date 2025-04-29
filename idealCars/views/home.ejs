@@ -89,7 +89,11 @@
     }
 </style>
 <main class="main-bg-container container py-5" style="min-height: 70vh;">
-    <h3 class="mb-3" style="font-size:1.5rem; font-weight:600;">🚗 <%= __('home.welcome') %> <% if(session.userName) { %>🫂 <%= session.userName %><% } %></h3>
+    <h3 class="mb-3" style="font-size:1.5rem; font-weight:600;">🚗 <%= __('home.welcome') %>
+         <% if(session.userName) { %>
+         🫂<a href="/profile/"><%= session.userName %></a>
+            <% } %>
+        </h3>
 
     
         <h2 class="mb-3"><%= __('home.userProducts') %></h2>
