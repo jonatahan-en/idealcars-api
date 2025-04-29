@@ -47,7 +47,8 @@
 		"price": "Preço",
 		"kilometer": "Quilômetros",
 		"image": "Imagem",
-		"create": "Criar Anúncio"
+		"create": "Criar Anúncio",
+		"images": "newProduct.images"
 	},
 	"footer": {
 		"rights": "Todos os direitos reservados."

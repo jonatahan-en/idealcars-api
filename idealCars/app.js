@@ -106,7 +106,7 @@ app.get('/products/new', sessionManager.isLoggedIn, productsController.index);
 app.post(
     '/products/new',
     sessionManager.isLoggedIn,
-    upload.single('image'),
+    upload.array('images', 10),
     productsController.validateProduct,
     productsController.postNew,
 ); 

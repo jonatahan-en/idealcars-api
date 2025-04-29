@@ -54,7 +54,8 @@
 		"price": "Price",
 		"kilometer": "Kilometers",
 		"image": "Image",
-		"create": "Create Ad"
+		"create": "Create Ad",
+		"images": "newProduct.images"
 	},
 	"footer": {
 		"rights": "All rights reserved."
