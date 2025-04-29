@@ -25,8 +25,6 @@ export async function unsuscribe(req,res,next){
                 res.redirect('/')
             })
         }
-
-  
     } catch (error) {
         console.error(error);
         res.status(500).render('signout');

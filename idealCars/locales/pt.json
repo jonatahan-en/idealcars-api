@@ -61,7 +61,8 @@
 		"login": "Login",
 		"signup": "Cadastrar",
 		"signout": "Cancelar cadastro",
-		"newProduct": "Novo Anúncio"
+		"newProduct": "Novo Anúncio",
+		"chat": "navigation.chat"
 	},
 	"notifications": {
 		"productSold": "Este produto foi marcado como vendido",

@@ -26,12 +26,12 @@
             </ul>
                <form class="d-flex gap-2" role="search">
                 <% if(session.userId) {%>
-                       <a href="/myproducts" class="btn btn-outline-info" type="button"> <i class="bi bi-box-seam"></i> <%= __('navigation.myProducts') %></a>
-                    <a href="/logout" class="btn btn-outline-success" type="button"> <i class="bi bi-box-arrow-right"></i> <%= __('navigation.logout') %></a>
-                    <a href="/signout" class="btn btn-outline-danger" type="button"> <i class="bi bi-person-x"></i> <%= __('navigation.signout') %></a>
+                        <a href="/myproducts" class="btn btn-outline-info" type="button"> <i class="bi bi-box-seam"></i> <%= __('navigation.myProducts') %></a>
+                        <a href="/logout" class="btn btn-outline-success" type="button"> <i class="bi bi-box-arrow-right"></i> <%= __('navigation.logout') %></a>
+                        <a href="/signout" class="btn btn-outline-danger" type="button"> <i class="bi bi-person-x"></i> <%= __('navigation.signout') %></a>
                 <% }else{ %>
-                       <a href="/login" class="btn btn-outline-success" type="button"> <i class="bi bi-box-arrow-in-right"></i> <%= __('navigation.login') %></a>
-                    <a href="/signup" class="btn btn-outline-primary" type="button"> <i class="bi bi-person-plus"></i> <%= __('navigation.signup') %></a>
+                        <a href="/login" class="btn btn-outline-success" type="button"> <i class="bi bi-box-arrow-in-right"></i> <%= __('navigation.login') %></a>
+                        <a href="/signup" class="btn btn-outline-primary" type="button"> <i class="bi bi-person-plus"></i> <%= __('navigation.signup') %></a>
                 <% } %>
             </form>
                <div class="dropdown ms-3">

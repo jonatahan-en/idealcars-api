@@ -1,35 +1,27 @@
 <%- include("header.ejs") %>
+<main class="main-bg-container container py-5">
+    <h2><%= product.name %> - <%= product.model %></h2>
+    <p><%= __('home.product.color') %>: <%= product.color %></p>
+    <p><%= __('home.product.year') %>: <%= product.year %></p>
+    <p><%= __('home.product.price') %>: <%= typeof product.price !== 'undefined' ? product.price.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' }) : '' %></p>
+    <p><%= __('home.product.kilometer') %>: <%= typeof product.kilometer !== 'undefined' ? product.kilometer.toLocaleString('es-ES') : '' %> km</p>
+    <% if (product.image) { %>
+        <img src="/imagenes/<%= product.image %>" alt="<%= product.name %>" width="300"/>
+    <% } %>
+    <form action="/email" method="get">
+        <input type="hidden" name="productId" value="<%= product._id %>">
+        <button type="submit">Contactar</button>
+    </form>
 
-<main class="card-container">
-    <section class="detail-card">
-        <h2><%= product.name %> - <%= product.model %></h2>
-        <p><%= __('home.product.color') %>: <%= product.color %></p>
-        <p><%= __('home.product.year') %>: <%= product.year %></p>
-        <p><%= __('home.product.price') %>: <%= typeof product.price !== 'undefined' ? product.price.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' }) : '' %></p>
-        <p><%= __('home.product.kilometer') %>: <%= typeof product.kilometer !== 'undefined' ? product.kilometer.toLocaleString('es-ES') : '' %> km</p>
+    <!-- Botón para acceder al chat del producto -->
+    <a href="/chat/<%= product._id %>" class="btn btn-warning mt-4">
+    <i class="bi bi-chat-dots"></i> Ir al chat
+    </a>
 
-        <% if (product.images && product.images.length > 0) { %>
-            <div class="carousel-container">
-                <div class="carousel-slide" id="carousel">
-                    <% product.images.forEach(image => { %>
-                        <img src="/imagenes/<%= image %>" alt="<%= product.name %>">
-                    <% }) %>
-                </div>
-                <button class="carousel-btn prev" onclick="moveSlide(-1)">&#10094;</button>
-                <button class="carousel-btn next" onclick="moveSlide(1)">&#10095;</button>
-            </div>
-        <% } else { %>
-            <p>No hay imágenes disponibles</p>
-        <% } %>
 
-        <form action="/email" method="get">
-            <input type="hidden" name="productId" value="<%= product._id %>">
-            <button type="submit" class="contact-btn">Contactar</button>
-        </form>
-        <a href="/" class="home-btn">
-            <%= __('common.home') %>
-        </a>
-    </section>
+    <a href="/" class="btn btn-primary mt-4">
+        <%= __('common.home') %>
+    </a>
 </main>
 
 <script>
