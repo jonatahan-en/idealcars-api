@@ -18,22 +18,15 @@ import * as signoutController from './Controllers/signoutController.js'
 import * as productsController from './Controllers/productController.js';
 import * as myProductsController from './Controllers/myProductsController.js';
 import * as contactController from './Controllers/contactController.js'
+import * as chatController from './Controllers/chatController.js';
 
 import * as ProfileController from './Controllers/profileController.js';
 //Api Imports Controllers
-<<<<<<< HEAD
 import * as apiProductsController from './Controllers/api/apiProductsController.js';
 import * as ProfileApiController from './Controllers/api/user/ProfileApiController.js';
 import * as signupApiController from './Controllers/api/user/signupApiController.js';
 import * as loginApiController from './Controllers/api/user/loginApiController.js';
 
-=======
-import * as apiProductsController from './controllers/api/apiProductsController.js';
-import * as ProfileApiController from './controllers/api/user/ProfileApiController.js';
-import * as signupApiController from './controllers/api/user/signupApiController.js';
-import * as loginApiController from './controllers/api/user/loginApiController.js';
-import * as chatController from './controllers/chatController.js';
->>>>>>> 0bec7ba74297d8b842430f8450b4b39e26bd6960
 // ================================
 // Conexión a la base de datos
 // ================================
