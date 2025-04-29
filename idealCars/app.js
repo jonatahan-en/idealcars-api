@@ -25,7 +25,7 @@ import * as apiProductsController from './controllers/api/apiProductsController.
 import * as ProfileApiController from './controllers/api/user/ProfileApiController.js';
 import * as signupApiController from './controllers/api/user/signupApiController.js';
 import * as loginApiController from './controllers/api/user/loginApiController.js';
-
+import * as chatController from './controllers/chatController.js';
 // ================================
 // Conexión a la base de datos
 // ================================
@@ -91,7 +91,7 @@ app.post('/signup', signupController.ValidateRegister, signupController.postSign
 app.get('/login', loginController.getlogin); // Página de login
 app.post('/login', loginController.PostLogIn); // Inicio de sesión
 app.all('/logout', loginController.logout); // Cierre de sesión
-
+app.get('/chat/:adId', sessionManager.isLoggedIn, chatController.renderChat); 
 // ================================
 // Rutas privadas (requieren autenticación)
 // ================================

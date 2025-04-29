@@ -67,7 +67,8 @@
 		"login": "Login",
 		"signup": "Sign Up",
 		"signout": "Unregister",
-		"newProduct": "New Ad"
+		"newProduct": "New Ad",
+		"chat": "navigation.chat"
 	},
 	"notifications": {
 		"productSold": "This product has been marked as sold",
