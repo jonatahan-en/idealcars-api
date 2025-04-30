@@ -209,8 +209,18 @@
 </style>
 <main class="main-bg-container">
   <section class="FormCard">
-      <h1 class="mb-4"><%= __('newProduct.title') %></h1>
+<<<<<<< HEAD
+    <h1 class="mb-4 text-center"><%= __('newProduct.title') %></h1>
     <form action="/products/new" method="POST" enctype="multipart/form-data">
+    <div class="header-banner">
+=======
+>>>>>>> 0bec7ba74297d8b842430f8450b4b39e26bd6960
+      <h1 class="mb-4 text-center"><%= __('newProduct.title') %></h1>
+    <form action="/new-product" method="POST" enctype="multipart/form-data">
+<<<<<<< HEAD
+
+=======
+>>>>>>> 0bec7ba74297d8b842430f8450b4b39e26bd6960
       <div class="form_input mb-3">
         <label for="name"><%= __('newProduct.name') %></label>
         <input class="input" type="text" id="name" name="name" required>
@@ -237,7 +247,8 @@
       </div>
       <div class="form_input mb-3">
         <label for="image" style="color: black;"><%= __('newProduct.image') %></label>
-        <input class="input" type="file" id="image" name="image" accept="image/*">
+        <input class="input" type="file" id="images" name="images" multiple>
+        <div id="preview-container" style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;"></div>
       </div>
       <div class="form_action">
         <button type="submit" class="btn btn-primary"><%= __('newProduct.create') %></button>
