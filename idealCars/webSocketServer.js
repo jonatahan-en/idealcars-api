@@ -22,6 +22,7 @@ export function setupSocketServer(httpServer) {
                 return;
             }
 
+            
             const productName = product.name; // Nombre del producto
             socket.join(adId); // Unir al cliente a la sala del anuncio
             console.log(`Usuario ${userId} se unió al chat del anuncio ${adId}`);
