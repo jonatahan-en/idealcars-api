@@ -123,8 +123,8 @@
                 <% products.forEach(product => { %>
                     <div class="col">
                         <div class="ProductCard h-100">
-                            <% if (product.image) { %>
-                                <img src="/imagenes/<%= product.image %>" class="card-img-top" alt="<%= product.name %>">
+                            <% if (product.images && product.images.length > 0) { %>
+                                <img src="/imagenes/<%= product.images[0] %>" class="card-img-top" alt="<%= product.name %>">
                             <% } else { %>
                                 <img src="https://placehold.co/600x400?text=<%= product.name %>" class="card-img-top" alt="<%= product.name %>">
                             <% } %>
