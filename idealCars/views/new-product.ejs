@@ -1,28 +1,51 @@
 <%- include('header.ejs') %>
 <style>
   .main-bg-container {
-    padding: 2rem;
-    min-height: 100vh;
-    background-color: #f5f5f8;
+    padding: 1rem;
+    padding-top: 2rem; /* Reducido para evitar espacio excesivo */
+    background-color: var(--color-bg); /* Usar variable de tema */
+    display: flex;
+    flex-direction: column; /* Cambio a columna para mejor flujo */
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: visible; /* Permitir que el contenido fluya naturalmente */
   }
   
   .FormCard {
     max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem;
+    width: 100%;
+    margin: 1rem auto 2rem auto; /* Añadir margen inferior */
+    padding: 1.5rem;
     background: white;
     border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     position: relative;
-    overflow: hidden;
-    border-top: 4px solid #00bfff;
+    overflow: visible;
+    border-top: 4px solid var(--color-primary);
+    box-sizing: border-box;
+  }
+  
+  /* Ajustes responsive */
+  @media (max-width: 768px) {
+    .FormCard {
+      padding: 1rem;
+      margin: 0.5rem auto 1.5rem auto;
+      width: 95%;
+    }
+    
+    .main-bg-container {
+      padding: 0.5rem;
+      padding-top: 1rem;
+    }
   }
   
   .FormCard h1 {
-    color: #00bfff;
+    color: var(--color-primary);
     font-weight: 600;
     margin-bottom: 1.5rem;
     position: relative;
+    text-align: center;
   }
   
   .FormCard h1:after {
@@ -33,20 +56,21 @@
     transform: translateX(-50%);
     width: 80px;
     height: 3px;
-    background: #00bfff;
+    background: var(--color-primary);
     border-radius: 3px;
   }
   
   .form_input {
     position: relative;
     margin-bottom: 1.5rem !important;
+    width: 100%;
   }
   
   .form_input label {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 500;
-    color: #000000;
+    color: var(--color-text-dark);
     transition: all 0.3s ease;
   }
   
@@ -57,20 +81,27 @@
     border-radius: 6px;
     font-size: 1rem;
     transition: all 0.3s ease;
+    box-sizing: border-box;
   }
   
   .input:focus {
-    border-color: #00bfff; 
+    border-color: var(--color-primary);
     box-shadow: 0 0 0 3px rgba(0, 191, 255, 0.15);
     outline: none;
   }
   
   .input:focus + label {
-    color: #00bfff;
+    color: var(--color-primary);
+  }
+  
+  .form_action {
+    margin-top: 1rem;
+    text-align: center;
+    width: 100%;
   }
   
   .form_action button {
-    background-color: #00bfff;
+    background-color: var(--color-primary);
     color: white;
     border: none;
     padding: 0.8rem;
@@ -79,25 +110,28 @@
     font-size: 1rem;
     transition: all 0.3s ease;
     cursor: pointer;
+    width: 100%;
+    letter-spacing: 0.5px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
   }
   
   .form_action button:hover {
-    background-color: #00a6dd;
+    background-color: var(--color-primary-hover);
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 191, 255, 0.2);
   }
   
-  /* Efecto de animación para los campos */
+  /* Animaciones suavizadas */
   .form_input .input {
     transform: translateY(0);
     opacity: 1;
-    animation: fadeInUp 0.5s ease-out;
+    animation: fadeInUp 0.4s ease-out;
   }
   
   @keyframes fadeInUp {
     from {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(10px);
     }
     to {
       opacity: 1;
@@ -105,112 +139,108 @@
     }
   }
 
-  /* Aplicar la animación con retraso para cada campo */
-  .form_input:nth-child(1) .input { animation-delay: 0.1s; }
-  .form_input:nth-child(2) .input { animation-delay: 0.2s; }
-  .form_input:nth-child(3) .input { animation-delay: 0.3s; }
-  .form_input:nth-child(4) .input { animation-delay: 0.4s; }
-  .form_input:nth-child(5) .input { animation-delay: 0.5s; }
-  .form_input:nth-child(6) .input { animation-delay: 0.6s; }
-  .form_input:nth-child(7) .input { animation-delay: 0.7s; }
+  /* Retrasos en animación más cortos */
+  .form_input:nth-child(1) .input { animation-delay: 0.05s; }
+  .form_input:nth-child(2) .input { animation-delay: 0.1s; }
+  .form_input:nth-child(3) .input { animation-delay: 0.15s; }
+  .form_input:nth-child(4) .input { animation-delay: 0.2s; }
+  .form_input:nth-child(5) .input { animation-delay: 0.25s; }
+  .form_input:nth-child(6) .input { animation-delay: 0.3s; }
+  .form_input:nth-child(7) .input { animation-delay: 0.35s; }
 
-  /* Efecto para el botón */
   .form_action button {
-    animation: fadeInUp 0.8s ease-out;
-    animation-delay: 0.8s;
+    animation: fadeInUp 0.5s ease-out;
+    animation-delay: 0.4s;
     opacity: 1;
   }
-  /* Elemento decorativo */
+  
+  /* Elemento decorativo reposicionado */
   .FormCard::before {
     content: '';
     position: absolute;
-    top: -50px;
-    right: -50px;
-    width: 100px;
-    height: 100px;
-    background: #00bfff;
+    top: -30px;
+    right: 30px; /* Ajustado para que no cause overflow */
+    width: 60px;
+    height: 60px;
+    background: var(--color-primary);
     opacity: 0.1;
     border-radius: 50%;
     animation: pulse 4s infinite;
+    pointer-events: none;
+    z-index: 0;
   }
+  
   @keyframes pulse {
     0% { transform: scale(1); opacity: 0.1; }
-    50% { transform: scale(1.5); opacity: 0.15; }
+    50% { transform: scale(1.2); opacity: 0.15; }
     100% { transform: scale(1); opacity: 0.1; }
   }
+  
   /* Mejora para inputs tipo archivo */
   input[type="file"] {
     padding: 0.5rem;
     background-color: #f8f9fa;
     border: 1px dashed #ccc;
+    width: 100%;
+    box-sizing: border-box;
   }
   
   input[type="file"]:hover {
     background-color: #f0f0f0;
-    border-color: #00bfff;
+    border-color: var(--color-primary);
   }
   
-  /* Mejora para mensajes de validación */
-  .input:invalid:focus {
-    border-color: #ff6b6b;
-    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.15);
-  }
-  
-  /* Animación adicional para el formulario */
+  /* Animación del formulario */
   .FormCard {
-    animation: slideIn 0.7s ease-out forwards;
+    animation: slideIn 0.5s ease-out forwards;
   }
   
   @keyframes slideIn {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
   }
-  .form_action button {
-    letter-spacing: 0.5px;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  
+  /* Estilos para formulario */
+  form {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 </style>
 <main class="main-bg-container">
   <section class="FormCard">
-      <h1 class="mb-4 text-center"><%= __('newProduct.title') %></h1>
-    <form action="/new-product" method="POST" enctype="multipart/form-data">
+      <h1 class="mb-4"><%= __('newProduct.title') %></h1>
+    <form action="/products/new" method="POST" enctype="multipart/form-data">
       <div class="form_input mb-3">
-        <label for="name" style="color: black;"><%= __('newProduct.name') %></label>
+        <label for="name"><%= __('newProduct.name') %></label>
         <input class="input" type="text" id="name" name="name" required>
       </div>
       <div class="form_input mb-3">
-        <label for="model" style="color: black;"><%= __('newProduct.model') %></label>
+        <label for="model"><%= __('newProduct.model') %></label>
         <input class="input" type="text" id="model" name="model" required>
       </div>
       <div class="form_input mb-3">
-        <label for="color" style="color: black;"><%= __('newProduct.color') %></label>
+        <label for="color"><%= __('newProduct.color') %></label>
         <input class="input" type="text" id="color" name="color" required>
       </div>
       <div class="form_input mb-3">
-        <label for="year" style="color: black;"><%= __('newProduct.year') %></label>
+        <label for="year"><%= __('newProduct.year') %></label>
         <input class="input" type="number" id="year" name="year" required>
       </div>
       <div class="form_input mb-3">
-        <label for="price" style="color: black;"><%= __('newProduct.price') %></label>
+        <label for="price"><%= __('newProduct.price') %></label>
         <input class="input" type="number" id="price" name="price" required>
       </div>
       <div class="form_input mb-3">
-        <label for="kilometer" style="color: black;"><%= __('newProduct.kilometer') %></label>
+        <label for="kilometer"><%= __('newProduct.kilometer') %></label>
         <input class="input" type="number" id="kilometer" name="kilometer" required>
       </div>
       <div class="form_input mb-3">
-        <label for="image" style="color: black;">Selecciona las imágenes:</label>
-        <input class="input" type="file" id="images" name="images" multiple>
-        <div id="preview-container" style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;"></div>
+        <label for="image" style="color: black;"><%= __('newProduct.image') %></label>
+        <input class="input" type="file" id="image" name="image" accept="image/*">
       </div>
       <div class="form_action">
-        <button type="submit" class="btn btn-primary w-100 mt-3"><%= __('newProduct.create') %></button>
+        <button type="submit" class="btn btn-primary"><%= __('newProduct.create') %></button>
       </div>
     </form>
   </section>
@@ -252,10 +282,8 @@
     if (fileInput) {
       fileInput.addEventListener('change', function() {
         if (this.files.length > 0) {
-          // Mostrar el nombre del archivo seleccionado
           const fileName = this.files[0].name;
-          // Podría añadir un elemento para mostrar el nombre, pero mantengo mínimos los cambios
-          this.style.borderColor = '#00bfff';
+          this.style.borderColor = 'var(--color-primary)';
           this.style.borderStyle = 'solid';
         } else {
           this.style.borderColor = '#ccc';
