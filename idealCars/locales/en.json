@@ -54,7 +54,8 @@
 		"price": "Price",
 		"kilometer": "Kilometers",
 		"image": "Image",
-		"create": "Create Ad"
+		"create": "Create Ad",
+		"images": "images new Products"
 	},
 	"footer": {
 		"rights": "All rights reserved."
@@ -67,7 +68,8 @@
 		"login": "Login",
 		"signup": "Sign Up",
 		"signout": "Unregister",
-		"newProduct": "New Ad"
+		"newProduct": "New Ad",
+		"chat": "Chat"
 	},
 	"notifications": {
 		"productSold": "This product has been marked as sold",

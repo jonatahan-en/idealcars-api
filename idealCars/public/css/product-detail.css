@@ -1,0 +1,150 @@
+/* Estilos específicos para la página de detalle del producto */
+
+.card-container {
+    background-color: var(--color-bg); /* Usa variable de tema */
+    color: var(--color-text); /* Usa variable de tema */
+    padding: 1rem;
+    min-height: calc(100vh - 120px); /* Ajusta altura considerando header/footer */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2rem; /* Espacio superior */
+    padding-bottom: 2rem; /* Espacio inferior */
+}
+
+.detail-card {
+    background-color: var(--color-bg-card); /* Usa variable de tema */
+    color: var(--color-text-light); /* Usa variable de tema para texto dentro de la card */
+    border-radius: 12px;
+    padding: 1.5rem; /* Padding estándar */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Sombra sutil */
+    max-width: 600px; /* Ancho máximo */
+    width: 95%; /* Ancho responsivo */
+    margin: auto;
+    border-top: 4px solid var(--color-primary); /* Borde superior como en FormCard */
+}
+
+.detail-card h2 {
+    font-size: 1.75rem; /* Tamaño ajustado */
+    margin-bottom: 1rem;
+    color: var(--color-primary); /* Usa variable de tema */
+    text-align: center;
+    font-weight: 600;
+}
+
+.detail-card p {
+    font-size: 1rem; /* Tamaño estándar */
+    margin: 0.6rem 0;
+    color: var(--color-text-light); /* Asegura contraste en modo oscuro */
+    line-height: 1.6;
+}
+
+/* Estilos del carrusel */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px; /* Ancho máximo del carrusel */
+    margin: 1.5rem auto; /* Margen vertical y centrado horizontal */
+    overflow: hidden;
+    border-radius: 8px; /* Bordes redondeados */
+}
+
+.carousel-container img {
+    width: 100%;
+    height: auto;
+    max-height: 350px; /* Altura máxima de imagen */
+    object-fit: cover; /* Asegura que la imagen cubra el área */
+    display: none; /* Ocultar todas por defecto */
+    border-radius: 8px; /* Bordes redondeados para la imagen */
+}
+
+.carousel-container img:first-child {
+    display: block; /* Mostrar la primera imagen por defecto */
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo semitransparente */
+    color: white;
+    border: none;
+    padding: 0.5rem 0.8rem; /* Padding ajustado */
+    font-size: 1.25rem; /* Tamaño de icono */
+    cursor: pointer;
+    z-index: 2;
+    border-radius: 50%; /* Botones redondos */
+    transition: background-color 0.3s ease;
+    width: 40px; /* Ancho fijo */
+    height: 40px; /* Alto fijo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-btn:hover {
+    background-color: rgba(0, 0, 0, 0.8); /* Más oscuro al pasar el ratón */
+}
+
+.carousel-btn.prev {
+    left: 10px; /* Posición izquierda */
+}
+
+.carousel-btn.next {
+    right: 10px; /* Posición derecha */
+}
+
+/* Estilos de los botones de acción */
+.contact-btn, .home-btn {
+    /* Hereda estilos de .btn de styles.css */
+    display: block; /* Ocupa todo el ancho */
+    width: 100%;
+    margin-top: 1rem; /* Espacio superior */
+    padding: 0.6rem 1rem; /* Padding ajustado */
+    font-size: 1rem;
+    font-weight: 600; /* Texto más grueso */
+    text-align: center;
+    text-decoration: none;
+    border-radius: 6px; /* Bordes redondeados */
+    cursor: pointer;
+}
+
+.contact-btn {
+    background-color: var(--color-primary) !important; /* Usa variable de tema */
+    color: white !important; /* Texto blanco */
+    border: none;
+}
+
+.contact-btn:hover {
+    background-color: var(--color-primary-hover) !important; /* Usa variable de tema */
+    transform: translateY(-2px); /* Efecto hover sutil */
+    box-shadow: 0 4px 8px rgba(0, 191, 255, 0.2);
+}
+
+.home-btn {
+    background-color: #6c757d !important; /* Color secundario (gris) */
+    color: white !important;
+    border: none;
+    margin-bottom: 1rem; /* Margen inferior */
+}
+
+.home-btn:hover {
+    background-color: #5a6268 !important; /* Gris más oscuro */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Media query para pantallas más grandes */
+@media (min-width: 768px) {
+    .detail-card {
+        padding: 2rem; /* Más padding en pantallas grandes */
+    }
+
+    .detail-card h2 {
+        font-size: 2rem; /* Título más grande */
+    }
+
+    .detail-card p {
+        font-size: 1.1rem; /* Texto ligeramente más grande */
+    }
+}

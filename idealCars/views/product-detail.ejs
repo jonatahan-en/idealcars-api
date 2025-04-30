@@ -1,5 +1,5 @@
 <%- include("header.ejs") %>
-<link rel="stylesheet" href="/style/product-detail.css">
+<link rel="stylesheet" href="/css/product-detail.css"> <%# Cambio de ruta %>
 <main class="card-container">
     <section class="detail-card">
         <h2><%= product.name %> - <%= product.model %></h2>
@@ -20,11 +20,11 @@
         <p>No hay imágenes disponibles</p>
         <% } %>
 
-        <a href="/chat/<%= product._id %>" class="contact-btn">
-        <i class="bi bi-chat-dots"></i> Ir al chat
+        <a href="/chat/<%= product._id %>" class="contact-btn btn"> <%# Añadida clase btn %>
+            <i class="bi bi-chat-dots"></i> Ir al chat
         </a>
-        <a href="/" class="home-btn">
-        <%= __('common.home') %>
+        <a href="/" class="home-btn btn"> <%# Añadida clase btn %>
+            <%= __('common.home') %>
         </a>
     </section>
 </main>

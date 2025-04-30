@@ -48,7 +48,7 @@
 		"kilometer": "Kilómetros",
 		"image": "Imagen",
 		"create": "Crear Anuncio",
-		"images": "newProduct.images"
+		"images": "Imagenes de nuevos productos"
 	},
 	"footer": {
 		"rights": "Todos los derechos reservados."
@@ -62,7 +62,7 @@
 		"signup": "Registrarse",
 		"signout": "Darse de baja",
 		"newProduct": "Nuevo Anuncio",
-		"chat": "navigation.chat"
+		"chat": "Chat"
 	},
 	"notifications": {
 		"productSold": "Este producto ha sido marcado como vendido",
