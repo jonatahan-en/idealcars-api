@@ -151,6 +151,20 @@ footer .mb-0, .footer .mb-0, footer h4, .footer h4 {
     width: 100%;
 }
 
+/* Estilos para la cuadrícula de productos */
+.product-grid-img {
+  height: 200px; /* Ajusta esta altura según necesites */
+  object-fit: cover; /* Asegura que la imagen cubra el espacio sin distorsionarse */
+  width: 100%; /* Asegura que la imagen ocupe el ancho de la tarjeta */
+}
+
+.ProductCard {
+  /* Puedes añadir otros estilos para la tarjeta si es necesario */
+  border: 1px solid #eee; /* Ejemplo: borde ligero */
+  border-radius: 8px; /* Ejemplo: bordes redondeados */
+  overflow: hidden; /* Asegura que la imagen no se salga de la tarjeta */
+}
+
 /* Ajuste de espaciados de contenedores */
 .cards-container {
     margin-bottom: 1rem;
