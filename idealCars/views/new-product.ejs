@@ -93,6 +93,10 @@
     opacity: 1;
     animation: fadeInUp 0.5s ease-out;
   }
+  .alert{
+    color:red;
+    margin-top: 5px
+  }
   
   @keyframes fadeInUp {
     from {
@@ -178,42 +182,75 @@
 </style>
 <main class="main-bg-container">
   <section class="FormCard">
-<<<<<<< HEAD
-    <h1 class="mb-4 text-center"><%= __('newProduct.title') %></h1>
-    <form action="/products/new" method="POST" enctype="multipart/form-data">
-=======
     <div class="header-banner">
       <h1 class="mb-4 text-center"><%= __('newProduct.title') %></h1>
     </div>
-    <form action="/new-product" method="POST" enctype="multipart/form-data">
->>>>>>> juanan
+    <form action="/products/new" method="POST" enctype="multipart/form-data" novalidate>
+     
+
       <div class="form_input mb-3">
         <label for="name" style="color: black;"><%= __('newProduct.name') %></label>
-        <input class="input" type="text" id="name" name="name" required>
+        <input class="input" type="text" id="name" name="name" value="<%= name || ''  %>" required >
+        <% if (errors.name) { %>
+          <div class="alert" role="alert">
+            <%= errors.name.msg %>
+          </div>
+        <% } %>
+      
       </div>
       <div class="form_input mb-3">
         <label for="model" style="color: black;"><%= __('newProduct.model') %></label>
-        <input class="input" type="text" id="model" name="model" required>
+        <input class="input" type="text" id="model" name="model" value="<%= model || '' %>" required >
+        <% if (errors.model) { %>
+          <div class="alert" role="alert">
+            <%= errors.model.msg %>
+          </div>
+        <% } %>
+      
       </div>
       <div class="form_input mb-3">
         <label for="color" style="color: black;"><%= __('newProduct.color') %></label>
-        <input class="input" type="text" id="color" name="color" required>
+        <input class="input" type="text" id="color" name="color" value="<%= color || '' %>" required>
+        <% if (errors.color) { %>
+          <div class="alert" role="alert">
+            <%= errors.color.msg %>
+          </div>
+        <% } %>
+      
       </div>
       <div class="form_input mb-3">
         <label for="year" style="color: black;"><%= __('newProduct.year') %></label>
-        <input class="input" type="number" id="year" name="year" required>
+        <input class="input" type="number" id="year" name="year" value="<%= year || '' %>" required>
+        <% if (errors.year) { %>
+          <div class="alert" role="alert">
+            <%= errors.year.msg %>
+          </div>
+        <% } %>
+      
       </div>
       <div class="form_input mb-3">
         <label for="price" style="color: black;"><%= __('newProduct.price') %></label>
-        <input class="input" type="number" id="price" name="price" required>
+        <input class="input" type="number" id="price" name="price" value="<%= price || '' %>" required>
+        <% if (errors.price) { %>
+          <div class="alert" role="alert">
+            <%= errors.price.msg %>
+          </div>
+        <% } %>
+      
       </div>
       <div class="form_input mb-3">
         <label for="kilometer" style="color: black;"><%= __('newProduct.kilometer') %></label>
-        <input class="input" type="number" id="kilometer" name="kilometer" required>
+        <input class="input" type="number" id="kilometer" name="kilometer" value="<%= kilometer || '' %>" required>
+        <% if (errors.kilometer) { %>
+          <div class="alert" role="alert">
+            <%= errors.kilometer.msg %>
+          </div>
+        <% } %>
+      
       </div>
       <div class="form_input mb-3">
         <label for="image" style="color: black;"><%= __('newProduct.image') %></label>
-        <input class="input" type="file" id="image" name="image" accept="image/*">
+        <input class="input" type="file" id="image" name="image"  accept="image/*">
       </div>
       <div class="form_action">
         <button type="submit" class="btn btn-primary w-100 mt-3"><%= __('newProduct.create') %></button>
@@ -221,6 +258,7 @@
     </form>
   </section>
 </main>
+
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     // Efecto de focus para los inputs
@@ -282,7 +320,7 @@
           input.style.borderColor = '#ff6b6b';
           setTimeout(() => {
             input.style.borderColor = '#ddd';
-          }, 2000);
+          }, 500);
         }
       });
       
