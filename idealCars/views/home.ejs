@@ -94,14 +94,8 @@
                             !urlParams.has('name') && !urlParams.has('model') && !urlParams.has('color') &&
                             !urlParams.has('year') && !urlParams.has('price') && !urlParams.has('kilometer');
         
-        // Comprobar si ya se mostró el splash en esta sesión
-        const splashShown = localStorage.getItem('splashShown');
-        
-        // Mostrar splash solo si es carga directa Y no se ha mostrado antes
-        if (isDirectLoad && !splashShown) {
-            // Guardar en localStorage que se mostró el splash
-            localStorage.setItem('splashShown', 'true');
-            
+        // Mostrar splash solo si es carga directa
+        if (isDirectLoad) {
             // Agregar clase para ocultar el contenido mientras se muestra el splash
             document.body.classList.add('splash-active');
             
@@ -132,7 +126,7 @@
                 }, 2500);
             }
         } else {
-            // Si no es carga directa o ya se mostró, ocultar el splash inmediatamente
+            // Si no es carga directa, ocultar el splash inmediatamente
             const splashContainer = document.querySelector('.splash-container');
             if (splashContainer) {
                 splashContainer.style.display = 'none';
