@@ -6,6 +6,31 @@ export function register (req,res,next){
     res.render('signup')
 }
 
+export async function validateUser(req, res, next) {
+    console.log("Datos recibidos", req.body)
+
+    await body('name')
+    .notEmpty().withMessage('El nombre es obligatorio')
+    .trim()
+    .isAlpha('es-ES', { ignore: ' ' }).withMessage('El nombre solo puede contener letras')
+    .isLength({min: 3}).withMessage('El nombre debe tener al menos 3 caracteres')
+    .escape()
+    .run(req)
+    
+   
+    
+    const errors = validationResult(req)
+    if(!errors.isEmpty()){
+        console.log("Errores de validación", errors.array())
+        return res.render('signup', {
+            errors: errors.mapped(),
+                name: req.body.name,
+               
+        })
+    }
+    next()
+}
+
 export async function postSignup(req,res,next){
     const {name ,email, password} = req.body
     

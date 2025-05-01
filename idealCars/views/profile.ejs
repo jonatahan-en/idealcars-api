@@ -2,14 +2,37 @@
 <main class="main-bg-container container py-5 d-flex flex-column align-items-center justify-content-center" style="min-height: 70vh;">
     <section class="FormCard w-100" style="max-width: 500px;">
         <h1 class="text-center mb-4">Perfil</h1>
-        <form method="put">
-
-            <button type="submit">Guardar</button>
-            <a  href="/signout">Borrar usuario</a>
-        </form>
-        <p><strong>Nombre:</strong> <%= session.userName %></p>
-        <p><strong>Email:</strong> <%= session.userEmail || '' %></p>
         <!-- Aquí puedes añadir más datos del usuario si los tienes en sesión -->
+        <form method="put">
+            <div>
+                <label>Imagen de perfil</label>
+                <input>
+            </div>
+            <div>
+                <label>Nombre</label>
+                <input value=" <%= session.userName %>">
+            </div>
+            <div>
+                <label>Apellidos</label>
+                <input>
+            </div>
+            <div>
+                <label>Email</label>
+                <input value="<%= session.userEmail || '' %>">
+            </div>
+            <div>
+                <label>Telefono</label>
+                <input>
+            </div>
+            <div>
+                <label>Ciudad</label>
+                <input>
+            </div>
+            
+            
+            <button type="submit" class="btn btn-primary mt-3">Guardar</button>
+            <a  href="/signout" class="btn btn-primary mt-3">Borrar usuario</a>
+        </form>
         <a href="/" class="btn btn-primary mt-3"><%= __('common.home') %></a>
     </section>
 </main>

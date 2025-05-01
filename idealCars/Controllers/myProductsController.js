@@ -150,7 +150,7 @@ export async function validateProduct(req, res, next) {
         console.log("Errores de validación", errors.array())
         return res.render('editProduct', {
             product:{
-                _id: req.paramis.id,
+                _id: req.params.id,
                 errors: errors.mapped(),
                 name: req.body.name,
                 model: req.body.model,
