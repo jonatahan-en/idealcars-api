@@ -1,5 +1,6 @@
 import Product from "../models/Products.js";
 import createError from "http-errors";
+import {body , validationResult} from "express-validator"
 
 export async function userProducts(req, res, next) {
     try {
@@ -147,8 +148,10 @@ export async function validateProduct(req, res, next) {
     const errors = validationResult(req)
     if(!errors.isEmpty()){
         console.log("Errores de validación", errors.array())
-        return res.render('new-product', {
-            errors: errors.mapped(),
+        return res.render('editProduct', {
+            product:{
+                _id: req.paramis.id,
+                errors: errors.mapped(),
                 name: req.body.name,
                 model: req.body.model,
                 color: req.body.color,
@@ -156,6 +159,7 @@ export async function validateProduct(req, res, next) {
                 price: req.body.price,
                 kilometer: req.body.kilometer,
                 image: req.body.image
+            }
         })
     }
     next()

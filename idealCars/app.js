@@ -100,7 +100,7 @@ app.all('/logout', loginController.logout); // Cierre de sesión
 app.get('/myproducts',sessionManager.isLoggedIn, myProductsController.userProducts);
 app.delete('/myproducts/delete/:id',sessionManager.isLoggedIn,myProductsController.deleteProduct) 
 app.get('/myproducts/edit/:id', sessionManager.isLoggedIn, myProductsController.editProductForm);
-app.put('/myproducts/:id', sessionManager.isLoggedIn, myProductsController.updateProduct);
+app.put('/myproducts/:id', sessionManager.isLoggedIn,myProductsController.validateProduct, myProductsController.updateProduct,);
 
 app.get('/products/new', sessionManager.isLoggedIn, productsController.index); 
 app.post(
