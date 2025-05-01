@@ -17,7 +17,7 @@ import * as signupController from './Controllers/signupController.js';
 import * as signoutController from './Controllers/signoutController.js'
 import * as productsController from './Controllers/productController.js';
 import * as myProductsController from './Controllers/myProductsController.js';
-import * as contactController from './Controllers/contactController.js'
+import * as contactController from './Controllers/contactController.js';
 import * as chatController from './Controllers/chatController.js';
 
 import * as ProfileController from './Controllers/profileController.js';
@@ -92,7 +92,7 @@ app.post('/signup', signupController.ValidateRegister, signupController.postSign
 app.get('/login', loginController.getlogin); // Página de login
 app.post('/login', loginController.PostLogIn); // Inicio de sesión
 app.all('/logout', loginController.logout); // Cierre de sesión
-app.get('/chat/:adId', sessionManager.isLoggedIn, chatController.renderChat); 
+app.get('/chat/:adId', sessionManager.isLoggedIn, chatController.renderChat); // Página de chat
 // ================================
 // Rutas privadas (requieren autenticación)
 // ================================
