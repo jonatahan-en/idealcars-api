@@ -5,8 +5,8 @@ const productSchema = new Schema({
     model:  { type:String, required: true, index: true }, 
     color:  { type:String, required: true , index: true }, 
     year:  {type:Number, min: 1980, max:2024, index: true },
-    price: { type:Number, min:0 , max:100000, index: true },
-    kilometer: { type: Number, min : 0 , max: 500000, index: true }, 
+    price: { type:Number, min:300 , max:100000, index: true },
+    kilometer: { type: Number, min : 0 , max: 300000, index: true }, 
     image: { type: String },
     owner: { type: Schema.Types.ObjectId, ref: 'User', index: true },
 })
