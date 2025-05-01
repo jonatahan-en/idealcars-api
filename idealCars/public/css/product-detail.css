@@ -18,8 +18,8 @@
     border-radius: 12px;
     padding: 1.5rem; /* Padding estándar */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Sombra sutil */
-    max-width: 600px; /* Ancho máximo */
     width: 95%; /* Ancho responsivo */
+    max-width: 800px; /* Ancho máximo aumentado para pantallas grandes */
     margin: auto;
     border-top: 4px solid var(--color-primary); /* Borde superior como en FormCard */
 }
@@ -134,10 +134,11 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
-/* Media query para pantallas más grandes */
+/* Media queries para ajustar tamaños en diferentes pantallas */
 @media (min-width: 768px) {
     .detail-card {
         padding: 2rem; /* Más padding en pantallas grandes */
+        width: 90%;
     }
 
     .detail-card h2 {
@@ -146,5 +147,28 @@
 
     .detail-card p {
         font-size: 1.1rem; /* Texto ligeramente más grande */
+    }
+    
+    .carousel-container {
+        max-width: 600px; /* Aumentar ancho del carrusel en pantallas grandes */
+    }
+    
+    .carousel-container img {
+        max-height: 400px; /* Mayor altura de imagen en pantallas grandes */
+    }
+}
+
+@media (min-width: 992px) {
+    .detail-card {
+        width: 85%;
+        max-width: 900px; /* Aún más ancho en pantallas más grandes */
+    }
+    
+    .carousel-container {
+        max-width: 700px;
+    }
+    
+    .carousel-container img {
+        max-height: 450px;
     }
 }

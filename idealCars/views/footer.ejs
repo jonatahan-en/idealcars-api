@@ -1,57 +1,33 @@
 <!-- Scripts de Bootstrap (deben ir antes de cerrar </body>) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-<style>
-  html {
-    position: relative;
-    min-height: 100%;
-  }
-  body {
-    margin-bottom: 60px; /* Altura aproximada del footer */
-  }
-  .footer {
-    bottom: 0;
-    width: 100%;
-    height: auto;
-    background-color: #f5f5f5;
-    z-index: 100;
-  }
-</style>
 
-<footer class="footer bg-body-tertiary">
+<footer class="footer bg-body-tertiary py-3">
   <div class="container">
-    <!-- Estructura con el texto centrado y los iconos a la derecha -->
     <div class="row align-items-center">
-      <!-- Columna para iconos sociales (a la izquierda en móviles, a la derecha en pantallas grandes) -->
-      <div class="col-12 col-md-3 order-md-2">
-        <div class="social-icons">
-          <!-- Twitter: Se muestra una imagen diferente según el modo claro/oscuro -->
-          <a href="https://twitter.com" target="_blank" class="social-icon">
-            <!-- Para cambiar la imagen para modo claro, modifica la ruta del atributo src en class="light-mode-icon" -->
+      <!-- Columna para texto del copyright (centrado) -->
+      <div class="col-12 text-center mb-2">
+        <div class="copyright-text">
+          <span>&copy; <%= new Date().getFullYear() %></span>
+          <span><strong><%= appName %></strong></span>
+          <span><%= __('footer.rights') %></span>
+        </div>
+      </div>
+      
+      <!-- Columna para iconos sociales -->
+      <div class="col-12 text-center">
+        <div class="social-icons d-flex justify-content-center">
+          <!-- Twitter -->
+          <a href="https://twitter.com" target="_blank" class="social-icon mx-1">
             <img src="/redes sociales/tw_bd_white.png" alt="Twitter" class="light-mode-icon">
-            <!-- Para cambiar la imagen para modo oscuro, modifica la ruta del atributo src en class="dark-mode-icon" -->
             <img src="/redes sociales/tw_bd_black.png" alt="Twitter" class="dark-mode-icon" style="display: none;">
           </a>
-          <!-- Instagram: Se muestra una imagen diferente según el modo claro/oscuro -->
-          <a href="https://instagram.com" target="_blank" class="social-icon">
-            <!-- Para cambiar la imagen para modo claro, modifica la ruta del atributo src en class="light-mode-icon" -->
+          <!-- Instagram -->
+          <a href="https://instagram.com" target="_blank" class="social-icon mx-1">
             <img src="/redes sociales/IG_bd_white.png" alt="Instagram" class="light-mode-icon">
-            <!-- Para cambiar la imagen para modo oscuro, modifica la ruta del atributo src en class="dark-mode-icon" -->
             <img src="/redes sociales/IG_bd_black.png" alt="Instagram" class="dark-mode-icon" style="display: none;">
           </a>
         </div>
       </div>
-      
-      <!-- Columna para texto del copyright (centrado) -->
-      <div class="col-12 col-md-6 text-center order-md-1">
-        <div class="d-flex justify-content-center align-items-center">
-          <p class="mb-0">&copy; <%= new Date().getFullYear() %></p>
-          <h4 class="ms-2 mb-0"><%= appName %></h4>
-          <p class="mb-0 ms-2"><%= __('footer.rights') %></p>
-        </div>
-      </div>
-      
-      <!-- Columna vacía para ayudar con el espaciado -->
-      <div class="col-md-3 d-none d-md-block order-md-0"></div>
     </div>
   </div>
   
@@ -76,7 +52,7 @@
       // Si hay preferencia guardada, aplicarla
       if (savedTheme === 'dark') {
         document.body.classList.add('dark-mode');
-        themeIcon.classList.replace('bi-moon-fill', 'bi-sun-fill');
+        if (themeIcon) themeIcon.classList.replace('bi-moon-fill', 'bi-sun-fill');
         toggleIcons(true);
       }
       
@@ -88,10 +64,12 @@
           localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
           
           // Cambiar icono del botón
-          if (isDarkMode) {
-            themeIcon.classList.replace('bi-moon-fill', 'bi-sun-fill');
-          } else {
-            themeIcon.classList.replace('bi-sun-fill', 'bi-moon-fill');
+          if (themeIcon) {
+            if (isDarkMode) {
+              themeIcon.classList.replace('bi-moon-fill', 'bi-sun-fill');
+            } else {
+              themeIcon.classList.replace('bi-sun-fill', 'bi-moon-fill');
+            }
           }
           
           // Cambiar iconos de redes sociales

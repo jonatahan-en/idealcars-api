@@ -15,27 +15,47 @@
         </div>
     <% } %>
     <h2 class="mb-2"><%= __('home.userProducts') %></h2>
-    <button onclick="toggleFilters()">Filtros</button>
+    
+    <button class="filter-button" onclick="toggleFilters()">
+        <i class="bi bi-funnel-fill"></i> Filtros
+    </button>
+    
     <div id="filter-form" style="display: none;">
-        <form action="/" method="GET">
-            <label for="name">Nombre:</label>
-            <input type="text" id="name" name="name" placeholder="Nombre del producto">
-            <label for="model">Modelo:</label>
-            <input type="text" id="model" name="model" placeholder="Modelo del producto">
-            <label for="color">Color:</label>
-            <input type="text" id="color" name="color" placeholder="Color del producto">
-            <label for="year">Año:</label>
-            <input type="number" id="year" name="year" placeholder="Año del producto">
-            <label for="price">Precio:</label>
-            <input type="number" id="price" name="price" placeholder="Precio del producto">
-            <label for="kilometer">Kilometraje:</label>
-            <input type="number" id="kilometer" name="kilometer" placeholder="Kilometraje del producto">
-            <button type="submit">Aplicar Filtros</button>
+        <form action="/" method="GET" class="filter-form">
+            <div class="row g-2">
+                <div class="col-6 col-sm-4 col-md-2">
+                    <label for="name">Nombre:</label>
+                    <input type="text" id="name" name="name" placeholder="Nombre del producto">
+                </div>
+                <div class="col-6 col-sm-4 col-md-2">
+                    <label for="model">Modelo:</label>
+                    <input type="text" id="model" name="model" placeholder="Modelo">
+                </div>
+                <div class="col-6 col-sm-4 col-md-2">
+                    <label for="color">Color:</label>
+                    <input type="text" id="color" name="color" placeholder="Color">
+                </div>
+                <div class="col-6 col-sm-4 col-md-2">
+                    <label for="year">Año:</label>
+                    <input type="number" id="year" name="year" placeholder="Año">
+                </div>
+                <div class="col-6 col-sm-4 col-md-2">
+                    <label for="price">Precio:</label>
+                    <input type="number" id="price" name="price" placeholder="Precio">
+                </div>
+                <div class="col-6 col-sm-4 col-md-2">
+                    <label for="kilometer">Kilometraje:</label>
+                    <input type="number" id="kilometer" name="kilometer" placeholder="Km">
+                </div>
+                <div class="col-12 text-center">
+                    <button type="submit" class="btn btn-primary mt-2">Aplicar Filtros</button>
+                </div>
+            </div>
         </form>
     </div>
     <hr class="my-2">
-    <!-- Resto del contenido... -->
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 cards-container">
+    
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
         <% if (products && products.length > 0) { %>
             <% products.forEach(product => { %>
                 <div class="col">
@@ -47,10 +67,10 @@
                         <% } %>
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title"><%= product.name %> - <%= product.model %></h5>
-                            <p class="card-text mb-1"><%= __('home.product.color') %>: <%= product.color %></p>
-                            <p class="card-text mb-1"><%= __('home.product.year') %>: <%= product.year %></p>
-                            <p class="card-text mb-1"><%= __('home.product.price') %>: <%= typeof product.price !== 'undefined' ? product.price.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' }) : '' %></p>
-                            <p class="card-text mb-2"><%= __('home.product.kilometer') %>: <%= typeof product.kilometer !== 'undefined' ? product.kilometer.toLocaleString('es-ES') : '' %> km</p>
+                            <p class="card-text mb-1"><strong><%= __('home.product.color') %>:</strong> <%= product.color %></p>
+                            <p class="card-text mb-1"><strong><%= __('home.product.year') %>:</strong> <%= product.year %></p>
+                            <p class="card-text mb-1"><strong><%= __('home.product.price') %>:</strong> <%= typeof product.price !== 'undefined' ? product.price.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' }) : '' %></p>
+                            <p class="card-text mb-2"><strong><%= __('home.product.kilometer') %>:</strong> <%= typeof product.kilometer !== 'undefined' ? product.kilometer.toLocaleString('es-ES') : '' %> km</p>
                         </div>
                         <a href="/products/detail/<%= product.id%>" class="btn btn-primary mt-auto">Detalles</a>
                     </div>
@@ -62,6 +82,7 @@
             </div>
         <% } %>
     </div>
+
     <% if (count > limit) { %>
         <nav aria-label="Page navigation" class="d-flex justify-content-center mt-3 mb-2">
             <ul class="pagination pagination-sm">

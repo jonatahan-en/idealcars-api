@@ -8,7 +8,7 @@ export async function index(req, res, next) {
         const filterYear = req.query.year;
         const filterPrice = req.query.price;
         const filterKilometer = req.query.kilometer;
-        const limit = parseInt(req.query.limit, 10) || 3;
+        const limit = parseInt(req.query.limit, 10) || 4; // Cambiado de 3 a 4 para mostrar 4 productos por página
         const skip = parseInt(req.query.skip, 10) || 0;
         const sort = req.query.sort || "name";
 
