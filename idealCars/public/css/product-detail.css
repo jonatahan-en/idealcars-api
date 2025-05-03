@@ -1,13 +1,16 @@
 .card-container {
-    background-color: #ffffff;
-    color: #ffffff;
+    background-color: var(--color-bg);
+    color: var(--color-text);
     padding: 1rem;
     min-height: 100vh;
     padding-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    flex: 1; 
 }
 
 .detail-card {
-    background-color: #2a2a2a;
+    background-color: var(--color-bg-card);
     border-radius: 12px;
     padding: 26px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
@@ -25,7 +28,7 @@
 .detail-card p {
     font-size: 16px;
     margin: 10px 0;
-    color: #e0e0e0;
+    color: var(--color-text-dark);
 }
 
 .carousel-container {
@@ -67,37 +70,74 @@ left: 5px;
 right: 5px;
 }
 
-.contact-btn, .home-btn {
-display: block;
-width: 100%;
-margin-top: 16px;
-background-color: #00bfff;
-color: white;
-padding: 10px;
-border-radius: 10px;
-border: none;
-text-decoration: none;
-text-align: center;
-font-weight: bold;
-cursor: pointer;
-}
 
-.home-btn {
-margin-bottom: 40px;
-}
-
-.contact-btn:hover, .home-btn:hover {
-background-color: #009ac7;
-}
-
+.button-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+  
+  .action-btn {
+    background-color: #00bfff;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: none;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    min-width: 120px;
+  }
+  
+  .action-btn:hover {
+    background-color: #009acd;
+  }
+  
+  .email-form {
+    margin: 0;
+  }
+  
+  .home-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+  
+  .home-btn {
+    background-color: #00bfff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+  }
+  
+  .home-btn:hover {
+    background-color: #009acd;
+  }
 @media (min-width: 768px) {
 .detail-card {
-max-width: 600px;
-padding: 36px;
-    p{
-        font-size: 18px;
-    }h2 {
+    max-width: 600px;
+    padding: 36px;
+        p{
+            font-size: 18px;
+            color: var(--color-text-dark);
+        }h2 {
         font-size: 36px;
+        }
+    } 
+    .btn,
+    .action-btn {
+        flex: 0 1 auto;     
+        min-width: 150px;
+        justify-content: center;
     }
-} 
 }
