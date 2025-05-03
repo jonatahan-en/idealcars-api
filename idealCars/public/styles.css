@@ -112,6 +112,9 @@ footer, .footer, .footer.bg-body-tertiary {
     margin-bottom: 0 !important;
     justify-content: center;
 }
+.alert {
+    color:red;
+}
 
 @media (max-width: 991px) {
     .FormCard {

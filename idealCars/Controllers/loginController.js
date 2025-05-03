@@ -2,8 +2,15 @@ import User from '../models/User.js'
 
 
 export function getlogin(req,res, next){
-    res.render('login')
+    res.render('login', {
+        errors: [],
+        email:"",
+        password:""
+    }
+        
+    )
 }
+
 
 export async function PostLogIn(req,res,next){
     try {
@@ -11,8 +18,10 @@ export async function PostLogIn(req,res,next){
 
         const user = await User.findOne({email: email.toLowerCase()})
         if(!user || !(await user.comparePassword(password))){  
+            
             res.render('login')
             return
+            
         }
 
         

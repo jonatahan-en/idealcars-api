@@ -16,18 +16,20 @@
         <%= redirectMessage %>
       </div>
     <% } %>
-    <form method="post" action="/login">
+    <form method="post" action="/login" novalidate>
       <div class="form_input">
         <label for="email">
           <strong><%= __('login.email') %></strong>
         </label>
-        <input class="input" type="email" id="email" placeholder="<%= __('login.email') %>" autocomplete="off" name="email" required />
+        <input class="input" type="email" id="email" placeholder="<%= __('login.email') %>" autocomplete="off" name="email"  required />
+        
       </div>
       <div class="form_input">
         <label for="password">
           <strong><%= __('login.password') %></strong>
         </label>
-        <input class="input" type="password" id="password" required placeholder="<%= __('login.password') %>" name="password" />
+        <input class="input" type="password" id="password" required placeholder="<%= __('login.password') %>" name="password"  />
+    
       </div>
       <div class="form_action">
         <button type="submit" class="btn">

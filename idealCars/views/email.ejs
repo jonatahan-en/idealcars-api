@@ -1,32 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/form.css">
-    <title>Contacto</title>
-</head>
-<body>
-
 <%-include("header.ejs") %>
 <main class="main-bg-container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
   <section class="Card">
     <h1>Contacto</h1>
-    
-    <form method="post" action="/email">
+    <form method="post" action="/email" novalidate>
+
        <input type="hidden" name="productId" value="<%= product._id %>">
         <div class="form_input">
             <label for="from">
-              <strong>From:</strong>
+              <strong>From</strong>
             </label>
-            <input
-              class="input"
-              type="email"
-              id="from"
-              name="from"
-              required
-              value="<%= session.userEmail %>"
-            />
+            <label>
+              <%= session.userEmail %>
+            </label>
+        
         </div>
 
 
@@ -34,39 +20,35 @@
             <label for="to">
               <strong>To</strong>
             </label>
-            <input
-              class="input"
-              type="email"
-              id="to"
-              name="to"
-              value="<%= product.owner.email %>"
-              required
-            />
+            <label>
+              <%= product.owner.email %>
+            </label>
+            
         </div>
         <div class="form_input">
             <label for="subject">
               <strong>Subject</strong>
             </label>
-            <input
-              class="input"
-              type="text"
-              id="subject"
-              required
-              placeholder="Subject"
-              name="subject"
-              value="<%= product.name  %>"
-            />
+            <label>
+              <%= product.name  %>
+            </label>
+          
         </div>
         <div class="form_input">
            <label for="content">Mensaje</label>
            <textarea
-           type="textarea"
            name="content"
            id="content"
            required
            rows="5"
-           
-           ></textarea>
+           >
+           <%= content || ''  %>
+           </textarea>
+           <% if (errors && errors.content && errors.content.msg) { %>
+            <div class="alert" role="alert">
+              <%= errors.content.msg %>
+            </div>
+          <% } %>
         </div>
         <div class="form_action">
           <button type="submit" class="btn btn mt-4">

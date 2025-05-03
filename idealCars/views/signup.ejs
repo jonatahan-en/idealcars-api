@@ -3,7 +3,7 @@
     <section class="FormCard">
       <h1><%= __('signup.title') %></h1>
       <form method="post" 
-        action="/signup">
+        action="/signup" novalidate> 
         <div class="form_input">
           <label for="name">
             <strong><%= __('signup.name') %></strong>
@@ -11,10 +11,17 @@
           <input class="input" 
           type="text" 
           id="name" 
-          placeholder="<%= __('signup.Enter_your_name') %>" 
+          name="name"
+          value="<%= name || '' %>"
           required 
+          placeholder="<%= __('signup.Enter_your_name') %>" 
           autocomplete="given-name" 
-          name="name" />
+           />
+          <% if(errors.name)  { %>
+            <div class="alert">
+              <%= errors.name.msg %>
+            </div>
+          <% } %>
         </div>
         <div class="form_input">
           <label for="phone">
@@ -23,11 +30,17 @@
           <input class="input" 
           type="text" 
           id="phone" 
-          name="phone" 
+          name="phone"
+          value="<%= phone || ""  %>" 
           autocomplete="tel" 
           placeholder="<%= __('signup.phone_format_example') %>" 
           pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" 
           title="Format (123-123-123)" />
+          <% if(errors.phone)  { %>
+            <div class="alert">
+              <%= errors.phone.msg %>
+            </div>
+          <% } %>
           <span class="optional-text"><%= __('signup.optional') %></span>
         </div>
         <div class="form_input">
@@ -39,7 +52,13 @@
           placeholder="<%= __('signup.email') %>" 
           autocomplete="email" 
           name="email" 
+          value="<%= email || ''  %>"
           required />
+          <% if(errors.email)  { %>
+            <div class="alert">
+              <%= errors.email.msg %>
+            </div>
+          <% } %>
         </div>
         <div class="form_input">
           <label for="password">
@@ -50,8 +69,14 @@
           id="password" 
           placeholder="<%= __('signup.password') %>" 
           name="password" 
+          value="<%= password || '' %>"
           required 
           />
+          <% if(errors.password)  { %>
+            <div class="alert">
+              <%= errors.password.msg %>
+            </div>
+          <% } %>
         </div>
         <div class="form_action">
           <button type="submit" class="btn">

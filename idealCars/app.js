@@ -4,7 +4,6 @@ import i18n from './lib/i18nConfigure.js';
 import connectMongoose from './lib/connectMongoose.js';
 import createError from 'http-errors';
 import logger from 'morgan';
-//Auth Imports
 import upload from './lib/uploadConfigure.js';
 import methodOverride from 'method-override';
 //Imports auth
@@ -12,11 +11,11 @@ import * as sessionManager from './lib/sessionManager.js';
 import * as jwtAuth from './lib/jwtAuthMiddlewere.js';
 //Web Imports Controllers
 import * as homeController from './controllers/homeController.js';
-import * as loginController from './controllers/loginController.js';
-import * as signupController from './controllers/signupController.js';
+import * as loginController from './Controllers/loginController.js';
+import * as signupController from './Controllers/signupController.js';
 import * as signoutController from './Controllers/signoutController.js'
-import * as productsController from './controllers/productController.js';
-import * as myProductsController from './controllers/myProductsController.js';
+import * as productsController from './Controllers/productController.js';
+import * as myProductsController from './Controllers/myProductsController.js';
 import * as contactController from './Controllers/contactController.js'
 
 import * as ProfileController from './controllers/profileController.js';
@@ -118,7 +117,7 @@ app.get('/profile',sessionManager.isLoggedIn, ProfileController.getProfile)
 app.put('/profile',sessionManager.isLoggedIn, ProfileController.UpdateProfile)
 app.delete('/profile',sessionManager.isLoggedIn, ProfileController.DeleteProfile)
 app.get('/email', sessionManager.isLoggedIn, contactController.Contact)
-app.post('/email', sessionManager.isLoggedIn , contactController.PostMail)
+app.post('/email', sessionManager.isLoggedIn ,contactController.ValidateContext, contactController.PostMail)
 
 
 // ================================
