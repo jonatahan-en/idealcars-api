@@ -8,7 +8,7 @@
     <div class="product-grid">
         <% products.forEach(product => { %>
         <div class="product-card">
-            <img class="product-image" src="<%= product.image ? `/imagenes/${product.image}` : 'https://placehold.co/300x200?text=Sin+Imagen' %>" alt="<%= product.name %>">
+            <img class="product-image" src="<%= product.images && product.images.length > 0 ? `/imagenes/${product.images[0]}` : 'https://placehold.co/300x200?text=Sin+Imagen' %>" alt="<%= product.name %>">
             <div class="product-info">
             <h3><%= product.name %></h3>
             <p>🔰 <%= __('home.product.model') %>: <%= product.model %></p>
