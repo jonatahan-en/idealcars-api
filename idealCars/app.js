@@ -88,7 +88,7 @@ app.get('/', homeController.index); // Página de inicio
 app.get('/signup', signupController.register); // Página de registro
 app.post('/signup', signupController.ValidateRegister, signupController.postSignup); // Registro de usuario
 app.get('/login', loginController.getlogin); // Página de login
-app.post('/login', loginController.PostLogIn); // Inicio de sesión
+app.post('/login',loginController.ValidateLogin, loginController.PostLogIn); // Inicio de sesión
 app.all('/logout', loginController.logout); // Cierre de sesión
 
 // ================================

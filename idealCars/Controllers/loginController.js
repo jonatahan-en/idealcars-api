@@ -1,4 +1,6 @@
 import User from '../models/User.js'
+import {body, validationResult} from 'express-validator'
+
 
 
 export function getlogin(req,res, next){
@@ -18,9 +20,15 @@ export async function ValidateLogin(req, res,next) {
 
     await body('email')
     .notEmpty().withMessage('Email required')
-    .isEmail().withMessage('Must be a valid email format')
+    .isEmail().withMessage('Invalid Credentials')
     .normalizeEmail()
     .escape()
+    .run(req)
+
+    
+    await body('password')
+    .notEmpty().withMessage('Email and Password Required')
+    .matches(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[=@#$])/).withMessage('Invalid Credentials')
     .run(req)
 
    
@@ -28,9 +36,9 @@ export async function ValidateLogin(req, res,next) {
   
     // Si hay errores de validación, respondemos con el código 400 y los errores.
     if (!errors.isEmpty()) {
-      return res.render('signup',{
+      return res.render('login',{
             errors: errors.mapped(),
-            email:req.body.email,
+            email: req.body.email,
             password:req.body.password
          })
     }
