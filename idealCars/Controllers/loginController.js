@@ -10,6 +10,32 @@ export function getlogin(req,res, next){
         
     )
 }
+export async function ValidateLogin(req, res,next) {
+        
+    // Validamos el campo 'name' asegurándonos de que no esté vacío
+   
+
+
+    await body('email')
+    .notEmpty().withMessage('Email required')
+    .isEmail().withMessage('Must be a valid email format')
+    .normalizeEmail()
+    .escape()
+    .run(req)
+
+   
+    const errors = validationResult(req)
+  
+    // Si hay errores de validación, respondemos con el código 400 y los errores.
+    if (!errors.isEmpty()) {
+      return res.render('signup',{
+            errors: errors.mapped(),
+            email:req.body.email,
+            password:req.body.password
+         })
+    }
+    next();
+  }
 
 
 export async function PostLogIn(req,res,next){
