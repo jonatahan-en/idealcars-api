@@ -1,11 +1,14 @@
 <%- include('header.ejs') %>
 
+
 <link rel="stylesheet" href="/css/new-product.css">
+<link rel="stylesheet" href="style.css">
 <main class="main-bg-container">
+ 
   <section class="FormCard">
     <h1 class="mb-4 text-center"><%= __('newProduct.title') %></h1>
     <form action="/products/new" method="POST" enctype="multipart/form-data" novalidate>
-    <div class="header-banner">
+    
 
       <div class="form_input mb-3">
         <label for="name" style="color: #00bfff"><%= __('newProduct.name') %></label>
@@ -63,7 +66,7 @@
       </div>
       <div class="form_input mb-3">
         <label for="image" style="color: #00bfff"><%= __('newProduct.image') %></label>
-        <input class="input" type="file" id="images" name="images" multiple>
+        <input class="input" type="file" accept=".jpg, .png, jpeg" id="images" name="images" multiple>
         <div id="preview-container" style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;"></div>
       </div>
       <div class="form_action">

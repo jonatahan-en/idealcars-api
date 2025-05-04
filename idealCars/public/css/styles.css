@@ -159,6 +159,9 @@ footer .mb-0, .footer .mb-0, footer h4, .footer h4 {
   transform: scale(1.2);
   opacity: 0.8;
 }
+.alert{
+    color: red;
+}
 
 @media (min-width: 768px) {
   .social-icons {

@@ -36,6 +36,7 @@ export async function validateProduct(req, res, next) {
     const coloresValidos= ['rojo', 'azul','verde','amarillo','celeste','rosa','negro','plateado','gris','blanco','morado','naranja','marron'];
     
     await body('name')
+ 
     .notEmpty().withMessage('El nombre es obligatorio')
     .trim()
     .isAlpha('es-ES', { ignore: ' ' }).withMessage('El nombre solo puede contener letras')
@@ -95,6 +96,20 @@ export async function validateProduct(req, res, next) {
     .escape()
     .run(req)
    
+    await body('images')
+    .custom((value, { req }) => {
+        if (!req.files) return true; 
+        
+        const invalid = req.files.some(file => 
+            !file.originalname.toLowerCase().endsWith('.jpg') && 
+            !file.originalname.toLowerCase().endsWith('.jpeg') &&
+            !file.originalname.toLowerCase().endsWith(' .png')
+        );
+        
+        if (invalid) throw new Error('Solo imágenes .jpg/.jpeg/png permitidas');
+        return true;
+    })
+    .run(req)
     
     const errors = validationResult(req)
     if(!errors.isEmpty()){
