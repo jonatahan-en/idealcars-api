@@ -1,31 +1,39 @@
 <!-- Scripts de Bootstrap (deben ir antes de cerrar </body>) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-<style>
-  html {
-    position: relative;
-    min-height: 100%;
-  }
-  body {
-    margin-bottom: 60px; /* Altura aproximada del footer */
-  }
-  .footer {
-    bottom: 0;
-    width: 100%;
-    height: auto;
-    background-color: #f5f5f5;
-    z-index: 100;
-  }
-</style>
 
-<footer class="footer py-3 bg-body-tertiary">
+<footer class="footer bg-body-tertiary py-3">
   <div class="container">
-    <div class="d-flex justify-content-center align-items-center">
-      <p class="mb-0" style="color:#fff;">&copy; <%= new Date().getFullYear() %></p>
-      <h4 class="ms-2 mb-0" style="color:#fff;"><%= appName %></h4>
-      <p class="mb-0 ms-2" style="color:#fff;"><%= __('footer.rights') %></p>
+    <div class="row align-items-center">
+      <!-- Columna para texto del copyright (centrado) -->
+      <div class="col-12 text-center mb-2">
+        <div class="copyright-text">
+          <span>&copy; <%= new Date().getFullYear() %></span>
+          <span><strong><%= appName %></strong></span>
+          <span><%= __('footer.rights') %></span>
+        </div>
+      </div>
+      
+      <!-- Columna para iconos sociales -->
+      <div class="col-12 text-center">
+        <div class="social-icons d-flex justify-content-center">
+          <!-- Twitter -->
+          <a href="https://twitter.com" target="_blank" class="social-icon mx-1">
+            <img src="/redes sociales/tw_bd_white.png" alt="Twitter" class="light-mode-icon">
+            <img src="/redes sociales/tw_bd_black.png" alt="Twitter" class="dark-mode-icon" style="display: none;">
+          </a>
+          <!-- Instagram -->
+          <a href="https://instagram.com" target="_blank" class="social-icon mx-1">
+            <img src="/redes sociales/IG_bd_white.png" alt="Instagram" class="light-mode-icon">
+            <img src="/redes sociales/IG_bd_black.png" alt="Instagram" class="dark-mode-icon" style="display: none;">
+          </a>
+        </div>
+      </div>
     </div>
   </div>
+  
+  <!-- Script para el cambio de tema -->
   <script>
+    // Función para cambiar entre modos claro y oscuro
     function toggleFilters() {
       const filterForm = document.getElementById('filter-form');
       if (filterForm && filterForm.style.display === 'none') {
@@ -33,6 +41,55 @@
       } else if (filterForm) {
         filterForm.style.display = 'none';
       }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // Obtener preferencia guardada de tema
+      const savedTheme = localStorage.getItem('theme');
+      const themeToggleBtn = document.getElementById('theme-toggle');
+      const themeIcon = document.getElementById('theme-icon');
+      
+      // Si hay preferencia guardada, aplicarla
+      if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+        if (themeIcon) themeIcon.classList.replace('bi-moon-fill', 'bi-sun-fill');
+        toggleIcons(true);
+      }
+      
+      // Configurar evento para el botón de cambio de tema
+      if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', function() {
+          // Cambiar clases y guardar preferencia
+          const isDarkMode = document.body.classList.toggle('dark-mode');
+          localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+          
+          // Cambiar icono del botón
+          if (themeIcon) {
+            if (isDarkMode) {
+              themeIcon.classList.replace('bi-moon-fill', 'bi-sun-fill');
+            } else {
+              themeIcon.classList.replace('bi-sun-fill', 'bi-moon-fill');
+            }
+          }
+          
+          // Cambiar iconos de redes sociales
+          toggleIcons(isDarkMode);
+        });
+      }
+    });
+    
+    // Función para cambiar los iconos de redes sociales según el tema
+    function toggleIcons(isDarkMode) {
+      const lightIcons = document.querySelectorAll('.light-mode-icon');
+      const darkIcons = document.querySelectorAll('.dark-mode-icon');
+      
+      lightIcons.forEach(icon => {
+        icon.style.display = isDarkMode ? 'none' : 'inline-block';
+      });
+      
+      darkIcons.forEach(icon => {
+        icon.style.display = isDarkMode ? 'inline-block' : 'none';
+      });
     }
   </script>
 </footer>

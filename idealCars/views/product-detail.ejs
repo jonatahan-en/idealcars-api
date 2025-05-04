@@ -1,19 +1,52 @@
+<!-- header -->
 <%- include("header.ejs") %>
-<main class="main-bg-container container py-5">
-    <h2><%= product.name %> - <%= product.model %></h2>
-    <p><%= __('home.product.color') %>: <%= product.color %></p>
-    <p><%= __('home.product.year') %>: <%= product.year %></p>
-    <p><%= __('home.product.price') %>: <%= typeof product.price !== 'undefined' ? product.price.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' }) : '' %></p>
-    <p><%= __('home.product.kilometer') %>: <%= typeof product.kilometer !== 'undefined' ? product.kilometer.toLocaleString('es-ES') : '' %> km</p>
-    <% if (product.image) { %>
-        <img src="/imagenes/<%= product.image %>" alt="<%= product.name %>" width="300"/>
-    <% } %>
-    <form action="/email" method="get">
-        <input type="hidden" name="productId" value="<%= product._id %>">
-        <button class="btn btn-primary mt-4" type="submit">Ir al email</button>
-      </form>
-    <a href="/" class="btn btn-primary mt-4">
-        <%= __('common.home') %>
-    </a>
+<link rel="stylesheet" href="/css/product-detail.css"> 
+<link rel="stylesheet" href="/css/styles.css">
+
+<main class="card-container">
+    <section class="detail-card">
+        <h2><%= product.name %> - <%= product.model %></h2>
+        <p>🎨 <strong><%= __('home.product.color') %>:</strong> <%= product.color %></p>
+        <p>📅 <strong><%= __('home.product.year') %>:</strong> <%= product.year %></p>
+        <p>💶 <strong><%= __('home.product.price') %>:</strong> <%= typeof product.price !== 'undefined' ? product.price.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' }) : '' %></p>
+        <p>🏁 <strong><%= __('home.product.kilometer') %>:</strong> <%= typeof product.kilometer !== 'undefined' ? product.kilometer.toLocaleString('es-ES') : '' %> km</p>
+        <% if (product.images && product.images.length > 0) { %>
+        <div class="carousel-container" id="carousel">
+            <% product.images.forEach((image) => { %>
+            <img src="/imagenes/<%= image %>" alt="<%= product.name %>">
+            <% }) %>
+            <button class="carousel-btn prev" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="carousel-btn next" onclick="moveSlide(1)">&#10095;</button>
+        </div>
+        <% } else { %>
+        <p>No hay imágenes disponibles</p>
+        <% } %>
+        <div class="button-group">
+        <a href="/chat/<%= product._id %>" class="btn action-btn">💬 Ir al chat</a>
+        <form action="/email" method="get" class="email-form">
+            <input type="hidden" name="productId" value="<%= product._id %>">
+            <button type="submit" class="btn action-btn">📩 Email</button>
+        </form>
+        </div>
+        <div class="home-container">
+            <a href="/" class="btn home-btn">🏠 Inicio</a>
+        </div>
+    </section>
 </main>
+
+<script>
+let currentIndex = 0;
+function moveSlide(direction) {
+    const slides = document.querySelectorAll('#carousel img');
+    const totalSlides = slides.length;
+    slides[currentIndex].style.display = 'none';
+    currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
+    slides[currentIndex].style.display = 'block';
+}
+document.addEventListener('DOMContentLoaded', () => {
+    const slides = document.querySelectorAll('#carousel img');
+    slides.forEach(slide => slide.style.display = 'none');
+    if (slides.length > 0) slides[0].style.display = 'block';
+});
+</script>
 <%- include("footer.ejs") %>

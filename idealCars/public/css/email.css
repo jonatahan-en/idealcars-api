@@ -1,0 +1,131 @@
+.Card {
+    background-color: #2a2a2a;
+    border-radius: 12px;
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 100%;
+    margin: 2rem auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    color: #ffffff;
+  }
+  
+  .Card h1 {
+    text-align: center;
+    color: #00bfff;
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .form_input {
+    margin-bottom: 1.2rem;
+  }
+  
+  .form_input label {
+    display: block;
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+    color: #00bfff;
+  }
+  
+  .form_input label + label {
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: normal;
+    margin-bottom: 0.6rem;
+    display: block;
+  }
+  
+  .form_input textarea {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: #444;
+    color: #fff;
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  textarea:focus {
+    outline: none;
+    border-color: #00bfff;
+    background-color: #555;
+  }
+  
+  .alert {
+    margin-top: 0.5rem;
+    color: #ff6b6b;
+    font-size: 0.9rem;
+  }
+  
+  .form_action {
+    text-align: center;
+    margin-top: 1.5rem;
+  }
+  
+  .btn {
+    background-color: #00bfff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .btn:hover {
+    background-color: #009acd;
+  }
+  
+  /* 🌒 DARK MODE */
+  body.dark-mode .Card {
+    background-color: #f0f0f0;
+    color: #111;
+  }
+  
+  body.dark-mode .form_input label {
+    color: #007acc;
+  }
+  
+  body.dark-mode .form_input label + label {
+    color: #111;
+  }
+  
+  body.dark-mode textarea {
+    background-color: #ddd;
+    color: #111;
+  }
+  
+  body.dark-mode .btn {
+    background-color: #007acc;
+    color: white;
+  }
+  
+  body.dark-mode .btn:hover {
+    background-color: #005b99;
+  }
+  
+  /* 🖥 Pantallas grandes */
+  @media (min-width: 768px) {
+    .Card {
+      max-width: 600px;
+      padding: 2rem 2.5rem;
+    }
+  
+    .Card h1 {
+      font-size: 2rem;
+    }
+  
+    .form_input textarea {
+      min-height: 140px;
+    }
+  
+    .btn {
+      font-size: 1.1rem;
+      padding: 12px 24px;
+    }
+  }
+  

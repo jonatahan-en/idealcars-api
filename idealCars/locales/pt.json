@@ -2,7 +2,7 @@
 	"appName": "IdealCars",
 	"home": {
 		"welcome": "Bem-vindo ao IdealCars!",
-		"loginPrompt": "Para ver o conteúdo, por favor, faça login na sua conta.",
+		"loginPrompt": "Para adicionar ou editar, faça login na sua conta.",
 		"userProducts": "Meus Anúncios",
 		"product": {
 			"name": "Nome",
@@ -47,7 +47,8 @@
 		"price": "Preço",
 		"kilometer": "Quilômetros",
 		"image": "Imagem",
-		"create": "Criar Anúncio"
+		"create": "Criar Anúncio",
+		"images": "Imagens de novos produtos"
 	},
 	"footer": {
 		"rights": "Todos os direitos reservados."
@@ -60,7 +61,8 @@
 		"login": "Login",
 		"signup": "Cadastrar",
 		"signout": "Cancelar cadastro",
-		"newProduct": "Novo Anúncio"
+		"newProduct": "Novo Anúncio",
+		"chat": "Chat"
 	},
 	"notifications": {
 		"productSold": "Este produto foi marcado como vendido",

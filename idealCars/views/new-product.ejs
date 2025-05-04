@@ -1,260 +1,75 @@
 <%- include('header.ejs') %>
-<style>
-  .main-bg-container {
-    padding: 2rem;
-    min-height: 100vh;
-    background-color: #f5f5f8;
-  }
-  
-  .FormCard {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-    position: relative;
-    overflow: hidden;
-    border-top: 4px solid #00bfff;
-  }
-  
-  .FormCard h1 {
-    color: #00bfff;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-    position: relative;
-  }
-  
-  .FormCard h1:after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 3px;
-    background: #00bfff;
-    border-radius: 3px;
-  }
-  
-  .form_input {
-    position: relative;
-    margin-bottom: 1.5rem !important;
-  }
-  
-  .form_input label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-    color: #000000;
-    transition: all 0.3s ease;
-  }
-  
-  .input {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-  }
-  
-  .input:focus {
-    border-color: #00bfff; 
-    box-shadow: 0 0 0 3px rgba(0, 191, 255, 0.15);
-    outline: none;
-  }
-  
-  .input:focus + label {
-    color: #00bfff;
-  }
-  
-  .form_action button {
-    background-color: #00bfff;
-    color: white;
-    border: none;
-    padding: 0.8rem;
-    border-radius: 6px;
-    font-weight: 600;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    cursor: pointer;
-  }
-  
-  .form_action button:hover {
-    background-color: #00a6dd;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 191, 255, 0.2);
-  }
-  
-  /* Efecto de animación para los campos */
-  .form_input .input {
-    transform: translateY(0);
-    opacity: 1;
-    animation: fadeInUp 0.5s ease-out;
-  }
-  .alert{
-    color:red;
-    margin-top: 5px
-  }
-  
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
 
-  /* Aplicar la animación con retraso para cada campo */
-  .form_input:nth-child(1) .input { animation-delay: 0.1s; }
-  .form_input:nth-child(2) .input { animation-delay: 0.2s; }
-  .form_input:nth-child(3) .input { animation-delay: 0.3s; }
-  .form_input:nth-child(4) .input { animation-delay: 0.4s; }
-  .form_input:nth-child(5) .input { animation-delay: 0.5s; }
-  .form_input:nth-child(6) .input { animation-delay: 0.6s; }
-  .form_input:nth-child(7) .input { animation-delay: 0.7s; }
-
-  /* Efecto para el botón */
-  .form_action button {
-    animation: fadeInUp 0.8s ease-out;
-    animation-delay: 0.8s;
-    opacity: 1;
-  }
-  /* Elemento decorativo */
-  .FormCard::before {
-    content: '';
-    position: absolute;
-    top: -50px;
-    right: -50px;
-    width: 100px;
-    height: 100px;
-    background: #00bfff;
-    opacity: 0.1;
-    border-radius: 50%;
-    animation: pulse 4s infinite;
-  }
-  @keyframes pulse {
-    0% { transform: scale(1); opacity: 0.1; }
-    50% { transform: scale(1.5); opacity: 0.15; }
-    100% { transform: scale(1); opacity: 0.1; }
-  }
-  /* Mejora para inputs tipo archivo */
-  input[type="file"] {
-    padding: 0.5rem;
-    background-color: #f8f9fa;
-    border: 1px dashed #ccc;
-  }
-  
-  input[type="file"]:hover {
-    background-color: #f0f0f0;
-    border-color: #00bfff;
-  }
-  
-  /* Mejora para mensajes de validación */
-  .input:invalid:focus {
-    border-color: #ff6b6b;
-    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.15);
-  }
-  
-  /* Animación adicional para el formulario */
-  .FormCard {
-    animation: slideIn 0.7s ease-out forwards;
-  }
-  
-  @keyframes slideIn {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  .form_action button {
-    letter-spacing: 0.5px;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-  }
-</style>
+<link rel="stylesheet" href="/css/new-product.css">
 <main class="main-bg-container">
   <section class="FormCard">
-    <div class="header-banner">
-      <h1 class="mb-4 text-center"><%= __('newProduct.title') %></h1>
-    </div>
+    <h1 class="mb-4 text-center"><%= __('newProduct.title') %></h1>
     <form action="/products/new" method="POST" enctype="multipart/form-data" novalidate>
-     
+    <div class="header-banner">
 
       <div class="form_input mb-3">
-        <label for="name" style="color: black;"><%= __('newProduct.name') %></label>
+        <label for="name" style="color: #00bfff"><%= __('newProduct.name') %></label>
         <input class="input" type="text" id="name" name="name" value="<%= name || ''  %>" required >
         <% if (errors.name) { %>
           <div class="alert" role="alert">
             <%= errors.name.msg %>
           </div>
         <% } %>
-      
       </div>
       <div class="form_input mb-3">
-        <label for="model" style="color: black;"><%= __('newProduct.model') %></label>
+        <label for="model" style="color: #00bfff"><%= __('newProduct.model') %></label>
         <input class="input" type="text" id="model" name="model" value="<%= model || '' %>" required >
         <% if (errors.model) { %>
           <div class="alert" role="alert">
             <%= errors.model.msg %>
           </div>
         <% } %>
-      
       </div>
       <div class="form_input mb-3">
-        <label for="color" style="color: black;"><%= __('newProduct.color') %></label>
+        <label for="color" style="color:#00bfff"><%= __('newProduct.color') %></label>
         <input class="input" type="text" id="color" name="color" value="<%= color || '' %>" required>
         <% if (errors.color) { %>
           <div class="alert" role="alert">
             <%= errors.color.msg %>
           </div>
         <% } %>
-      
       </div>
       <div class="form_input mb-3">
-        <label for="year" style="color: black;"><%= __('newProduct.year') %></label>
+        <label for="year" style="color:#00bfff"><%= __('newProduct.year') %></label>
         <input class="input" type="number" id="year" name="year" value="<%= year || '' %>" required>
         <% if (errors.year) { %>
           <div class="alert" role="alert">
             <%= errors.year.msg %>
           </div>
         <% } %>
-      
       </div>
       <div class="form_input mb-3">
-        <label for="price" style="color: black;"><%= __('newProduct.price') %></label>
+        <label for="price" style="color: #00bfff"><%= __('newProduct.price') %></label>
         <input class="input" type="number" id="price" name="price" value="<%= price || '' %>" required>
         <% if (errors.price) { %>
           <div class="alert" role="alert">
             <%= errors.price.msg %>
           </div>
         <% } %>
-      
       </div>
       <div class="form_input mb-3">
-        <label for="kilometer" style="color: black;"><%= __('newProduct.kilometer') %></label>
+        <label for="kilometer" style="color:#00bfff"><%= __('newProduct.kilometer') %></label>
         <input class="input" type="number" id="kilometer" name="kilometer" value="<%= kilometer || '' %>" required>
         <% if (errors.kilometer) { %>
           <div class="alert" role="alert">
             <%= errors.kilometer.msg %>
           </div>
         <% } %>
-      
       </div>
       <div class="form_input mb-3">
-        <label for="image" style="color: black;"><%= __('newProduct.image') %></label>
-        <input class="input" type="file" id="image" name="image"  accept="image/*">
+        <label for="image" style="color: #00bfff"><%= __('newProduct.image') %></label>
+        <input class="input" type="file" id="images" name="images" multiple>
+        <div id="preview-container" style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;"></div>
       </div>
       <div class="form_action">
-        <button type="submit" class="btn btn-primary w-100 mt-3"><%= __('newProduct.create') %></button>
+        <button type="submit" class="btn btn-primary"><%= __('newProduct.create') %></button>
       </div>
+    </div>
     </form>
   </section>
 </main>
@@ -296,10 +111,8 @@
     if (fileInput) {
       fileInput.addEventListener('change', function() {
         if (this.files.length > 0) {
-          // Mostrar el nombre del archivo seleccionado
           const fileName = this.files[0].name;
-          // Podría añadir un elemento para mostrar el nombre, pero mantengo mínimos los cambios
-          this.style.borderColor = '#00bfff';
+          this.style.borderColor = 'var(--color-primary)';
           this.style.borderStyle = 'solid';
         } else {
           this.style.borderColor = '#ccc';
@@ -333,6 +146,50 @@
         submitBtn.style.opacity = '0.8';
       }
     });
+  });
+
+  document.querySelector('input[type="file"]').addEventListener('change', function (e) {
+    const previewContainer = document.getElementById('preview-container');
+    previewContainer.innerHTML = '';  
+
+    for (let i = 0; i < e.target.files.length; i++) {
+      const file = e.target.files[i];
+      const reader = new FileReader();
+
+      reader.onload = function (event) {
+        const imageContainer = document.createElement('div');
+        imageContainer.style.display = 'flex';
+        imageContainer.style.alignItems = 'center';
+        imageContainer.style.marginBottom = '10px'
+
+        const img = document.createElement('img');
+        img.src = event.target.result;
+        img.alt = file.name;
+        img.style.maxWidth = '100px';
+        img.style.marginRight = '10px';
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = 'Eliminar';
+        deleteBtn.style.backgroundColor = '#ff6b6b';
+        deleteBtn.style.color = 'white';
+        deleteBtn.style.border = 'none';
+        deleteBtn.style.padding = '5px 10px';
+        deleteBtn.style.cursor = 'pointer';
+        deleteBtn.style.borderRadius = '4px';
+        deleteBtn.style.marginLeft = '10px';
+
+        deleteBtn.addEventListener('click', function () {
+          previewContainer.removeChild(imageContainer);
+        });
+
+        
+        imageContainer.appendChild(img);
+        imageContainer.appendChild(deleteBtn);
+        previewContainer.appendChild(imageContainer);
+      };
+
+      reader.readAsDataURL(file);  
+    }
   });
 </script>
 <%- include('footer.ejs') %>

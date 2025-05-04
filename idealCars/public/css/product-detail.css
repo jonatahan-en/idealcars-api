@@ -1,0 +1,143 @@
+.card-container {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    padding: 1rem;
+    min-height: 100vh;
+    padding-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    flex: 1; 
+}
+
+.detail-card {
+    background-color: var(--color-bg-card);
+    border-radius: 12px;
+    padding: 26px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    max-width: 100%;
+    margin: auto;
+}
+
+.detail-card h2 {
+    font-size: 26px;
+    margin-bottom: 16px;
+    color: #00bfff;
+    text-align: center;
+}
+
+.detail-card p {
+    font-size: 16px;
+    margin: 10px 0;
+    color: var(--color-text-dark);
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin: 2rem auto;
+    overflow: hidden;
+}
+
+.carousel-container img {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    display: none;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 2;
+    border-radius: 4px;
+}
+
+.carousel-btn.prev {
+left: 5px;
+}
+
+.carousel-btn.next {
+right: 5px;
+}
+
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+  
+  .action-btn {
+    background-color: #00bfff;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: none;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    min-width: 120px;
+  }
+  
+  .action-btn:hover {
+    background-color: #009acd;
+  }
+  
+  .email-form {
+    margin: 0;
+  }
+  
+  .home-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+  
+  .home-btn {
+    background-color: #00bfff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+  }
+  
+  .home-btn:hover {
+    background-color: #009acd;
+  }
+@media (min-width: 768px) {
+.detail-card {
+    max-width: 600px;
+    padding: 36px;
+        p{
+            font-size: 18px;
+            color: var(--color-text-dark);
+        }h2 {
+        font-size: 36px;
+        }
+    } 
+    .btn,
+    .action-btn {
+        flex: 0 1 auto;     
+        min-width: 150px;
+        justify-content: center;
+    }
+}

@@ -1,37 +1,66 @@
 <%- include("header.ejs") %>
-<main class="container py-5 main-bg-container">
-    <h2 class="mb-3" style="font-size:1.5rem; font-weight:600;">🚗 <%= __('navigation.myProducts') %></h2>
-    <% products.forEach(product => { %>
-        <div class="container mb-4 Card">
-            <h2><%= product.name %></h2>
-            <p><%= __('home.product.model') %>: <%= product.model %></p>
-            <p><%= __('home.product.color') %>: <%= product.color %></p>
-            <p><%= __('home.product.year') %>: <%= product.year %></p>
-            <p><%= __('home.product.price') %>: <%= typeof product.price !== 'undefined' ? product.price.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' }) : '' %></p>
-            <p><%= __('home.product.kilometer') %>: <%= typeof product.kilometer !== 'undefined' ? product.kilometer.toLocaleString('es-ES') : '' %> km</p>
-            <img src="<%= product.image ? `/imagenes/${product.image}` : 'https://placehold.co/100' %>" alt="<%= product.name %>" width="100">
+<link rel="stylesheet" href="/css/styles.css">
+<link rel="stylesheet" href="/css/myProduct.css">
+<main class="products-container">
+    <h2 class="title-page">🚗 <%= __('navigation.myProducts') %></h2>
 
-        </div>
-        <div>
-            <!-- Botón para editar el producto -->
-            <a href="/myproducts/edit/<%= product._id %>" class="btn btn-warning">
+    <div class="product-grid">
+        <% products.forEach(product => { %>
+        <div class="product-card">
+            <img class="product-image" src="<%= product.images && product.images.length > 0 ? `/imagenes/${product.images[0]}` : 'https://placehold.co/300x200?text=Sin+Imagen' %>" alt="<%= product.name %>">
+            <div class="product-info">
+            <h3><%= product.name %></h3>
+            <p>🔰 <%= __('home.product.model') %>: <%= product.model %></p>
+            <p>🎨 <%= __('home.product.color') %>: <%= product.color %></p>
+            <p>📅 <%= __('home.product.year') %>: <%= product.year %></p>
+            <p>💶 <%= __('home.product.price') %>: <%= product.price?.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' }) %></p>
+            <p>🏁 <%= __('home.product.kilometer') %>: <%= product.kilometer?.toLocaleString('es-ES') %> km</p>
+            </div>
+            <div class="product-action">
+            <a href="/myproducts/edit/<%= product._id %>" class="btn-edit">
                 <i class="bi bi-pencil"></i> Editar
             </a>
-            <!-- Botón para borrar el producto -->
-            <form action="/myproducts/delete/<%= product._id %>?_method=DELETE" method="POST" style="display: inline;" onsubmit="return confirm('¿Estás seguro de que deseas borrar este producto?');">
-                <button type="submit" class="btn btn-danger">
-                    <i class="bi bi-trash3"></i> Borrar
+            <form action="/myproducts/delete/<%= product._id %>?_method=DELETE" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas borrar este producto?');">
+                <button type="submit" class="btn-delete">
+                <i class="bi bi-trash3"></i> Borrar
                 </button>
             </form>
+            </div>
         </div>
-    <% }) %>
-    <div class="pagination mt-4">
-        <% if (skip > 0) { %>
-            <a href="?skip=<%= skip - limit %>&limit=<%= limit %>" class="btn btn-secondary">Anterior</a>
-        <% } %>
-        <% if (skip + limit < count) { %>
-        <a href="?skip=<%= skip + limit %>&limit=<%= limit %>" class="btn btn-secondary ms-2">Siguiente</a>
-        <% } %>
+        <% }) %>
     </div>
+    
+    <nav aria-label="Page navigation" class="d-flex justify-content-center mt-4">
+        <ul class="pagination pagination-sm">
+            <% if (skip > 0) { %>
+                <li class="page-item">
+                    <a class="page-link" href="?skip=<%= Math.max(0, skip - limit) %>&limit=<%= limit %>">Anterior</a>
+                </li>
+            <% } else { %>
+                <li class="page-item disabled">
+                    <span class="page-link">Anterior</span>
+                </li>
+            <% } %>
+            
+            <% const totalPages = Math.ceil(count / limit); %>
+            <% const currentPage = Math.floor(skip / limit) + 1; %>
+            <% for (let i = Math.max(1, currentPage - 2); i <= Math.min(totalPages, currentPage + 2); i++) { %>
+                <li class="page-item <%= i === currentPage ? 'active' : '' %>">
+                    <a class="page-link" href="?skip=<%= (i - 1) * limit %>&limit=<%= limit %>"><%= i %></a>
+                </li>
+            <% } %>
+            
+            <% if (skip + limit < count) { %>
+                <li class="page-item">
+                    <a class="page-link" href="?skip=<%= skip + limit %>&limit=<%= limit %>">Siguiente</a>
+                </li>
+            <% } else { %>
+                <li class="page-item disabled">
+                    <span class="page-link">Siguiente</span>
+                </li>
+            <% } %>
+        </ul>
+    </nav>
 </main>
+
 <%- include("footer.ejs") %>

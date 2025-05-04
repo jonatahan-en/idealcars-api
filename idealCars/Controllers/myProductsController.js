@@ -8,7 +8,7 @@ export async function userProducts(req, res, next) {
 
 
         const filter = { owner: userId };
-        const limit = parseInt(req.query.limit, 10) || 2;
+        const limit = parseInt(req.query.limit, 10) || 8;
         const skip = parseInt(req.query.skip, 10) || 0;
         const sort = req.query.sort || "name";
 

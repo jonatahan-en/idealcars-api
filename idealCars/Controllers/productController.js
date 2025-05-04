@@ -11,7 +11,7 @@ export function index(req, res, next) {
         year: "",
         price: "",
         kilometer: "",
-        image: "",
+        images: [],
     })
 }
 
@@ -107,7 +107,7 @@ export async function validateProduct(req, res, next) {
                 year: req.body.year,
                 price: req.body.price,
                 kilometer: req.body.kilometer,
-                image: req.body.image
+                images: []
         })
     }
     next()
@@ -120,6 +120,7 @@ export async function postNew(req, res, next) {
         const userId = req.session.userId
 
         const {name,model,color,year,price,kilometer,image} = req.body
+        const images = req.files ? req.files.map(file => file.filename) : [];
         //Validaciones
         const product = new Product({
             name,
@@ -128,7 +129,7 @@ export async function postNew(req, res, next) {
             year,   
             price,
             kilometer,
-            image: req.file ? req.file.filename : null,
+            images, 
             owner: userId
         })
         console.log("Producto a guardar:", product);

@@ -3,12 +3,9 @@ import Product from "../models/Products.js";
 import { body, validationResult } from "express-validator";
 
 export async function Contact(req, res , next){
-
     try {
-        
         const productId = req.query.productId;
         const product = await Product.findById(productId).populate('owner');
-       
         if (!product) {
             return res.status(404).send('Producto no encontrado');
         }
@@ -32,9 +29,6 @@ export async function ValidateContext(req, res,next) {
     .escape()
     .run(req)
 
-
-  
-
     const errors = validationResult(req)
 
   
@@ -50,16 +44,18 @@ export async function ValidateContext(req, res,next) {
     next();
   }
 
-export async function PostMail(req,res ,next) {
- console.log("Formulario recibido:", req.body);
- const from = req.session.userEmail
- const content =req.body
- const productId = req.body.productId;
- const product = await Product.findById(productId).populate('owner');
- const subject = product.name
- if (!product) {
-    return res.status(404).send('Producto no encontrado');
-}
+
+export async function PostMail(req, res, next) {
+    console.log("Formulario recibido:", req.body);
+    const from = req.session.userEmail;
+    const content = req.body;
+    const productId = req.body.productId;
+    const product = await Product.findById(productId).populate('owner');
+    const subject = product.name;
+
+    if (!product) {
+        return res.status(404).send('Producto no encontrado');
+    }
 
  await product.owner.sendEmailBetweenUsers(from,product.owner.email,subject,content)
  
