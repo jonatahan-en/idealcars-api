@@ -4,8 +4,7 @@
   <section class="Card">
     <h1>Contacto</h1>
     <form method="post" action="/email" novalidate>
-
-       <input type="hidden" name="productId" value="<%= product._id %>">
+      <input type="hidden" name="productId" value="<%= product._id %>">
         <div class="form_input">
             <label for="from">
               <strong>From</strong>
@@ -13,18 +12,14 @@
             <label>
               <%= session.userEmail %>
             </label>
-        
         </div>
-
-
         <div class="form_input">
             <label for="to">
               <strong>To</strong>
             </label>
             <label>
               <%= product.owner.email %>
-            </label>
-            
+            </label>   
         </div>
         <div class="form_input">
             <label for="subject">
@@ -36,26 +31,25 @@
           
         </div>
         <div class="form_input">
-           <label for="content">Mensaje</label>
-           <textarea
-           name="content"
-           id="content"
-           required
-           rows="5"
-           >
-           <%= content || ''  %>
-           </textarea>
-           <% if (errors && errors.content && errors.content.msg) { %>
+            <label for="content">Mensaje</label>
+            <textarea
+            name="content"
+            id="content"
+            required
+            rows="5"
+            >
+            <%= content || ''  %>
+            </textarea>
+            <% if (errors && errors.content && errors.content.msg) { %>
             <div class="alert" role="alert">
               <%= errors.content.msg %>
             </div>
           <% } %>
         </div>
         <div class="form_action">
-          <button type="submit" class="btn btn mt-4">
-            Send
-          </button>
-        </div>
+          <button type="button" class="btn btn-secondary" onclick="window.history.back()">⬅️ Volver atrás</button>
+          <button type="submit" class="btn">Send</button>
+        </div>        
       </form>
     </section>
 </main>
