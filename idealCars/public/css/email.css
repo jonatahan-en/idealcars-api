@@ -8,41 +8,40 @@
     max-width: 500px;
   }
   
-  /* Título */
+
   .Card h1 {
     text-align: center;
     margin-bottom: 1.5rem;
     color: #00bfff;
   }
-  
-  /* Etiquetas e inputs */
-  .form_input {
+
+
+.form_input {
     margin-bottom: 1rem;
     display: flex;
     flex-direction: column;
-  }
-  
-  .form_input label {
+}
+
+.form_input label {
     margin-bottom: 0.3rem;
     font-weight: 500;
     color: #cccccc;
-  }
-  
-  .input,
-  textarea {
-    padding: 0.75rem;
-    border: none;
-    border-radius: 8px;
-    background-color: #f0f0f0;
-    color: #000;
-    font-size: 1rem;
-    resize: vertical;
-    font-family: inherit;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-  }
-  
-  .input:focus,
-  textarea:focus {
+}
+
+.input,
+    textarea {
+        padding: 0.75rem;
+        border: none;
+        border-radius: 8px;
+        background-color: #f0f0f0;
+        color: #000;
+        font-size: 1rem;
+        resize: vertical;
+        font-family: inherit;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.input:focus, textarea:focus {
     outline: none;
     border: 2px solid #00bfff;
     background-color: #ffffff;
@@ -71,7 +70,7 @@
     transform: scale(1.03);
   }
   
-  /* Responsivo */
+
   @media (max-width: 400px) {
     .Card {
       padding: 1.5rem 1rem;
