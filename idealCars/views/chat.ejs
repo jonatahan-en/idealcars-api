@@ -3,70 +3,18 @@
 <head>
     <title>Chat de anuncios</title>
     <script src="/socket.io/socket.io.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-            margin: 0;
-            padding: 0;
-        }
-
-        h1 {
-            text-align: center;
-            background-color: #007bff;
-            color: white;
-            padding: 10px;
-            margin: 0;
-        }
-
-        #messages {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-            max-height: 300px;
-            overflow-y: auto;
-            border: 1px solid #ddd;
-            background-color: white;
-        }
-
-        #messages li {
-            padding: 5px 10px;
-            border-bottom: 1px solid #ddd;
-        }
-
-        #form {
-            display: flex;
-            padding: 10px;
-            background-color: #f1f1f1;
-        }
-
-        #input {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        button {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/chat.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <ul id="messages"></ul>
-    <form id="form">
-        <input id="input" autocomplete="off" placeholder="Escribe un mensaje..." />
-        <button>Enviar</button>
-    </form>
+    <div class="chat-container">
+        <h1>Chat de anuncios</h1>
+        <ul id="messages"></ul>
+        <form id="form">
+            <input id="input" autocomplete="off" placeholder="Escribe un mensaje..." />
+            <button>Enviar</button>
+        </form>
+    </div>
     <script>
         const socket = io();
         const adId = "<%= adId %>";
@@ -80,26 +28,42 @@
         socket.emit('join-chat', adId);
 
         // Cargar historial de mensajes
-        socket.on('chat-history', ({ messages, productName }) => {
+        socket.on('chat-history', ({ messages: chatMessages, productName }) => {
             // Verificar si el título ya existe
             let productTitle = document.getElementById('productName');
             if (!productTitle) {
                 productTitle = document.createElement('h2');
                 productTitle.id = 'productName';
                 productTitle.textContent = `Chat para el producto: ${productName}`;
-                document.body.prepend(productTitle);
+                document.querySelector('.chat-container').insertBefore(productTitle, document.querySelector('#messages'));
             }
 
             // Limpiar mensajes previos para evitar duplicados
             messages.innerHTML = ''; 
-            messages.forEach(({ text, userName, createdAt }) => {
+            chatMessages.forEach(({ text, userName, createdAt }) => {
                 const item = document.createElement('li');
                 const time = new Date(createdAt).toLocaleTimeString('en-US', { 
                     hour: '2-digit', minute: '2-digit', hour12: true 
                 });
-                item.textContent = `[${time}] ${userName}: ${text}`;
+                const timeSpan = document.createElement('span');
+                timeSpan.className = 'time';
+                timeSpan.textContent = time;
+                
+                const userSpan = document.createElement('span');
+                userSpan.className = 'username';
+                userSpan.textContent = userName;
+                
+                const messageSpan = document.createElement('span');
+                messageSpan.className = 'message-text';
+                messageSpan.textContent = text;
+                
+                item.appendChild(timeSpan);
+                item.appendChild(userSpan);
+                item.appendChild(messageSpan);
                 messages.appendChild(item);
             });
+            
+            messages.scrollTop = messages.scrollHeight;
         });
 
         // Enviar mensaje al servidor
@@ -118,8 +82,26 @@
             const time = new Date(createdAt).toLocaleTimeString('en-US', { 
                 hour: '2-digit', minute: '2-digit', hour12: true 
             });
-            item.textContent = `${time} ${userName}: ${text}`;
+            
+            const timeSpan = document.createElement('span');
+            timeSpan.className = 'time';
+            timeSpan.textContent = time;
+            
+            const userSpan = document.createElement('span');
+            userSpan.className = 'username';
+            userSpan.textContent = userName;
+            
+            const messageSpan = document.createElement('span');
+            messageSpan.className = 'message-text';
+            messageSpan.textContent = text;
+            
+            item.appendChild(timeSpan);
+            item.appendChild(userSpan);
+            item.appendChild(messageSpan);
             messages.appendChild(item);
+            
+            // Scroll al final de los mensajes
+            messages.scrollTop = messages.scrollHeight;
         });
     </script>
 </body>
