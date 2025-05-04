@@ -29,6 +29,7 @@ export async function ValidateLogin(req, res,next) {
     await body('password')
     .notEmpty().withMessage('Email and Password Required')
     .matches(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[=@#$])/).withMessage('Invalid Credentials')
+    .isLength({ min: 8 }).withMessage('Invalid Credentials')
     .run(req)
 
    
