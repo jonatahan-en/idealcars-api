@@ -1,82 +1,131 @@
 .Card {
     background-color: #2a2a2a;
     border-radius: 12px;
-    padding: 2rem;
-    color: #ffffff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    padding: 1.5rem;
     width: 100%;
-    max-width: 500px;
+    max-width: 100%;
+    margin: 2rem auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    color: #ffffff;
   }
   
-
   .Card h1 {
     text-align: center;
-    margin-bottom: 1.5rem;
     color: #00bfff;
-  }
-
-
-.form_input {
-    margin-bottom: 1rem;
-    display: flex;
-    flex-direction: column;
-}
-
-.form_input label {
-    margin-bottom: 0.3rem;
-    font-weight: 500;
-    color: #cccccc;
-}
-
-.input,
-    textarea {
-        padding: 0.75rem;
-        border: none;
-        border-radius: 8px;
-        background-color: #f0f0f0;
-        color: #000;
-        font-size: 1rem;
-        resize: vertical;
-        font-family: inherit;
-        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.input:focus, textarea:focus {
-    outline: none;
-    border: 2px solid #00bfff;
-    background-color: #ffffff;
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
   }
   
-  /* Botón de enviar */
+  .form_input {
+    margin-bottom: 1.2rem;
+  }
+  
+  .form_input label {
+    display: block;
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+    color: #00bfff;
+  }
+  
+  .form_input label + label {
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: normal;
+    margin-bottom: 0.6rem;
+    display: block;
+  }
+  
+  .form_input textarea {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: #444;
+    color: #fff;
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  textarea:focus {
+    outline: none;
+    border-color: #00bfff;
+    background-color: #555;
+  }
+  
+  .alert {
+    margin-top: 0.5rem;
+    color: #ff6b6b;
+    font-size: 0.9rem;
+  }
+  
   .form_action {
     text-align: center;
     margin-top: 1.5rem;
   }
   
-  .form_action button {
+  .btn {
     background-color: #00bfff;
     color: white;
-    padding: 12px 24px;
+    padding: 10px 20px;
     border: none;
     border-radius: 8px;
     font-weight: bold;
     font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: background-color 0.2s ease;
   }
   
-  .form_action button:hover {
+  .btn:hover {
     background-color: #009acd;
-    transform: scale(1.03);
   }
   
-
-  @media (max-width: 400px) {
+  /* 🌒 DARK MODE */
+  body.dark-mode .Card {
+    background-color: #f0f0f0;
+    color: #111;
+  }
+  
+  body.dark-mode .form_input label {
+    color: #007acc;
+  }
+  
+  body.dark-mode .form_input label + label {
+    color: #111;
+  }
+  
+  body.dark-mode textarea {
+    background-color: #ddd;
+    color: #111;
+  }
+  
+  body.dark-mode .btn {
+    background-color: #007acc;
+    color: white;
+  }
+  
+  body.dark-mode .btn:hover {
+    background-color: #005b99;
+  }
+  
+  /* 🖥 Pantallas grandes */
+  @media (min-width: 768px) {
     .Card {
-      padding: 1.5rem 1rem;
+      max-width: 600px;
+      padding: 2rem 2.5rem;
     }
   
-    .form_action button {
-      width: 100%;
+    .Card h1 {
+      font-size: 2rem;
+    }
+  
+    .form_input textarea {
+      min-height: 140px;
+    }
+  
+    .btn {
+      font-size: 1.1rem;
+      padding: 12px 24px;
     }
   }
+  

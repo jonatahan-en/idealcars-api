@@ -74,6 +74,7 @@ body {
     box-sizing: border-box;
 }
 
+
 .mb-2 {
     color: #00bfff;
 }
@@ -455,7 +456,7 @@ footer .mb-0, .footer .mb-0, footer h4, .footer h4 {
 .input:focus {
     background-color: var(--color-placeholder-focus);
     border-color: var(--color-primary);
-    color: var(--color-text);
+    color: #222;
     outline: none;
     box-shadow: 0 0 0 0.2rem rgba(0, 191, 255, 0.25);
 }
