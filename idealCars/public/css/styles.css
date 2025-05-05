@@ -520,50 +520,49 @@ footer .mb-0, .footer .mb-0, footer h4, .footer h4 {
     border-radius: 50%;
 }
 
-/* Estilos para responsividad del header/navbar */
 @media (max-width: 991px) {
-    .navbar-nav {
+    .navbar {
+        padding: 0.5rem 1rem;
+    }
+    .navbar .container-fluid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .navbar-toggler {
+        order: 3; 
         margin-top: 0.5rem;
     }
-    
-    .navbar .container-fluid {
+    .navbar .d-flex.order-lg-last {
+        order: 2;
         flex-wrap: nowrap;
+        align-items: center;
+        gap: 0.5rem;
     }
-    
     .navbar-collapse {
-        max-height: calc(100vh - 60px);
-        overflow-y: auto;
-    }
-    
-    /* Botones responsivos en navbar */
-    .navbar-nav .btn {
+        order: 4;
         width: 100%;
+        margin-top: 0.75rem;
+    }
+    .navbar-collapse .btn {
+        width: 100%;
+        margin-bottom: 0.4rem;
         text-align: left;
-        margin-bottom: 0.3rem;
     }
-    
-    .dropdown {
-        width: 100%;
+    .dropdown-toggle span {
+        display: none; 
     }
-    
-    .dropdown-menu {
-        width: 100%;
+    .dropdown-toggle img {
+        margin-right: 0 !important;
     }
-    
-    /* Mejorar contraste del botón hamburguesa en modo oscuro */
-    .navbar-toggler {
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
-    }
-    
     body.dark-mode .navbar-toggler {
-        /* Botón hamburguesa con mejor contraste en modo oscuro */
         background-color: rgba(255, 255, 255, 0.1);
         border-color: rgba(255, 255, 255, 0.2);
     }
     
     body.dark-mode .navbar-toggler-icon {
-        /* Icono de hamburguesa más visible en modo oscuro */
         filter: invert(1);
         opacity: 0.8;
     }
