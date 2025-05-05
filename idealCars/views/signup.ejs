@@ -34,7 +34,7 @@
           value="<%= phone || ""  %>" 
           autocomplete="tel" 
           placeholder="<%= __('signup.phone_format_example') %>" 
-          pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" 
+          pattern="[0-9]{3}[0-9]{3}[0-9]{3}" 
           title="Format (123-123-123)" />
           <% if(errors.phone)  { %>
             <div class="alert">
