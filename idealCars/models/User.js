@@ -8,6 +8,9 @@ const userSchema = new Schema({
     phone: {type: Number},
     email: { type: String, required:true,  unique: true },
     password: { type: String, required:true },
+    age:{type: Number},
+    ciudad: {type:String}, 
+    image : {type:String}
 })
 
 // método estático que hace un hash de una contraseña
