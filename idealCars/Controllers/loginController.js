@@ -7,7 +7,11 @@ export function getlogin(req,res, next){
     res.render('login', {
         errors: [],
         email:"",
-        password:""
+        password:"",
+        redirectMessage: req.query.from === 'newad' 
+            ? 'Debes iniciar sesión para crear anuncios' 
+            : undefined
+
     }
         
     )

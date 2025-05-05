@@ -22,8 +22,7 @@
           <strong><%= __('login.email') %></strong>
         </label>
         <input class="input" type="email" id="email" placeholder="<%= __('login.email') %>" autocomplete="off" name="email" 
-        value="<%= email || ''  %>" required />
-    
+          value="<%= email || ''  %>" required /> 
       </div>
       <div class="form_input">
         <label for="password">
@@ -31,7 +30,7 @@
         </label>
         <input class="input" type="password" id="password" required placeholder="<%= __('login.password') %>" name="password"  value="<%= password || '' %>"  />
         <% if(errors.password || errors.email)  { %>
-          <div class="alert">
+          <div class="validate">
             <%= errors.password.msg %>
           </div>
         <% } %>

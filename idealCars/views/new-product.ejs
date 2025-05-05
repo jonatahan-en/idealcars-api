@@ -14,7 +14,7 @@
         <label for="name" style="color: #00bfff"><%= __('newProduct.name') %></label>
         <input class="input" type="text" id="name" name="name" value="<%= name || ''  %>" required >
         <% if (errors.name) { %>
-          <div class="alert" role="alert">
+          <div class="validate" role="alert">
             <%= errors.name.msg %>
           </div>
         <% } %>
@@ -23,7 +23,7 @@
         <label for="model" style="color: #00bfff"><%= __('newProduct.model') %></label>
         <input class="input" type="text" id="model" name="model" value="<%= model || '' %>" required >
         <% if (errors.model) { %>
-          <div class="alert" role="alert">
+          <div class="validate" role="alert">
             <%= errors.model.msg %>
           </div>
         <% } %>
@@ -32,7 +32,7 @@
         <label for="color" style="color:#00bfff"><%= __('newProduct.color') %></label>
         <input class="input" type="text" id="color" name="color" value="<%= color || '' %>" required>
         <% if (errors.color) { %>
-          <div class="alert" role="alert">
+          <div class="validate" role="alert">
             <%= errors.color.msg %>
           </div>
         <% } %>
@@ -41,7 +41,7 @@
         <label for="year" style="color:#00bfff"><%= __('newProduct.year') %></label>
         <input class="input" type="number" id="year" name="year" value="<%= year || '' %>" required>
         <% if (errors.year) { %>
-          <div class="alert" role="alert">
+          <div class="validate" role="alert">
             <%= errors.year.msg %>
           </div>
         <% } %>
@@ -50,7 +50,7 @@
         <label for="price" style="color: #00bfff"><%= __('newProduct.price') %></label>
         <input class="input" type="number" id="price" name="price" value="<%= price || '' %>" required>
         <% if (errors.price) { %>
-          <div class="alert" role="alert">
+          <div class="validate" role="alert">
             <%= errors.price.msg %>
           </div>
         <% } %>
@@ -59,7 +59,7 @@
         <label for="kilometer" style="color:#00bfff"><%= __('newProduct.kilometer') %></label>
         <input class="input" type="number" id="kilometer" name="kilometer" value="<%= kilometer || '' %>" required>
         <% if (errors.kilometer) { %>
-          <div class="alert" role="alert">
+          <div class="validate" role="alert">
             <%= errors.kilometer.msg %>
           </div>
         <% } %>
