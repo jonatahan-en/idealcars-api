@@ -9,17 +9,10 @@
 </div>
 <main class="main-bg-container container py-3">
     <h3 class="mb-2" style="font-size:1.5rem; font-weight:600;">🚗 <%= __('home.welcome') %> <% if(session.userName) { %>🫂 <%= session.userName %><% } %></h3>
-    <% if (!session.userId) { %>
-        <div class="alert alert-info mb-2" role="alert">
-            <%= __('home.loginPrompt') %>
-        </div>
-    <% } %>
     <h2 class="mb-2"><%= __('home.userProducts') %></h2>
-    
     <button class="filter-button" onclick="toggleFilters()">
         <i class="bi bi-funnel-fill"></i> Filtros
     </button>
-    
     <div id="filter-form" style="display: none;">
         <form action="/" method="GET" class="filter-form">
             <div class="row g-2">
@@ -66,11 +59,11 @@
                             <img src="https://placehold.co/600x400?text=<%= product.name %>" class="card-img-top" alt="<%= product.name %>">
                         <% } %>
                         <div class="card-body d-flex flex-column">
-                            <h5 class="card-title"><%= product.name %> - <%= product.model %></h5>
-                            <p class="card-text mb-1"><strong><%= __('home.product.color') %>:</strong> <%= product.color %></p>
-                            <p class="card-text mb-1"><strong><%= __('home.product.year') %>:</strong> <%= product.year %></p>
-                            <p class="card-text mb-1"><strong><%= __('home.product.price') %>:</strong> <%= typeof product.price !== 'undefined' ? product.price.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' }) : '' %></p>
-                            <p class="card-text mb-2"><strong><%= __('home.product.kilometer') %>:</strong> <%= typeof product.kilometer !== 'undefined' ? product.kilometer.toLocaleString('es-ES') : '' %> km</p>
+                            <h5 class="card-title">🚗 <%= product.name %> - <%= product.model %></h5>
+                            <p class="card-text mb-1">🎨 <strong><%= __('home.product.color') %>:</strong> <%= product.color %></p>
+                            <p class="card-text mb-1">📅 <strong><%= __('home.product.year') %>:</strong> <%= product.year %></p>
+                            <p class="card-text mb-1">💶 <strong><%= __('home.product.price') %>:</strong> <%= typeof product.price !== 'undefined' ? product.price.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' }) : '' %></p>
+                            <p class="card-text mb-2">🏁 <strong><%= __('home.product.kilometer') %>:</strong> <%= typeof product.kilometer !== 'undefined' ? product.kilometer.toLocaleString('es-ES') : '' %> km</p>
                         </div>
                         <a href="/products/detail/<%= product.id%>" class="btn btn-primary mt-auto">Detalles</a>
                     </div>

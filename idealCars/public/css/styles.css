@@ -442,20 +442,20 @@ footer .mb-0, .footer .mb-0, footer h4, .footer h4 {
 .input {
     width: 100%;
     padding: 0.75rem;
-    background-color: var(--color-input-dark-bg);
-    border: 1px solid var(--color-input-dark-border);
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
     border-radius: 4px;
-    color: var(--color-text);
+    color: #222222;
 }
 
 .input::placeholder {
-    color: var(--color-text-placeholder);
+    color: #777777;
     opacity: 1;
 }
 
 .input:focus {
-    background-color: var(--color-placeholder-focus);
-    border-color: var(--color-primary);
+    background-color: #eafaff;
+    border-color: #00bfff;
     color: #222;
     outline: none;
     box-shadow: 0 0 0 0.2rem rgba(0, 191, 255, 0.25);
