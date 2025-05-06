@@ -29,9 +29,9 @@
           <strong><%= __('login.password') %></strong>
         </label>
         <input class="input" type="password" id="password" required placeholder="<%= __('login.password') %>" name="password"  value="<%= password || '' %>"  />
-        <% if(errors.password || errors.username)  { %>
+        <% if(locals.errors && (errors.password || errors.username))  { %>
           <div class="validate">
-            <%= errors.password.msg %>
+            <%= (errors.password || errors.username).msg %>
           </div>
         <% } %>
       </div>

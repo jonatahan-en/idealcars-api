@@ -25,14 +25,15 @@ export async function ValidateLogin(req, res,next) {
     await body('username')
     .notEmpty().withMessage("El username es obligatorio")
     .trim()
-    .isAlpha('es-ES', { ignore: ' ' }).withMessage('El nombre solo puede contener letras')
-    .isLength({ min: 3 , max: 10 }).withMessage('Debe tener como mínimo 3 caracteres y máximo 10')
+    .custom(value => !value.includes('@')).withMessage('Invalid Credentials')
+    .matches(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 -]+$/).withMessage('Invalid Credentials. Recuerda el formato')
+    .isLength({ min: 3 , max: 10 }).withMessage('Invalid Credentials. Recuerda la longitud')
     .escape()
     .run(req),
 
     
     await body('password')
-    .notEmpty().withMessage('Email and Password Required')
+    .notEmpty().withMessage('Username and Password Required')
     .matches(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[=@#$])/).withMessage('Invalid Credentials')
     .isLength({ min: 8 }).withMessage('Invalid Credentials')
     .run(req)
@@ -59,8 +60,16 @@ export async function PostLogIn(req,res,next){
         const user = await User.findOne({username: username.toLowerCase()})
         if(!user || !(await user.comparePassword(password))){  
             
-            res.render('login')
-            return
+            return res.render('login', {
+                errors: { 
+                    password: { 
+                        msg: 'Invalid Credentials' ,
+                       
+                    } 
+                },
+                username: '', 
+                password: ''
+            });
             
         }
 

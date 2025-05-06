@@ -20,7 +20,7 @@ export async function ValidateRegister(req, res,next) {
     await body('name')
     .notEmpty().withMessage("El nombre es obligatorio")
     .trim()
-    .isAlpha('es-ES', { ignore: ' ' }).withMessage('El nombre solo puede contener letras')
+    .matches(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 -]+$/).withMessage()
     .isLength({ min: 3 , max: 10 }).withMessage('Debe tener como mínimo 3 caracteres y máximo 10')
     .escape()
     .run(req),
@@ -50,8 +50,8 @@ export async function ValidateRegister(req, res,next) {
 
     await body('password')
     .notEmpty().withMessage('Must put a password')
-    .isLength({min: 7}).withMessage('Password must contains atleast 7 characteres')
-    .matches(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[=@#$])/).withMessage("Debe contener al menos una mayúscula ,una minúscula y uno de estos carácteres especiales: =@#$")
+    .isLength({min: 8}).withMessage('Password must contains atleast 8 characteres')
+    .matches(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[=@#$])/).withMessage("Debe contener al menos una mayúscula ,una minúscula, un número y uno de estos carácteres especiales: =@#$")
     .run(req)
   
     const errors = validationResult(req)
