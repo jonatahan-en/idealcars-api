@@ -17,38 +17,38 @@
     <h2 class="mb-2"><%= __('home.userProducts') %></h2>
     
     <button class="filter-button" onclick="toggleFilters()">
-        <i class="bi bi-funnel-fill"></i> Filtros
+        <i class="bi bi-funnel-fill"></i> <%= __('common.filter') %>
     </button>
     
     <div id="filter-form" style="display: none;">
         <form action="/" method="GET" class="filter-form">
             <div class="row g-2">
                 <div class="col-6 col-sm-4 col-md-2">
-                    <label for="name">Nombre:</label>
-                    <input type="text" id="name" name="name" placeholder="Nombre del producto">
+                    <label for="name"><%= __('home.product.name') %>:</label>
+                    <input type="text" id="name" name="name" placeholder="<%= __('home.product.name') %>">
                 </div>
                 <div class="col-6 col-sm-4 col-md-2">
-                    <label for="model">Modelo:</label>
-                    <input type="text" id="model" name="model" placeholder="Modelo">
+                    <label for="model"><%= __('home.product.model') %>:</label>
+                    <input type="text" id="model" name="model" placeholder="<%= __('home.product.model') %>">
                 </div>
                 <div class="col-6 col-sm-4 col-md-2">
-                    <label for="color">Color:</label>
-                    <input type="text" id="color" name="color" placeholder="Color">
+                    <label for="color"><%= __('home.product.color') %>:</label>
+                    <input type="text" id="color" name="color" placeholder="<%= __('home.product.color') %>">
                 </div>
                 <div class="col-6 col-sm-4 col-md-2">
-                    <label for="year">Año:</label>
-                    <input type="number" id="year" name="year" placeholder="Año">
+                    <label for="year"><%= __('home.product.year') %>:</label>
+                    <input type="number" id="year" name="year" placeholder="<%= __('home.product.year') %>">
                 </div>
                 <div class="col-6 col-sm-4 col-md-2">
-                    <label for="price">Precio:</label>
-                    <input type="number" id="price" name="price" placeholder="Precio">
+                    <label for="price"><%= __('home.product.price') %>:</label>
+                    <input type="number" id="price" name="price" placeholder="<%= __('home.product.price') %>">
                 </div>
                 <div class="col-6 col-sm-4 col-md-2">
-                    <label for="kilometer">Kilometraje:</label>
-                    <input type="number" id="kilometer" name="kilometer" placeholder="Km">
+                    <label for="kilometer"><%= __('home.product.kilometer') %>:</label>
+                    <input type="number" id="kilometer" name="kilometer" placeholder="<%= __('home.product.kilometer') %>">
                 </div>
                 <div class="col-12 text-center">
-                    <button type="submit" class="btn btn-primary mt-2">Aplicar Filtros</button>
+                    <button type="submit" class="btn btn-primary mt-2"><%= __('common.filter') %></button>
                 </div>
             </div>
         </form>
