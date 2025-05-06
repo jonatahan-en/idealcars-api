@@ -51,7 +51,7 @@ export async function ValidateRegister(req, res,next) {
     await body('password')
     .notEmpty().withMessage('Must put a password')
     .isLength({min: 8}).withMessage('Password must contains atleast 8 characteres')
-    .matches(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[=@#$])/).withMessage("Debe contener al menos una mayúscula ,una minúscula, un número y uno de estos carácteres especiales: =@#$")
+    .matches(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[=@#$])/).withMessage("Debe tener al menos: 8 caracetres, una mayúscula ,una minúscula, un número y uno de estos carácteres especiales: =@#$")
     .run(req)
   
     const errors = validationResult(req)
