@@ -59,7 +59,14 @@ export async function PostLogIn(req,res,next){
         if(!user || !(await user.comparePassword(password))){  
             
             
-          return  res.redirect('signup')
+              return res.render('login', {
+                errors: {
+                    auth: { msg: 'Credenciales inválidas. Por favor, verifica tu email y contraseña' }
+                },
+                email: req.body.email,
+                password: ''  // Por seguridad no devolvemos la contraseña
+            });
+            
             
             
         }
