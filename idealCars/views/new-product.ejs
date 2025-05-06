@@ -1,56 +1,91 @@
 <%- include('header.ejs') %>
 
+
 <link rel="stylesheet" href="/css/new-product.css">
+<link rel="stylesheet" href="style.css">
 <main class="main-bg-container">
+ 
   <section class="FormCard">
     <h1 class="mb-4 text-center"><%= __('newProduct.title') %></h1>
-    <form action="/products/new" method="POST" enctype="multipart/form-data">
-    <div class="header-banner">
+    <form action="/products/new" method="POST" enctype="multipart/form-data" novalidate>
+    
 
-      
       <div class="form_input mb-3">
         <label for="name" style="color: #00bfff"><%= __('newProduct.name') %></label>
-        <input class="input" type="text" id="name" name="name" required>
+        <input class="input" type="text" id="name" name="name" value="<%= name || ''  %>" required >
+        <% if (errors.name) { %>
+          <div class="validate" role="alert">
+            <%= errors.name.msg %>
+          </div>
+        <% } %>
       </div>
       <div class="form_input mb-3">
         <label for="model" style="color: #00bfff"><%= __('newProduct.model') %></label>
-        <input class="input" type="text" id="model" name="model" required>
+        <input class="input" type="text" id="model" name="model" value="<%= model || '' %>" required >
+        <% if (errors.model) { %>
+          <div class="validate" role="alert">
+            <%= errors.model.msg %>
+          </div>
+        <% } %>
       </div>
       <div class="form_input mb-3">
-        <label for="color" style="color: #00bfff"><%= __('newProduct.color') %></label>
-        <input class="input" type="text" id="color" name="color" required>
+        <label for="color" style="color:#00bfff"><%= __('newProduct.color') %></label>
+        <input class="input" type="text" id="color" name="color" value="<%= color || '' %>" required>
+        <% if (errors.color) { %>
+          <div class="validate" role="alert">
+            <%= errors.color.msg %>
+          </div>
+        <% } %>
       </div>
       <div class="form_input mb-3">
-        <label for="year" style="color: #00bfff"><%= __('newProduct.year') %></label>
-        <input class="input" type="number" id="year" name="year" required>
+        <label for="year" style="color:#00bfff"><%= __('newProduct.year') %></label>
+        <input class="input" type="number" id="year" name="year" value="<%= year || '' %>" required>
+        <% if (errors.year) { %>
+          <div class="validate" role="alert">
+            <%= errors.year.msg %>
+          </div>
+        <% } %>
       </div>
       <div class="form_input mb-3">
         <label for="price" style="color: #00bfff"><%= __('newProduct.price') %></label>
-        <input class="input" type="number" id="price" name="price" required>
+        <input class="input" type="number" id="price" name="price" value="<%= price || '' %>" required>
+        <% if (errors.price) { %>
+          <div class="validate" role="alert">
+            <%= errors.price.msg %>
+          </div>
+        <% } %>
       </div>
       <div class="form_input mb-3">
-        <label for="kilometer" style="color: #00bfff"><%= __('newProduct.kilometer') %></label>
-        <input class="input" type="number" id="kilometer" name="kilometer" required>
+        <label for="kilometer" style="color:#00bfff"><%= __('newProduct.kilometer') %></label>
+        <input class="input" type="number" id="kilometer" name="kilometer" value="<%= kilometer || '' %>" required>
+        <% if (errors.kilometer) { %>
+          <div class="validate" role="alert">
+            <%= errors.kilometer.msg %>
+          </div>
+        <% } %>
       </div>
       <div class="form_input mb-3">
         <label for="image" style="color: #00bfff"><%= __('newProduct.image') %></label>
-        <input class="input" type="file" id="images" name="images" multiple>
+        <input class="input" type="file" accept=".jpg, .png, jpeg" id="images" name="images" multiple>
         <div id="preview-container" style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;"></div>
       </div>
       <div class="form_action">
         <button type="submit" class="btn btn-primary"><%= __('newProduct.create') %></button>
       </div>
+    </div>
     </form>
   </section>
 </main>
+
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Efecto de focus para los inputs
-    const inputs = document.querySelectorAll('.input');
-    
-    inputs.forEach(input => {
-      input.addEventListener('focus', function() {
-        this.parentElement.classList.add('active');
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Efecto de focus para los inputs
+  const inputs = document.querySelectorAll('.input');
+  
+  inputs.forEach(input => {
+    input.addEventListener('focus', function() {
+      this.parentElement.classList.add('active');
       });
       
       input.addEventListener('blur', function() {
@@ -89,7 +124,7 @@
         }
       });
     }
-    
+    /*
     // Validación básica de formulario con feedback visual
     const form = document.querySelector('form');
     form.addEventListener('submit', function(event) {
@@ -102,7 +137,7 @@
           input.style.borderColor = '#ff6b6b';
           setTimeout(() => {
             input.style.borderColor = '#ddd';
-          }, 2000);
+          }, 500);
         }
       });
       
@@ -115,6 +150,7 @@
         submitBtn.style.opacity = '0.8';
       }
     });
+    */
   });
 
   document.querySelector('input[type="file"]').addEventListener('change', function (e) {

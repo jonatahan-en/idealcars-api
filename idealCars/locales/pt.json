@@ -12,8 +12,7 @@
 			"price": "Preço",
 			"kilometer": "Quilômetros",
 			"image": "Imagem",
-			"owner": "Proprietário",
-			"brand": "Marca"
+			"owner": "Proprietário"
 		},
 		"guest": "Convidado",
 		"noProducts": "Você ainda não tem produtos. Adicione alguns!"

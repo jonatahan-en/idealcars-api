@@ -2,30 +2,61 @@
 
 <main class="container py-5">
     <h1>Editar Producto</h1>
-    <form action="/myproducts/<%= product._id %>?_method=PUT" method="POST">
+    <form action="/myproducts/<%= product._id %>?_method=PUT" method="POST" novalidate>
+       
         <div class="mb-3">
             <label for="name" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="name" name="name" value="<%= product.name %>" required>
+            <input type="text" class="form-control" id="name" name="name" value="<%= product.name  %>" required>
+            <% if (product.errors && product.errors.name) { %>
+                <div class="validate" role="alert">
+                  <%= product.errors.name.msg %>
+                </div>
+              <% } %>
         </div>
         <div class="mb-3">
             <label for="model" class="form-label">Modelo</label>
             <input type="text" class="form-control" id="model" name="model" value="<%= product.model %>" required>
+            <% if (product.errors && product.errors.model) { %>
+                <div class="validate" role="alert">
+                  <%= product.errors.model.msg %>
+                </div>
+              <% } %>
         </div>
         <div class="mb-3">
             <label for="color" class="form-label">Color</label>
             <input type="text" class="form-control" id="color" name="color" value="<%= product.color %>" required>
+            <% if (product.errors && product.errors.color) { %>
+                <div class="validate" role="alert">
+                  <%= product.errors.color.msg %>
+                </div>
+              <% } %>
         </div>
         <div class="mb-3">
             <label for="year" class="form-label">Año</label>
             <input type="number" class="form-control" id="year" name="year" value="<%= product.year %>" required>
+            <% if (product.errors && product.errors.year) { %>
+                <div class="validate" role="alert">
+                  <%= product.errors.year.msg %>
+                </div>
+              <% } %>
         </div>
         <div class="mb-3">
             <label for="price" class="form-label">Precio</label>
             <input type="number" class="form-control" id="price" name="price" value="<%= product.price %>" required>
+            <% if (product.errors && product.errors.price) { %>
+                <div class="validate" role="alert">
+                  <%= product.errors.price.msg %>
+                </div>
+              <% } %>
         </div>
         <div class="mb-3">
             <label for="kilometer" class="form-label">Kilometraje</label>
             <input type="number" class="form-control" id="kilometer" name="kilometer" value="<%= product.kilometer %>" required>
+            <% if (product.errors && product.errors.kilometer) { %>
+                <div class="validate" role="alert">
+                  <%= product.errors.kilometer.msg %>
+                </div>
+              <% } %>
         </div>
         <button type="submit" class="btn btn-primary">Guardar Cambios</button>
     </form>

@@ -12,20 +12,10 @@
 			"price": "Precio",
 			"kilometer": "Kilómetros",
 			"image": "Imagen",
-			"owner": "Propietario",
-			"brand": "Marca"
+			"owner": "Propietario"
 		},
 		"guest": "Invitado",
-		"noProducts": "No tienes productos aún. ¡Añade algunos!",
-		"filters": {
-			"name": "Marca",
-			"model": "Modelo",
-			"color": "Color",
-			"year": "Año",
-			"price": "Precio",
-			"kilometer": "Kilometraje",
-			"button": "Aplicar Filtros"
-		}
+		"noProducts": "No tienes productos aún. ¡Añade algunos!"
 	},
 	"signup": {
 		"title": "Registro",
