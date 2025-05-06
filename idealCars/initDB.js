@@ -43,9 +43,9 @@ async function initUser(){
     const deleteResult = await User.deleteMany();
     console.log(`Deleted ${deleteResult.deletedCount} users`)
     const insertResult = await User.insertMany([
-        {name:"juan", email:"juan@example.com", password: await User.hashPassword("1234")},
-        {name:"jose", email:"jose@example.com", password: await User.hashPassword("1234")},
-        {name:"jorge", email:"jorge@example.com", password: await User.hashPassword("1234")}
+        {name:"juan", email:"juan@example.com", password: await User.hashPassword("GABInico22@")},
+        {name:"jose", email:"jose@example.com", password: await User.hashPassword("GABInico22@")},
+        {name:"jorge", email:"jorge@example.com", password: await User.hashPassword("GABInico22@")}
     ])
     console.log(`Create ${insertResult.length} users`)
 }
