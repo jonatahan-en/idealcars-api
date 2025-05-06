@@ -54,7 +54,16 @@ export async function PostLogIn(req, res, next) {
 
     const user = await User.findOne({ email: email.toLowerCase() });
     if (!user || !(await user.comparePassword(password))) {
-      return res.render("login", {});
+        return res.render('login', {
+            errors: { 
+                password: { 
+                    msg: 'Invalid Credentials' ,
+                   
+                } 
+            },
+            username: '', 
+            password: ''
+        });
     }
 
     // si el usuario existe y la contraseña es correcta --> apuntar en su sesión que está loggado.
