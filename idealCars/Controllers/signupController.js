@@ -81,7 +81,6 @@ export async function postSignup(req,res,next){
                 const NewUser = await User.create({
                     name: name.toLowerCase(), 
                     email: email.toLowerCase(),
-                    phone: phone,
                     password: hashedPassword,
                 })
                 
