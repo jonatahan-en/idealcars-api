@@ -22,7 +22,7 @@ export async function ValidateRegister(req, res,next) {
     .isAlpha('es-ES', { ignore: ' ' }).withMessage('El nombre solo puede contener letras')
     .isLength({ min: 3 , max: 10 }).withMessage('Debe tener como mínimo 3 caracteres y máximo 10')
     .escape()
-    .run(req),
+    .run(req);
 
 
     await body('email')
@@ -30,13 +30,13 @@ export async function ValidateRegister(req, res,next) {
     .isEmail().withMessage('Must be a valid email format')
     .normalizeEmail()
     .escape()
-    .run(req),
+    .run(req);
 
     await body('phone')
     .optional({checkFalsy: true})
     .escape()
     .matches(/^[0-9]{3}-[0-9]{3}-[0-9]{3}$/).withMessage('Number is incorrect it must be in this format 123-123-123')
-    .run(req),
+    .run(req);
 
     await body('password')
     .notEmpty().withMessage('Must put a password')
