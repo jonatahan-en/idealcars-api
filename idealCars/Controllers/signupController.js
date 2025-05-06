@@ -21,7 +21,7 @@ export async function ValidateRegister(req, res,next) {
     .notEmpty().withMessage("El nombre es obligatorio")
     .trim()
     .matches(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 -]+$/).withMessage()
-    .isLength({ min: 3 , max: 10 }).withMessage('Debe tener como mínimo 3 caracteres y máximo 10')
+    .isLength({ min: 3 , max: 15 }).withMessage('Debe tener como mínimo 3 caracteres y máximo 15')
     .escape()
     .run(req),
 
@@ -29,8 +29,8 @@ export async function ValidateRegister(req, res,next) {
     await body('username')
     .notEmpty().withMessage("El username es obligatorio")
     .trim()
-    .isAlpha('es-ES', { ignore: ' ' }).withMessage('El nombre de usuario solo puede contener letras')
-    .isLength({ min: 3 , max: 10 }).withMessage('Debe tener como mínimo 3 caracteres y máximo 10')
+    .matches(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 -]+$/).withMessage()
+    .isLength({ min: 3 , max: 15 }).withMessage('Debe tener como mínimo 3 caracteres y máximo 15')
     .escape()
     .run(req),
 

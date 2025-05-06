@@ -18,7 +18,7 @@ export function getlogin(req,res, next){
 }
 export async function ValidateLogin(req, res,next) {
         
-    // Validamos el campo 'name' asegurándonos de que no esté vacío
+   
    
 
 
