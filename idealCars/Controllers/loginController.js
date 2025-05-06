@@ -58,8 +58,9 @@ export async function PostLogIn(req,res,next){
         const user = await User.findOne({email: email.toLowerCase()})
         if(!user || !(await user.comparePassword(password))){  
             
-            res.render('login')
-            return
+            
+          return  res.redirect('signup')
+            
             
         }
 
