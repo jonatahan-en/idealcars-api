@@ -192,10 +192,9 @@ footer .mb-0, .footer .mb-0, footer h4, .footer h4 {
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-/* Card para anuncios/productos - MOBILE FIRST */
 .ProductCard {
     max-width: 340px;
-    min-width: 260px;
+    min-width: 227px;
     margin-left: auto;
     margin-right: auto;
     border: 1px solid #eaeaea;
@@ -203,10 +202,10 @@ footer .mb-0, .footer .mb-0, footer h4, .footer h4 {
     color: var(--color-card-text);
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-    padding: 1rem 1rem 1.2rem 1rem;
+    padding: 1rem 1rem 0.5rem 1rem;
     display: flex;
     flex-direction: column;
-    height: 100%;
+    gap: 1px;
 }
 
 .ProductCard .card-img-top, .ProductCard img, .product-grid-img {
@@ -228,11 +227,11 @@ footer .mb-0, .footer .mb-0, footer h4, .footer h4 {
     }
 }
 
-/* Ajuste de espaciados de contenedores */
+
 .cards-container {
     margin-bottom: 1rem;
     display: grid;
-    grid-template-columns: repeat(1, 1fr); /* 1 columna en móviles */
+    grid-template-columns: repeat(1, 1fr); 
     gap: 1.5rem;
     width: 100%;
     justify-content: center;
@@ -240,7 +239,7 @@ footer .mb-0, .footer .mb-0, footer h4, .footer h4 {
 
 @media (min-width: 576px) {
     .cards-container {
-        grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
+        grid-template-columns: repeat(2, 1fr); 
         max-width: 700px;
         margin-left: auto;
         margin-right: auto;
@@ -249,7 +248,7 @@ footer .mb-0, .footer .mb-0, footer h4, .footer h4 {
 
 @media (min-width: 768px) {
     .cards-container {
-        grid-template-columns: repeat(3, 1fr); /* 3 columnas en pantallas medianas */
+        grid-template-columns: repeat(3, 1fr); 
         max-width: 1100px;
         margin-left: auto;
         margin-right: auto;
@@ -258,7 +257,7 @@ footer .mb-0, .footer .mb-0, footer h4, .footer h4 {
 
 @media (min-width: 992px) {
     .cards-container {
-        grid-template-columns: repeat(4, 1fr); /* 4 columnas en pantallas grandes */
+        grid-template-columns: repeat(4, 1fr); 
         max-width: 1400px;
         margin-left: auto;
         margin-right: auto;
@@ -277,22 +276,6 @@ footer .mb-0, .footer .mb-0, footer h4, .footer h4 {
     font-size: 0.875rem;
 }
 
-/* Botón de filtros responsivo */
-.filter-button {
-    display: inline-block;
-    background-color: var(--color-primary);
-    color: white;
-    border: none;
-    border-radius: 0.25rem;
-    padding: 0.375rem 0.75rem;
-    font-size: 0.9rem;
-    cursor: pointer;
-    margin-bottom: 0.5rem;
-}
-
-.filter-button:hover {
-    background-color: var(--color-primary-hover);
-}
 
 #filter-form {
     margin-bottom: 1rem;
@@ -305,7 +288,7 @@ footer .mb-0, .footer .mb-0, footer h4, .footer h4 {
 
 #filter-form form {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 0.75rem;
     width: 100%;
 }
@@ -319,24 +302,31 @@ footer .mb-0, .footer .mb-0, footer h4, .footer h4 {
 }
 
 #filter-form input {
-    min-width: 180px;
-    max-width: 100%;
+    width: 100%;
     height: 42px;
     border-radius: 8px;
     font-size: 1rem;
     padding: 0.5rem 1rem;
     border: 1px solid #ddd;
-    margin-bottom: 0.5rem;
     background-color: var(--color-input-bg);
     color: var(--color-text);
 }
 
-#filter-form input::placeholder {
-    color: #999;
-    font-size: 0.9rem;
+body.dark-mode #filter-form input {
+    background-color: #444;
+    color: #fff;
+    border-color: #666;
 }
 
-#filter-form button {
+#filter-form input::placeholder {
+    color: #666;
+}
+
+body.dark-mode #filter-form input::placeholder {
+    color: #ccc;
+}
+
+#filter-form button, .filter-button{
     background-color: var(--color-primary);
     color: white;
     border: none;
@@ -345,42 +335,55 @@ footer .mb-0, .footer .mb-0, footer h4, .footer h4 {
     font-size: 0.95rem;
     font-weight: 500;
     cursor: pointer;
-    margin-top: 0.5rem;
-    width: 100%;
     transition: background-color 0.3s, transform 0.2s;
 }
+#filter-form button{
+    width: 100%;
+    max-width: 250px;
+    align-self: center;
+}
 
-#filter-form button:hover {
+#filter-form button:hover, .filter-button:hover {
     background-color: var(--color-primary-hover);
     transform: translateY(-2px);
 }
 
-/* Estilos responsive */
+@media (min-width: 576px) {
+    #filter-form form {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    #filter-form input {
+        flex: 1 1 calc(50% - 0.5rem);
+    }
+
+    #filter-form button {
+        width: auto;
+        margin-top: 0.5rem;
+    }
+}
+
+@media (min-width: 768px) {
+    #filter-form input {
+        flex: 1 1 calc(33.33% - 0.5rem);
+    }
+}
+
+@media (min-width: 992px) {
+    #filter-form input {
+        flex: 1 1 calc(25% - 0.5rem);
+    }
+}
+
 @media (min-width: 576px) {
     .main-bg-container {
         padding: 0.75rem;
     }
 
     .cards-container {
-        grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
+        grid-template-columns: repeat(2, 1fr); 
     }
-    
-    .filter-button {
-        font-size: 1rem;
-    }
-    
-    #filter-form form {
-        flex-direction: row;
-    }
-    
-    #filter-form input {
-        width: calc(50% - 0.25rem); /* 2 columnas en tablets */
-    }
-    
-    #filter-form button {
-        width: auto;
-    }
-    
     .navbar {
         padding: 0.5rem 1rem;
     }
@@ -406,11 +409,6 @@ footer .mb-0, .footer .mb-0, footer h4, .footer h4 {
     .product-grid-img {
         height: 180px;
     }
-    
-    #filter-form input {
-        width: calc(33.33% - 0.33rem); /* 3 columnas en pantallas medianas */
-    }
-    
     .footer .row {
         justify-content: center; /* Centrar todo el contenido del footer */
     }
@@ -429,9 +427,6 @@ footer .mb-0, .footer .mb-0, footer h4, .footer h4 {
         height: 200px;
     }
     
-    #filter-form input {
-        width: calc(25% - 0.375rem); /* 4 columnas en pantallas grandes */
-    }
 }
 
 .form_input label {
