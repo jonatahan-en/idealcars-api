@@ -16,19 +16,35 @@ export function setupSocketServer(httpServer) {
 
         // Unir al cliente a la sala del anuncio
         socket.on('join-chat', async (adId) => {
-            const product = await Product.findById(adId);
-            if (!product) {
-                console.error('Anuncio no encontrado');
-                return;
+            try {
+                const product = await Product.findById(adId);
+                if (!product) {
+                    console.error('Anuncio no encontrado');
+                    return;
+                }
+
+                const isOwner = product.owner.toString() === userId;
+
+                // Validar que el usuario sea el propietario o un interesado válido
+                if (!isOwner) {
+                    const interestedUser = await User.findById(userId); // Verifica si el usuario existe
+                    if (!interestedUser) {
+                        console.error('Usuario no válido');
+                        return;
+                    }
+                }
+                // Permitir que el propietario o el interesado se unan al canal
+                const productName = product.name; // oducto
+                const roomId = `chat-${adId}`; // Sala única para el anuncio
+                socket.join(roomId); // Unir al cliente a la sala del anuncio
+                console.log(`Usuario ${userId} se unió al chat del anuncio ${adId}`);
+
+                // Enviar historial de mensajes al cliente
+                const messages = await Message.find({ adId }).sort({ createdAt: 1 });
+                socket.emit('chat-history', { messages, productName, isOwner });
+            } catch (error) {
+                console.error('Error al unirse al chat:', error);
             }
-
-            const productName = product.name; // Nombre del producto
-            socket.join(adId); // Unir al cliente a la sala del anuncio
-            console.log(`Usuario ${userId} se unió al chat del anuncio ${adId}`);
-
-            // Enviar historial de mensajes al cliente, incluyendo el nombre del producto
-            const messages = await Message.find({ adId }).sort({ createdAt: 1 });
-            socket.emit('chat-history', { messages, productName });
         });
 
         // Escuchar mensajes del cliente
@@ -36,6 +52,26 @@ export function setupSocketServer(httpServer) {
             try {
                 if (!text || !adId || !userId) {
                     console.error('Datos inválidos para el mensaje');
+                    return;
+                }
+
+                const product = await Product.findById(adId);
+                if (!product) {
+                    console.error('Anuncio no encontrado');
+                    return;
+                }
+
+                const isOwner = product.owner.toString() === userId;
+
+                // Validar que al menos uno de los usuarios sea el propietario
+                const roomId = `chat-${adId}`;
+                const socketsInRoom = await io.in(roomId).fetchSockets();
+                const ownerInRoom = socketsInRoom.some(
+                    (s) => s.request.session.userId === product.owner.toString()
+                );
+
+                if (!isOwner && !ownerInRoom) {
+                    console.error('Ninguno de los usuarios en el chat es el propietario');
                     return;
                 }
 
@@ -47,8 +83,8 @@ export function setupSocketServer(httpServer) {
                 const message = new Message({ text, userId, adId });
                 await message.save();
 
-                // Emitir el mensaje a todos los clientes conectados a la sala del anuncio
-                io.to(adId).emit('chat-message', { text, userName, createdAt: message.createdAt});
+                // Emitir el mensaje a todos los clientes conectados a la sala
+                io.to(roomId).emit('chat-message', { text, userName, createdAt: message.createdAt });
             } catch (error) {
                 console.error('Error al procesar el mensaje:', error);
             }

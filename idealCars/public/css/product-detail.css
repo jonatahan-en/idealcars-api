@@ -1,174 +1,143 @@
-/* Estilos específicos para la página de detalle del producto */
-
 .card-container {
-    background-color: var(--color-bg); /* Usa variable de tema */
-    color: var(--color-text); /* Usa variable de tema */
+    background-color: var(--color-bg);
+    color: var(--color-text);
     padding: 1rem;
-    min-height: calc(100vh - 120px); /* Ajusta altura considerando header/footer */
+    min-height: 100vh;
+    padding-bottom: 100px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-top: 2rem; /* Espacio superior */
-    padding-bottom: 2rem; /* Espacio inferior */
+    flex-direction: column;
+    flex: 1; 
 }
 
 .detail-card {
-    background-color: var(--color-bg-card); /* Usa variable de tema */
-    color: var(--color-text-light); /* Usa variable de tema para texto dentro de la card */
+    background-color: var(--color-bg-card);
     border-radius: 12px;
-    padding: 1.5rem; /* Padding estándar */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Sombra sutil */
-    width: 95%; /* Ancho responsivo */
-    max-width: 800px; /* Ancho máximo aumentado para pantallas grandes */
+    padding: 26px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    max-width: 100%;
     margin: auto;
-    border-top: 4px solid var(--color-primary); /* Borde superior como en FormCard */
 }
 
 .detail-card h2 {
-    font-size: 1.75rem; /* Tamaño ajustado */
-    margin-bottom: 1rem;
-    color: var(--color-primary); /* Usa variable de tema */
+    font-size: 26px;
+    margin-bottom: 16px;
+    color: #00bfff;
     text-align: center;
-    font-weight: 600;
 }
 
 .detail-card p {
-    font-size: 1rem; /* Tamaño estándar */
-    margin: 0.6rem 0;
-    color: var(--color-text-light); /* Asegura contraste en modo oscuro */
-    line-height: 1.6;
+    font-size: 16px;
+    margin: 10px 0;
+    color: var(--color-text-dark);
 }
 
-/* Estilos del carrusel */
 .carousel-container {
     position: relative;
     width: 100%;
-    max-width: 500px; /* Ancho máximo del carrusel */
-    margin: 1.5rem auto; /* Margen vertical y centrado horizontal */
+    max-width: 500px;
+    margin: 2rem auto;
     overflow: hidden;
-    border-radius: 8px; /* Bordes redondeados */
 }
 
 .carousel-container img {
     width: 100%;
     height: auto;
-    max-height: 350px; /* Altura máxima de imagen */
-    object-fit: cover; /* Asegura que la imagen cubra el área */
-    display: none; /* Ocultar todas por defecto */
-    border-radius: 8px; /* Bordes redondeados para la imagen */
-}
-
-.carousel-container img:first-child {
-    display: block; /* Mostrar la primera imagen por defecto */
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    display: none;
 }
 
 .carousel-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.6); /* Fondo semitransparente */
+    background-color: rgba(0,0,0,0.5);
     color: white;
     border: none;
-    padding: 0.5rem 0.8rem; /* Padding ajustado */
-    font-size: 1.25rem; /* Tamaño de icono */
+    padding: 10px;
+    font-size: 20px;
     cursor: pointer;
     z-index: 2;
-    border-radius: 50%; /* Botones redondos */
-    transition: background-color 0.3s ease;
-    width: 40px; /* Ancho fijo */
-    height: 40px; /* Alto fijo */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.carousel-btn:hover {
-    background-color: rgba(0, 0, 0, 0.8); /* Más oscuro al pasar el ratón */
+    border-radius: 4px;
 }
 
 .carousel-btn.prev {
-    left: 10px; /* Posición izquierda */
+left: 5px;
 }
 
 .carousel-btn.next {
-    right: 10px; /* Posición derecha */
+right: 5px;
 }
 
-/* Estilos de los botones de acción */
-.contact-btn, .home-btn {
-    /* Hereda estilos de .btn de styles.css */
-    display: block; /* Ocupa todo el ancho */
-    width: 100%;
-    margin-top: 1rem; /* Espacio superior */
-    padding: 0.6rem 1rem; /* Padding ajustado */
-    font-size: 1rem;
-    font-weight: 600; /* Texto más grueso */
-    text-align: center;
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+  }
+  
+  .action-btn {
+    background-color: #00bfff;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: none;
     text-decoration: none;
-    border-radius: 6px; /* Bordes redondeados */
+    text-align: center;
+    font-weight: bold;
     cursor: pointer;
-}
-
-.contact-btn {
-    background-color: var(--color-primary) !important; /* Usa variable de tema */
-    color: white !important; /* Texto blanco */
+    transition: background-color 0.2s ease;
+    min-width: 120px;
+  }
+  
+  .action-btn:hover {
+    background-color: #009acd;
+  }
+  
+  .email-form {
+    margin: 0;
+  }
+  
+  .home-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+  
+  .home-btn {
+    background-color: #00bfff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
     border: none;
-}
-
-.contact-btn:hover {
-    background-color: var(--color-primary-hover) !important; /* Usa variable de tema */
-    transform: translateY(-2px); /* Efecto hover sutil */
-    box-shadow: 0 4px 8px rgba(0, 191, 255, 0.2);
-}
-
-.home-btn {
-    background-color: #6c757d !important; /* Color secundario (gris) */
-    color: white !important;
-    border: none;
-    margin-bottom: 1rem; /* Margen inferior */
-}
-
-.home-btn:hover {
-    background-color: #5a6268 !important; /* Gris más oscuro */
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-}
-
-/* Media queries para ajustar tamaños en diferentes pantallas */
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+  }
+  
+  .home-btn:hover {
+    background-color: #009acd;
+  }
 @media (min-width: 768px) {
-    .detail-card {
-        padding: 2rem; /* Más padding en pantallas grandes */
-        width: 90%;
-    }
-
-    .detail-card h2 {
-        font-size: 2rem; /* Título más grande */
-    }
-
-    .detail-card p {
-        font-size: 1.1rem; /* Texto ligeramente más grande */
-    }
-    
-    .carousel-container {
-        max-width: 600px; /* Aumentar ancho del carrusel en pantallas grandes */
-    }
-    
-    .carousel-container img {
-        max-height: 400px; /* Mayor altura de imagen en pantallas grandes */
-    }
-}
-
-@media (min-width: 992px) {
-    .detail-card {
-        width: 85%;
-        max-width: 900px; /* Aún más ancho en pantallas más grandes */
-    }
-    
-    .carousel-container {
-        max-width: 700px;
-    }
-    
-    .carousel-container img {
-        max-height: 450px;
+.detail-card {
+    max-width: 600px;
+    padding: 36px;
+        p{
+            font-size: 18px;
+            color: var(--color-text-dark);
+        }h2 {
+        font-size: 36px;
+        }
+    } 
+    .btn,
+    .action-btn {
+        flex: 0 1 auto;     
+        min-width: 150px;
+        justify-content: center;
     }
 }

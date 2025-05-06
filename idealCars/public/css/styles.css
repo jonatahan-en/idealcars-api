@@ -11,9 +11,9 @@
     --color-bg-card: #222; /* Fondo negro para cards en modo claro */
     --color-header-bg: #f0f0f0;
     --color-footer-bg: #f0f0f0;
-    --color-text: #000000;
-    --color-text-light: #fff;
-    --color-text-dark: #333;
+    --color-text: #f0f0f0; /*AQUI PARA CAMBIAR EL COLOR LETRAS DENTRO DE ANUNCIO CON BG EN BLACK*/
+    --color-text-light: #ffffff;
+    --color-text-dark: #f0f0f0;
     --color-primary: #00bfff;
     --color-primary-hover: #009acd;
     --color-input-bg: #f8f9fa;
@@ -34,9 +34,9 @@ body.dark-mode {
     --color-bg-card: #f0f0f0; /* Fondo blanco para cards en modo oscuro */
     --color-header-bg: #1a1a1a;
     --color-footer-bg: #1a1a1a;
-    --color-text: #f0f0f0;
+    --color-text: #ffffff;
     --color-text-light: #222;
-    --color-text-dark: #f0f0f0;
+    --color-text-dark: #222;
     --color-input-bg: #333;
     --color-placeholder: #444;
     --color-input-dark-bg: #444;
@@ -72,6 +72,10 @@ body {
     flex-direction: column;
     padding: 0.5rem;
     box-sizing: border-box;
+}
+
+.mb-2 {
+    color: #00bfff;
 }
 
 /* Estilos del navbar/header - MOBILE FIRST */

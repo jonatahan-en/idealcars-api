@@ -1,5 +1,8 @@
+<!-- header -->
 <%- include("header.ejs") %>
-<link rel="stylesheet" href="/css/product-detail.css"> <%# Cambio de ruta %>
+<link rel="stylesheet" href="/css/product-detail.css"> 
+<link rel="stylesheet" href="/css/styles.css">
+
 <main class="card-container">
     <section class="detail-card">
         <h2><%= product.name %> - <%= product.model %></h2>
@@ -7,7 +10,6 @@
         <p>📅 <strong><%= __('home.product.year') %>:</strong> <%= product.year %></p>
         <p>💶 <strong><%= __('home.product.price') %>:</strong> <%= typeof product.price !== 'undefined' ? product.price.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' }) : '' %></p>
         <p>🏁 <strong><%= __('home.product.kilometer') %>:</strong> <%= typeof product.kilometer !== 'undefined' ? product.kilometer.toLocaleString('es-ES') : '' %> km</p>
-
         <% if (product.images && product.images.length > 0) { %>
         <div class="carousel-container" id="carousel">
             <% product.images.forEach((image) => { %>
@@ -19,33 +21,32 @@
         <% } else { %>
         <p>No hay imágenes disponibles</p>
         <% } %>
-
-        <a href="/chat/<%= product._id %>" class="contact-btn btn"> <%# Añadida clase btn %>
-            <i class="bi bi-chat-dots"></i> Ir al chat
-        </a>
-        <a href="/" class="home-btn btn"> <%# Añadida clase btn %>
-            <%= __('common.home') %>
-        </a>
+        <div class="button-group">
+        <a href="/chat/<%= product._id %>" class="btn action-btn">💬 Ir al chat</a>
+        <form action="/email" method="get" class="email-form">
+            <input type="hidden" name="productId" value="<%= product._id %>">
+            <button type="submit" class="btn action-btn">📩 Email</button>
+        </form>
+        </div>
+        <div class="home-container">
+            <a href="/" class="btn home-btn">🏠 Inicio</a>
+        </div>
     </section>
 </main>
 
 <script>
-    let currentIndex = 0;
-
-    function moveSlide(direction) {
-        const slides = document.querySelectorAll('#carousel img');
-        const totalSlides = slides.length;
-        slides[currentIndex].style.display = 'none';
-        currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
-        slides[currentIndex].style.display = 'block';
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        const slides = document.querySelectorAll('#carousel img');
-        slides.forEach(slide => slide.style.display = 'none');
-        if (slides.length > 0) {
-        slides[0].style.display = 'block';
-        }
-    });
+let currentIndex = 0;
+function moveSlide(direction) {
+    const slides = document.querySelectorAll('#carousel img');
+    const totalSlides = slides.length;
+    slides[currentIndex].style.display = 'none';
+    currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
+    slides[currentIndex].style.display = 'block';
+}
+document.addEventListener('DOMContentLoaded', () => {
+    const slides = document.querySelectorAll('#carousel img');
+    slides.forEach(slide => slide.style.display = 'none');
+    if (slides.length > 0) slides[0].style.display = 'block';
+});
 </script>
 <%- include("footer.ejs") %>
