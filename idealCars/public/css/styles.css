@@ -97,6 +97,7 @@ body {
     width: auto;
 }
 
+/* Estilos para footer - MOBILE FIRST */
 footer, .footer, .footer.bg-body-tertiary {
     flex-shrink: 0;
     width: 100%;
@@ -109,10 +110,12 @@ footer, .footer, .footer.bg-body-tertiary {
     box-shadow: var(--shadow-footer);
 }
 
+/* Ajustar color del texto en el footer según el tema */
 footer .mb-0, .footer .mb-0, footer h4, .footer h4 {
     color: var(--color-text) !important;
 }
 
+/* Footer responsivo */
 .footer .row {
     display: flex;
     flex-wrap: wrap;
@@ -134,27 +137,30 @@ footer .mb-0, .footer .mb-0, footer h4, .footer h4 {
     gap: 1rem;
     align-items: center;
     justify-content: center;
-    height: 24px; 
+    height: 24px; /* Altura fija para el contenedor */
 }
 
 .social-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 24px; 
-    height: 24px; 
+    width: 24px; /* Tamaño uniforme para los iconos */
+    height: 24px; /* Tamaño uniforme para los iconos */
     transition: transform 0.3s ease, opacity 0.2s ease;
 }
 
 .social-icon img {
-    width: 24px; 
-    height: 24px; 
+    width: 24px; /* Tamaño de la imagen */
+    height: 24px; /* Tamaño de la imagen */
     object-fit: contain;
 }
 
 .social-icon:hover {
     transform: scale(1.2);
     opacity: 0.8;
+}
+.validate{
+    color: #00bfff;
 }
 
 @media (min-width: 768px) {
@@ -183,86 +189,65 @@ footer .mb-0, .footer .mb-0, footer h4, .footer h4 {
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-.cards-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto 1rem;
-    padding: 0 1rem;
-}
-
-/* Tarjeta individual */
+/* Card para anuncios/productos - MOBILE FIRST */
 .ProductCard {
+    max-width: 340px;
+    min-width: 260px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #eaeaea;
     background-color: var(--color-bg-card);
     color: var(--color-card-text);
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-    padding: 1rem;
+    padding: 1rem 1rem 1.2rem 1rem;
     display: flex;
     flex-direction: column;
     height: 100%;
 }
 
-/* Imagen dentro de la tarjeta */
-.ProductCard img {
+.ProductCard .card-img-top, .ProductCard img, .product-grid-img {
     width: 100%;
-    height: 200px;
+    height: 180px;
     object-fit: cover;
     border-radius: 8px 8px 0 0;
     margin-bottom: 0.7rem;
 }
 
-/* Título y texto */
 .ProductCard .card-title,
 .ProductCard .card-text {
     color: var(--color-card-text);
-    margin-bottom: 0.4rem;
 }
-
-/* Botón */
-.ProductCard .btn {
-    margin-top: auto;
-    background-color: var(--color-primary);
-    color: var(--color-text-light);
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 0.25rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.ProductCard .btn:hover {
-    background-color: var(--color-primary-hover);
-}
-
 
 @media (min-width: 900px) {
-    .ProductCard .card-img-top,
-    .ProductCard img,
-    .product-grid-img {
+    .ProductCard .card-img-top, .ProductCard img, .product-grid-img {
         height: 210px;
     }
 }
 
-/* Contenedor responsive */
+/* Ajuste de espaciados de contenedores */
+.cards-container {
+    margin-bottom: 1rem;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); /* 1 columna en móviles */
+    gap: 1.5rem;
+    width: 100%;
+    justify-content: center;
+}
 
-
-@media (min-width: 576px) and (max-width: 767px) {
+@media (min-width: 576px) {
     .cards-container {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
         max-width: 700px;
         margin-left: auto;
         margin-right: auto;
     }
 }
 
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 768px) {
     .cards-container {
-        grid-template-columns: repeat(2, 1fr);
-        max-width: 850px;
+        grid-template-columns: repeat(3, 1fr); /* 3 columnas en pantallas medianas */
+        max-width: 1100px;
         margin-left: auto;
         margin-right: auto;
     }
@@ -270,14 +255,12 @@ footer .mb-0, .footer .mb-0, footer h4, .footer h4 {
 
 @media (min-width: 992px) {
     .cards-container {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(4, 1fr); /* 4 columnas en pantallas grandes */
         max-width: 1400px;
         margin-left: auto;
         margin-right: auto;
     }
 }
-
-
 .pagination {
     margin-top: 1rem !important;
     margin-bottom: 0 !important;
@@ -342,13 +325,7 @@ footer .mb-0, .footer .mb-0, footer h4, .footer h4 {
     border: 1px solid #ddd;
     margin-bottom: 0.5rem;
     background-color: var(--color-input-bg);
-    color: #222; 
-}
-
-body.dark-mode #filter-form input {
-    background-color: #444;
-    color: #fff; 
-    border-color: #666;
+    color: var(--color-text);
 }
 
 #filter-form input::placeholder {
@@ -375,14 +352,14 @@ body.dark-mode #filter-form input {
     transform: translateY(-2px);
 }
 
-
+/* Estilos responsive */
 @media (min-width: 576px) {
     .main-bg-container {
         padding: 0.75rem;
     }
 
     .cards-container {
-        grid-template-columns: repeat(2, 1fr); 
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
     }
     
     .filter-button {
@@ -394,7 +371,7 @@ body.dark-mode #filter-form input {
     }
     
     #filter-form input {
-        width: calc(50% - 0.25rem); 
+        width: calc(50% - 0.25rem); /* 2 columnas en tablets */
     }
     
     #filter-form button {
@@ -420,7 +397,7 @@ body.dark-mode #filter-form input {
     }
 
     .cards-container {
-        grid-template-columns: repeat(3, 1fr); 
+        grid-template-columns: repeat(3, 1fr); /* 3 columnas en pantallas medianas */
     }
     
     .product-grid-img {
@@ -428,11 +405,11 @@ body.dark-mode #filter-form input {
     }
     
     #filter-form input {
-        width: calc(33.33% - 0.33rem); 
+        width: calc(33.33% - 0.33rem); /* 3 columnas en pantallas medianas */
     }
     
     .footer .row {
-        justify-content: center; 
+        justify-content: center; /* Centrar todo el contenido del footer */
     }
 }
 
@@ -442,7 +419,7 @@ body.dark-mode #filter-form input {
     }
 
     .cards-container {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(4, 1fr); /* 4 columnas en pantallas grandes */
     }
     
     .product-grid-img {
@@ -450,7 +427,7 @@ body.dark-mode #filter-form input {
     }
     
     #filter-form input {
-        width: calc(25% - 0.375rem); 
+        width: calc(25% - 0.375rem); /* 4 columnas en pantallas grandes */
     }
 }
 
@@ -545,54 +522,49 @@ body.dark-mode #filter-form input {
     border-radius: 50%;
 }
 
-/* Estilos para responsividad del header/navbar */
-@media (max-width: 767px) {
-    .navbar-nav {
+@media (max-width: 991px) {
+    .navbar {
+        padding: 0.5rem 1rem;
+    }
+    .navbar .container-fluid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .navbar-toggler {
+        order: 3; 
         margin-top: 0.5rem;
     }
-    
-    .navbar .container-fluid {
+    .navbar .d-flex.order-lg-last {
+        order: 2;
         flex-wrap: nowrap;
+        align-items: center;
+        gap: 0.5rem;
     }
-    
     .navbar-collapse {
-        max-height: calc(100vh - 60px);
-        overflow-y: auto;
-    }
-    
-    /* Botones responsivos en navbar */
-    .navbar-nav .btn {
+        order: 4;
         width: 100%;
+        margin-top: 0.75rem;
+    }
+    .navbar-collapse .btn {
+        width: 100%;
+        margin-bottom: 0.4rem;
         text-align: left;
-        margin-bottom: 0.3rem;
     }
-    
-    .dropdown {
-        width: 100%;
+    .dropdown-toggle span {
+        display: none; 
     }
-    
-    #theme-toggle {
-        flex-shrink: 0;
+    .dropdown-toggle img {
+        margin-right: 0 !important;
     }
-    
-    .dropdown-menu {
-        width: 100%;
-    }
-    
-    /* Mejorar contraste del botón hamburguesa en modo oscuro */
-    .navbar-toggler {
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
-    }
-    
     body.dark-mode .navbar-toggler {
-        /* Botón hamburguesa con mejor contraste en modo oscuro */
         background-color: rgba(255, 255, 255, 0.1);
         border-color: rgba(255, 255, 255, 0.2);
     }
     
     body.dark-mode .navbar-toggler-icon {
-        /* Icono de hamburguesa más visible en modo oscuro */
         filter: invert(1);
         opacity: 0.8;
     }
