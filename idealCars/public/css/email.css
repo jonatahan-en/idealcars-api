@@ -1,0 +1,153 @@
+.Card {
+    background-color: var(--color-bg-card);
+    border-radius: 12px;
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 100%;
+    margin: 2rem auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    color: var(--color-text);
+}
+
+.Card h1 {
+    text-align: center;
+    color: var(--color-primary);
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+}
+
+.form_input {
+    margin-bottom: 1.2rem;
+}
+
+.form_input label {
+    display: block;
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+    color: var(--color-primary);
+}
+
+.form_input label + label {
+    color: var(--color-text);
+    font-size: 1rem;
+    font-weight: normal;
+    margin-bottom: 0.6rem;
+    display: block;
+}
+
+.form_input textarea {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--color-input-dark-border);
+    background-color: #ccf3ff;
+    color: #000000;
+    resize: vertical;
+    min-height: 100px;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: #00bfff;
+    background-color: #ccf3ff;
+    color: #000000;
+}
+
+.alert {
+    margin-top: 0.5rem;
+    color: #ff6b6b;
+    font-size: 0.9rem;
+}
+
+.form_action {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn {
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn:hover {
+    background-color: var(--color-primary-hover);
+}
+
+.btn-secondary {
+    background-color: #e0e0e0;
+    color: #222;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #c8c8c8;
+}
+
+body.dark-mode .btn-secondary {
+    background-color: #ccc;
+    color: #111;
+}
+
+body.dark-mode .btn-secondary:hover {
+    background-color: #bbb;
+}
+
+body.dark-mode .form_input label + label {
+    color: var(--color-text-dark);
+}
+
+body.dark-mode textarea {
+    background-color: #ccf3ff;
+    color: var(--color-text-dark);
+}
+
+body.dark-mode .btn {
+    background-color: #007acc;
+    color: white;
+}
+
+body.dark-mode .btn:hover {
+    background-color: #005b99;
+}
+
+@media (min-width: 768px) {
+    .Card {
+        max-width: 600px;
+        padding: 2rem 2.5rem;
+    }
+
+    .Card h1 {
+        font-size: 2rem;
+    }
+
+    .form_input textarea {
+        min-height: 140px;
+    }
+
+    .form_action {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .form_action .btn,
+    .form_action .btn-secondary {
+        width: 48%;
+    }
+}
