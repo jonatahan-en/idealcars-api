@@ -4,7 +4,7 @@ import * as emailManager from '../lib/emailManager.js'
 
 
 const userSchema = new Schema({
-    name: { type: String, required: true, unique: true},
+    name: { type: String, required: true, unique: false},
     username: {type: String, required: true, unique: true},
     phone: {type: Number},
     email: { type: String, required:true,  unique: true },
