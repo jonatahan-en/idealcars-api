@@ -4,7 +4,6 @@ import i18n from './lib/i18nConfigure.js';
 import connectMongoose from './lib/connectMongoose.js';
 import createError from 'http-errors';
 import logger from 'morgan';
-//Auth Imports
 import upload from './lib/uploadConfigure.js';
 import methodOverride from 'method-override';
 //Imports auth
@@ -90,7 +89,7 @@ app.get('/', homeController.index); // Página de inicio
 app.get('/signup', signupController.register); // Página de registro
 app.post('/signup', signupController.ValidateRegister, signupController.postSignup); // Registro de usuario
 app.get('/login', loginController.getlogin); // Página de login
-app.post('/login', loginController.PostLogIn); // Inicio de sesión
+app.post('/login',loginController.ValidateLogin, loginController.PostLogIn); // Inicio de sesión
 app.all('/logout', loginController.logout); // Cierre de sesión
 app.get('/chat/:adId', sessionManager.isLoggedIn, chatController.renderChat); // Página de chat
 // ================================
@@ -101,7 +100,7 @@ app.get('/chat/:adId', sessionManager.isLoggedIn, chatController.renderChat); //
 app.get('/myproducts',sessionManager.isLoggedIn, myProductsController.userProducts);
 app.delete('/myproducts/delete/:id',sessionManager.isLoggedIn,myProductsController.deleteProduct) 
 app.get('/myproducts/edit/:id', sessionManager.isLoggedIn, myProductsController.editProductForm);
-app.put('/myproducts/:id', sessionManager.isLoggedIn, myProductsController.updateProduct);
+app.put('/myproducts/:id', sessionManager.isLoggedIn,myProductsController.validateProduct, myProductsController.updateProduct,);
 
 app.get('/products/new', sessionManager.isLoggedIn, productsController.index); 
 app.post(
@@ -119,7 +118,7 @@ app.get('/profile',sessionManager.isLoggedIn, ProfileController.getProfile)
 app.put('/profile',sessionManager.isLoggedIn, ProfileController.UpdateProfile)
 app.delete('/profile',sessionManager.isLoggedIn, ProfileController.DeleteProfile)
 app.get('/email', sessionManager.isLoggedIn, contactController.Contact)
-app.post('/email', sessionManager.isLoggedIn , contactController.PostMail)
+app.post('/email', sessionManager.isLoggedIn ,contactController.ValidateContext, contactController.PostMail)
 
 
 // ================================

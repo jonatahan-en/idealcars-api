@@ -8,7 +8,16 @@
     </div>
 </div>
 <main class="main-bg-container container py-3">
-    <h3 class="mb-2" style="font-size:1.5rem; font-weight:600;">🚗 <%= __('home.welcome') %> <% if(session.userName) { %>🫂 <%= session.userName %><% } %></h3>
+
+    <h3 class="mb-2" style="font-size:1.5rem; font-weight:600;">🚗 <%= __('home.welcome') %>
+        <% if(session.userName) { %>
+        🫂<a style="text-decoration: none; color: #00bfff"  href="/profile/"><%= session.userName %></a>
+           <% } %>
+        </h3>    <% if (!session.userId) { %>
+        <div class="alert alert-info mb-2" role="alert">
+            <%= __('home.loginPrompt') %>
+        </div>
+    <% } %>
     <h2 class="mb-2"><%= __('home.userProducts') %></h2>
     <button class="filter-button" onclick="toggleFilters()">
         <i class="bi bi-funnel-fill"></i> Filtros

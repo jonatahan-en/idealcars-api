@@ -3,8 +3,63 @@ import {body, validationResult} from 'express-validator'
 
 
 export function register (req,res,next){
-    res.render('signup')
+    res.render('signup', {
+        errors: [],
+        name:"",
+        phone:"",
+        email:"",
+        password:"",
+    })
 }
+//testeo una validacion con express validator
+    
+export async function ValidateRegister(req, res,next) {
+        
+    // Validamos el campo 'name' asegurándonos de que no esté vacío
+    await body('name')
+    .notEmpty().withMessage("El nombre es obligatorio")
+    .trim()
+    .isAlpha('es-ES', { ignore: ' ' }).withMessage('El nombre solo puede contener letras')
+    .isLength({ min: 3 , max: 10 }).withMessage('Debe tener como mínimo 3 caracteres y máximo 10')
+    .escape()
+    .run(req),
+
+
+    await body('email')
+    .notEmpty().withMessage('Email required')
+    .isEmail().withMessage('Must be a valid email format')
+    .normalizeEmail()
+    .escape()
+    .run(req),
+
+    await body('phone')
+    .optional({checkFalsy: true})
+    .escape()
+    .matches(/^[0-9]{3}-[0-9]{3}-[0-9]{3}$/).withMessage('Number is incorrect it must be in this format 123-123-123')
+    .run(req),
+
+    await body('password')
+    .notEmpty().withMessage('Must put a password')
+    .isLength({min: 7}).withMessage('Password must contains atleast 7 characteres')
+    .matches(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[=@#$])/).withMessage("Debe contener una mayúscula ,una minúscula y uno de estos carácteres especiales: =@#$")
+    .run(req)
+  
+    // Usamos validationResult para obtener los errores de validación
+    const errors = validationResult(req)
+  
+    // Si hay errores de validación, respondemos con el código 400 y los errores.
+    if (!errors.isEmpty()) {
+      return res.render('signup',{
+            errors: errors.mapped(),
+            name:req.body.name,
+            phone:req.body.phone,
+            email:req.body.email,
+            password:req.body.password
+         })
+    }
+    next();
+  }
+
 
 export async function postSignup(req,res,next){
     const {name ,email, password} = req.body
@@ -41,53 +96,6 @@ export async function postSignup(req,res,next){
         //}
     }
 
-
-//testeo una validacion con express validator
-
-export async function ValidateRegister(req, res,next) {
     
-    // Validamos el campo 'name' asegurándonos de que no esté vacío
-    await body('name')
-    .notEmpty()
-    .withMessage('Name is required')
-    .isLength({ min: 3 }).withMessage('Name must be at least 3 characters long')
-    .run(req)
 
-
-    await body('email')
-    .notEmpty().withMessage('Email required')
-    .isEmail().withMessage('Must be a valid email format')
-    .normalizeEmail()
-    .run(req);
-
-    await body('phone')
-    .optional({checkFalsy: true})
-    .matches(/^[0-9]{3}-[0-9]{3}-[0-9]{3}$/).withMessage('Number is incorrect it must be in this format 123-123-123')
-    .run(req);
-
-
-    await body('password')
-    .notEmpty().withMessage('Must put a password')
-    .isLength({min: 4}).withMessage('Password must contains atleast 4 characteres')
-    .run(req);
-  
-    // Usamos validationResult para obtener los errores de validación
-    const errors = validationResult(req)
-  
-    // Si hay errores de validación, respondemos con el código 400 y los errores.
-    if (!errors.isEmpty()) {
-      return res.render('signup',{
-            errors: errors.array(),
-            name:req.body.name,
-            phone:req.body.phone,
-            email:req.body.email,
-            password:req.body.password
-         })
-
-
-    }
-
-
-    next();
-  }
   

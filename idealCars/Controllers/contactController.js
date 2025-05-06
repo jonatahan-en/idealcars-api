@@ -9,38 +9,41 @@ export async function Contact(req, res , next){
         if (!product) {
             return res.status(404).send('Producto no encontrado');
         }
-
         res.render('email', {
             product,
             errors: {},          
             content: ''         
-        });
+          });
     } catch (error) {
         next(error);
     }
 }
 
-export async function ValidateContext(req, res, next) {
+export async function ValidateContext(req, res,next) {
+        
     await body('content')
-        .notEmpty().withMessage("El mensaje es obligatorio")
-        .trim()
-        .isLength({ min: 5 , max: 300 }).withMessage('Debe tener como mínimo 5 caracteres y máximo 300')
-        .matches(/^[a-zA-Z0-9 \-.áéíóúÁÉÍÓÚñÑ,$€]+$/).withMessage("Usa solo letras, números, espacios, comas, puntos o €. Ej: '20,50 €'")
-        .escape()
-        .run(req)
+    .notEmpty().withMessage("El mensaje es obligatorio")
+    .trim()
+    .isLength({ min: 5 , max: 300 }).withMessage('Debe tener como mínimo 5 caracteres y máximo 300')
+    .matches(/^[a-zA-Z0-9 \-.áéíóúÁÉÍÓÚñÑ,$€]+$/).withMessage("Usa solo letras, números, espacios, comas, puntos o €. Ej: '20,50 €'")
+    .escape()
+    .run(req)
 
     const errors = validationResult(req)
 
+  
     if (!errors.isEmpty()) {
-        return res.render('email', {
-            product: await Product.findById(req.body.productId).populate('owner'),
-            errors: errors.mapped(),
-            content: req.body.content || ''
-        });
-    }
-
+      return res.render('email',{
+         product: await Product.findById(req.body.productId).populate('owner'),
+          errors: errors.mapped(),
+          content: req.body.content || ''
+      })
+          
+         }
+    
     next();
-}
+  }
+
 
 export async function PostMail(req, res, next) {
     console.log("Formulario recibido:", req.body);
@@ -54,11 +57,12 @@ export async function PostMail(req, res, next) {
         return res.status(404).send('Producto no encontrado');
     }
 
-    await product.owner.sendEmailBetweenUsers(from, product.owner.email, subject, content);
+ await product.owner.sendEmailBetweenUsers(from,product.owner.email,subject,content)
+ 
 
-    res.render('email', {
-        product,
-        errors: {},        
-        content: ''         
-    });
+ res.render('email', {
+    product,
+    errors: {},        
+    content: ''         
+  });
 }

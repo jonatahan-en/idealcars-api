@@ -162,6 +162,9 @@ footer .mb-0, .footer .mb-0, footer h4, .footer h4 {
 .validate{
     color: #00bfff;
 }
+.validate{
+    color: #00bfff;
+}
 
 @media (min-width: 768px) {
     .social-icons {
