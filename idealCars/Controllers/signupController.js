@@ -94,7 +94,7 @@ export async function postSignup(req,res,next){
                     password: hashedPassword,
                 })
                 
-            await NewUser.sendEmail('Bienvenido','Bienvenido a IdealCars')//Si quito el await se elimina la espera,pero es una practica rudimentaria
+             NewUser.sendEmail('Bienvenido','Bienvenido a IdealCars')//Si quito el await se elimina la espera,pero es una practica rudimentaria
             res.redirect('/login')
     } catch (error) {
         console.error(error);
