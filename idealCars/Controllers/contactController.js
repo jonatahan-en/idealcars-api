@@ -47,7 +47,7 @@ export async function ValidateContext(req, res,next) {
 
 export async function PostMail(req, res, next) {
     console.log("Formulario recibido:", req.body);
-    const from = req.session.userEmail;
+    const from = req.session.username;
     const content = req.body;
     const productId = req.body.productId;
     const product = await Product.findById(productId).populate('owner');

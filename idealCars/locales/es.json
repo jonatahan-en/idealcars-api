@@ -28,7 +28,9 @@
 		"password": "Contraseña",
 		"register": "Registrarse",
 		"Enter_your_name": "Escribe tu nombre",
-		"optional": "Opcional"
+		"optional": "Opcional",
+		"username": "Usuario",
+		"Enter_your_username": "signup.Enter_your_username"
 	},
 	"login": {
 		"title": "Iniciar Sesión",
@@ -36,7 +38,8 @@
 		"password": "Contraseña",
 		"login": "Ingresar",
 		"forgotPassword": "¿Olvidaste tu contraseña?",
-		"redirectNewAd": "Debes iniciar sesión para crear un nuevo anuncio."
+		"redirectNewAd": "Debes iniciar sesión para crear un nuevo anuncio.",
+		"username": "Usuario"
 	},
 	"newProduct": {
 		"title": "Nuevo Anuncio",

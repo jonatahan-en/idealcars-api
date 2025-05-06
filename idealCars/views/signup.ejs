@@ -18,11 +18,30 @@
           autocomplete="given-name" 
            />
           <% if(errors.name)  { %>
-            <div class="alert">
+            <div class="validate">
               <%= errors.name.msg %>
             </div>
           <% } %>
         </div>
+        <div class="form_input">
+          <label for="username">
+            <strong><%= __('signup.username') %></strong>
+          </label>
+          <input class="input" 
+          type="text" 
+          id="username" 
+          name="username"
+          value="<%= username || '' %>"
+          required 
+          placeholder="<%= __('signup.Enter_your_name') %>" 
+          autocomplete="given-name" 
+           />
+          <% if(errors.username)  { %>
+            <div class="validate">
+              <%= errors.username.msg %>
+            </div>
+          <% } %>
+          </div>
         <div class="form_input">
           <label for="phone">
             <strong><%= __('signup.phone_label') %></strong>
@@ -35,9 +54,9 @@
           autocomplete="tel" 
           placeholder="<%= __('signup.phone_format_example') %>" 
           pattern="[0-9]{3}[0-9]{3}[0-9]{3}" 
-          title="Format (123-123-123)" />
+          title="Format (621423123)" />
           <% if(errors.phone)  { %>
-            <div class="alert">
+            <div class="validate">
               <%= errors.phone.msg %>
             </div>
           <% } %>
@@ -55,7 +74,7 @@
           value="<%= email || ''  %>"
           required />
           <% if(errors.email)  { %>
-            <div class="alert">
+            <div class="validate">
               <%= errors.email.msg %>
             </div>
           <% } %>
@@ -73,7 +92,7 @@
           required 
           />
           <% if(errors.password)  { %>
-            <div class="alert">
+            <div class="validate">
               <%= errors.password.msg %>
             </div>
           <% } %>

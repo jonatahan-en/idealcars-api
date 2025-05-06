@@ -6,7 +6,7 @@ import {body, validationResult} from 'express-validator'
 export function getlogin(req,res, next){
     res.render('login', {
         errors: [],
-        email:"",
+        username:"",
         password:"",
         redirectMessage: req.query.from === 'newad' 
             ? 'Debes iniciar sesión para crear anuncios' 
@@ -22,12 +22,13 @@ export async function ValidateLogin(req, res,next) {
    
 
 
-    await body('email')
-    .notEmpty().withMessage('Email required')
-    .isEmail().withMessage('Invalid Credentials')
-    .normalizeEmail()
+    await body('username')
+    .notEmpty().withMessage("El username es obligatorio")
+    .trim()
+    .isAlpha('es-ES', { ignore: ' ' }).withMessage('El nombre solo puede contener letras')
+    .isLength({ min: 3 , max: 10 }).withMessage('Debe tener como mínimo 3 caracteres y máximo 10')
     .escape()
-    .run(req)
+    .run(req),
 
     
     await body('password')
@@ -43,7 +44,7 @@ export async function ValidateLogin(req, res,next) {
     if (!errors.isEmpty()) {
       return res.render('login',{
             errors: errors.mapped(),
-            email: req.body.email,
+            username: req.body.username,
             password:req.body.password
          })
     }
@@ -53,9 +54,9 @@ export async function ValidateLogin(req, res,next) {
 
 export async function PostLogIn(req,res,next){
     try {
-        const {email, password} = req.body
+        const {username, password} = req.body
 
-        const user = await User.findOne({email: email.toLowerCase()})
+        const user = await User.findOne({username: username.toLowerCase()})
         if(!user || !(await user.comparePassword(password))){  
             
             res.render('login')
@@ -64,12 +65,10 @@ export async function PostLogIn(req,res,next){
         }
 
         
-        // si el usuario existe y la contraseña es correcta --> apuntar en su sesión que está loggado.
 
         req.session.userId = user._id
-        
-        // Capitaliza el nombre antes de guardarlo en sesión
         req.session.userName = user.name.replace(/\b\w/g, l => l.toUpperCase())
+        req.session.username = user.username
         req.session.userEmail = user.email
 
         res.redirect('/')
