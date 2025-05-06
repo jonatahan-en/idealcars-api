@@ -23,7 +23,7 @@ export async function ValidateRegister(req, res,next) {
     .matches(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 -]+$/).withMessage()
     .isLength({ min: 3 , max: 15 }).withMessage('Debe tener como mínimo 3 caracteres y máximo 15')
     .escape()
-    .run(req),
+    .run(req);
 
 
     await body('username')
@@ -32,7 +32,7 @@ export async function ValidateRegister(req, res,next) {
     .matches(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 -]+$/).withMessage()
     .isLength({ min: 3 , max: 15 }).withMessage('Debe tener como mínimo 3 caracteres y máximo 15')
     .escape()
-    .run(req),
+    .run(req);
 
 
     await body('email')
@@ -40,7 +40,7 @@ export async function ValidateRegister(req, res,next) {
     .isEmail().withMessage('Must be a valid email format')
     .normalizeEmail()
     .escape()
-    .run(req),
+    .run(req);
 
     await body('phone')
     .optional({checkFalsy: true})

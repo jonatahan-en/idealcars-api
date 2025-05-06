@@ -1,7 +1,5 @@
-import User from '../models/User.js'
-import {body, validationResult} from 'express-validator'
-
-
+import User from "../models/User.js";
+import { body, validationResult } from "express-validator";
 
 export function getlogin(req,res, next){
     res.render('login', {
@@ -80,18 +78,15 @@ export async function PostLogIn(req,res,next){
         req.session.username = user.username
         req.session.userEmail = user.email
 
-        res.redirect('/')
-
-    } catch (error) {
-        console.error(error);
-        res.status(500).render('login');
-    }
-
-
+    res.redirect("/");
+  } catch (error) {
+    console.error(error);
+    res.status(500).render("login");
+  }
 }
-export function logout(req,res,next){
-    req.session.regenerate(err=>{
-        if(err) return next(err)
-        res.redirect('/')
-    })
+export function logout(req, res, next) {
+  req.session.regenerate((err) => {
+    if (err) return next(err);
+    res.redirect("/");
+  });
 }
