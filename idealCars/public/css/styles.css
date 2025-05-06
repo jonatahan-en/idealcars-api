@@ -194,7 +194,7 @@ footer .mb-0, .footer .mb-0, footer h4, .footer h4 {
 
 .ProductCard {
     max-width: 340px;
-    min-width: 227px;
+    min-width: 219px;
     margin-left: auto;
     margin-right: auto;
     border: 1px solid #eaeaea;
@@ -212,7 +212,7 @@ footer .mb-0, .footer .mb-0, footer h4, .footer h4 {
     width: 100%;
     height: 180px;
     object-fit: cover;
-    border-radius: 8px 8px 0 0;
+    border-radius: 8px 8px 8px 8px;
     margin-bottom: 0.7rem;
 }
 
@@ -223,7 +223,7 @@ footer .mb-0, .footer .mb-0, footer h4, .footer h4 {
 
 @media (min-width: 900px) {
     .ProductCard .card-img-top, .ProductCard img, .product-grid-img {
-        height: 210px;
+        height: 180px;
     }
 }
 
@@ -309,7 +309,7 @@ footer .mb-0, .footer .mb-0, footer h4, .footer h4 {
     padding: 0.5rem 1rem;
     border: 1px solid #ddd;
     background-color: var(--color-input-bg);
-    color: var(--color-text);
+    color: #222;
 }
 
 body.dark-mode #filter-form input {
