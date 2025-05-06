@@ -62,40 +62,82 @@ export async function ValidateRegister(req, res,next) {
 
 
 export async function postSignup(req,res,next){
-    const {name ,email, password} = req.body
+    const {name, email, password, phone} = req.body
     
     try {
         
-        // asegurarse de que no lo esta ya
-        const  ExistingUser = await User.findOne({ 
+        // asegurarse de que no existe ya un usuario con ese email
+        const ExistingUser = await User.findOne({ 
             email: email.toLowerCase()
-            })
-            if(ExistingUser){
-                return res.redirect('/login')
-                 //enviar un email al usuario
-                 
-                }    
-                
-                //añadir este usuario a la base de datos
-                const hashedPassword = await User.hashPassword(password);
-                const NewUser = await User.create({
-                    name: name.toLowerCase(), 
-                    email: email.toLowerCase(),
-                    password: hashedPassword,
-                })
-                
-            await NewUser.sendEmail('Bienvenido','Bienvenido a IdealCars')//Si quito el await se elimina la espera,pero es una practica rudimentaria
-            res.redirect('/login')
-    } catch (error) {
-        console.error(error);
-        res.status(500).render('signup');
-    }
-        //si los datos no cumples los requerimientos render signup de nuevo
+        });
         
-        //comprobando el nombre , el id o los campos correspondientes
-        //}
+        if(ExistingUser){
+            return res.render('signup', {
+                errors: {
+                    email: { msg: 'Este email ya está registrado. Por favor, utiliza otro o inicia sesión.' }
+                },
+                name: req.body.name || "",
+                phone: req.body.phone || "",
+                email: req.body.email || "",
+                password: ""
+            });
+        }    
+                
+        //añadir este usuario a la base de datos
+        const hashedPassword = await User.hashPassword(password);
+        
+        const userData = {
+            name: name.toLowerCase(),
+            email: email.toLowerCase(),
+            password: hashedPassword
+        };
+        
+        // Añadir el teléfono solo si se ha proporcionado
+        if (phone) {
+            userData.phone = phone;
+        }
+        
+        const NewUser = await User.create(userData);
+        
+        console.log('Usuario creado exitosamente:', NewUser._id);
+        
+        try {
+            await NewUser.sendEmail('Bienvenido a IdealCars', 
+                `<h1>¡Bienvenido a IdealCars!</h1>
+                <p>Hola ${name},</p>
+                <p>Tu cuenta ha sido creada exitosamente. Ahora puedes iniciar sesión y comenzar a explorar nuestra plataforma.</p>
+                <p>¡Gracias por registrarte!</p>`);
+            console.log('Email de bienvenida enviado');
+        } catch (emailError) {
+            console.error('Error al enviar email de bienvenida:', emailError);
+            // No interrumpimos el flujo por un error en el email
+        }
+        
+        return res.redirect('/login');
+    } catch (error) {
+        console.error('Error al crear usuario:', error);
+        
+        // Mensaje de error más específico según el tipo de error
+        let errorMessage = 'Error al crear la cuenta. Por favor, inténtalo de nuevo.';
+        
+        if (error.name === 'ValidationError') {
+            errorMessage = 'Error de validación: ' + Object.values(error.errors).map(e => e.message).join(', ');
+        } else if (error.code === 11000) {
+            errorMessage = 'Este email ya está en uso.';
+        }
+        
+        return res.render('signup', {
+            errors: {
+                general: { msg: errorMessage }
+            },
+            name: req.body.name || "",
+            phone: req.body.phone || "",
+            email: req.body.email || "",
+            password: ""
+        });
     }
+}
 
-    
 
-  
+
+
