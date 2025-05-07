@@ -1,6 +1,7 @@
 <%- include("header.ejs") %>
 
-<main class="container py-5">
+<link rel="stylesheet" href="/css/edit.css">
+<main class="edit-container">
     <h1>Editar Producto</h1>
     <form action="/myproducts/<%= product._id %>?_method=PUT" method="POST" novalidate>
        
@@ -58,7 +59,7 @@
                 </div>
               <% } %>
         </div>
-        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        <button type="submit" class="btn-edit">Guardar Cambios</button>
     </form>
 </main>
 
