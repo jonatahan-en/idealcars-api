@@ -1,11 +1,11 @@
 <%- include("header.ejs") %>
 
 <main class="container py-5">
-    <h1>Editar Producto</h1>
+    <h1><%= __('editProduct.title') %></h1>
     <form action="/myproducts/<%= product._id %>?_method=PUT" method="POST" novalidate>
        
         <div class="mb-3">
-            <label for="name" class="form-label">Nombre</label>
+            <label for="name" class="form-label"><%= __('newProduct.name') %></label>
             <input type="text" class="form-control" id="name" name="name" value="<%= product.name  %>" required>
             <% if (product.errors && product.errors.name) { %>
                 <div class="validate" role="alert">
@@ -14,7 +14,7 @@
               <% } %>
         </div>
         <div class="mb-3">
-            <label for="model" class="form-label">Modelo</label>
+            <label for="model" class="form-label"><%= __('newProduct.model') %></label>
             <input type="text" class="form-control" id="model" name="model" value="<%= product.model %>" required>
             <% if (product.errors && product.errors.model) { %>
                 <div class="validate" role="alert">
@@ -23,7 +23,7 @@
               <% } %>
         </div>
         <div class="mb-3">
-            <label for="color" class="form-label">Color</label>
+            <label for="color" class="form-label"><%= __('newProduct.color') %></label>
             <input type="text" class="form-control" id="color" name="color" value="<%= product.color %>" required>
             <% if (product.errors && product.errors.color) { %>
                 <div class="validate" role="alert">
@@ -32,7 +32,7 @@
               <% } %>
         </div>
         <div class="mb-3">
-            <label for="year" class="form-label">Año</label>
+            <label for="year" class="form-label"><%= __('newProduct.year') %></label>
             <input type="number" class="form-control" id="year" name="year" value="<%= product.year %>" required>
             <% if (product.errors && product.errors.year) { %>
                 <div class="validate" role="alert">
@@ -41,7 +41,7 @@
               <% } %>
         </div>
         <div class="mb-3">
-            <label for="price" class="form-label">Precio</label>
+            <label for="price" class="form-label"><%= __('newProduct.price') %></label>
             <input type="number" class="form-control" id="price" name="price" value="<%= product.price %>" required>
             <% if (product.errors && product.errors.price) { %>
                 <div class="validate" role="alert">
@@ -50,7 +50,7 @@
               <% } %>
         </div>
         <div class="mb-3">
-            <label for="kilometer" class="form-label">Kilometraje</label>
+            <label for="kilometer" class="form-label"><%= __('newProduct.kilometer') %></label>
             <input type="number" class="form-control" id="kilometer" name="kilometer" value="<%= product.kilometer %>" required>
             <% if (product.errors && product.errors.kilometer) { %>
                 <div class="validate" role="alert">
@@ -58,7 +58,7 @@
                 </div>
               <% } %>
         </div>
-        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        <button type="submit" class="btn btn-primary"><%= __('editProduct.save') %></button>
     </form>
 </main>
 

@@ -1,13 +1,17 @@
 <%- include("header.ejs") %>
 <link rel="stylesheet" href="/css/styles.css">
 <link rel="stylesheet" href="/css/myProduct.css">
+
+<!-- Variable oculta para almacenar el mensaje -->
+<div id="confirmMessage" style="display:none;"><%= __('myProduct.confirmDelete') %></div>
+
 <main class="products-container">
     <h2 class="title-page">🚗 <%= __('navigation.myProducts') %></h2>
 
     <div class="product-grid">
         <% products.forEach(product => { %>
         <div class="product-card">
-            <img class="product-image" src="<%= product.images && product.images.length > 0 ? `/imagenes/${product.images[0]}` : 'https://placehold.co/300x200?text=Sin+Imagen' %>" alt="<%= product.name %>">
+            <img class="product-image" src="<%= product.images && product.images.length > 0 ? `/imagenes/${product.images[0]}` : `https://placehold.co/300x200?text=${__('myProduct.noImageText')}` %>" alt="<%= product.name %>">
             <div class="product-info">
             <h3><%= product.name %></h3>
             <p>🔰 <%= __('home.product.model') %>: <%= product.model %></p>
@@ -18,11 +22,11 @@
             </div>
             <div class="product-action">
             <a href="/myproducts/edit/<%= product._id %>" class="btn-edit">
-                <i class="bi bi-pencil"></i> Editar
-            </a>
-            <form action="/myproducts/delete/<%= product._id %>?_method=DELETE" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas borrar este producto?');">
+                <i class="bi bi-pencil"></i> <%= __('common.edit') %>
+            </a> 
+            <form action="/myproducts/delete/<%= product._id %>?_method=DELETE" method="POST" class="delete-form">
                 <button type="submit" class="btn-delete">
-                <i class="bi bi-trash3"></i> Borrar
+                    <i class="bi bi-trash3"></i> <%= __('common.delete') %>
                 </button>
             </form>
             </div>
@@ -34,11 +38,11 @@
         <ul class="pagination pagination-sm">
             <% if (skip > 0) { %>
                 <li class="page-item">
-                    <a class="page-link" href="?skip=<%= Math.max(0, skip - limit) %>&limit=<%= limit %>">Anterior</a>
+                    <a class="page-link" href="?skip=<%= Math.max(0, skip - limit) %>&limit=<%= limit %>"><%= __('common.previous') %></a>
                 </li>
             <% } else { %>
                 <li class="page-item disabled">
-                    <span class="page-link">Anterior</span>
+                    <span class="page-link"><%= __('common.previous') %></span>
                 </li>
             <% } %>
             
@@ -52,15 +56,31 @@
             
             <% if (skip + limit < count) { %>
                 <li class="page-item">
-                    <a class="page-link" href="?skip=<%= skip + limit %>&limit=<%= limit %>">Siguiente</a>
+                    <a class="page-link" href="?skip=<%= skip + limit %>&limit=<%= limit %>"><%= __('common.next') %></a>
                 </li>
             <% } else { %>
                 <li class="page-item disabled">
-                    <span class="page-link">Siguiente</span>
+                    <span class="page-link"><%= __('common.next') %></span>
                 </li>
             <% } %>
         </ul>
     </nav>
 </main>
 
+<script>
+    // Obtener el mensaje de confirmación una vez al cargar la página
+    const confirmMessage = document.getElementById('confirmMessage').textContent;
+    
+    // Añadir listeners a todos los formularios de eliminación
+    document.addEventListener('DOMContentLoaded', function() {
+        const deleteForms = document.querySelectorAll('.delete-form');
+        deleteForms.forEach(form => {
+            form.addEventListener('submit', function(event) {
+                if (!confirm(confirmMessage)) {
+                    event.preventDefault();
+                }
+            });
+        });
+    });
+</script>
 <%- include("footer.ejs") %>

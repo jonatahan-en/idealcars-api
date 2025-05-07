@@ -16,7 +16,9 @@
 			"brand": "Brand"
 		},
 		"guest": "Guest",
-		"noProducts": "You have no products yet. Add some!"
+		"noProducts": "You have no products yet. Add some!",
+		"tagline": "Your ideal car awaits",
+		"detailsButton": "Details"
 	},
 	"signup": {
 		"title": "Sign Up",
@@ -103,7 +105,23 @@
 		"save": "Save",
 		"confirm": "Confirm",
 		"delete": "Delete",
-		"home": "Home"
+		"home": "Home",
+		"details": "Details",
+		"email": "Email",
+		"edit": "Edit",
+		"previous": "Previous",
+		"next": "Next",
+		"goBack": "Back",
+		"saveChanges": "Save Changes",
+		"sending": "Sending..."
+	},
+	"productDetail": {
+		"noImages": "No images available",
+		"goToChat": "Go to chat"
+	},
+	"myProduct": {
+		"confirmDelete": "Are you sure you want to delete this product?",
+		"noImageText": "No Image"
 	},
 	"UnRegister": "Delete account",
 	"appDescription": "appDescription"

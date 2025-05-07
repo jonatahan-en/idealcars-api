@@ -3,7 +3,7 @@
 <div class="splash-container">
     <div class="logo-container">
         <div class="logo-text">idealCars</div>
-        <div class="logo-tagline">Tu coche ideal te espera</div>
+        <div class="logo-tagline"><%= __('home.tagline') %></div>
     </div>
 </div>
 <main class="main-bg-container container py-3">
@@ -67,7 +67,7 @@
                             <p class="card-text mb-1">💶 <strong><%= __('home.product.price') %>:</strong> <%= typeof product.price !== 'undefined' ? product.price.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' }) : '' %></p>
                             <p class="card-text mb-2">🏁 <strong><%= __('home.product.kilometer') %>:</strong> <%= typeof product.kilometer !== 'undefined' ? product.kilometer.toLocaleString('es-ES') : '' %> km</p>
                         </div>
-                        <a href="/products/detail/<%= product.id%>" class="btn btn-primary mt-auto">Detalles</a>
+                        <a href="/products/detail/<%= product.id%>" class="btn btn-primary mt-auto"><%= __('home.detailsButton') %></a>
                     </div>
                 </div>
             <% }) %>
@@ -82,9 +82,9 @@
         <nav aria-label="Page navigation" class="d-flex justify-content-center mt-3 mb-2">
             <ul class="pagination pagination-sm">
                 <% if (skip > 0) { %>
-                    <li class="page-item"><a class="page-link" href="?skip=<%= Math.max(0, skip - limit) %>&limit=<%= limit %>&sort=<%= sort %>">Anterior</a></li>
+                    <li class="page-item"><a class="page-link" href="?skip=<%= Math.max(0, skip - limit) %>&limit=<%= limit %>&sort=<%= sort %>"><%= __('common.previous') %></a></li>
                 <% } else { %>
-                    <li class="page-item disabled"><span class="page-link">Anterior</span></li>
+                    <li class="page-item disabled"><span class="page-link"><%= __('common.previous') %></span></li>
                 <% } %>
                 <% const totalPages = Math.ceil(count / limit); %>
                 <% const currentPage = Math.floor(skip / limit) + 1; %>
@@ -94,9 +94,9 @@
                     </li>
                 <% } %>
                 <% if (skip + limit < count) { %>
-                    <li class="page-item"><a class="page-link" href="?skip=<%= skip + limit %>&limit=<%= limit %>&sort=<%= sort %>">Siguiente</a></li>
+                    <li class="page-item"><a class="page-link" href="?skip=<%= skip + limit %>&limit=<%= limit %>&sort=<%= sort %>"><%= __('common.next') %></a></li>
                 <% } else { %>
-                    <li class="page-item disabled"><span class="page-link">Siguiente</span></li>
+                    <li class="page-item disabled"><span class="page-link"><%= __('common.next') %></span></li>
                 <% } %>
             </ul>
         </nav>
