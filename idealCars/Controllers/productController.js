@@ -26,14 +26,14 @@ export async function validateProduct(req, res, next) {
         "volvo", "jeep", "mitsubishi", "land rover", "jaguar", 
         "skoda", "seat", "alfa romeo", "suzuki", "citroen", "dodge", "chrysler","ferrari"
       ];
-    const modelos = [
+    const modelos = [//Esto se queda sin uso porque no tengo ni idea de coches(Jorge)
         "corolla", "f-150", "golf", "civic", "serie 3", "clase c", 
         "a4", "elantra", "silverado", "altima", "sportage", "208", 
         "clio", "cx-5", "outback", "rx 350", "model 3", "panda", 
         "xc60", "wrangler", "lancer", "discovery", "xf", "octavia", 
-        "ibiza", "giulia", "swift", "c4", "charger", "300c","c3"
+        "ibiza", "giulia", "swift", "c4", "charger", "300c","c3","focus","panda"
       ];
-    const coloresValidos= ['rojo', 'azul','verde','amarillo','celeste','rosa','negro','plateado','gris','blanco','morado','naranja','marron'];
+    const coloresValidos= ['rojo', 'azul','verde','amarillo','celeste','rosa','negro','plateado','gris','blanco','morado','naranja','marron','plata','rojizo','cromo'];
     
     await body('name')
  
@@ -58,13 +58,13 @@ export async function validateProduct(req, res, next) {
     .isLength({min: 2}).withMessage('El modelo debe tener al menos 2 caracteres')
     .trim()
     .matches(/^[a-zA-Z0-9 \-.]+$/).withMessage()
-    .isAlpha('es-ES', { ignore: ' -.0123456789' }).withMessage('Solo letras, guiones y puntos')
-    .custom( value => {
+    .isAlpha('es-ES', { ignore: ' -.0123456789' }).withMessage('Letras,números guiones y puntos')
+    /*.custom( value => {
         if(!modelos.includes(value.toLowerCase())){
             throw new Error(`Este modelo no está disponible aún. Por favor contacte con:  idealcarsapiwankenobi@gmail.com.`)
         }
         return true
-    })
+    })*/
     .escape()
     .run(req),
     await body('color')
@@ -91,7 +91,7 @@ export async function validateProduct(req, res, next) {
     .run(req),
     await body('kilometer')
     .notEmpty().withMessage('El kilometraje es obligatorio')
-    .isFloat({min:0, max:300000}).withMessage('El kilometraje debe ser un número entre 0 y 300.000Km')
+    .isFloat({min:0, max:300000}).withMessage('El kilometraje debe ser un número entre 0 y 300.000 Km')
     .isNumeric().withMessage('El kilometraje debe ser un número')
     .escape()
     .run(req)
