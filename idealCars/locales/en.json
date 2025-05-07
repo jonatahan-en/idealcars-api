@@ -29,7 +29,9 @@
 		"password": "Password",
 		"register": "Register",
 		"Enter_your_name": "Enter your name",
-		"optional": "Optional"
+		"optional": "Optional",
+		"username": "UserName",
+		"Enter_your_username": "signup.Enter_your_username"
 	},
 	"signout": {
 		"title": "Sign Out",
@@ -44,7 +46,8 @@
 		"password": "Password",
 		"login": "Login",
 		"forgotPassword": "Forgot password?",
-		"redirectNewAd": "You must log in to create a new listing."
+		"redirectNewAd": "You must log in to create a new listing.",
+		"username": "UserName"
 	},
 	"newProduct": {
 		"title": "New Ad",
