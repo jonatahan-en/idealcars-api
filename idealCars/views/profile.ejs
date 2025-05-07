@@ -16,7 +16,7 @@
 
         <form   method="put" >
 
-            <div class="">
+            <div class="mb3">
                 <label for="image">
                     <img class="avatar" src="https://avatar.iran.liara.run/public/48/">
                 </label>
@@ -24,27 +24,27 @@
             </div>
             <div>
                 <label for="name">Nombre</label>
-                <input value=" <%= session.userName %>" name="name" id="name">
+                <input type="text" value=" <%= session.userName %>" name="name" id="name">
             </div>
             <div>
-                <label>Apellidos</label>
-                <input>
+                <label for="apellidos">Apellidos</label>
+                <input type="text" name="apellidos" id="apelldios">
             </div>
             <div>
-                <label>Email</label>
-                <input value="<%= session.userEmail || '' %>">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" value="<%= session.userEmail || '' %>">
             </div>
             <div>
-                <label>Edad</label>
-                <input>
+                <label for="age">Edad</label>
+                <input type="number" name="age" id="age">
             </div>
             <div>
-                <label>Telefono</label>
-                <input>
+                <label for="phone">Telefono</label>
+                <input type="number" name="phone" id="phone">
             </div>
             <div>
-                <label>Ciudad</label>
-                <input>
+                <label for="city">Ciudad</label>
+                <input type="text" name="city" id="city">
             </div>
             
             

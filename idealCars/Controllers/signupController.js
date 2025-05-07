@@ -59,15 +59,16 @@ export async function ValidateRegister(req, res, next) {
       return true;
     })
     .custom(value=>{
+        console.log("Validando email:", value);
         const emailsValidos = ['gmail.com', "hotmail.com", "yahoo.com","outlook.com","yahoo.es","example.com"]
         const valido = emailsValidos.some((dominio) => value.toLowerCase().endsWith(dominio))//el .some hace que si al menos encuentra uno de los valores del array lo da por válido(nice)
         if(!valido){
             throw new Error(`Debe ser un email de este tipo: ${emailsValidos.join(', ')}`)
 
         }
+        return true
     })
     .normalizeEmail()
-    .escape()
     .run(req);
 
   await body("phone")
@@ -103,7 +104,7 @@ export async function ValidateRegister(req, res, next) {
 }
 
 export async function postSignup(req, res, next) {
-  const { username, name, email, password } = req.body;
+  const { username, name, email, password,phone } = req.body;
 
   try {
     // asegurarse de que no lo esta ya
@@ -121,6 +122,7 @@ export async function postSignup(req, res, next) {
     const NewUser = await User.create({
       name: name.toLowerCase(),
       username: username.toLowerCase(),
+      phone:phone,
       email: email.toLowerCase(),
       password: hashedPassword,
     });
