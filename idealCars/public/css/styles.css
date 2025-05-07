@@ -81,10 +81,12 @@ body {
 
 /* Estilos del navbar/header - MOBILE FIRST */
 .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
     padding: 0.5rem;
     background-color: var(--color-header-bg) !important;
-    color: var(--color-text) !important;
     box-shadow: var(--shadow-header);
 }
 
@@ -508,6 +510,8 @@ body.dark-mode #filter-form input::placeholder {
 
 /* Estilo para botón de tema */
 #theme-toggle {
+    flex: 0 0 auto;
+    align-self: center;
     width: 38px;
     height: 38px;
     display: flex;

@@ -1,8 +1,6 @@
 .products-container {
-    min-height: 100vh;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    flex-direction: column;  
     padding: 1rem;
 }
 
@@ -15,9 +13,9 @@
 }
 
 .product-grid {
+    flex: 1;
     display: grid;
     grid-template-columns: 1fr;
-    justify-content: center;
     gap: 24px;
     padding: 1rem;
 }
@@ -96,7 +94,7 @@
 @media (min-width: 600px) {
     .product-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+        gap: 10px;
         max-width: 1100px;
     }
 }
