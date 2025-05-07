@@ -15,7 +15,16 @@
 			"owner": "Propietario"
 		},
 		"guest": "Invitado",
-		"noProducts": "No tienes productos aún. ¡Añade algunos!"
+		"noProducts": "No tienes productos aún. ¡Añade algunos!",
+		"filters": {
+			"name": "Marca",
+			"model": "Modelo",
+			"color": "Color",
+			"year": "Año",
+			"price": "Precio",
+			"kilometer": "Kilometraje",
+			"button": "Aplicar Filtros"
+		}
 	},
 	"signup": {
 		"title": "Registro",

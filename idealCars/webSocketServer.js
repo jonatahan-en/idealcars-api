@@ -34,7 +34,7 @@ export function setupSocketServer(httpServer) {
                     }
                 }
                 // Permitir que el propietario o el interesado se unan al canal
-                const productName = product.name; // Nombre del producto
+                const productName = product.name; // oducto
                 const roomId = `chat-${adId}`; // Sala única para el anuncio
                 socket.join(roomId); // Unir al cliente a la sala del anuncio
                 console.log(`Usuario ${userId} se unió al chat del anuncio ${adId}`);

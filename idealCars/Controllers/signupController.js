@@ -13,31 +13,27 @@ export function register (req,res,next){
     })
 }
 
-    
 export async function ValidateRegister(req, res,next) {
         
-   
     await body('name')
     .notEmpty().withMessage("El nombre es obligatorio")
     .trim()
-    .matches(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 -]+$/).withMessage()
+    .matches(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 -]+$/).withMessage('El nombre solo puede contener letras, números y guiones')
     .isLength({ min: 3 , max: 15 }).withMessage('Debe tener como mínimo 3 caracteres y máximo 15')
     .escape()
     .run(req);
-
 
     await body('username')
     .notEmpty().withMessage("El username es obligatorio")
     .trim()
-    .matches(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 -]+$/).withMessage()
+    .matches(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 -]+$/).withMessage('El nombre de usuario solo puede contener letras, números y guiones')
     .isLength({ min: 3 , max: 15 }).withMessage('Debe tener como mínimo 3 caracteres y máximo 15')
     .escape()
     .run(req);
 
-
     await body('email')
-    .notEmpty().withMessage('Email required')
-    .isEmail().withMessage('Must be a valid email format')
+    .notEmpty().withMessage('Email requerido')
+    .isEmail().withMessage('Debe ser un formato de correo electrónico válido')
     .normalizeEmail()
     .escape()
     .run(req);
@@ -46,7 +42,7 @@ export async function ValidateRegister(req, res,next) {
     .optional({checkFalsy: true})
     .escape()
     .matches(/^[0-9]{3}[0-9]{3}[0-9]{3}$/).withMessage('Number is incorrect it must be in this format 123-123-123')
-    .run(req),
+    .run(req)
 
     await body('password')
     .notEmpty().withMessage('Must put a password')
@@ -64,45 +60,78 @@ export async function ValidateRegister(req, res,next) {
             phone:req.body.phone,
             email:req.body.email,
             password:req.body.password
-         })
+        })
     }
     next();
   }
 
 
 export async function postSignup(req,res,next){
-    const {username,name ,email, password} = req.body
+    const {username,name ,email, password, phone} = req.body
     
     try {
         
-        // asegurarse de que no lo esta ya
+        // asegurarse de que no existe ya un usuario con ese email
         const  ExistingUser = await User.findOne({ 
             email: email.toLowerCase()
             })
-            if(ExistingUser){
-                return res.redirect('/login')
-                 //enviar un email al usuario
-                 
-                }    
+            if (ExistingUser) {
+                return res.render('signup', {
+                    errors: {
+                        email: { msg: 'Este email ya está registrado. Por favor, utiliza otro o inicia sesión.' }
+                    },
+                    name: req.body.name || "",
+                    username: req.body.username || "",
+                    phone: req.body.phone || "",
+                    email: req.body.email || "",
+                    password: ""
+                });
+            }       
                 
                 //añadir este usuario a la base de datos
                 const hashedPassword = await User.hashPassword(password);
-                const NewUser = await User.create({
+
+                // Mejor manera: crear objeto userData primero
+                const userData = {
                     name: name.toLowerCase(), 
                     username: username.toLowerCase(),
                     email: email.toLowerCase(),
-                    password: hashedPassword,
-                })
+                    password: hashedPassword
+                };
+                    
+                // Añadir el teléfono solo si se ha proporcionado
+                if (phone) {
+                    userData.phone = phone;
+                }
+                    
+                const newUser = await User.create(userData);
                 
-             //NewUser.sendEmail('Bienvenido','Bienvenido a IdealCars')//Si quito el await se elimina la espera,pero es una practica rudimentaria
-            res.redirect('/login')
-    } catch (error) {
-        console.error(error);
-        res.status(500).render('signup');
-    }
+             //newUser.sendEmail('Bienvenido','Bienvenido a IdealCars')//Si quito el await se elimina la espera,pero es una practica rudimentaria
+                return res.redirect('/login');
+            } catch (error) {
+                console.error('error al crear el usuario:', error);
+
+                // Mensaje de error más específico según el tipo de error
+                let errorMessage = 'Error al crear la cuenta. Por favor, inténtalo de nuevo.';
+                
+                if (error.name === 'ValidationError') {
+                    errorMessage = 'Error de validación: ' + Object.values(error.errors).map(e => e.message).join(', ');
+                } else if (error.code === 11000) {
+                    errorMessage = 'Este email o nombre de usuario ya está en uso.';
+                } else {
+                    errorMessage = 'Error desconocido: ' + error.message;
+                }
         
-    }
-
-    
-
-  
+                // Importante: pasar todas las variables necesarias para que la plantilla funcione
+                return res.status(500).render('signup', {
+                    errors: {
+                        general: { msg: errorMessage }
+                    },
+                    name: req.body.name || "",
+                    username: req.body.username || "",
+                    phone: req.body.phone || "",
+                    email: req.body.email || "",
+                    password: ""
+                });
+            }
+}

@@ -12,7 +12,8 @@
 			"price": "Price",
 			"kilometer": "Kilometers",
 			"image": "Image",
-			"owner": "Owner"
+			"owner": "Owner",
+			"brand": "Brand"
 		},
 		"guest": "Guest",
 		"noProducts": "You have no products yet. Add some!"
