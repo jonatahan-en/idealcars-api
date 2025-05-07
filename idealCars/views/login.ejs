@@ -18,20 +18,20 @@
     <% } %>
     <form method="post" action="/login" novalidate>
       <div class="form_input">
-        <label for="email">
-          <strong><%= __('login.email') %></strong>
+        <label for="username">
+          <strong><%= __('login.username') %></strong>
         </label>
-        <input class="input" type="email" id="email" placeholder="<%= __('login.email') %>" autocomplete="off" name="email" 
-          value="<%= email || ''  %>" required /> 
+        <input class="input" type="username" id="username" placeholder="<%= __('login.username') %>" autocomplete="off" name="username" 
+          value="<%= username || ''  %>" required /> 
       </div>
       <div class="form_input">
         <label for="password">
           <strong><%= __('login.password') %></strong>
         </label>
         <input class="input" type="password" id="password" required placeholder="<%= __('login.password') %>" name="password"  value="<%= password || '' %>"  />
-        <% if(errors.password || errors.email)  { %>
+        <% if(locals.errors && (errors.password || errors.username))  { %>
           <div class="validate">
-            <%= errors.password.msg %>
+            <%= (errors.password || errors.username).msg %>
           </div>
         <% } %>
       </div>

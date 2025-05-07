@@ -4,10 +4,14 @@ import * as emailManager from '../lib/emailManager.js'
 
 
 const userSchema = new Schema({
-    name: { type: String, required: true,},
+    name: { type: String, required: true, unique: false},
+    username: {type: String, required: true, unique: true},
     phone: {type: Number},
     email: { type: String, required:true,  unique: true },
     password: { type: String, required:true },
+    age:{type: Number},
+    ciudad: {type:String}, 
+    image : {type:String}
 })
 
 // método estático que hace un hash de una contraseña

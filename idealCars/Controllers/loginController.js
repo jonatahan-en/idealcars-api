@@ -1,78 +1,82 @@
 import User from "../models/User.js";
 import { body, validationResult } from "express-validator";
 
-export function getlogin(req, res, next) {
-  res.render("login", {
-    errors: [],
-    name:"",
-    email: "",
-    password: "",
-    redirectMessage:
-      req.query.from === "newad"
-        ? "Debes iniciar sesión para crear anuncios"
-        : undefined,
-  });
-}
-export async function ValidateLogin(req, res, next) {
-  // Validamos el campo 'name' asegurándonos de que no esté vacío
+export function getlogin(req,res, next){
+    res.render('login', {
+        errors: [],
+        username:"",
+        password:"",
+        redirectMessage: req.query.from === 'newad' 
+            ? 'Debes iniciar sesión para crear anuncios' 
+            : undefined
 
-  await body("email")
-    .notEmpty()
-    .withMessage("Email required")
-    .isEmail()
-    .withMessage("Invalid Credentials")
-    .normalizeEmail()
-    .escape()
-    .run(req);
-
-  await body("password")
-    .notEmpty()
-    .withMessage("Email and Password Required")
-    .matches(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[=@#$])/)
-    .withMessage("Invalid Credentials")
-    .isLength({ min: 8 })
-    .withMessage("Invalid Credentials")
-    .run(req);
-
-  const errors = validationResult(req);
-
-  // Si hay errores de validación, respondemos con el código 400 y los errores.
-  if (!errors.isEmpty()) {
-    return res.render("login", {
-      errors: errors.mapped(),
-      name:req.body.email,
-      email: req.body.email,
-      password: req.body.password,
-    });
-  }
-  next();
-}
-
-export async function PostLogIn(req, res, next) {
-  try {
-    const { email, password } = req.body;
-
-    const user = await User.findOne({ email: email.toLowerCase() });
-    if (!user || !(await user.comparePassword(password))) {
-        return res.render('login', {
-            errors: { 
-                password: { 
-                    msg: 'Invalid Credentials' ,
-                   
-                } 
-            },
-            username: '', 
-            password: ''
-        });
     }
+        
+    )
+}
+export async function ValidateLogin(req, res,next) {
+        
+   
+   
 
-    // si el usuario existe y la contraseña es correcta --> apuntar en su sesión que está loggado.
 
-    req.session.userId = user._id;
+    await body('username')
+    .notEmpty().withMessage("El username es obligatorio")
+    .trim()
+    .custom(value => !value.includes('@')).withMessage('Invalid Credentials')
+    .matches(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 -]+$/).withMessage('Invalid Credentials. Recuerda el formato')
+    .isLength({ min: 3 , max: 10 }).withMessage('Invalid Credentials. Recuerda la longitud')
+    .escape()
+    .run(req),
 
-    // Capitaliza el nombre antes de guardarlo en sesión
-    req.session.userName = user.name.replace(/\b\w/g, (l) => l.toUpperCase());
-    req.session.userEmail = user.email;
+    
+    await body('password')
+    .notEmpty().withMessage('Username and Password Required')
+    .matches(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[=@#$])/).withMessage('Invalid Credentials')
+    .isLength({ min: 8 }).withMessage('Invalid Credentials')
+    .run(req)
+
+   
+    const errors = validationResult(req)
+  
+    // Si hay errores de validación, respondemos con el código 400 y los errores.
+    if (!errors.isEmpty()) {
+      return res.render('login',{
+            errors: errors.mapped(),
+            username: req.body.username,
+            password:req.body.password
+         })
+    }
+    next();
+  }
+
+
+export async function PostLogIn(req,res,next){
+    try {
+        const {username, password} = req.body
+
+        const user = await User.findOne({username: username.toLowerCase()})
+        if(!user || !(await user.comparePassword(password))){  
+            
+            return res.render('login', {
+                errors: { 
+                    password: { 
+                        msg: 'Invalid Credentials' ,
+                       
+                    } 
+                },
+                username: '', 
+                password: ''
+            });
+            
+        }
+
+        
+
+        req.session.userId = user._id
+        req.session.userName = user.name.replace(/\b\w/g, l => l.toUpperCase())
+        req.session.username = user.username
+        req.session.userEmail = user.email
 
     res.redirect("/");
   } catch (error) {
