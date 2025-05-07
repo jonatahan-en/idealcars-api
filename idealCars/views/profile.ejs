@@ -1,41 +1,55 @@
 <%- include("header.ejs") %>
+
+        <style>
+            .profile-picture{
+               display: none;
+            }
+            .avatar{
+                width: 100px;
+                margin-bottom: 20px;
+            }
+        </style>
 <main class="main-bg-container container py-5 d-flex flex-column align-items-center justify-content-center" style="min-height: 70vh;">
     <section class="FormCard w-100" style="max-width: 500px;">
-        <h1 class="text-center mb-4">Perfil</h1>
-        <!-- Aquí puedes añadir más datos del usuario si los tienes en sesión -->
-        <form method="put">
+        <h1 class="text-center mb-4"><%= __('profile.title') %></h1>
+      
+
+        <form   method="put" >
+
+            <div class="">
+                <label for="image">
+                    <img class="avatar" src="https://avatar.iran.liara.run/public/48/">
+                </label>
+                <input class="profile-picture" type="file" accept=".jpg, .png " name="image" id="image">
+            </div>
             <div>
-                <label>Imagen de perfil</label>
+                <label for="name"><%= __('profile.name') %></label>
+                <input value="<%= session.userName %>" name="name" id="name">
+            </div>
+            <div>
+                <label><%= __('profile.lastName') %></label>
                 <input>
             </div>
             <div>
-                <label>Nombre</label>
-                <input value=" <%= session.userName %>">
-            </div>
-            <div>
-                <label>Apellidos</label>
-                <input>
-            </div>
-            <div>
-                <label>Email</label>
+                <label><%= __('profile.email') %></label>
                 <input value="<%= session.userEmail || '' %>">
             </div>
             <div>
-                <label>Edad</label>
+                <label><%= __('profile.age') %></label>
                 <input>
             </div>
             <div>
-                <label>Telefono</label>
+                <label><%= __('profile.phone') %></label>
                 <input>
             </div>
             <div>
-                <label>Ciudad</label>
+                <label><%= __('profile.city') %></label>
                 <input>
             </div>
             
             
-            <button type="submit" class="btn btn-primary mt-3">Guardar</button>
-            <a  href="/signout" class="btn btn-primary mt-3">Borrar usuario</a>
+            <button type="submit" class="btn btn-primary mt-3"><%= __('common.save') %></button>
+            <a  href="/signout" class="btn btn-primary mt-3"><%= __('profile.deleteUser') %></a>
         </form>
         <a href="/" class="btn btn-primary mt-3"><%= __('common.home') %></a>
     </section>

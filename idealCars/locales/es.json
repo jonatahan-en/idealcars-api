@@ -15,7 +15,18 @@
 			"owner": "Propietario"
 		},
 		"guest": "Invitado",
-		"noProducts": "No tienes productos aún. ¡Añade algunos!"
+		"noProducts": "No tienes productos aún. ¡Añade algunos!",
+		"filters": {
+			"name": "Marca",
+			"model": "Modelo",
+			"color": "Color",
+			"year": "Año",
+			"price": "Precio",
+			"kilometer": "Kilometraje",
+			"button": "Aplicar Filtros"
+		},
+		"tagline": "Tu coche ideal te espera",
+		"detailsButton": "Detalles"
 	},
 	"signup": {
 		"title": "Registro",
@@ -28,7 +39,10 @@
 		"password": "Contraseña",
 		"register": "Registrarse",
 		"Enter_your_name": "Escribe tu nombre",
-		"optional": "Opcional"
+		"optional": "Opcional",
+		"username": "Usuario",
+		"Enter_your_username": "Introduce tu usuario",
+		"Enter_your_email": "Introduce tu email"
 	},
 	"login": {
 		"title": "Iniciar Sesión",
@@ -36,7 +50,8 @@
 		"password": "Contraseña",
 		"login": "Ingresar",
 		"forgotPassword": "¿Olvidaste tu contraseña?",
-		"redirectNewAd": "Debes iniciar sesión para crear un nuevo anuncio."
+		"redirectNewAd": "Debes iniciar sesión para crear un nuevo anuncio.",
+		"username": "Usuario"
 	},
 	"newProduct": {
 		"title": "Nuevo Anuncio",
@@ -72,7 +87,11 @@
 	},
 	"chat": {
 		"title": "Chat",
-		"sendMessage": "Enviar Mensaje"
+		"sendMessage": "Enviar Mensaje",
+		"titleAdChat": "Chat de anuncios",
+		"typeMessagePlaceholder": "Escribe un mensaje...",
+		"sendButton": "Enviar",
+		"chatForProduct": "Chat para el producto: "
 	},
 	"favorites": {
 		"title": "Favoritos",
@@ -92,7 +111,15 @@
 		"save": "Guardar",
 		"confirm": "Confirmar",
 		"delete": "Eliminar",
-		"home": "Inicio"
+		"home": "Inicio",
+		"goBack": "⬅️ atrás",
+		"edit": "Editar",
+		"saveChanges": "Guardar Cambios",
+		"previous": "Anterior",
+		"next": "Siguiente",
+		"details": "Detalles",
+		"email": "Email",
+		"sending": "Enviando..."
 	},
 	"signout": {
 		"title": "Darse de baja",
@@ -102,5 +129,34 @@
 		"unregister": "Darse de baja"
 	},
 	"UnRegister": "Eliminar cuenta",
-	"appDescription": "appDescription"
+	"appDescription": "appDescription",
+	"editProduct": {
+		"title": "Editar Producto",
+		"save": "Guardar Cambios"
+	},
+	"contact": {
+		"title": "Contacto"
+	},
+	"email": {
+		"from": "De",
+		"to": "Para",
+		"subject": "Asunto",
+		"messageLabel": "Mensaje",
+		"sendButton": "Enviar"
+	},
+	"myProduct": {
+		"confirmDelete": "¿Estás seguro de que deseas borrar este producto?",
+		"noImageText": "Sin Imagen"
+	},
+	"productDetail": {
+		"noImages": "No hay imágenes disponibles",
+		"goToChat": "Ir al chat",
+		"emailButton": "Email"
+	},
+	"profile": {
+		"title": "Perfil",
+		"lastName": "Apellidos",
+		"age": "Edad",
+		"city": "Ciudad"
+	}
 }

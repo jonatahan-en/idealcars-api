@@ -2,7 +2,7 @@
 
 
 <link rel="stylesheet" href="/css/new-product.css">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="/css/style.css">
 <main class="main-bg-container">
  
   <section class="FormCard">
@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function() {
       } else {
         // Efecto de feedback al enviar
         const submitBtn = this.querySelector('button[type="submit"]');
-        submitBtn.textContent = 'Enviando...';
+        submitBtn.textContent = '<%= __("common.sending") %>';
         submitBtn.style.opacity = '0.8';
       }
     });
@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', function() {
         img.style.marginRight = '10px';
 
         const deleteBtn = document.createElement('button');
-        deleteBtn.textContent = 'Eliminar';
+        deleteBtn.textContent = '<%= __("common.delete") %>';
         deleteBtn.style.backgroundColor = '#ff6b6b';
         deleteBtn.style.color = 'white';
         deleteBtn.style.border = 'none';

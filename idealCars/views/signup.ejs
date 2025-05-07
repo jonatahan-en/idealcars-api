@@ -24,6 +24,25 @@
           <% } %>
         </div>
         <div class="form_input">
+          <label for="username">
+            <strong><%= __('signup.username') %></strong>
+          </label>
+          <input class="input" 
+          type="text" 
+          id="username" 
+          name="username"
+          value="<%= username || '' %>"
+          required 
+          placeholder="<%= __('signup.Enter_your_name') %>" 
+          autocomplete="given-name" 
+           />
+          <% if(errors.username)  { %>
+            <div class="validate">
+              <%= errors.username.msg %>
+            </div>
+          <% } %>
+          </div>
+        <div class="form_input">
           <label for="phone">
             <strong><%= __('signup.phone_label') %></strong>
           </label>

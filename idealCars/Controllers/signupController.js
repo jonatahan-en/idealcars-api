@@ -26,8 +26,8 @@ export async function ValidateRegister(req, res,next) {
 
 
     await body('email')
-    .notEmpty().withMessage('Email required')
-    .isEmail().withMessage('Must be a valid email format')
+    .notEmpty().withMessage('Email requerido')
+    .isEmail().withMessage('Debe ser un formato de correo electrónico válido')
     .normalizeEmail()
     .escape()
     .run(req),
@@ -43,101 +43,92 @@ export async function ValidateRegister(req, res,next) {
     .isLength({min: 8}).withMessage('Password must contains atleast 8 characteres')
     .matches(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[=@#$])/).withMessage("Debe tener al menos: 8 caracetres, una mayúscula ,una minúscula, un número y uno de estos carácteres especiales: =@#$")
     .run(req)
+    .isLength({min: 8}).withMessage('Password must contains atleast 8 characteres')
+    .matches(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[=@#$])/).withMessage("Debe tener al menos: 8 caracetres, una mayúscula ,una minúscula, un número y uno de estos carácteres especiales: =@#$")
+    .run(req)
   
-    // Usamos validationResult para obtener los errores de validación
     const errors = validationResult(req)
   
-    // Si hay errores de validación, respondemos con el código 400 y los errores.
     if (!errors.isEmpty()) {
-      return res.render('signup',{
+    return res.render('signup',{
+            errors: errors.mapped(),
             errors: errors.mapped(),
             name:req.body.name,
+            username: req.body.username,
             phone:req.body.phone,
             email:req.body.email,
             password:req.body.password
-         })
+        })
     }
     next();
-  }
+    }
 
-
+//funcion para crear un usuario en la base de datos
 export async function postSignup(req,res,next){
-    const {name, email, password, phone} = req.body
-    
+    const {username, name , email, password, phone} = req.body
     try {
         
         // asegurarse de que no existe ya un usuario con ese email
-        const ExistingUser = await User.findOne({ 
+        const  ExistingUser = await User.findOne({ 
             email: email.toLowerCase()
-        });
-        
-        if(ExistingUser){
-            return res.render('signup', {
-                errors: {
-                    email: { msg: 'Este email ya está registrado. Por favor, utiliza otro o inicia sesión.' }
-                },
-                name: req.body.name || "",
-                phone: req.body.phone || "",
-                email: req.body.email || "",
-                password: ""
-            });
-        }    
+            })
+            if (ExistingUser) {
+                return res.render('signup', {
+                    errors: {
+                        email: { msg: 'Este email ya está registrado. Por favor, utiliza otro o inicia sesión.' }
+                    },
+                    name: req.body.name || "",
+                    username: req.body.username || "",
+                    phone: req.body.phone || "",
+                    email: req.body.email || "",
+                    password: ""
+                });
+            }       
                 
-        //añadir este usuario a la base de datos
-        const hashedPassword = await User.hashPassword(password);
+                //añadir este usuario a la base de datos
+                const hashedPassword = await User.hashPassword(password);
+
+                // Mejor manera: crear objeto userData primero
+                const userData = {
+                    name: name.toLowerCase(), 
+                    username: username.toLowerCase(),
+                    email: email.toLowerCase(),
+                    password: hashedPassword
+                };
+                    
+                // Añadir el teléfono solo si se ha proporcionado
+                if (phone) {
+                    userData.phone = phone;
+                }
+                    
+                const newUser = await User.create(userData);
+                
+             //newUser.sendEmail('Bienvenido','Bienvenido a IdealCars')//Si quito el await se elimina la espera,pero es una practica rudimentaria
+                return res.redirect('/login');
+            } catch (error) {
+                console.error('error al crear el usuario:', error);
+
+                // Mensaje de error más específico según el tipo de error
+                let errorMessage = 'Error al crear la cuenta. Por favor, inténtalo de nuevo.';
+                
+                if (error.name === 'ValidationError') {
+                    errorMessage = 'Error de validación: ' + Object.values(error.errors).map(e => e.message).join(', ');
+                } else if (error.code === 11000) {
+                    errorMessage = 'Este email o nombre de usuario ya está en uso.';
+                } else {
+                    errorMessage = 'Error desconocido: ' + error.message;
+                }
         
-        const userData = {
-            name: name.toLowerCase(),
-            email: email.toLowerCase(),
-            password: hashedPassword
-        };
-        
-        // Añadir el teléfono solo si se ha proporcionado
-        if (phone) {
-            userData.phone = phone;
-        }
-        
-        const NewUser = await User.create(userData);
-        
-        console.log('Usuario creado exitosamente:', NewUser._id);
-        
-        try {
-            await NewUser.sendEmail('Bienvenido a IdealCars', 
-                `<h1>¡Bienvenido a IdealCars!</h1>
-                <p>Hola ${name},</p>
-                <p>Tu cuenta ha sido creada exitosamente. Ahora puedes iniciar sesión y comenzar a explorar nuestra plataforma.</p>
-                <p>¡Gracias por registrarte!</p>`);
-            console.log('Email de bienvenida enviado');
-        } catch (emailError) {
-            console.error('Error al enviar email de bienvenida:', emailError);
-            // No interrumpimos el flujo por un error en el email
-        }
-        
-        return res.redirect('/login');
-    } catch (error) {
-        console.error('Error al crear usuario:', error);
-        
-        // Mensaje de error más específico según el tipo de error
-        let errorMessage = 'Error al crear la cuenta. Por favor, inténtalo de nuevo.';
-        
-        if (error.name === 'ValidationError') {
-            errorMessage = 'Error de validación: ' + Object.values(error.errors).map(e => e.message).join(', ');
-        } else if (error.code === 11000) {
-            errorMessage = 'Este email ya está en uso.';
-        }
-        
-        return res.render('signup', {
-            errors: {
-                general: { msg: errorMessage }
-            },
-            name: req.body.name || "",
-            phone: req.body.phone || "",
-            email: req.body.email || "",
-            password: ""
-        });
-    }
+                // Importante: pasar todas las variables necesarias para que la plantilla funcione
+                return res.status(500).render('signup', {
+                    errors: {
+                        general: { msg: errorMessage }
+                    },
+                    name: req.body.name || "",
+                    username: req.body.username || "",
+                    phone: req.body.phone || "",
+                    email: req.body.email || "",
+                    password: ""
+                });
+            }
 }
-
-
-
-

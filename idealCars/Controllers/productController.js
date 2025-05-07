@@ -31,20 +31,22 @@ export async function validateProduct(req, res, next) {
         "a4", "elantra", "silverado", "altima", "sportage", "208", 
         "clio", "cx-5", "outback", "rx 350", "model 3", "panda", 
         "xc60", "wrangler", "lancer", "discovery", "xf", "octavia", 
-        "ibiza", "giulia", "swift", "c4", "charger", "300c","c3"
+        "ibiza", "giulia", "swift", "c4", "charger", "300c", "c3", "focus"
       ];
     const coloresValidos= ['rojo', 'azul','verde','amarillo','celeste','rosa','negro','plateado','gris','blanco','morado','naranja','marron'];
     
     await body('name')
- 
     .notEmpty().withMessage('El nombre es obligatorio')
     .trim()
-    .isAlpha('es-ES', { ignore: ' ' }).withMessage('El nombre solo puede contener letras')
-    .custom( value => {
-        if(!marcas.includes(value.toLowerCase())){
-            const ejemplos = ["toyota", "ford", "volkswagen", "honda", "bmw"];
+    .isAlpha('es-ES', { ignore: ' -' }).withMessage('El nombre solo puede contener letras')
+    .custom(value => {
+        // Convertimos el valor a minúscula para comparar sin distinción de mayúsculas/minúsculas
+        const valorLowerCase = value.toLowerCase();
+        // Comprobamos si el valor está en el array de marcas
+        if(!marcas.includes(valorLowerCase)){
+            const ejemplos = ["Toyota", "Ford", "Volkswagen", "Honda", "BMW"];
             throw new Error(
-                `Marca no reconocida. Ejemplos válidos: ${ejemplos.join(', ')}. ` +
+                `Esta marca no está disponible aún. Ejemplos válidos: ${ejemplos.join(', ')}. ` +
                 `Contacto: idealcarsapiwankenobi@gmail.com`
             );
         }
@@ -60,8 +62,9 @@ export async function validateProduct(req, res, next) {
     .matches(/^[a-zA-Z0-9 \-.]+$/).withMessage()
     .isAlpha('es-ES', { ignore: ' -.0123456789' }).withMessage('Solo letras, guiones y puntos')
     .custom( value => {
-        if(!modelos.includes(value.toLowerCase())){
-            throw new Error(`Este modelo no está disponible aún. Por favor contacte con:  idealcarsapiwankenobi@gmail.com.`)
+        const valorLowerCase = value.toLowerCase();
+        if(!modelos.some(modelo => modelo.toLowerCase() === valorLowerCase)){
+            throw new Error(`Este modelo no está disponible aún. Por favor contacte con: idealcarsapiwankenobi@gmail.com.`)
         }
         return true
     })
@@ -72,10 +75,11 @@ export async function validateProduct(req, res, next) {
     .isLength({min: 3}).withMessage('El color debe tener al menos 3 caracteres')
     .isAlpha('es-ES', { ignore: ' ' }).withMessage('El color solo puede contener letras')
     .custom(value => {
-        if (!coloresValidos.includes(value.toLowerCase())) {
-            throw new Error(`Color no válido. Opciones : ${coloresValidos.join(', ')}`)
+        const valorLowerCase = value.toLowerCase();
+        if (!coloresValidos.some(color => color.toLowerCase() === valorLowerCase)) {
+            throw new Error(`Color no válido. Opciones: ${coloresValidos.join(', ')}`)
         }
-                return true
+        return true
     })
     .run(req),
     await body('year')
@@ -103,7 +107,7 @@ export async function validateProduct(req, res, next) {
         const invalid = req.files.some(file => 
             !file.originalname.toLowerCase().endsWith('.jpg') && 
             !file.originalname.toLowerCase().endsWith('.jpeg') &&
-            !file.originalname.toLowerCase().endsWith(' .png')
+            !file.originalname.toLowerCase().endsWith('.png')
         );
         
         if (invalid) throw new Error('Solo imágenes .jpg/.jpeg/png permitidas');
@@ -130,15 +134,16 @@ export async function validateProduct(req, res, next) {
 
 export async function postNew(req, res, next) {
     try {
-        console.log("Datos recibidos en postNew:", req.body);  // Verifica los datos recibidos
-        console.log("Archivo recibido:", req.file);  // Verifica si se ha subido correctamente un archivo de imagen
+        console.log("Datos recibidos en postNew:", req.body);
+        console.log("Archivos recibidos:", req.files);
         const userId = req.session.userId
 
-        const {name,model,color,year,price,kilometer,image} = req.body
+        const {name, model, color, year, price, kilometer} = req.body
         const images = req.files ? req.files.map(file => file.filename) : [];
-        //Validaciones
+        
+        // Crear el producto usando 'brand' en lugar de 'name'
         const product = new Product({
-            name,
+            brand: name,  // Aquí asignamos el valor de name a brand
             model,
             color,
             year,   
@@ -147,6 +152,7 @@ export async function postNew(req, res, next) {
             images, 
             owner: userId
         })
+        
         console.log("Producto a guardar:", product);
         await product.save()
         res.redirect('/')

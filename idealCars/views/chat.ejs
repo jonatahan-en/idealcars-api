@@ -1,19 +1,19 @@
 <!doctype html>
 <html>
 <head>
-    <title>Chat de anuncios</title>
+    <title><%= __('chat.title') %></title>
     <script src="/socket.io/socket.io.js"></script>
     <link rel="stylesheet" href="/css/chat.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <div class="chat-container">
-        <h1>Chat de anuncios</h1>
+        <h1><%= __('chat.title') %></h1>
         <ul id="messages"></ul>
         <form id="form">
-            <input id="input" autocomplete="off" placeholder="Escribe un mensaje..." />
-            <button type="submit">Enviar</button>
-            <button type="button" class="btn" onclick="window.history.back()">⬅️ atrás</button>
+            <input id="input" autocomplete="off" placeholder="<%= __('chat.placeholder') %>" />
+            <button type="submit"><%= __('chat.sendButton') %></button>
+            <button type="button" class="btn" onclick="window.history.back()">⬅️ <%= __('common.back') %></button>
         </form>
     </div>
     <script>
@@ -24,6 +24,8 @@
         const form = document.getElementById('form');
         const input = document.getElementById('input');
         const messages = document.getElementById('messages');
+        const chatTitlePlaceholder = '<%= __("chat.productChatTitle") %>';
+
 
         // Unirse a la sala del anuncio
         socket.emit('join-chat', adId);
@@ -35,7 +37,7 @@
             if (!productTitle) {
                 productTitle = document.createElement('h2');
                 productTitle.id = 'productName';
-                productTitle.textContent = `Chat para el producto: ${productName}`;
+                productTitle.textContent = chatTitlePlaceholder.replace('%s', productName);
                 document.querySelector('.chat-container').insertBefore(productTitle, document.querySelector('#messages'));
             }
 

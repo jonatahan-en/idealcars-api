@@ -1,65 +1,184 @@
 <%- include("header.ejs") %>
 
-<main class="container py-5">
-    <h1>Editar Producto</h1>
-    <form action="/myproducts/<%= product._id %>?_method=PUT" method="POST" novalidate>
-       
-        <div class="mb-3">
-            <label for="name" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="name" name="name" value="<%= product.name  %>" required>
-            <% if (product.errors && product.errors.name) { %>
-                <div class="validate" role="alert">
-                  <%= product.errors.name.msg %>
+<link rel="stylesheet" href="/css/new-product.css">
+<link rel="stylesheet" href="/css/style.css">
+<main class="main-bg-container">
+    <section class="FormCard">
+        <h1 class="mb-4 text-center"><%= __('editProduct.title') %></h1>
+        <form action="/myproducts/<%= product._id %>?_method=PUT" method="POST" enctype="multipart/form-data" novalidate>
+            
+            <div class="form_input mb-3">
+                <label for="name" style="color: #00bfff"><%= __('newProduct.name') %></label>
+                <input class="input" type="text" id="name" name="name" value="<%= product.name %>" required>
+                <% if (product.errors && product.errors.name) { %>
+                    <div class="validate" role="alert">
+                        <%= product.errors.name.msg %>
+                    </div>
+                <% } %>
+            </div>
+            <div class="form_input mb-3">
+                <label for="model" style="color: #00bfff"><%= __('newProduct.model') %></label>
+                <input class="input" type="text" id="model" name="model" value="<%= product.model %>" required>
+                <% if (product.errors && product.errors.model) { %>
+                    <div class="validate" role="alert">
+                        <%= product.errors.model.msg %>
+                    </div>
+                <% } %>
+            </div>
+            <div class="form_input mb-3">
+                <label for="color" style="color: #00bfff"><%= __('newProduct.color') %></label>
+                <input class="input" type="text" id="color" name="color" value="<%= product.color %>" required>
+                <% if (product.errors && product.errors.color) { %>
+                    <div class="validate" role="alert">
+                        <%= product.errors.color.msg %>
+                    </div>
+                <% } %>
+            </div>
+            <div class="form_input mb-3">
+                <label for="year" style="color: #00bfff"><%= __('newProduct.year') %></label>
+                <input class="input" type="number" id="year" name="year" value="<%= product.year %>" required>
+                <% if (product.errors && product.errors.year) { %>
+                    <div class="validate" role="alert">
+                        <%= product.errors.year.msg %>
+                    </div>
+                <% } %>
+            </div>
+            <div class="form_input mb-3">
+                <label for="price" style="color: #00bfff"><%= __('newProduct.price') %></label>
+                <input class="input" type="number" id="price" name="price" value="<%= product.price %>" required>
+                <% if (product.errors && product.errors.price) { %>
+                    <div class="validate" role="alert">
+                        <%= product.errors.price.msg %>
+                    </div>
+                <% } %>
+            </div>
+            <div class="form_input mb-3">
+                <label for="kilometer" style="color: #00bfff"><%= __('newProduct.kilometer') %></label>
+                <input class="input" type="number" id="kilometer" name="kilometer" value="<%= product.kilometer %>" required>
+                <% if (product.errors && product.errors.kilometer) { %>
+                    <div class="validate" role="alert">
+                        <%= product.errors.kilometer.msg %>
+                    </div>
+                <% } %>
+            </div>
+            
+            <div class="form_input mb-3">
+                <label for="images" style="color: #00bfff"><%= __('newProduct.image') %></label>
+                <input class="input" type="file" accept=".jpg, .png, jpeg" id="images" name="images" multiple>
+                
+                <!-- Mostrar imágenes existentes -->
+                <div id="current-images" style="margin-top: 15px;">
+                    <h5>Imágenes actuales:</h5>
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
+                        <% if (product.images && product.images.length > 0) { %>
+                            <% product.images.forEach((image, index) => { %>
+                                <div class="existing-image" data-image="<%= image %>" style="position: relative; margin-bottom: 10px;">
+                                    <img src="/imagenes/<%= image %>" alt="Imagen de producto" style="max-width: 100px; max-height: 100px; object-fit: cover;">
+                                    <input type="hidden" name="existingImages[]" value="<%= image %>">
+                                    <button type="button" class="remove-image" data-index="<%= index %>" style="position: absolute; top: 0; right: 0; background: #ff6b6b; color: white; border: none; border-radius: 50%; width: 20px; height: 20px; line-height: 1; cursor: pointer;">X</button>
+                                </div>
+                            <% }) %>
+                        <% } else { %>
+                            <p>No hay imágenes disponibles</p>
+                        <% } %>
+                    </div>
                 </div>
-              <% } %>
-        </div>
-        <div class="mb-3">
-            <label for="model" class="form-label">Modelo</label>
-            <input type="text" class="form-control" id="model" name="model" value="<%= product.model %>" required>
-            <% if (product.errors && product.errors.model) { %>
-                <div class="validate" role="alert">
-                  <%= product.errors.model.msg %>
-                </div>
-              <% } %>
-        </div>
-        <div class="mb-3">
-            <label for="color" class="form-label">Color</label>
-            <input type="text" class="form-control" id="color" name="color" value="<%= product.color %>" required>
-            <% if (product.errors && product.errors.color) { %>
-                <div class="validate" role="alert">
-                  <%= product.errors.color.msg %>
-                </div>
-              <% } %>
-        </div>
-        <div class="mb-3">
-            <label for="year" class="form-label">Año</label>
-            <input type="number" class="form-control" id="year" name="year" value="<%= product.year %>" required>
-            <% if (product.errors && product.errors.year) { %>
-                <div class="validate" role="alert">
-                  <%= product.errors.year.msg %>
-                </div>
-              <% } %>
-        </div>
-        <div class="mb-3">
-            <label for="price" class="form-label">Precio</label>
-            <input type="number" class="form-control" id="price" name="price" value="<%= product.price %>" required>
-            <% if (product.errors && product.errors.price) { %>
-                <div class="validate" role="alert">
-                  <%= product.errors.price.msg %>
-                </div>
-              <% } %>
-        </div>
-        <div class="mb-3">
-            <label for="kilometer" class="form-label">Kilometraje</label>
-            <input type="number" class="form-control" id="kilometer" name="kilometer" value="<%= product.kilometer %>" required>
-            <% if (product.errors && product.errors.kilometer) { %>
-                <div class="validate" role="alert">
-                  <%= product.errors.kilometer.msg %>
-                </div>
-              <% } %>
-        </div>
-        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-    </form>
+                
+                <!-- Previsualización de nuevas imágenes -->
+                <div id="preview-container" style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;"></div>
+            </div>
+            
+            <div class="form_action">
+                <button type="submit" class="btn btn-primary"><%= __('editProduct.save') %></button>
+            </div>
+        </form>
+    </section>
 </main>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Efecto de focus para los inputs
+    const inputs = document.querySelectorAll('.input');
+    
+    inputs.forEach(input => {
+        input.addEventListener('focus', function() {
+            this.parentElement.classList.add('active');
+        });
+        
+        input.addEventListener('blur', function() {
+            if (this.value === '') {
+                this.parentElement.classList.remove('active');
+            }
+        });
+        
+        // Check if input has value on page load
+        if (input.value !== '') {
+            input.parentElement.classList.add('active');
+        }
+    });
+    
+    // Animación para el botón submit
+    const submitButton = document.querySelector('.form_action button');
+    submitButton.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-2px)';
+    });
+    
+    submitButton.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+    });
+    
+    // Manejo de imágenes existentes
+    document.querySelectorAll('.remove-image').forEach(button => {
+        button.addEventListener('click', function() {
+            const imageContainer = this.parentElement;
+            imageContainer.remove();
+        });
+    });
+    
+    // Previsualización de nuevas imágenes
+    document.querySelector('input[type="file"]').addEventListener('change', function (e) {
+        const previewContainer = document.getElementById('preview-container');
+        previewContainer.innerHTML = '';  
+
+        for (let i = 0; i < e.target.files.length; i++) {
+            const file = e.target.files[i];
+            const reader = new FileReader();
+
+            reader.onload = function (event) {
+                const imageContainer = document.createElement('div');
+                imageContainer.style.display = 'flex';
+                imageContainer.style.alignItems = 'center';
+                imageContainer.style.marginBottom = '10px';
+
+                const img = document.createElement('img');
+                img.src = event.target.result;
+                img.alt = file.name;
+                img.style.maxWidth = '100px';
+                img.style.marginRight = '10px';
+
+                const deleteBtn = document.createElement('button');
+                deleteBtn.textContent = 'X';
+                deleteBtn.style.backgroundColor = '#ff6b6b';
+                deleteBtn.style.color = 'white';
+                deleteBtn.style.border = 'none';
+                deleteBtn.style.padding = '5px 10px';
+                deleteBtn.style.cursor = 'pointer';
+                deleteBtn.style.borderRadius = '4px';
+                deleteBtn.style.marginLeft = '10px';
+
+                deleteBtn.addEventListener('click', function () {
+                    previewContainer.removeChild(imageContainer);
+                });
+
+                imageContainer.appendChild(img);
+                imageContainer.appendChild(deleteBtn);
+                previewContainer.appendChild(imageContainer);
+            };
+
+            reader.readAsDataURL(file);  
+        }
+    });
+});
+</script>
 
 <%- include("footer.ejs") %>

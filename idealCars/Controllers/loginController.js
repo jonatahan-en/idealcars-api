@@ -1,12 +1,10 @@
-import User from '../models/User.js'
-import {body, validationResult} from 'express-validator'
-
-
+import User from "../models/User.js";
+import { body, validationResult } from "express-validator";
 
 export function getlogin(req,res, next){
     res.render('login', {
         errors: [],
-        email:"",
+        username:"",
         password:"",
         redirectMessage: req.query.from === 'newad' 
             ? 'Debes iniciar sesión para crear anuncios' 
@@ -18,20 +16,18 @@ export function getlogin(req,res, next){
 }
 export async function ValidateLogin(req, res,next) {
         
-    // Validamos el campo 'name' asegurándonos de que no esté vacío
-   
-
-
-    await body('email')
-    .notEmpty().withMessage('Email required')
-    .isEmail().withMessage('Invalid Credentials')
-    .normalizeEmail()
+    await body('username')
+    .notEmpty().withMessage("El username es obligatorio")
+    .trim()
+    .custom(value => !value.includes('@')).withMessage('Invalid Credentials')
+    .matches(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 -]+$/).withMessage('Invalid Credentials. Recuerda el formato')
+    .isLength({ min: 3 , max: 10 }).withMessage('Invalid Credentials. Recuerda la longitud')
     .escape()
-    .run(req)
+    .run(req),
 
     
     await body('password')
-    .notEmpty().withMessage('Email and Password Required')
+    .notEmpty().withMessage('Username and Password Required')
     .matches(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[=@#$])/).withMessage('Invalid Credentials')
     .isLength({ min: 8 }).withMessage('Invalid Credentials')
     .run(req)
@@ -43,7 +39,7 @@ export async function ValidateLogin(req, res,next) {
     if (!errors.isEmpty()) {
       return res.render('login',{
             errors: errors.mapped(),
-            email: req.body.email,
+            username: req.body.username,
             password:req.body.password
          })
     }
@@ -53,45 +49,45 @@ export async function ValidateLogin(req, res,next) {
 
 export async function PostLogIn(req,res,next){
     try {
-        const {email, password} = req.body
+        const {username, password} = req.body
 
-        const user = await User.findOne({email: email.toLowerCase()})
+        const user = await User.findOne({username: username.toLowerCase()})
         if(!user || !(await user.comparePassword(password))){  
             
-            
-              return res.render('login', {
-                errors: {
-                    auth: { msg: 'Credenciales inválidas. Por favor, verifica tu email y contraseña' }
+            return res.render('login', {
+                errors: { 
+                    password: { 
+                        msg: 'Invalid Credentials' ,
+                       
+                    } 
                 },
-                email: req.body.email,
-                password: ''  // Por seguridad no devolvemos la contraseña
+                username: '', 
+                password: ''
             });
-            
-            
             
         }
 
-        
-        // si el usuario existe y la contraseña es correcta --> apuntar en su sesión que está loggado.
-
+        // Si las credenciales son válidas, guardamos la información del usuario en la sesión
         req.session.userId = user._id
-        
-        // Capitaliza el nombre antes de guardarlo en sesión
+        // Guardamos tanto el nombre formateado como el nombre de usuario
         req.session.userName = user.name.replace(/\b\w/g, l => l.toUpperCase())
         req.session.userEmail = user.email
+        
+        console.log("Sesión después del login:", { 
+            userName: req.session.userName,
+            username: req.session.username,
+            userEmail: req.session.userEmail
+        });
 
-        res.redirect('/')
-
-    } catch (error) {
-        console.error(error);
-        res.status(500).render('login');
-    }
-
-
+    res.redirect("/");
+  } catch (error) {
+    console.error(error);
+    res.status(500).render("login");
+  }
 }
-export function logout(req,res,next){
-    req.session.regenerate(err=>{
-        if(err) return next(err)
-        res.redirect('/')
-    })
+export function logout(req, res, next) {
+  req.session.regenerate((err) => {
+    if (err) return next(err);
+    res.redirect("/");
+  });
 }

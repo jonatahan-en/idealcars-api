@@ -58,8 +58,20 @@ export async function editProductForm(req, res, next) {
             return next(createError(404, "Producto no encontrado"));
         }
 
+        // Preparar los datos para la plantilla, mapeando brand a name
+        const productForTemplate = {
+            _id: product._id,
+            name: product.brand, // Asignamos brand a name para la vista
+            model: product.model,
+            color: product.color,
+            year: product.year,
+            price: product.price,
+            kilometer: product.kilometer,
+            images: product.images || [] // Incluimos las imágenes
+        };
+
         // Renderiza el formulario de edición con los datos del producto
-        res.render("editProduct", { product });
+        res.render("editProduct", { product: productForTemplate });
     } catch (error) {
         console.error(`ERROR - Ocurrió un error al cargar el formulario de edición: ${error}`);
         next(error);
@@ -80,19 +92,22 @@ export async function validateProduct(req, res, next) {
         "a4", "elantra", "silverado", "altima", "sportage", "208", 
         "clio", "cx-5", "outback", "rx 350", "model 3", "panda", 
         "xc60", "wrangler", "lancer", "discovery", "xf", "octavia", 
-        "ibiza", "giulia", "swift", "c4", "charger", "300c","c3"
+        "ibiza", "giulia", "swift", "c4", "charger", "300c", "c3", "focus"
       ];
     const coloresValidos= ['rojo', 'azul','verde','amarillo','celeste','rosa','negro','plateado','gris','blanco','morado','naranja','marron'];
     
     await body('name')
     .notEmpty().withMessage('El nombre es obligatorio')
     .trim()
-    .isAlpha('es-ES', { ignore: ' ' }).withMessage('El nombre solo puede contener letras')
-    .custom( value => {
-        if(!marcas.includes(value.toLowerCase())){
-            const ejemplos = ["toyota", "ford", "volkswagen", "honda", "bmw"];
+    .isAlpha('es-ES', { ignore: ' -' }).withMessage('El nombre solo puede contener letras')
+    .custom(value => {
+        // Convertimos el valor a minúscula para comparar sin distinción de mayúsculas/minúsculas
+        const valorLowerCase = value.toLowerCase();
+        // Comprobamos si el valor está en el array de marcas
+        if(!marcas.includes(valorLowerCase)){
+            const ejemplos = ["Toyota", "Ford", "Volkswagen", "Honda", "BMW"];
             throw new Error(
-                `Marca no reconocida. Ejemplos válidos: ${ejemplos.join(', ')}. ` +
+                `Esta marca no está disponible aún. Ejemplos válidos: ${ejemplos.join(', ')}. ` +
                 `Contacto: idealcarsapiwankenobi@gmail.com`
             );
         }
@@ -107,9 +122,12 @@ export async function validateProduct(req, res, next) {
     .trim()
     .matches(/^[a-zA-Z0-9 \-.]+$/).withMessage()
     .isAlpha('es-ES', { ignore: ' -.0123456789' }).withMessage('Solo letras, guiones y puntos')
-    .custom( value => {
-        if(!modelos.includes(value.toLowerCase())){
-            throw new Error(`Este modelo no está disponible aún. Por favor contacte con:  idealcarsapiwankenobi@gmail.com.`)
+    .custom(value => {
+        // Convertimos el valor a minúscula para comparar sin distinción de mayúsculas/minúsculas
+        const valorLowerCase = value.toLowerCase();
+        // Comprobamos si el valor está en el array de modelos
+        if(!modelos.includes(valorLowerCase)){
+            throw new Error(`Este modelo no está disponible aún. Por favor contacte con: idealcarsapiwankenobi@gmail.com.`)
         }
         return true
     })
@@ -168,19 +186,46 @@ export async function updateProduct(req, res, next) {
     try {
         const userId = req.session.userId;
         const id = req.params.id;
-        const updatedData = req.body;
-
-        // Busca y actualiza el producto del usuario autenticado
-        const product = await Product.findOneAndUpdate(
-            { _id: id, owner: userId }, // Filtro
-            updatedData,                // Datos actualizados
-            { new: true }               // Devuelve el producto actualizado
-        );
-
-        if (!product) {
+        const { name, model, color, year, price, kilometer } = req.body;
+        
+        // Buscar el producto original para obtener las imágenes existentes
+        const originalProduct = await Product.findOne({ _id: id, owner: userId });
+        if (!originalProduct) {
             console.warn(`WARNING - el usuario ${userId} está intentando actualizar un producto inexistente`);
             return next(createError(404, "Producto no encontrado"));
         }
+        
+        // Obtener las imágenes existentes que no se han eliminado (si se envían)
+        let existingImages = req.body.existingImages || [];
+        if (!Array.isArray(existingImages)) {
+            existingImages = [existingImages]; // Convertir a array si solo se envía un valor
+        }
+        
+        // Procesar las nuevas imágenes subidas
+        const newImages = req.files ? req.files.map(file => file.filename) : [];
+        
+        // Combinar las imágenes existentes y nuevas
+        const images = [...existingImages, ...newImages];
+        
+        // Crear un objeto con los datos actualizados
+        const updatedData = {
+            brand: name, // Asignamos 'name' a 'brand'
+            model,
+            color,
+            year,
+            price,
+            kilometer,
+            images: images.length > 0 ? images : originalProduct.images // Si no hay imágenes, mantener las originales
+        };
+
+        console.log("Datos actualizados:", updatedData);
+        
+        // Busca y actualiza el producto
+        const product = await Product.findOneAndUpdate(
+            { _id: id, owner: userId },
+            updatedData,
+            { new: true }
+        );
 
         // Redirige a la lista de productos
         res.redirect("/myproducts");

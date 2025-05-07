@@ -84,7 +84,7 @@ export function setupSocketServer(httpServer) {
                 await message.save();
 
                 // Emitir el mensaje a todos los clientes conectados a la sala
-                io.to(roomId).emit('chat-message', { text, userName, createdAt: message.createdAt });
+                io.to(roomId).emit('chat-message', { text, username, createdAt: message.createdAt });
             } catch (error) {
                 console.error('Error al procesar el mensaje:', error);
             }

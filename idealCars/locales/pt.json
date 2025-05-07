@@ -15,7 +15,9 @@
 			"owner": "Proprietário"
 		},
 		"guest": "Convidado",
-		"noProducts": "Você ainda não tem produtos. Adicione alguns!"
+		"noProducts": "Você ainda não tem produtos. Adicione alguns!",
+		"tagline": "O seu carro ideal espera por você",
+		"detailsButton": "Detalhes"
 	},
 	"signup": {
 		"title": "Cadastro",
@@ -28,7 +30,10 @@
 		"password": "Senha",
 		"register": "Cadastrar",
 		"Enter_your_name": "Digite seu nome",
-		"optional": "Opcional"
+		"optional": "Opcional",
+		"username": "nome de utilizador",
+		"Enter_your_username": "Digite seu nome de utilizador",
+		"Enter_your_email": "Digite seu e-mail"
 	},
 	"login": {
 		"title": "Login",
@@ -36,7 +41,8 @@
 		"password": "Senha",
 		"login": "Entrar",
 		"forgotPassword": "Esqueceu a senha?",
-		"redirectNewAd": "Você deve efetuar login para criar um novo anúncio."
+		"redirectNewAd": "Você deve efetuar login para criar um novo anúncio.",
+		"username": "nome de utilizador"
 	},
 	"newProduct": {
 		"title": "Novo Anúncio",
@@ -92,7 +98,23 @@
 		"save": "Salvar",
 		"confirm": "Confirmar",
 		"delete": "Excluir",
-		"home": "Início"
+		"home": "Início",
+		"details": "Detalhes",
+		"email": "Email",
+		"edit": "Editar",
+		"previous": "Anterior",
+		"next": "Próximo",
+		"goBack": "Voltar",
+		"saveChanges": "Salvar Alterações",
+		"sending": "Enviando..."
+	},
+	"productDetail": {
+		"noImages": "Nenhuma imagem disponível",
+		"goToChat": "Ir para o chat"
+	},
+	"myProduct": {
+		"confirmDelete": "Tem certeza que deseja excluir este produto?",
+		"noImageText": "Sem Imagem"
 	},
 	"signout": {
 		"title": "Sair da conta",
@@ -102,5 +124,9 @@
 		"unregister": "Cancelar cadastro"
 	},
 	"UnRegister": "Excluir Conta",
-	"appDescription": "appDescription"
+	"appDescription": "appDescription",
+	"editProduct": {
+		"title": "Editar Produto",
+		"save": "Salvar Alterações"
+	}
 }

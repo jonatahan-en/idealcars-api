@@ -2,7 +2,6 @@
 <%- include("header.ejs") %>
 <link rel="stylesheet" href="/css/product-detail.css"> 
 <link rel="stylesheet" href="/css/styles.css">
-
 <main class="card-container">
     <section class="detail-card">
         <h2><%= product.name %> - <%= product.model %></h2>
@@ -19,17 +18,17 @@
             <button class="carousel-btn next" onclick="moveSlide(1)">&#10095;</button>
         </div>
         <% } else { %>
-        <p>No hay imágenes disponibles</p>
+        <p><%= __('productDetail.noImages') %></p>
         <% } %>
         <div class="button-group">
-        <a href="/chat/<%= product._id %>" class="btn action-btn">💬 Ir al chat</a>
+        <a href="/chat/<%= product._id %>" class="btn action-btn">💬 <%= __('productDetail.goToChat') %></a>
         <form action="/email" method="get" class="email-form">
             <input type="hidden" name="productId" value="<%= product._id %>">
-            <button type="submit" class="btn action-btn">📩 Email</button>
+            <button type="submit" class="btn action-btn">📩 <%= __('common.email') %></button>
         </form>
         </div>
         <div class="home-container">
-            <a href="/" class="btn home-btn">🏠 Inicio</a>
+            <a href="/" class="btn home-btn">🏠 <%= __('common.home') %></a>
         </div>
     </section>
 </main>

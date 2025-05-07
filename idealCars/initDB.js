@@ -23,18 +23,23 @@ async function initproducts(){
     const deleteResult = await Product.deleteMany();
     console.log(`Deleted ${deleteResult.deletedCount} products`);
 
-    // Obtener los IDs de los tres usuarios
-    const [ juan, jose, jorge ] = await Promise.all([
+    // Obtener los IDs de los usuarios
+    const [ juan, jose, jorge, Ruben ] = await Promise.all([
         User.findOne({name: "juan"}),
         User.findOne({name: "jose"}),
-        User.findOne({name: "jorge"}), // Añadir jorge
+        User.findOne({name: "jorge"}),
+        User.findOne({name: "Ruben Ponce"})
     ]);
 
     
     const insertResult = await Product.insertMany([
-        {name: "Toyota", model: "Corolla", color: "Blanco", year: 2022, price: 23000, kilometer: 25000, images: [], owner: juan._id},
-        {name: "Volkswagen", model: "Golf", color: "Negro", year: 2021, price: 21500, kilometer: 32000, images: [], owner: juan._id}, 
-        {name: "Honda", model: "Civic", color: "Plata", year: 2020, price: 19500, kilometer: 40000, images: [], owner: jose._id},
+        {brand: "Toyota", model: "Corolla", color: "Blanco", year: 2022, price: 23000, kilometer: 25000, images: [], owner: juan._id},
+        {brand: "Volkswagen", model: "Golf", color: "Negro", year: 2021, price: 21500, kilometer: 32000, images: [], owner: juan._id}, 
+        {brand: "Honda", model: "Civic", color: "Plata", year: 2020, price: 19500, kilometer: 40000, images: [], owner: jose._id},
+        {brand: "BMW", model: "Serie 3", color: "Azul", year: 2023, price: 45000, kilometer: 5000, images: [], owner: Ruben._id},
+        {brand: "Audi", model: "A4", color: "Rojo", year: 2021, price: 38000, kilometer: 18000, images: ["img_cars/rPonce/audi_1.png"], owner: Ruben._id},
+        {brand: "Mercedes-Benz", model: "Clase C", color: "Gris", year: 2022, price: 52000, kilometer: 12000, images: ["mercedes-c-1.jpg", "mercedes-c-2.jpg"], owner: Ruben._id},
+        {brand: "Ford", model: "F-150", color: "Negro", year: 2020, price: 36000, kilometer: 45000, images: ["ford-f150-1.jpg", "ford-f150-2.jpg"], owner: Ruben._id},
     ]);
     console.log(`Created ${insertResult.length} products`);
 }
@@ -43,9 +48,10 @@ async function initUser(){
     const deleteResult = await User.deleteMany();
     console.log(`Deleted ${deleteResult.deletedCount} users`)
     const insertResult = await User.insertMany([
-        {name:"juan", email:"juan@example.com", password: await User.hashPassword("GABInico22@")},
-        {name:"jose", email:"jose@example.com", password: await User.hashPassword("GABInico22@")},
-        {name:"jorge", email:"jorge@example.com", password: await User.hashPassword("GABInico22@")}
+        {name:"juan",username:"juanan", email:"juan@example.com", password: await User.hashPassword("GABInico22@")},
+        {name:"jose",username:"josemi", email:"jose@example.com", password: await User.hashPassword("GABInico22@")},
+        {name:"jorge",username:"jorgeV", email:"jorge@example.com", password: await User.hashPassword("GABInico22@")},
+        {name:"Ruben Ponce", username:"PonceR", email:"ruben@example.com", password: await User.hashPassword("GABInico22@")}
     ])
     console.log(`Create ${insertResult.length} users`)
 }

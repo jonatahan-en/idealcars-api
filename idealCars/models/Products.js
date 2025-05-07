@@ -1,7 +1,7 @@
 import mongoose,{Schema} from "mongoose";
 
 const productSchema = new Schema({
-    name:  { type:String, required: true, index: true },
+    brand:  { type:String, required: true, index: true },
     model:  { type:String, required: true, index: true }, 
     color:  { type:String, required: true , index: true }, 
     year:  {type:Number, min: 1980, max:2024, index: true },

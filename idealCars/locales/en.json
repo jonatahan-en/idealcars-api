@@ -16,7 +16,9 @@
 			"brand": "Brand"
 		},
 		"guest": "Guest",
-		"noProducts": "You have no products yet. Add some!"
+		"noProducts": "You have no products yet. Add some!",
+		"tagline": "home.tagline",
+		"detailsButton": "Details"
 	},
 	"signup": {
 		"title": "Sign Up",
@@ -44,7 +46,8 @@
 		"password": "Password",
 		"login": "Login",
 		"forgotPassword": "Forgot password?",
-		"redirectNewAd": "You must log in to create a new listing."
+		"redirectNewAd": "You must log in to create a new listing.",
+		"username": "login.username"
 	},
 	"newProduct": {
 		"title": "New Ad",
@@ -100,8 +103,23 @@
 		"save": "Save",
 		"confirm": "Confirm",
 		"delete": "Delete",
-		"home": "Home"
+		"home": "Home",
+		"previous": "common.previous",
+		"next": "common.next",
+		"sending": "common.sending",
+		"edit": "common.edit",
+		"email": "common.email"
 	},
 	"UnRegister": "Delete account",
-	"appDescription": "appDescription"
+	"appDescription": "appDescription",
+	"myProduct": {
+		"confirmDelete": "myProduct.confirmDelete"
+	},
+	"editProduct": {
+		"title": "Edit Product",
+		"save": "Save Changes"
+	},
+	"productDetail": {
+		"goToChat": "productDetail.goToChat"
+	}
 }

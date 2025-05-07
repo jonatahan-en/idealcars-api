@@ -2,20 +2,20 @@
 <link rel="stylesheet" href="/css/email.css">
 <main class="main-bg-container d-flex justify-content-center align-items-center" >
   <section class="Card">
-    <h1>Contacto</h1>
+    <h1><%= __('email.title') %></h1>
     <form method="post" action="/email" novalidate>
       <input type="hidden" name="productId" value="<%= product._id %>">
         <div class="form_input">
             <label for="from">
-              <strong>From</strong>
+              <strong><%= __('email.from') %></strong>
             </label>
             <label>
-              <%= session.userEmail %>
+              <%= session.userName %>
             </label>
         </div>
         <div class="form_input">
             <label for="to">
-              <strong>To</strong>
+              <strong><%= __('email.to') %></strong>
             </label>
             <label>
               <%= product.owner.email %>
@@ -23,15 +23,15 @@
         </div>
         <div class="form_input">
             <label for="subject">
-              <strong>Subject</strong>
+              <strong><%= __('email.subject') %></strong>
             </label>
             <label>
-              <%= product.name  %>
+              <%= product.brand  %>
             </label>
           
         </div>
         <div class="form_input">
-            <label for="content">Mensaje</label>
+            <label for="content"><%= __('email.message') %></label>
             <textarea
             name="content"
             id="content"
@@ -47,8 +47,8 @@
           <% } %>
         </div>
         <div class="form_action">
-          <button type="submit" class="btn">Send</button>
-          <button type="button" class="btn btn-secondary" onclick="window.history.back()">⬅️ Volver atrás</button>
+          <button type="submit" class="btn"><%= __('email.send') %></button>
+          <button type="button" class="btn btn-secondary" onclick="window.history.back()">⬅️ <%= __('common.back') %></button>
         </div>        
       </form>
     </section>

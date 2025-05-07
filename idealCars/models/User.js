@@ -4,10 +4,14 @@ import * as emailManager from '../lib/emailManager.js'
 
 
 const userSchema = new Schema({
-    name: { type: String, required: true },
-    phone: { type: String },
-    email: { type: String, required:true, unique: true },
+    name: { type: String, required: true, unique: false},
+    username: {type: String, required: true, unique: true},
+    phone: {type: Number},
+    email: { type: String, required:true,  unique: true },
     password: { type: String, required:true },
+    age:{type: Number},
+    ciudad: {type:String}, 
+    image : {type:String}
 })
 
 // método estático que hace un hash de una contraseña
@@ -32,18 +36,24 @@ userSchema.methods.sendEmail = async function(subject, body){
         console.log(`Email simulated. Preview: ${emailManager.generatePreviewURL(result)}`)
     }
 }
-userSchema.methods.sendEmailBetweenUsers = async function (from,to,subject,content) {
+userSchema.methods.sendEmailBetweenUsers = async function (from, to, subject, content) {
     const transport = await emailManager.createTransport()
     
-    const result = await transport.sendMail({
-        from,
-        to,
-        subject:`Me interesa tu ${subject}`,
-        html: content
-
-    })
-    
-    console.log("Resultado del envío:", result);  // Verifica si hay algún resultado
+    try {
+        console.log("Enviando email entre usuarios:", { from, to, subject });
+        const result = await transport.sendMail({
+            from,
+            to,
+            subject,
+            html: content
+        });
+        
+        console.log("Resultado del envío:", result);
+        return result;
+    } catch (error) {
+        console.error("Error al enviar email entre usuarios:", error);
+        throw error;
+    }
 }
 
 
