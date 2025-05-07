@@ -75,7 +75,7 @@ export async function validateProduct(req, res, next) {
         "volvo", "jeep", "mitsubishi", "land rover", "jaguar", 
         "skoda", "seat", "alfa romeo", "suzuki", "citroen", "dodge", "chrysler","ferrari"
       ];
-    const modelos = [
+    const modelos = [//Por desconocimiento de modelos de coche por parte de Jorge. La función custom queda comentada
         "corolla", "f-150", "golf", "civic", "serie 3", "clase c", 
         "a4", "elantra", "silverado", "altima", "sportage", "208", 
         "clio", "cx-5", "outback", "rx 350", "model 3", "panda", 
@@ -107,12 +107,12 @@ export async function validateProduct(req, res, next) {
     .trim()
     .matches(/^[a-zA-Z0-9 \-.]+$/).withMessage()
     .isAlpha('es-ES', { ignore: ' -.0123456789' }).withMessage('Solo letras, guiones y puntos')
-    .custom( value => {
+    /*.custom( value => {
         if(!modelos.includes(value.toLowerCase())){
             throw new Error(`Este modelo no está disponible aún. Por favor contacte con:  idealcarsapiwankenobi@gmail.com.`)
         }
         return true
-    })
+    })*/
     .escape()
     .run(req),
     await body('color')

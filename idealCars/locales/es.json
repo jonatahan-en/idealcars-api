@@ -3,7 +3,7 @@
 	"home": {
 		"welcome": "Bienvenido a IdealCars!",
 		"loginPrompt": "Para ver el contenido, por favor, inicia sesión a tu cuenta.",
-		"userProducts": "Mis Anuncios",
+		"userProducts": "Anuncios",
 		"product": {
 			"name": "Nombre",
 			"model": "Modelo",
@@ -31,8 +31,8 @@
 		"name": "Nombre",
 		"phone_label": "Teléfono",
 		"phone_optional": "(Opcional)",
-		"phone_format_example": "Ejemplo: 123-456-789",
-		"phone_format_title": "Formato requerido: 123-456-789",
+		"phone_format_example": "Ejemplo: 856324231",
+		"phone_format_title": "Formato requerido: 856324231",
 		"email": "Email",
 		"password": "Contraseña",
 		"register": "Registrarse",
