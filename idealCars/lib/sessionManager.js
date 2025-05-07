@@ -10,7 +10,13 @@ export const middleware = session({
     secret: SESSION_SECRET,
     saveUninitialized: true,
     resave: false,
-    cookie: {maxAge: INACTIVITY_EXPIRATION_2_DAYS },
+    cookie: {
+        maxAge: INACTIVITY_EXPIRATION_2_DAYS,
+        secure: process.env.NODECARS_ENV === 'production',
+        httpOnly:true,
+        sameSite:'lax'
+
+    },
     //las sesiones se guardan en MongoDB
     store: MongoStore.create({
         mongoUrl: MONGODB_URI
