@@ -34,7 +34,7 @@ export async function ValidateRegister(req, res, next) {
     .withMessage("Debe tener como mínimo 3 caracteres y máximo 15")
     .custom(async (value) => {
       const ExistingUser = await User.findOne({
-        username: value.toLowerCase(),
+        username: value,
       });
       if (ExistingUser) {
         throw new Error("El nombre de usuario está actualmente en uso");

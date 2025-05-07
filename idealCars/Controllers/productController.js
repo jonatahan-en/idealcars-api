@@ -130,8 +130,7 @@ export async function validateProduct(req, res, next) {
 
 export async function postNew(req, res, next) {
     try {
-        console.log("Datos recibidos en postNew:", req.body);  // Verifica los datos recibidos
-        console.log("Archivo recibido:", req.file);  // Verifica si se ha subido correctamente un archivo de imagen
+        
         const userId = req.session.userId
 
         const {name,model,color,year,price,kilometer,image} = req.body

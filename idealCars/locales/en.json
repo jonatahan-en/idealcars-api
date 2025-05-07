@@ -3,7 +3,7 @@
 	"home": {
 		"welcome": "Welcome to IdealCars!",
 		"loginPrompt": "To add or edit, please log in to your account.",
-		"userProducts": "My Ads",
+		"userProducts": "Ads",
 		"product": {
 			"name": "Name",
 			"model": "Model",
