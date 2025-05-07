@@ -75,7 +75,7 @@ export async function validateProduct(req, res, next) {
         if (!coloresValidos.includes(value.toLowerCase())) {
             throw new Error(`Color no válido. Opciones : ${coloresValidos.join(', ')}`)
         }
-                return true
+            return true
     })
     .run(req),
     await body('year')
@@ -91,7 +91,7 @@ export async function validateProduct(req, res, next) {
     .run(req),
     await body('kilometer')
     .notEmpty().withMessage('El kilometraje es obligatorio')
-    .isFloat({min:0, max:300000}).withMessage('El kilometraje debe ser un número entre 0 y 300.000Km')
+    .isFloat({min:0, max:300000}).withMessage('El kilometraje debe ser un número entre 0 y 300.000 Km')
     .isNumeric().withMessage('El kilometraje debe ser un número')
     .escape()
     .run(req)
