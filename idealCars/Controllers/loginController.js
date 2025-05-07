@@ -25,7 +25,7 @@ export async function ValidateLogin(req, res,next) {
     .trim()
     .custom(value => !value.includes('@')).withMessage('Invalid Credentials')
     .matches(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9 -]+$/).withMessage('Invalid Credentials. Recuerda el formato')
-    .isLength({ min: 3 , max: 10 }).withMessage('Invalid Credentials. Recuerda la longitud')
+    .isLength({ min: 3 , max: 15 }).withMessage('Invalid Credentials. Recuerda la longitud')
     .escape()
     .run(req),
 

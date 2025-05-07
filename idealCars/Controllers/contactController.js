@@ -25,7 +25,7 @@ export async function ValidateContext(req, res,next) {
     .notEmpty().withMessage("El mensaje es obligatorio")
     .trim()
     .isLength({ min: 5 , max: 300 }).withMessage('Debe tener como mínimo 5 caracteres y máximo 300')
-    .matches(/^[a-zA-Z0-9 \-.áéíóúÁÉÍÓÚñÑ,$€]+$/).withMessage("Usa solo letras, números, espacios, comas, puntos o €. Ej: '20,50 €'")
+    .matches(/^[a-zA-Z0-9 \-.áéíóúÁÉÍÓÚñÑ,$€?]+$/).withMessage("Usa solo letras, números, espacios, comas, puntos o €. Ej: '20,50 €'")
     .escape()
     .run(req)
 
