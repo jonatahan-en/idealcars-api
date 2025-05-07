@@ -135,7 +135,7 @@ export async function postNew(req, res, next) {
 
         const {name,model,color,year,price,kilometer,image} = req.body
         const images = req.files ? req.files.map(file => file.filename) : [];
-        //Validaciones
+      
         const product = new Product({
             name,
             model,

@@ -17,6 +17,9 @@ if(questionResponse.toLowerCase() !== "yes"){
 await initUser()
 await initproducts();
 
+await connection.collection("sessions").deleteMany({});
+console.log("Sesiones eliminadas correctamente.");
+
 connection.close()
 
 async function initproducts(){
