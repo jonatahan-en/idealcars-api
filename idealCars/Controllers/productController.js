@@ -31,7 +31,7 @@ export async function validateProduct(req, res, next) {
         "a4", "elantra", "silverado", "altima", "sportage", "208", 
         "clio", "cx-5", "outback", "rx 350", "model 3", "panda", 
         "xc60", "wrangler", "lancer", "discovery", "xf", "octavia", 
-        "ibiza", "giulia", "swift", "c4", "charger", "300c","c3"
+        "ibiza", "giulia", "swift", "c4", "charger", "300c","c3","focus"
       ];
     const coloresValidos= ['rojo', 'azul','verde','amarillo','celeste','rosa','negro','plateado','gris','blanco','morado','naranja','marron'];
     
