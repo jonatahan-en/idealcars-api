@@ -133,7 +133,7 @@ export async function postNew(req, res, next) {
         
         const userId = req.session.userId
 
-        const {name,model,color,year,price,kilometer,image} = req.body
+        const {name,model,color,year,price,kilometer} = req.body
         const images = req.files ? req.files.map(file => file.filename) : [];
       
         const product = new Product({
