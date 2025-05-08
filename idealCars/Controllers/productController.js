@@ -26,13 +26,13 @@ export async function validateProduct(req, res, next) {
         "volvo", "jeep", "mitsubishi", "land rover", "jaguar", 
         "skoda", "seat", "alfa romeo", "suzuki", "citroen", "dodge", "chrysler","ferrari"
       ];
-    const modelos = [//Lo dejamos en deshuso porque no tengo ni idea de coches y me faltan muchos modelos(Jorge)
+    /*const modelos = [//Lo dejamos en deshuso porque no tengo ni idea de coches y me faltan muchos modelos(Jorge)
         "corolla", "f-150", "golf", "civic", "serie 3", "clase c", 
         "a4", "elantra", "silverado", "altima", "sportage", "208", 
         "clio", "cx-5", "outback", "rx 350", "model 3", "panda", 
         "xc60", "wrangler", "lancer", "discovery", "xf", "octavia", 
         "ibiza", "giulia", "swift", "c4", "charger", "300c","c3","focus"
-      ];
+      ];*/
     const coloresValidos= ['rojo', 'azul','verde','amarillo','celeste','rosa','negro','plateado','gris','blanco','morado','naranja','marron','plata','rojizo','violeta','cromo','cromado'];
     
     await body('name')
