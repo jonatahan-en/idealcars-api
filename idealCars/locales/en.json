@@ -47,7 +47,7 @@
 		"login": "Login",
 		"forgotPassword": "Forgot password?",
 		"redirectNewAd": "You must log in to create a new listing.",
-		"username": "UserName"
+		"username": "Username"
 	},
 	"newProduct": {
 		"title": "New Ad",
