@@ -27,10 +27,9 @@ async function initproducts(){
     console.log(`Deleted ${deleteResult.deletedCount} products`);
 
     // Obtener los IDs de los tres usuarios
-    const [ juan, jose, jorge ] = await Promise.all([
+    const [ juan, jose] = await Promise.all([
         User.findOne({name: "juan"}),
         User.findOne({name: "jose"}),
-        User.findOne({name: "jorge"}), // Añadir jorge
     ]);
 
     // Insertar la nueva lista de 20 productos
