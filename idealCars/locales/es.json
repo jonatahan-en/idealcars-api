@@ -12,12 +12,13 @@
 			"price": "Precio",
 			"kilometer": "Kilómetros",
 			"image": "Imagen",
-			"owner": "Propietario"
+			"owner": "Propietario",
+			"brand": "Marca"
 		},
 		"guest": "Invitado",
 		"noProducts": "No tienes productos aún. ¡Añade algunos!",
 		"filters": {
-			"name": "Marca",
+			"brand": "Marca",
 			"model": "Modelo",
 			"color": "Color",
 			"year": "Año",
@@ -55,7 +56,7 @@
 	},
 	"newProduct": {
 		"title": "Nuevo Anuncio",
-		"name": "Nombre",
+		"brand": "Marca",
 		"model": "Modelo",
 		"color": "Color",
 		"year": "Año",
@@ -91,7 +92,9 @@
 		"titleAdChat": "Chat de anuncios",
 		"typeMessagePlaceholder": "Escribe un mensaje...",
 		"sendButton": "Enviar",
-		"chatForProduct": "Chat para el producto: "
+		"chatForProduct": "Chat para el producto: ",
+		"placeholder": "Escribe tu mensaje...",
+		"productChatTitle": "Chat de producto"
 	},
 	"favorites": {
 		"title": "Favoritos",
@@ -119,7 +122,8 @@
 		"next": "Siguiente",
 		"details": "Detalles",
 		"email": "Email",
-		"sending": "Enviando..."
+		"sending": "Enviando...",
+		"back": "Volver"
 	},
 	"signout": {
 		"title": "Darse de baja",
@@ -129,7 +133,7 @@
 		"unregister": "Darse de baja"
 	},
 	"UnRegister": "Eliminar cuenta",
-	"appDescription": "appDescription",
+	"appDescription": "IdealCars - Tu plataforma de compra/venta de coches",
 	"editProduct": {
 		"title": "Editar Producto",
 		"save": "Guardar Cambios"

@@ -4,23 +4,23 @@ import createError from "http-errors"
 export async function apiProductsList(req, res, next){
     try {
         const userId = req.apiUserId
-        // http://localhost:3000/api/products?name=ford&model=focus&color=red
-        const filterName = req.query.name
+        // http://localhost:3000/api/products?brand=ford&model=focus&color=red
+        const filterBrand = req.query.brand || req.query.name // Admite ambos para compatibilidad
         const filterModel = req.query.model
         const filterColor = req.query.color
         const filterYear = req.query.year
         const filterPrice = req.query.price
         const filterKilometer = req.query.kilometer
-        // http://localhost:3000/api/products?limit=2&skip=0&sort=name
+        // http://localhost:3000/api/products?limit=2&skip=0&sort=brand
         const limit = parseInt(req.query.limit, 10) || 2
         const skip = parseInt(req.query.skip, 10) || 0
-        const sort = req.query.sort || "name"
-        // http://localhost:3000/api/products?fields=name  < te devuelve solo el nombre >
+        const sort = req.query.sort || "brand" // Cambiado de "name" a "brand"
+        // http://localhost:3000/api/products?fields=brand  < te devuelve solo la marca >
         const fields = req.query.fields 
 
         const filter = {owner: userId}
-        if (filterName) {
-            filter.name = { $regex: filterName, $options: "i" } 
+        if (filterBrand) {
+            filter.brand = { $regex: filterBrand, $options: "i" } 
         }
         if (filterModel) {
             filter.model = { $regex: filterModel, $options: "i" } 
@@ -46,16 +46,18 @@ export async function apiProductsList(req, res, next){
             filter.kilometer =  filterKilometer;
             }
         }
-        const [products, productsCount] = await Promise.all([
-            Product.list(filter,limit,skip,sort,fields),
-            Product.countDocuments(filter)
-        ])
-        
+
+        // Comprobar que el campo de ordenación existe en el esquema
+        if (!['brand', 'model', 'color', 'year', 'price', 'kilometer'].includes(sort)) {
+            sort = 'brand' // Cambiado de "name" a "brand"
+        }
+
+        const products = await Product.list(filter, limit, skip, sort, fields)
+        const totalCount = await Product.countDocuments(filter)
         res.json({
-            result: products,
-            count: productsCount
+            results: products,
+            total: totalCount
         })
-        
     } catch (error) {
         next(error)
     }

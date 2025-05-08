@@ -11,14 +11,13 @@
     <div class="product-grid">
         <% products.forEach(product => { %>
         <div class="product-card">
-            <img class="product-image" src="<%= product.images && product.images.length > 0 ? `/imagenes/${product.images[0]}` : `https://placehold.co/300x200?text=${__('myProduct.noImageText')}` %>" alt="<%= product.name %>">
+            <img class="product-image" src="<%= product.images && product.images.length > 0 ? (product.images[0].startsWith('img_cars/') ? `/${product.images[0]}` : `/imagenes/${product.images[0]}`) : `https://placehold.co/300x200?text=${__('myProduct.noImageText')}` %>" alt="<%= product.brand %> <%= product.model %>">
             <div class="product-info">
-            <h3><%= product.name %></h3>
-            <p>🔰 <%= __('home.product.model') %>: <%= product.model %></p>
-            <p>🎨 <%= __('home.product.color') %>: <%= product.color %></p>
-            <p>📅 <%= __('home.product.year') %>: <%= product.year %></p>
-            <p>💶 <%= __('home.product.price') %>: <%= product.price?.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' }) %></p>
-            <p>🏁 <%= __('home.product.kilometer') %>: <%= product.kilometer?.toLocaleString('es-ES') %> km</p>
+            <h3><%= product.brand %> <%= product.model %></h3>
+            <p>🎨 <strong><%= __('home.product.color') %>:</strong> <%= product.color %></p>
+            <p>📅 <strong><%= __('home.product.year') %>:</strong> <%= product.year %></p>
+            <p>💶 <strong><%= __('home.product.price') %>:</strong> <%= product.price?.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' }) %></p>
+            <p>🏁 <strong><%= __('home.product.kilometer') %>:</strong> <%= product.kilometer?.toLocaleString('es-ES') %> km</p>
             </div>
             <div class="product-action">
             <a href="/myproducts/edit/<%= product._id %>" class="btn-edit">

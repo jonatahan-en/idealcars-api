@@ -17,8 +17,17 @@
 		},
 		"guest": "Guest",
 		"noProducts": "You have no products yet. Add some!",
-		"tagline": "home.tagline",
-		"detailsButton": "Details"
+		"tagline": "Your ideal car awaits you",
+		"detailsButton": "Details",
+		"filters": {
+			"brand": "Brand",
+			"model": "Model",
+			"color": "Color",
+			"year": "Year",
+			"price": "Price",
+			"kilometer": "Kilometers",
+			"button": "Apply Filters"
+		}
 	},
 	"signup": {
 		"title": "Sign Up",
@@ -31,7 +40,10 @@
 		"password": "Password",
 		"register": "Register",
 		"Enter_your_name": "Enter your name",
-		"optional": "Optional"
+		"optional": "Optional",
+		"username": "Username",
+		"Enter_your_username": "Enter your username",
+		"Enter_your_email": "Enter your email"
 	},
 	"signout": {
 		"title": "Sign Out",
@@ -47,11 +59,11 @@
 		"login": "Login",
 		"forgotPassword": "Forgot password?",
 		"redirectNewAd": "You must log in to create a new listing.",
-		"username": "login.username"
+		"username": "Username"
 	},
 	"newProduct": {
 		"title": "New Ad",
-		"name": "Name",
+		"brand": "Brand",
 		"model": "Model",
 		"color": "Color",
 		"year": "Year",
@@ -59,7 +71,7 @@
 		"kilometer": "Kilometers",
 		"image": "Image",
 		"create": "Create Ad",
-		"images": "images new Products"
+		"images": "Images new Products"
 	},
 	"footer": {
 		"rights": "All rights reserved."
@@ -83,7 +95,10 @@
 	},
 	"chat": {
 		"title": "Chat",
-		"sendMessage": "Send Message"
+		"sendMessage": "Send Message",
+		"placeholder": "Type your message...",
+		"sendButton": "Send",
+		"productChatTitle": "Product Chat"
 	},
 	"favorites": {
 		"title": "Favorites",
@@ -104,22 +119,24 @@
 		"confirm": "Confirm",
 		"delete": "Delete",
 		"home": "Home",
-		"previous": "common.previous",
-		"next": "common.next",
-		"sending": "common.sending",
-		"edit": "common.edit",
-		"email": "common.email"
+		"previous": "Previous",
+		"next": "Next",
+		"sending": "Sending...",
+		"edit": "Edit",
+		"email": "Email",
+		"back": "Back"
 	},
 	"UnRegister": "Delete account",
-	"appDescription": "appDescription",
+	"appDescription": "IdealCars - Your platform for buying/selling cars",
 	"myProduct": {
-		"confirmDelete": "myProduct.confirmDelete"
+		"confirmDelete": "Are you sure you want to delete this product?"
 	},
 	"editProduct": {
 		"title": "Edit Product",
 		"save": "Save Changes"
 	},
 	"productDetail": {
-		"goToChat": "productDetail.goToChat"
+		"noImages": "No images available",
+		"goToChat": "Go to chat"
 	}
 }

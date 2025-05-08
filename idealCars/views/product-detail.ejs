@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="/css/styles.css">
 <main class="card-container">
     <section class="detail-card">
-        <h2><%= product.name %> - <%= product.model %></h2>
+        <h2><%= product.brand %> <%= product.model %></h2>
         <p>🎨 <strong><%= __('home.product.color') %>:</strong> <%= product.color %></p>
         <p>📅 <strong><%= __('home.product.year') %>:</strong> <%= product.year %></p>
         <p>💶 <strong><%= __('home.product.price') %>:</strong> <%= typeof product.price !== 'undefined' ? product.price.toLocaleString('es-ES', { style: 'currency', currency: 'EUR' }) : '' %></p>
@@ -12,7 +12,7 @@
         <% if (product.images && product.images.length > 0) { %>
         <div class="carousel-container" id="carousel">
             <% product.images.forEach((image) => { %>
-            <img src="/imagenes/<%= image %>" alt="<%= product.name %>">
+            <img src="/<%= image.startsWith('img_cars/') ? '' : 'imagenes/' %><%= image %>" alt="<%= product.brand %> <%= product.model %>">
             <% }) %>
             <button class="carousel-btn prev" onclick="moveSlide(-1)">&#10094;</button>
             <button class="carousel-btn next" onclick="moveSlide(1)">&#10095;</button>
@@ -34,18 +34,48 @@
 </main>
 
 <script>
+// Variable para el índice actual
 let currentIndex = 0;
+
+// Función para mover los slides
 function moveSlide(direction) {
     const slides = document.querySelectorAll('#carousel img');
+    if (slides.length <= 1) return; // No hacer nada si hay 0 o 1 imágenes
+    
     const totalSlides = slides.length;
+    
+    // Ocultar la slide actual
     slides[currentIndex].style.display = 'none';
+    
+    // Calcular el nuevo índice (con manejo circular)
     currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
+    
+    // Mostrar la nueva slide
     slides[currentIndex].style.display = 'block';
+    
+    console.log(`Mostrando imagen ${currentIndex+1} de ${totalSlides}`);
 }
+
+// Inicializar el carrusel cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', () => {
     const slides = document.querySelectorAll('#carousel img');
-    slides.forEach(slide => slide.style.display = 'none');
-    if (slides.length > 0) slides[0].style.display = 'block';
+    console.log(`Carrusel inicializado con ${slides.length} imágenes`);
+    
+    if (slides.length > 0) {
+        // Ocultar todas las imágenes inicialmente
+        slides.forEach(slide => slide.style.display = 'none');
+        
+        // Mostrar solo la primera imagen
+        slides[0].style.display = 'block';
+        
+        // Si solo hay una imagen, ocultar los botones de navegación
+        if (slides.length <= 1) {
+            const prevBtn = document.querySelector('.carousel-btn.prev');
+            const nextBtn = document.querySelector('.carousel-btn.next');
+            if (prevBtn) prevBtn.style.display = 'none';
+            if (nextBtn) nextBtn.style.display = 'none';
+        }
+    }
 });
 </script>
 <%- include("footer.ejs") %>

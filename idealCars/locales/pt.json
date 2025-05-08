@@ -12,12 +12,22 @@
 			"price": "Preço",
 			"kilometer": "Quilômetros",
 			"image": "Imagem",
-			"owner": "Proprietário"
+			"owner": "Proprietário",
+			"brand": "Marca"
 		},
 		"guest": "Convidado",
 		"noProducts": "Você ainda não tem produtos. Adicione alguns!",
 		"tagline": "O seu carro ideal espera por você",
-		"detailsButton": "Detalhes"
+		"detailsButton": "Detalhes",
+		"filters": {
+			"brand": "Marca",
+			"model": "Modelo",
+			"color": "Cor",
+			"year": "Ano",
+			"price": "Preço",
+			"kilometer": "Quilômetros",
+			"button": "Aplicar Filtros"
+		}
 	},
 	"signup": {
 		"title": "Cadastro",
@@ -31,7 +41,7 @@
 		"register": "Cadastrar",
 		"Enter_your_name": "Digite seu nome",
 		"optional": "Opcional",
-		"username": "nome de utilizador",
+		"username": "Nome de utilizador",
 		"Enter_your_username": "Digite seu nome de utilizador",
 		"Enter_your_email": "Digite seu e-mail"
 	},
@@ -42,11 +52,11 @@
 		"login": "Entrar",
 		"forgotPassword": "Esqueceu a senha?",
 		"redirectNewAd": "Você deve efetuar login para criar um novo anúncio.",
-		"username": "nome de utilizador"
+		"username": "Nome de utilizador"
 	},
 	"newProduct": {
 		"title": "Novo Anúncio",
-		"name": "Nome",
+		"brand": "Marca",
 		"model": "Modelo",
 		"color": "Cor",
 		"year": "Ano",
@@ -78,7 +88,10 @@
 	},
 	"chat": {
 		"title": "Chat",
-		"sendMessage": "Enviar Mensagem"
+		"sendMessage": "Enviar Mensagem",
+		"placeholder": "Digite sua mensagem...",
+		"sendButton": "Enviar",
+		"productChatTitle": "Chat do Produto"
 	},
 	"favorites": {
 		"title": "Favoritos",
@@ -106,7 +119,8 @@
 		"next": "Próximo",
 		"goBack": "Voltar",
 		"saveChanges": "Salvar Alterações",
-		"sending": "Enviando..."
+		"sending": "Enviando...",
+		"back": "Voltar"
 	},
 	"productDetail": {
 		"noImages": "Nenhuma imagem disponível",
@@ -124,7 +138,7 @@
 		"unregister": "Cancelar cadastro"
 	},
 	"UnRegister": "Excluir Conta",
-	"appDescription": "appDescription",
+	"appDescription": "IdealCars - Sua plataforma para compra/venda de carros",
 	"editProduct": {
 		"title": "Editar Produto",
 		"save": "Salvar Alterações"

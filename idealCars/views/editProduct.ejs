@@ -8,11 +8,11 @@
         <form action="/myproducts/<%= product._id %>?_method=PUT" method="POST" enctype="multipart/form-data" novalidate>
             
             <div class="form_input mb-3">
-                <label for="name" style="color: #00bfff"><%= __('newProduct.name') %></label>
-                <input class="input" type="text" id="name" name="name" value="<%= product.name %>" required>
-                <% if (product.errors && product.errors.name) { %>
+                <label for="brand" style="color: #00bfff"><%= __('newProduct.brand') %></label>
+                <input class="input" type="text" id="brand" name="brand" value="<%= product.brand %>" required>
+                <% if (product.errors && product.errors.brand) { %>
                     <div class="validate" role="alert">
-                        <%= product.errors.name.msg %>
+                        <%= product.errors.brand.msg %>
                     </div>
                 <% } %>
             </div>

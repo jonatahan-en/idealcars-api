@@ -6,6 +6,7 @@ export function register (req,res,next){
     res.render('signup', {
         errors: [],
         name:"",
+        username: "",
         phone:"",
         email:"",
         password:"",

@@ -5,7 +5,7 @@ import { body, validationResult } from "express-validator"
 export function index(req, res, next) {
     res.render("new-product",{
         errors: [],
-        name: "",
+        brand: "",  // Cambiado de 'name' a 'brand'
         model: "",
         color: "", 
         year: "",
@@ -35,7 +35,7 @@ export async function validateProduct(req, res, next) {
       ];
     const coloresValidos= ['rojo', 'azul','verde','amarillo','celeste','rosa','negro','plateado','gris','blanco','morado','naranja','marron'];
     
-    await body('name')
+    await body('brand')  // Cambiado de 'name' a 'brand'
     .notEmpty().withMessage('El nombre es obligatorio')
     .trim()
     .isAlpha('es-ES', { ignore: ' -' }).withMessage('El nombre solo puede contener letras')
@@ -120,7 +120,7 @@ export async function validateProduct(req, res, next) {
         console.log("Errores de validación", errors.array())
         return res.render('new-product', {
             errors: errors.mapped(),
-                name: req.body.name,
+                brand: req.body.brand,  // Cambiado de 'name' a 'brand'
                 model: req.body.model,
                 color: req.body.color,
                 year: req.body.year,
@@ -138,12 +138,12 @@ export async function postNew(req, res, next) {
         console.log("Archivos recibidos:", req.files);
         const userId = req.session.userId
 
-        const {name, model, color, year, price, kilometer} = req.body
+        const {brand, model, color, year, price, kilometer} = req.body  // Cambiado de 'name' a 'brand'
         const images = req.files ? req.files.map(file => file.filename) : [];
         
         // Crear el producto usando 'brand' en lugar de 'name'
         const product = new Product({
-            brand: name,  // Aquí asignamos el valor de name a brand
+            brand,  // Aquí asignamos el valor de name a brand
             model,
             color,
             year,   

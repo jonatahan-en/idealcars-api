@@ -11,11 +11,11 @@
     
 
       <div class="form_input mb-3">
-        <label for="name" style="color: #00bfff"><%= __('newProduct.name') %></label>
-        <input class="input" type="text" id="name" name="name" value="<%= name || ''  %>" required >
-        <% if (errors.name) { %>
+        <label for="brand" style="color: #00bfff"><%= __('newProduct.brand') %></label>
+        <input class="input" type="text" id="brand" name="brand" value="<%= brand || ''  %>" required >
+        <% if (errors.brand) { %>
           <div class="validate" role="alert">
-            <%= errors.name.msg %>
+            <%= errors.brand.msg %>
           </div>
         <% } %>
       </div>

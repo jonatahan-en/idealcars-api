@@ -570,3 +570,57 @@ body.dark-mode #filter-form input::placeholder {
         opacity: 0.8;
     }
 }
+
+/* Estilos para el mini carrusel en las cards de productos */
+.product-carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.product-carousel img {
+    width: 100%;
+    transition: opacity 0.3s ease;
+}
+
+.carousel-nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none;
+}
+
+.mini-nav-btn {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 8px;
+    pointer-events: auto;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.mini-nav-btn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    transform: scale(1.1);
+}
+
+.mini-nav-btn.prev {
+    left: 5px;
+}
+
+.mini-nav-btn.next {
+    right: 5px;
+}

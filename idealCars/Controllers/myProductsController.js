@@ -6,11 +6,10 @@ export async function userProducts(req, res, next) {
     try {
         const userId = req.session.userId;
 
-
         const filter = { owner: userId };
         const limit = parseInt(req.query.limit, 10) || 8;
         const skip = parseInt(req.query.skip, 10) || 0;
-        const sort = req.query.sort || "name";
+        const sort = req.query.sort || "brand"; // Usa "brand" en lugar de "name"
 
         // Obtén los productos del usuario autenticado
         const products = await Product.list(filter, limit, skip, sort);
@@ -58,16 +57,16 @@ export async function editProductForm(req, res, next) {
             return next(createError(404, "Producto no encontrado"));
         }
 
-        // Preparar los datos para la plantilla, mapeando brand a name
+        // Preparar los datos para la plantilla
         const productForTemplate = {
             _id: product._id,
-            name: product.brand, // Asignamos brand a name para la vista
+            brand: product.brand, // Usar brand en lugar de name
             model: product.model,
             color: product.color,
             year: product.year,
             price: product.price,
             kilometer: product.kilometer,
-            images: product.images || [] // Incluimos las imágenes
+            images: product.images || []
         };
 
         // Renderiza el formulario de edición con los datos del producto
@@ -96,10 +95,10 @@ export async function validateProduct(req, res, next) {
       ];
     const coloresValidos= ['rojo', 'azul','verde','amarillo','celeste','rosa','negro','plateado','gris','blanco','morado','naranja','marron'];
     
-    await body('name')
-    .notEmpty().withMessage('El nombre es obligatorio')
+    await body('brand') // Cambiado de 'name' a 'brand'
+    .notEmpty().withMessage('La marca es obligatoria')
     .trim()
-    .isAlpha('es-ES', { ignore: ' -' }).withMessage('El nombre solo puede contener letras')
+    .isAlpha('es-ES', { ignore: ' -' }).withMessage('La marca solo puede contener letras')
     .custom(value => {
         // Convertimos el valor a minúscula para comparar sin distinción de mayúsculas/minúsculas
         const valorLowerCase = value.toLowerCase();
@@ -113,7 +112,7 @@ export async function validateProduct(req, res, next) {
         }
         return true
     })
-    .isLength({min: 3}).withMessage('El nombre debe tener al menos 3 caracteres')
+    .isLength({min: 3}).withMessage('La marca debe tener al menos 3 caracteres')
     .escape()
     .run(req),
     await body('model')
@@ -123,9 +122,7 @@ export async function validateProduct(req, res, next) {
     .matches(/^[a-zA-Z0-9 \-.]+$/).withMessage()
     .isAlpha('es-ES', { ignore: ' -.0123456789' }).withMessage('Solo letras, guiones y puntos')
     .custom(value => {
-        // Convertimos el valor a minúscula para comparar sin distinción de mayúsculas/minúsculas
         const valorLowerCase = value.toLowerCase();
-        // Comprobamos si el valor está en el array de modelos
         if(!modelos.includes(valorLowerCase)){
             throw new Error(`Este modelo no está disponible aún. Por favor contacte con: idealcarsapiwankenobi@gmail.com.`)
         }
@@ -170,7 +167,7 @@ export async function validateProduct(req, res, next) {
             product:{
                 _id: req.params.id,
                 errors: errors.mapped(),
-                name: req.body.name,
+                brand: req.body.brand, // Cambiado de 'name' a 'brand'
                 model: req.body.model,
                 color: req.body.color,
                 year: req.body.year,
@@ -186,7 +183,7 @@ export async function updateProduct(req, res, next) {
     try {
         const userId = req.session.userId;
         const id = req.params.id;
-        const { name, model, color, year, price, kilometer } = req.body;
+        const { brand, model, color, year, price, kilometer } = req.body; // Cambiado de 'name' a 'brand'
         
         // Buscar el producto original para obtener las imágenes existentes
         const originalProduct = await Product.findOne({ _id: id, owner: userId });
@@ -209,7 +206,7 @@ export async function updateProduct(req, res, next) {
         
         // Crear un objeto con los datos actualizados
         const updatedData = {
-            brand: name, // Asignamos 'name' a 'brand'
+            brand, // Ya no necesitamos mapear name a brand
             model,
             color,
             year,
