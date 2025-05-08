@@ -30,7 +30,7 @@
 		"register": "Register",
 		"Enter_your_name": "Enter your name",
 		"optional": "Optional",
-		"username": "UserName",
+		"username": "Username",
 		"Enter_your_username": "signup.Enter_your_username"
 	},
 	"signout": {
