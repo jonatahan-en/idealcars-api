@@ -32,7 +32,7 @@ export async function ValidateRegister(req, res, next) {
     .withMessage()
     .isLength({ min: 3, max: 15 })
     .withMessage("Debe tener como mínimo 3 caracteres y máximo 15")
-    /*.custom(async (value) => {
+    .custom(async (value) => {
       const ExistingUser = await User.findOne({
         username: value,
       });
@@ -40,7 +40,7 @@ export async function ValidateRegister(req, res, next) {
         throw new Error("El nombre de usuario está actualmente en uso");
       }
       return true;
-    })*/
+    })
     .escape()
     .run(req);
 
@@ -49,7 +49,7 @@ export async function ValidateRegister(req, res, next) {
     .withMessage("Email required")
     .isEmail()
     .withMessage("Must be a valid email format")
-    /*.custom(async (value) => {
+    .custom(async (value) => {
       const ExistingUser = await User.findOne({
         email: value.toLowerCase(),
       });
@@ -57,7 +57,7 @@ export async function ValidateRegister(req, res, next) {
         throw new Error("El email está actualmente registrado");
       }
       return true;
-    })*/
+    })
     .custom(value=>{
         console.log("Validando email:", value);
         const emailsValidos = ['gmail.com', "hotmail.com", "yahoo.com","outlook.com","yahoo.es","example.com"]
